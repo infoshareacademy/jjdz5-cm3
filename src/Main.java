@@ -4,6 +4,7 @@ public class Main {
         MainMenu mainMenu = new MainMenu();
 
         mainMenu.goMenu(mainMenu.isChoiceNumber());
+
         
     }
 }

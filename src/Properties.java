@@ -1,5 +1,8 @@
 public class Properties {
 
-public void defaultCountry (){}
-public void propertiesFolder (){}
+    public void defaultCountry() {
+    }
+
+    public void propertiesFolder() {
+    }
 }

@@ -1,24 +1,22 @@
 public class DelegationMenu extends Menu {
 
     /*
-    * Dodaj poniżej kolejny punkt menu dodając kolejną linię i odpowiedni kolejny numer
-    *
-    * !!!! Pamiętaj aby ddoać wpis w metodzie goMenu
-    *
-    * */
-    public DelegationMenu(){
+     * Dodaj poniżej kolejny punkt menu dodając kolejną linię i odpowiedni kolejny numer
+     *
+     * !!!! Pamiętaj aby ddoać wpis w metodzie goMenu
+     *
+     * */
+    public DelegationMenu() {
         System.out.println("---------MENU DELEGACJE---------");
         System.out.println("Wybierz liczbę żeby wejść w:");
-        System.out.println("1. Dodaj delegację");
-        System.out.println("2. Wyświetl delegacje");
-        System.out.println("3. Zaakceptuj delegację");
-        System.out.println("4. Odrzuć delegację");
-        System.out.println("5. cos tam cos tam");
-        System.out.println("9. Powrót do głównego Menu");
-        System.out.println("0. wyjście z programu");
+        System.out.println("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj delegację | 4. Odrzuć delegację | ");
+        System.out.println("5. cos tam cos tam | 9. Powrót do głównego Menu | 0. wyjście z programu");
+
         goMenu(isChoiceNumber());
     }
 
+
+    /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
     @Override
     public void goMenu(int choice) {
 
@@ -31,12 +29,12 @@ public class DelegationMenu extends Menu {
             delegation.addDelegation();
         } else if (choice == 2) {
             delegation.previewDelegation();
-        }else if (choice == 3) {
+        } else if (choice == 3) {
             delegation.acceptDelegation();
-        }else if (choice == 4) {
+        } else if (choice == 4) {
             delegation.discardDelegation();
-        }else if (choice == 5) {
+        } else if (choice == 5) {
             delegation.discardDelegation();
-        }else outOfProgramandMainMenu(choice);
+        } else outOfProgramandMainMenu(choice);
     }
 }

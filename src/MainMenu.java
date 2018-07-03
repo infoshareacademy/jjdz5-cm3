@@ -3,7 +3,12 @@ import java.util.Properties;
 public class MainMenu extends Menu {
 
 
-
+    /*
+     * Dodaj poniżej kolejny punkt menu dodając kolejną linię i odpowiedni kolejny numer
+     *
+     * !!!! Pamiętaj aby ddoać wpis w metodzie goMenu
+     *
+     * */
     public MainMenu() {
         System.out.println("---------------Program do obsługi delegacji---------------");
         System.out.println(" #     #  #####  #  #      #     #     #  #####  #      #  #     # ");
@@ -17,6 +22,7 @@ public class MainMenu extends Menu {
     }
 
 
+    /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
     @Override
     public void goMenu(int choice) {
 
@@ -29,10 +35,10 @@ public class MainMenu extends Menu {
         } else if (choice == 2) {
             Menu propertiesMenu = new PropertiesMenu();
         } else if (choice == 0) {
+            System.out.println("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
             System.exit(1);
         }
     }
-
 
 
 }
