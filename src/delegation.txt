@@ -1,0 +1,3 @@
+creationDate , employeeName , employeeSurname , startDate , endDate , destinationCountry , destinationCity , destinationCompany , destinationCompanyAddress    , destinationSleepAddress , purpose , status   , startPoint , vehicle , numberOfDays , idNumber
+20180703     , Adam         , Adamowski       , 20180709  , 20180713, Niemcy             , Kolonia         , Axel Ltd           , Kolonia, Grunwald Strasse 23 , Kolonia Borussia Straase, null    , TOACCEPT , null       , Plain   , 5            , 00012378
+
