@@ -1,18 +1,23 @@
+package menu;
+
+import properties.Properties;
+
 public class PropertiesMenu extends Menu {
 
-//    public static void clearScreen() {
-////        System.out.print("\033[H\033[2J");
-////        System.out.flush();
-////    }
 
     public PropertiesMenu() {
-        System.out.println("To jest menu ustawień");
-        System.out.println("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego Menu | 0. Wyjście z programu");
 
-        goMenu(isChoiceNumber());
 
     }
 
+    @Override
+    public void showMenu() {
+        System.out.println("To jest menu ustawień");
+        System.out.println("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
+
+        this.goMenu(isChoiceNumber());
+
+    }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
     @Override
@@ -28,7 +33,7 @@ public class PropertiesMenu extends Menu {
             properties.defaultCountry();
         } else if (choice == 2) {
             properties.propertiesFolder();
-        } else outOfProgramandMainMenu(choice);
+        } else outOfProgramAndMainMenu(choice);
     }
 
 }

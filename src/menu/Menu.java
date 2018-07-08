@@ -1,6 +1,12 @@
+package menu;
+
 import java.util.Scanner;
 
-public class Menu {
+public abstract  class Menu {
+
+    public abstract void showMenu();
+
+    public abstract void goMenu(int choice);
 
 
     /*metoda wczytuje z konsoli liczbę */
@@ -28,16 +34,15 @@ public class Menu {
         return choice;
     }
 
-    public void goMenu(int choice) {
-    }
 
-    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do MainMenu lub kończy program*/
-    public void outOfProgramandMainMenu(int choice) {
+    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MainMenu lub kończy program*/
+    public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
             System.out.println("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
             System.exit(1);
         } else {
             MainMenu mainMenu = new MainMenu();
+            mainMenu.showMenu();
             mainMenu.goMenu(mainMenu.isChoiceNumber());
         }
     }

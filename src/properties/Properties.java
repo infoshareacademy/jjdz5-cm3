@@ -1,3 +1,5 @@
+package properties;
+
 public class Properties {
 
     public void defaultCountry() {

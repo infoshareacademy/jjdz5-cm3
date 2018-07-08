@@ -1,4 +1,15 @@
+package menu;
+
+import delegations.*;
+
 public class DelegationMenu extends Menu {
+
+    private AddDelegation addDelegationService = new AddDelegation();
+    private AcceptDelegation acceptDelegation = new AcceptDelegation();
+    private DiscardDelegation discardDelegation = new DiscardDelegation();
+    private PreviewDelegation previewDelegation = new PreviewDelegation();
+
+
 
     /*
      * Dodaj poniżej kolejny punkt menu dodając kolejną linię i odpowiedni kolejny numer
@@ -7,14 +18,19 @@ public class DelegationMenu extends Menu {
      *
      * */
     public DelegationMenu() {
+
+    }
+
+    @Override
+    public void showMenu() {
         System.out.println("---------MENU DELEGACJE---------");
         System.out.println("Wybierz liczbę żeby wejść w:");
         System.out.println("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj delegację | 4. Odrzuć delegację | ");
-        System.out.println("5. cos tam cos tam | 9. Powrót do głównego Menu | 0. wyjście z programu");
+        System.out.println("9. Powrót do głównego menu.Menu | 0. wyjście z programu");
 
         goMenu(isChoiceNumber());
-    }
 
+    }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
     @Override
@@ -26,15 +42,14 @@ public class DelegationMenu extends Menu {
         }
         Delegation delegation = new Delegation();
         if (choice == 1) {
-            delegation.addDelegation();
+            addDelegationService.addDelegation();
+
         } else if (choice == 2) {
-            delegation.previewDelegation();
+            previewDelegation.previewDelegation();
         } else if (choice == 3) {
-            delegation.acceptDelegation();
+           acceptDelegation.acceptDelegation();
         } else if (choice == 4) {
-            delegation.discardDelegation();
-        } else if (choice == 5) {
-            delegation.discardDelegation();
-        } else outOfProgramandMainMenu(choice);
+            discardDelegation.discardDelegation();
+        } else outOfProgramAndMainMenu(choice);
     }
 }
