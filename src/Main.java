@@ -1,9 +1,12 @@
-import src.Delegation;
+import menu.MainMenu;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
-        Delegation myDelegation = new Delegation();
-        myDelegation.previewDelegation();;
+
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.showMenu();
+        mainMenu.goMenu(mainMenu.isChoiceNumber());
+
+
     }
 }
