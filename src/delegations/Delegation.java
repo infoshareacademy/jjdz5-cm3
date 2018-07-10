@@ -9,7 +9,7 @@ public class Delegation {
     private String status ;
     private String startPoint ;
 
-    
+
     /*Obiekty z klas zawierających pola i metody */
     private Employee          employee          = new Employee();
     private Destination       destination       = new Destination();
