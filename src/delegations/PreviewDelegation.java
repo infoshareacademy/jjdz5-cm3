@@ -2,6 +2,7 @@ package delegations;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PreviewDelegation {
@@ -13,14 +14,17 @@ public class PreviewDelegation {
 
         String fileDelegation = "delegation.txt";
 
-        readFromFileDelegation(delegation, fileDelegation);
-        previewDelegation (delegation);
+        readFromFileDelegation(fileDelegation);
+        previewDelegation ();
 
     }
 
-    private void previewDelegation(Delegation delegation){
+    private void previewDelegation(){
 
-        StringBuilder out = new StringBuilder("");
+     //   List<Delegation> listDelegations = new ArrayList<> ();
+
+        StringBuilder out = new StringBuilder();
+        out.trimToSize ();
 
         for (Delegation p: listDelegations ) {
             out.append("| ")
@@ -54,12 +58,14 @@ public class PreviewDelegation {
 
     }
 
-    private void readFromFileDelegation(Delegation delegation, String fileDelegation) {
+    private void readFromFileDelegation( String fileDelegation) {
+
+     //   List<Delegation> listDelegations = new ArrayList<> ();
 
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
 
-        String[] atest;
+     //   String line;
 
         try {
             fileReader = new FileReader(delegationFile);
@@ -68,54 +74,36 @@ public class PreviewDelegation {
             System.exit (1);
         }
 
-        if (fileReader != null) {
+   //     if (fileReader != null) {
             BufferedReader bufferedReader = null;
             try {
                 bufferedReader = new BufferedReader( fileReader );
-                String line = null;
+                String line = "";
                 while ( ( line = bufferedReader.readLine() ) != null ) {
 
                     if (!line.equals("")){  //nie dodawaj pustych lini
-                        atest = line.split(",");
 
-                        if (atest.length==12) {
+                        List<String> tempList = Arrays.asList (line.split (","));
 
-                            delegation.setCreationDate(atest[0]);
-                            delegation.setEmployee(new Employee(atest[1], atest[2]));
-                            delegation.setStartDate(atest[3]);
-                            delegation.setEndDate(atest[4]);
-                            delegation.setDestination(new Destination(atest[6],
-                                    atest[6],
-                                    atest[7],
-                                    atest[8]));
-                            delegation.setPurpose(atest[9]);
-                            delegation.setStatus(atest[10]);
-                            delegation.setStartPoint(atest[11]);
+                        if (tempList.size()==12) {
 
                             listDelegations.add(new Delegation(
-                                    delegation.getCreationDate(),
-                                    delegation.getStartDate(),
-                                    delegation.getEndDate(),
-                                    delegation.getPurpose(),
-                                    delegation.getStatus(),
-                                    delegation.getStartPoint(),
-                                    (new Employee( delegation.getEmployee().getEmployeeName(),
-                                            delegation.getEmployee().getEmployeeSurname() )
+                                    tempList.get(0),
+                                    tempList.get(3),
+                                    tempList.get(4),
+                                    tempList.get(9),
+                                    tempList.get(10),
+                                    tempList.get(11),
+                                    (new Employee( tempList.get(1), tempList.get(2) )
                                     ),
                                     (new Destination(
-                                            delegation.getDestination().getDestinationCountry(),
-                                            delegation.getDestination().getDestinationCity(),
-                                            delegation.getDestination().getDestinationCompany(),
-                                            delegation.getDestination().getDestinationCompanyAddress()))
-                            ));
+                                            tempList.get(5),
+                                            tempList.get(6),
+                                            tempList.get(7),
+                                            tempList.get(8))))
+                            );
                         }
-
-
-
-
-
                     }
-
                 }
             } catch  (Exception e ) {
                 System.out.println( e );
@@ -123,11 +111,11 @@ public class PreviewDelegation {
 
                 try {
                     bufferedReader.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     System.out.println( e );
                 }
             }
-        }
+       // }
     }
 
 }
