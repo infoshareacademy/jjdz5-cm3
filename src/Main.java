@@ -6,7 +6,5 @@ public class Main {
         MainMenu mainMenu = new MainMenu();
         mainMenu.showMenu();
         mainMenu.goMenu(mainMenu.isChoiceNumber());
-
-        
     }
 }

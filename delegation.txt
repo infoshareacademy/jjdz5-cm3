@@ -1,0 +1,14 @@
+
+20180703     , Adam         , Adamowski       , 20180709  , 20180713, Niemcy             , Kolonia         , Axel Ltd           , Kolonia Grunwald Strasse 23  , podpisanie umowy     , TOACCEPT , Gdańsk
+20180704     , Beata        , Beatowska       , 20180710  , 20180720, Francja            , Paryż           , OVH                , Paryż Kwiatowa 56            , negocjacje umowy     , TOACCEPT , Oliwa
+
+
+
+20180705     , Czesaw       , Celiński        , 20180711  , 20180714, Polska             , Gniew           , Zamek              , Gniew Pałac Marysieńki       , szkolenie            , TOACCEPT , Gdańsk
+20180706     , Dariusz      , Darecki         , 20180712, , 20180714, Hiszpania          , Madryt          , Espanol            , Madryt Plac Kolumba 65/89    , szkolenie            , TOACCEPT , Sopot
+
+celowo , błędne zapisy,, ,,||
+20180707     , Beata, ,     , Beatowska       , 20180710  , 20180720, Francja            , Paryż           , OVH                , Paryż Kwiatowa 56            , negocjacje umowy     , TOACCEPT , Oliwa
+20180708     , Beata        , Beatowska       , 20180710  , 20180720, Francja            , Paryż           , OVH                , Paryż Kwiatowa 56            , negocjacje umowy     , TOACCEPT , Oliwa
+
+
