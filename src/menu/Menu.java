@@ -1,5 +1,7 @@
 package menu;
 
+import console.ConsolePrinter;
+
 import java.util.Scanner;
 
 public abstract  class Menu {
@@ -7,6 +9,8 @@ public abstract  class Menu {
     public abstract void showMenu();
 
     public abstract void goMenu(int choice);
+
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
 
 
     /*metoda wczytuje z konsoli liczbę */
@@ -17,33 +21,33 @@ public abstract  class Menu {
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
 
-        int choice = -1;
+        int userChoice = -1;
         boolean isCorect = false;
 
         while (!isCorect) {
 
             try {
-                choice = readFromConsole();
+                userChoice = readFromConsole();
                 isCorect = true;
 
             } catch (Exception e) {
-                System.out.println("to nie jest liczba całkowita wpisz jeszcze raz");
+                consolePrinter.printLine("to nie jest liczba całkowita wpisz jeszcze raz");
                 isCorect = false;
             }
         }
-        return choice;
+        return userChoice;
     }
 
 
-    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MainMenu lub kończy program*/
+    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MenuMain lub kończy program*/
     public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
-            System.out.println("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
+            consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
             System.exit(1);
         } else {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.showMenu();
-            mainMenu.goMenu(mainMenu.isChoiceNumber());
+            MenuMain menuMain = new MenuMain();
+            menuMain.showMenu();
+            menuMain.goMenu(menuMain.isChoiceNumber());
         }
     }
 
