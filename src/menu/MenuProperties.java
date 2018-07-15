@@ -19,10 +19,11 @@ public class MenuProperties extends Menu {
         consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
-
     }
 
+
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
+
     @Override
     public void goMenu(int userChoice) {
         while (userChoice != 1 && userChoice != 2 && userChoice != 0 && userChoice != 9) {

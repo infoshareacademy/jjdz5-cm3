@@ -4,7 +4,7 @@ import console.ConsolePrinter;
 
 import java.util.Scanner;
 
-public abstract  class Menu {
+public abstract class Menu {
 
     public abstract void showMenu();
 
@@ -14,28 +14,25 @@ public abstract  class Menu {
 
 
     /*metoda wczytuje z konsoli liczbę */
-    public int readFromConsole() {
-        return new Scanner(System.in).nextInt();
+    public String readFromConsole() {
+        return new Scanner(System.in).nextLine();
     }
 
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
 
-        int userChoice = -1;
+        String userChoice = "";
         boolean isCorect = false;
 
-        while (!isCorect) {
-
-            try {
-                userChoice = readFromConsole();
-                isCorect = true;
-
-            } catch (Exception e) {
-                consolePrinter.printLine("to nie jest liczba całkowita wpisz jeszcze raz");
-                isCorect = false;
+        while (true) {
+            userChoice = readFromConsole();
+            if (userChoice.matches("[0-9]")) {
+                break;
+            } else {
+                consolePrinter.printLine("Podałeś złą wartość - wpisz jeszcze raz");
             }
         }
-        return userChoice;
+        return Integer.parseInt(userChoice);
     }
 
 
@@ -43,11 +40,10 @@ public abstract  class Menu {
     public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
             consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
-            System.exit(1);
+            System.exit(0);
         } else {
             MenuMain menuMain = new MenuMain();
-            menuMain.showMenu();
-            menuMain.goMenu(menuMain.isChoiceNumber());
+            menuMain.menuMainRun();
         }
     }
 

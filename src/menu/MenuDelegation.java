@@ -1,14 +1,15 @@
 package menu;
 
 import console.ConsolePrinter;
-import delegations.*;
+import delegations.AcceptDelegation;
+import delegations.AddDelegation;
+import delegations.PreviewDelegation;
 
 public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private AddDelegation addDelegationService = new AddDelegation();
     private AcceptDelegation acceptDelegation = new AcceptDelegation();
-    private DiscardDelegation discardDelegation = new DiscardDelegation();
     private PreviewDelegation previewDelegation = new PreviewDelegation();
 
 
@@ -37,7 +38,7 @@ public class MenuDelegation extends Menu {
     @Override
     public void goMenu(int userChoice) {
 
-        while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5 && userChoice != 0 && userChoice != 9) {
+        while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 0 && userChoice != 9) {
             consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
@@ -56,8 +57,6 @@ public class MenuDelegation extends Menu {
             default:
                 outOfProgramAndMainMenu(userChoice);
                 break;
-
-
         }
 
     }
