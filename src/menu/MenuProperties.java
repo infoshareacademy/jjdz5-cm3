@@ -1,14 +1,12 @@
 package menu;
 
 import console.ConsolePrinter;
-import properties.Properties;
 import properties.PropertiesSetCountry;
 import properties.PropertiesSetFolder;
 
 public class MenuProperties extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
-    Properties properties = new Properties();
     PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
     PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
 
@@ -39,10 +37,10 @@ public class MenuProperties extends Menu {
         switch (userChoice) {
 
             case 1:
-                properties.defaultCountry();
+                propertiesSetCountry.defaultCountry();
                 break;
             case 2:
-                properties.propertiesFolder();
+                propertiesSetFolder.defaultFolder();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);

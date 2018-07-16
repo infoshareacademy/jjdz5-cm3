@@ -5,12 +5,27 @@ import java.nio.file.Paths;
 
 public class Properties {
 
+    public static Path userDelegationPath;
+    public static String userDelegationCountry;
 
-    private final Path startPath = Paths.get(System.getProperty("user.dir"), "src", "Properties","properties.txt");
-    private Path userPath;
+    private final Path propertiesPath = Paths.get(System.getProperty("user.dir"), "src", "Properties","properties.json");
+
     private final String defaultCountry = "Poland";
-    private String userDefaultCountry;
+    private final Path defaultDelegationPath = Paths.get(System.getProperty("user.dir"),"delegations","delegations.txt");
 
+
+
+    public Path getPropertiesPath() {
+        return propertiesPath;
+    }
+
+    public String getDefaultCountry() {
+        return defaultCountry;
+    }
+
+    public Path getDefaultDelegationPath() {
+        return defaultDelegationPath;
+    }
 
 
 }

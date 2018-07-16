@@ -1,12 +1,14 @@
 package menu;
 
 import console.ConsolePrinter;
+import properties.PropertiesLoad;
 
 public class MenuMain extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private MenuDelegation menuDelegation = new MenuDelegation();
     private MenuProperties menuProperties = new MenuProperties();
+    private PropertiesLoad propertiesLoad = new PropertiesLoad();
 
 
     /*
@@ -20,6 +22,7 @@ public class MenuMain extends Menu {
     }
 
     public void menuMainRun() {
+        propertiesLoad.loadProperties();
         showMenu();
         goMenu(isChoiceNumber());
     }
