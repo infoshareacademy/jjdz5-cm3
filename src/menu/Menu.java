@@ -1,6 +1,7 @@
 package menu;
 
 import console.ConsolePrinter;
+import console.ReadFromConsole;
 
 import java.util.Scanner;
 
@@ -12,11 +13,7 @@ public abstract class Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
 
-
-    /*metoda wczytuje z konsoli liczbę */
-    public String readFromConsole() {
-        return new Scanner(System.in).nextLine();
-    }
+    ReadFromConsole readFromConsole = new ReadFromConsole();
 
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
@@ -24,7 +21,7 @@ public abstract class Menu {
         String userChoice = "";
 
         while (true) {
-            userChoice = readFromConsole();
+            userChoice = readFromConsole.readLine();
             if (userChoice.matches("[0-9]")) {
                 break;
             } else {
