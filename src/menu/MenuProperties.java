@@ -15,6 +15,7 @@ public class MenuProperties extends Menu {
 
     @Override
     public void showMenu() {
+        System.out.println();
         consolePrinter.printLine("To jest menu ustawień");
         consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
 
@@ -42,9 +43,9 @@ public class MenuProperties extends Menu {
             default:
                 outOfProgramAndMainMenu(userChoice);
                 break;
-
         }
 
+        showMenu();
     }
 
 }

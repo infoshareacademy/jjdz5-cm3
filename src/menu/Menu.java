@@ -22,7 +22,6 @@ public abstract class Menu {
     public int isChoiceNumber() {
 
         String userChoice = "";
-        boolean isCorect = false;
 
         while (true) {
             userChoice = readFromConsole();

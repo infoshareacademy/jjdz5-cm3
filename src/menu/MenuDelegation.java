@@ -25,6 +25,7 @@ public class MenuDelegation extends Menu {
 
     @Override
     public void showMenu() {
+        System.out.println();
         consolePrinter.printLine("---------MENU DELEGACJE---------");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
         consolePrinter.printLine("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj / odrzuć delegację | ");
@@ -43,7 +44,6 @@ public class MenuDelegation extends Menu {
             userChoice = isChoiceNumber();
         }
 
-
         switch (userChoice) {
             case 1:
                 addDelegationService.addDelegation();
@@ -58,6 +58,7 @@ public class MenuDelegation extends Menu {
                 outOfProgramAndMainMenu(userChoice);
                 break;
         }
+        showMenu();
 
     }
 }
