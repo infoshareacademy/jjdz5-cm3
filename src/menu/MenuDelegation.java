@@ -3,28 +3,22 @@ package menu;
 
 import delegations.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
+public class MenuDelegation extends Menu {
 
-public class DelegationMenu extends Menu {
-
-//    List<Delegation> listDelegations = new ArrayList<> ();
-
-    private AddDelegation addDelegationService = new AddDelegation();
-    private AcceptDelegation acceptDelegation = new AcceptDelegation();
-    private DiscardDelegation discardDelegation = new DiscardDelegation();
-    private PreviewDelegation previewDelegation = new PreviewDelegation();
-
-
-
+    private DelegationAdd delegationAdd = new DelegationAdd();
+    private DelegationAccept delegationAccept = new DelegationAccept ();
+    private DelegationDiscard delegationDiscard = new DelegationDiscard ();
+    private DelegationPreview previewDelegation = new DelegationPreview();
+    
     /*
      * Dodaj poniżej kolejny punkt menu dodając kolejną linię i odpowiedni kolejny numer
      *
      * !!!! Pamiętaj aby ddoać wpis w metodzie goMenu
      *
      * */
-    public DelegationMenu() {
+    
+    public MenuDelegation() {
 
     }
 
@@ -49,16 +43,16 @@ public class DelegationMenu extends Menu {
             choice = isChoiceNumber ();
         }
 
-//        Delegation delegation = new Delegation ();
+        Delegation delegation = new Delegation ();
 
         if (choice == 1) {
-            addDelegationService.addDelegation ();
+            delegationAdd.delegationAdd ();
         } else if (choice == 2) {
-            previewDelegation.previewDelegation ();
+            previewDelegation.delegationPreview ();
         } else if (choice == 3) {
-            acceptDelegation.acceptDelegation ();
+            delegationAccept.delegationAccept ();
         } else if (choice == 4) {
-            discardDelegation.discardDelegation ();
+            delegationDiscard.delegationDiscard ();
         } else if (choice == 0 || choice == 9) {
             outOfProgramAndMainMenu (choice) ;
         }

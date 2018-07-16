@@ -1,7 +1,5 @@
 package delegations;
 
-import delegations.*;
-
 public class Delegation {
 
     private String creationDate ;
@@ -16,11 +14,12 @@ public class Delegation {
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
-  //  private AddDelegation addDelegation = new AddDelegation();
-  //  private AcceptDelegation acceptDelegation = new AcceptDelegation();
-  //  private DiscardDelegation discardDelegation = new DiscardDelegation();
-    private PreviewDelegation previewDelegation = new PreviewDelegation();
+    private DelegationAdd addDelegation = new DelegationAdd();
+    private DelegationAccept acceptDelegation = new DelegationAccept();
+    private DelegationDiscard delegationDiscard = new DelegationDiscard ();
+    private DelegationPreview previewDelegation = new DelegationPreview();
 
+ //   List<Delegation> listDelegations = new ArrayList<> ();
 
     public Delegation(String creationDate, String startDate, String endDate, String purpose, String status, String startPoint, Employee employee, Destination destination) {
         this.creationDate = creationDate;
@@ -115,7 +114,4 @@ public class Delegation {
                 '}' + '\n';
     }
 
-    public void add(Delegation delegations) {
-
-    }
 }

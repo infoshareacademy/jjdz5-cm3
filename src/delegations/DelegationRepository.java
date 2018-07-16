@@ -9,10 +9,8 @@ public class DelegationRepository {
     
     public final static List<Delegation> listDelegations = new ArrayList<> ();
     
-    public void addDelegation(Delegation listDelegations){
-        listDelegations.add(listDelegations);
-        System.out.println (listDelegations);
+    public void addListDelegation(Delegation delegation){
+        listDelegations.add (delegation);
+
     }
-
-
 }

@@ -7,8 +7,6 @@ import java.io.FileReader;
 import java.util.Arrays;
 import java.util.List;
 
-import delegations.*;
-
 
 public class DelegationReadFile {
 
@@ -22,7 +20,6 @@ public class DelegationReadFile {
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
 
-        System.out.println ("Test *");
         try {
             fileReader = new FileReader(delegationFile);
         } catch (FileNotFoundException e) {
@@ -43,10 +40,10 @@ public class DelegationReadFile {
                 if (!line.equals("")){  //nie dodawaj pustych lini
 
                     List<String> tempList = Arrays.asList (line.split (","));
-                    System.out.println ("Test "+ tempList.size () );
+
                     if (tempList.size()==12) {
 
-                        delegationRepository.addDelegation(new Delegation(
+                        delegationRepository.addListDelegation(new Delegation(
                                 tempList.get(0),
                                 tempList.get(3),
                                 tempList.get(4),

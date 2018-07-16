@@ -1,9 +1,5 @@
 package menu;
 
-import menu.DelegationMenu;
-import menu.Menu;
-import menu.PropertiesMenu;
-
 public class MainMenu extends Menu {
 
 
@@ -39,7 +35,7 @@ public class MainMenu extends Menu {
             choice = isChoiceNumber();
         }
         if (choice == 1) {
-            Menu delegationMenu = new DelegationMenu();
+            Menu delegationMenu = new MenuDelegation ();
             delegationMenu.showMenu();
         } else if (choice == 2) {
             Menu propertiesMenu = new PropertiesMenu();
