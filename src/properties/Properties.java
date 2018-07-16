@@ -1,14 +1,16 @@
 package properties;
 
-import javax.sound.midi.Soundbank;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Properties {
 
-    public void defaultCountry() {
-        System.out.println("Ustawianie domyslengo kraju");
-    }
 
-    public void propertiesFolder() {
-        System.out.println("Ustawiania folderu");
-    }
+    private final Path startPath = Paths.get(System.getProperty("user.dir"), "src", "Properties","properties.txt");
+    private Path userPath;
+    private final String defaultCountry = "Poland";
+    private String userDefaultCountry;
+
+
+
 }

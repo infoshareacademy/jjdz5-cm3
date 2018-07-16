@@ -1,0 +1,2 @@
+country:, Poland
+folder:, E:\developmnet\DelegacjaWspolna\src\properties
