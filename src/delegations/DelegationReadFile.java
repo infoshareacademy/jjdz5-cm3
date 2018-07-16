@@ -22,7 +22,7 @@ public class DelegationReadFile {
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
 
-        System.out.println ("Test");
+        System.out.println ("Test *");
         try {
             fileReader = new FileReader(delegationFile);
         } catch (FileNotFoundException e) {
@@ -43,7 +43,7 @@ public class DelegationReadFile {
                 if (!line.equals("")){  //nie dodawaj pustych lini
 
                     List<String> tempList = Arrays.asList (line.split (","));
-
+                    System.out.println ("Test "+ tempList.size () );
                     if (tempList.size()==12) {
 
                         delegationRepository.addDelegation(new Delegation(

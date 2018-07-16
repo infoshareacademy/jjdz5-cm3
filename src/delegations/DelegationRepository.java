@@ -7,11 +7,12 @@ import delegations.*;
 
 public class DelegationRepository {
     
-    private final static List<Delegation> listDelegations = new ArrayList<> ();
+    public final static List<Delegation> listDelegations = new ArrayList<> ();
     
     public void addDelegation(Delegation listDelegations){
         listDelegations.add(listDelegations);
+        System.out.println (listDelegations);
     }
-    
-    
+
+
 }

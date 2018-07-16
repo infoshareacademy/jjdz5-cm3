@@ -9,24 +9,16 @@ import delegations.*;
 
 public class PreviewDelegation {
 
-private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
-private final DelegationRepository delegationRepository = new DelegationRepository ();
-
-  //  List<Delegation> listDelegations = new ArrayList<> ();
-
-    public void previewDelegationRun(Delegation delegation){
-
-        // tu: odczyt danych z pliku konfiguracyjnego
-        String fileDelegation = "delegation.txt";
-        //
+    private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
+    private final DelegationRepository delegationRepository = new DelegationRepository ();
 
 
-     //   readFromFileDelegation(fileDelegation);
-        delegationReadFile.delegationReadFile (fileDelegation);
-        previewDelegation ();
-    }
 
     private void previewDelegation(){
+        // tu: odczyt danych z pliku konfiguracyjnego
+        String fileDelegation = "delegation.txt";
+
+        delegationReadFile.delegationReadFile (fileDelegation);
 
         StringBuilder out = new StringBuilder();
         out.trimToSize ();

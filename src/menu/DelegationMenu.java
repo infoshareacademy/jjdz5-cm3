@@ -3,11 +3,13 @@ package menu;
 
 import delegations.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DelegationMenu extends Menu {
 
- //   List<Delegation> listDelegations = new ArrayList<> ();
+//    List<Delegation> listDelegations = new ArrayList<> ();
 
     private AddDelegation addDelegationService = new AddDelegation();
     private AcceptDelegation acceptDelegation = new AcceptDelegation();
@@ -46,13 +48,13 @@ public class DelegationMenu extends Menu {
             System.out.println ("Wybór spoza zakresu. Wybierz jeszcze raz");
             choice = isChoiceNumber ();
         }
-        Delegation delegation = new Delegation ();
+
+//        Delegation delegation = new Delegation ();
 
         if (choice == 1) {
             addDelegationService.addDelegation ();
         } else if (choice == 2) {
-            previewDelegation.previewDelegationRun (delegation);
-
+            previewDelegation.previewDelegation ();
         } else if (choice == 3) {
             acceptDelegation.acceptDelegation ();
         } else if (choice == 4) {
