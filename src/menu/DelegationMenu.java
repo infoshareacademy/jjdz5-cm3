@@ -1,15 +1,13 @@
 package menu;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import delegations.*;
 
+
+
 public class DelegationMenu extends Menu {
 
-    List<Delegation> listDelegations = new ArrayList<> ();
+ //   List<Delegation> listDelegations = new ArrayList<> ();
 
     private AddDelegation addDelegationService = new AddDelegation();
     private AcceptDelegation acceptDelegation = new AcceptDelegation();

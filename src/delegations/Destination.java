@@ -2,6 +2,8 @@ package delegations;
 
 import java.util.Objects;
 
+import delegations.*;
+
 /**
  *
  */
