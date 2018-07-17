@@ -1,12 +1,13 @@
 package delegations;
 
 
-import java.lang.reflect.Array;
+import console.ConsolePrinter;
 
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
     private final DelegationRepository delegationRepository = new DelegationRepository ();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public void delegationPreview(){
 
@@ -19,7 +20,7 @@ public class DelegationPreview {
 
         out.trimToSize ();
 
-        for (Delegation p: DelegationRepository.listDelegations) {
+        for (Delegation p: delegationRepository.listDelegations) {
 
             out.append("| ")
                     .append(p.getCreationDate())
@@ -50,7 +51,7 @@ public class DelegationPreview {
 
         }
 
-        System.out.println(out);
+        consolePrinter.printLine(out.toString ());
 
     }
 }

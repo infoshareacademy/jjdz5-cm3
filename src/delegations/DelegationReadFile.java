@@ -56,7 +56,9 @@ public class DelegationReadFile {
                     List<String> tempList = Arrays.asList (line.split (","));
 
                     if (tempList.size()==12) {
+
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
                         LocalDate tempCreationDate =  LocalDate.parse ( tempList.get(0).trim () , formatter);
                         LocalDate tempStartDate =  LocalDate.parse ( tempList.get(3).trim () , formatter);
                         LocalDate tempEndDate =  LocalDate.parse ( tempList.get(4).trim () , formatter);
