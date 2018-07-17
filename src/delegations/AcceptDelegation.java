@@ -3,6 +3,6 @@ package delegations;
 public class AcceptDelegation {
 
     public void acceptDelegation() {
-        System.out.println("Akceptowanie delegackji");
+        System.out.println("Akceptowanie delegackji ");
     }
 }

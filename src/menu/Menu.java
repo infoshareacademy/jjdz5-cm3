@@ -1,49 +1,45 @@
 package menu;
 
+import console.ConsolePrinter;
+import console.ReadFromConsole;
+
 import java.util.Scanner;
 
-public abstract  class Menu {
+public abstract class Menu {
 
     public abstract void showMenu();
 
     public abstract void goMenu(int choice);
 
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    /*metoda wczytuje z konsoli liczbę */
-    public int readFromConsole() {
-        return new Scanner(System.in).nextInt();
-    }
+    ReadFromConsole readFromConsole = new ReadFromConsole();
 
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
 
-        int choice = -1;
-        boolean isCorect = false;
+        String userChoice = "";
 
-        while (!isCorect) {
-
-            try {
-                choice = readFromConsole();
-                isCorect = true;
-
-            } catch (Exception e) {
-                System.out.println("to nie jest liczba całkowita wpisz jeszcze raz");
-                isCorect = false;
+        while (true) {
+            userChoice = readFromConsole.readLine();
+            if (userChoice.matches("[0-9]")) {
+                break;
+            } else {
+                consolePrinter.printLine("Podałeś złą wartość - wpisz jeszcze raz");
             }
         }
-        return choice;
+        return Integer.parseInt(userChoice);
     }
 
 
-    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MainMenu lub kończy program*/
+    /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MenuMain lub kończy program*/
     public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
-            System.out.println("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
-            System.exit(1);
+            consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
+            System.exit(0);
         } else {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.showMenu();
-            mainMenu.goMenu(mainMenu.isChoiceNumber());
+            MenuMain menuMain = new MenuMain();
+            menuMain.menuMainRun();
         }
     }
 
