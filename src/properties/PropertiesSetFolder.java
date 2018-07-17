@@ -53,7 +53,7 @@ public class PropertiesSetFolder {
                 Path user = Paths.get(userPath);
                 Properties.userDelegationPath = user;
 
-                
+
                 consolePrinter.printLine("Scieżka ustawiona na: " + user);
 
 

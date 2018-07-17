@@ -3,12 +3,14 @@ package menu;
 import console.ConsolePrinter;
 import properties.PropertiesSetCountry;
 import properties.PropertiesSetFolder;
+import properties.PropertiesView;
 
 public class MenuProperties extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
     PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
+    PropertiesView propertiesView = new PropertiesView();
 
 
     public MenuProperties() {
@@ -19,7 +21,7 @@ public class MenuProperties extends Menu {
     public void showMenu() {
         System.out.println();
         consolePrinter.printLine("To jest menu ustawień");
-        consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
+        consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 3. Pokaż ustawienia 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
     }
@@ -29,7 +31,7 @@ public class MenuProperties extends Menu {
 
     @Override
     public void goMenu(int userChoice) {
-        while (userChoice != 1 && userChoice != 2 && userChoice != 0 && userChoice != 9) {
+        while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 0 && userChoice != 9) {
             consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
@@ -41,6 +43,9 @@ public class MenuProperties extends Menu {
                 break;
             case 2:
                 propertiesSetFolder.defaultFolder();
+                break;
+            case 3:
+                propertiesView.showProperties();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);
