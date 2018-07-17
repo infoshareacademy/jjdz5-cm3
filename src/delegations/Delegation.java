@@ -1,10 +1,12 @@
 package delegations;
 
+import java.time.LocalDate;
+
 public class Delegation {
 
-    private String creationDate ;
-    private String startDate ;
-    private String endDate ;
+    private LocalDate creationDate ;
+    private LocalDate startDate ;
+    private LocalDate endDate ;
     private String purpose ;
     private String status ;
     private String startPoint ;
@@ -14,14 +16,19 @@ public class Delegation {
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
-    private DelegationAdd addDelegation = new DelegationAdd();
-    private DelegationAccept acceptDelegation = new DelegationAccept();
+    private DelegationAdd delegationAdd = new DelegationAdd();
+    private DelegationAccept delegationAccept = new DelegationAccept();
     private DelegationDiscard delegationDiscard = new DelegationDiscard ();
-    private DelegationPreview previewDelegation = new DelegationPreview();
+    private DelegationPreview delegationPreview = new DelegationPreview();
 
- //   List<Delegation> listDelegations = new ArrayList<> ();
-
-    public Delegation(String creationDate, String startDate, String endDate, String purpose, String status, String startPoint, Employee employee, Destination destination) {
+    public Delegation(LocalDate creationDate,
+                      LocalDate startDate,
+                      LocalDate endDate,
+                      String purpose,
+                      String status,
+                      String startPoint,
+                      Employee employee,
+                      Destination destination) {
         this.creationDate = creationDate;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -52,27 +59,27 @@ public class Delegation {
         this.destination = destination;
     }
 
-    public String getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

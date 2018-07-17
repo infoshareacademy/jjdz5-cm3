@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,16 +22,28 @@ public class DelegationReadFile {
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
 
-        try {
-            fileReader = new FileReader(delegationFile);
-        } catch (FileNotFoundException e) {
-            System.out.println ( "####" );
-            System.out.println ( "####  Brak pliku: " + fileDelegation );
-            System.out.println ( "####" );
+        if ( fileDelegation.isEmpty () || (!delegationFile.exists ())) {
+            System.out.println ("####");
+            if ( fileDelegation.isEmpty ()) {
+                System.out.println ("####  Brak nazwy pliku z delegacjami: ");
+            } else if (!delegationFile.exists ()) {
+                System.out.println ("####  Brak podanego pliku: " + fileDelegation);
+
+            }
+
+            System.out.println ("####");
+            System.out.println ("####  Podaj plik w MENU > 2. Domyślny folder > .....");
+            System.out.println ("####");
+
 
             return;
+        } else {
+            try {
+                fileReader = new FileReader (delegationFile);
+            } catch (FileNotFoundException e) {
+                System.out.println( e );
+            }
         }
-
         //     if (fileReader != null) {
         BufferedReader bufferedReader = null;
         try {
@@ -42,11 +56,14 @@ public class DelegationReadFile {
                     List<String> tempList = Arrays.asList (line.split (","));
 
                     if (tempList.size()==12) {
-
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        LocalDate tempCreationDate =  LocalDate.parse ( tempList.get(0).trim () , formatter);
+                        LocalDate tempStartDate =  LocalDate.parse ( tempList.get(3).trim () , formatter);
+                        LocalDate tempEndDate =  LocalDate.parse ( tempList.get(4).trim () , formatter);
                         delegationRepository.addListDelegation(new Delegation(
-                                tempList.get(0),
-                                tempList.get(3),
-                                tempList.get(4),
+                                tempCreationDate,
+                                tempStartDate,
+                                tempEndDate,
                                 tempList.get(9),
                                 tempList.get(10),
                                 tempList.get(11),

@@ -1,6 +1,8 @@
 package delegations;
 
 
+import java.lang.reflect.Array;
+
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
@@ -17,13 +19,14 @@ public class DelegationPreview {
 
         out.trimToSize ();
 
-        for (Delegation p: delegationRepository.listDelegations ) {
+        for (Delegation p: DelegationRepository.listDelegations) {
+
             out.append("| ")
                     .append(p.getCreationDate())
                     .append(" | ")
-                    .append(p.getEmployee().getEmployeeName())
+                    .append(p.getEmployee().getEmployeeName ())
                     .append(" | ")
-                    .append(p.getEmployee().getEmployeeSurname())
+                    .append(p.getEmployee().getEmployeeSurname ())
                     .append(" | ")
                     .append(p.getStartDate())
                     .append(" | ")

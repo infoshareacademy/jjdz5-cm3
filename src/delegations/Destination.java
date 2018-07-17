@@ -15,7 +15,10 @@ public class Destination {
     private String destinationCompany ;
     private String destinationCompanyAddress ;
 
-    public Destination(String destinationCountry, String destinationCity, String destinationCompany, String destinationCompanyAddress) {
+    public Destination(String destinationCountry,
+                       String destinationCity,
+                       String destinationCompany,
+                       String destinationCompanyAddress) {
         this.destinationCountry = destinationCountry;
         this.destinationCity = destinationCity;
         this.destinationCompany = destinationCompany;
