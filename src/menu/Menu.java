@@ -3,6 +3,7 @@ package menu;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 
+
 public abstract class Menu {
 
     public abstract void showMenu();
