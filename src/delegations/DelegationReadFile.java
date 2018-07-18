@@ -44,7 +44,7 @@ public class DelegationReadFile {
                 System.out.println( e );
             }
         }
-        //     if (fileReader != null) {
+
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader( fileReader );
@@ -57,11 +57,17 @@ public class DelegationReadFile {
 
                     if (tempList.size()==12) {
 
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 
-                        LocalDate tempCreationDate =  LocalDate.parse ( tempList.get(0).trim () , formatter);
-                        LocalDate tempStartDate =  LocalDate.parse ( tempList.get(3).trim () , formatter);
-                        LocalDate tempEndDate =  LocalDate.parse ( tempList.get(4).trim () , formatter);
+                        LocalDate tempCreationDate =  LocalDate.parse (
+                                tempList.get(0).trim ().replace ("-","") , formatter );
+
+                        LocalDate tempStartDate =  LocalDate.parse (
+                                tempList.get(3).trim ().replace ("-","") , formatter );
+
+                        LocalDate tempEndDate =  LocalDate.parse (
+                                tempList.get(4).trim ().replace ("-","") , formatter );
+
                         delegationRepository.addListDelegation(new Delegation(
                                 tempCreationDate,
                                 tempStartDate,
@@ -90,7 +96,7 @@ public class DelegationReadFile {
                 System.out.println( e );
             }
         }
-        // }
+
     }
 
 }
