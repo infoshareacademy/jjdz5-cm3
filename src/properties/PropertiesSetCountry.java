@@ -1,5 +1,6 @@
 package properties;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 import menu.MenuProperties;
@@ -8,6 +9,7 @@ public class PropertiesSetCountry {
 
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
+    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
     //MenuDelegation menuDelegation = new MenuDelegation();
 
 
@@ -26,8 +28,10 @@ public class PropertiesSetCountry {
             case 1:
                 consolePrinter.printLine("Podaj kraj:");
                 Properties.userDelegationCountry = consoleReader.readLine();
+                consoleClearScreen.clrscr();
                 break;
             default:
+                consoleClearScreen.clrscr();
                new MenuProperties().showMenu();
                 break;
         }

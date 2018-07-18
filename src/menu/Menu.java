@@ -2,6 +2,7 @@ package menu;
 
 import console.ConsolePrinter;
 import console.ConsoleReader;
+import properties.PropertiesSaveToJson;
 
 public abstract class Menu {
 
@@ -33,6 +34,7 @@ public abstract class Menu {
     /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MenuMain lub kończy program*/
     public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
+            new PropertiesSaveToJson().saveJson();
             consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
             System.exit(0);
         } else {

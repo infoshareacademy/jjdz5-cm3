@@ -1,5 +1,6 @@
 package properties;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 import menu.MenuProperties;
@@ -13,6 +14,7 @@ public class PropertiesSetFolder {
 
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
+    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
     File[] discs = File.listRoots();
 
     Properties properties = new Properties();
@@ -53,7 +55,7 @@ public class PropertiesSetFolder {
                 Path user = Paths.get(userPath);
                 Properties.userDelegationPath = user;
 
-
+                consoleClearScreen.clrscr();
                 consolePrinter.printLine("Scieżka ustawiona na: " + user);
 
 
