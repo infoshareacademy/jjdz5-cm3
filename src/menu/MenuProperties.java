@@ -1,5 +1,6 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import properties.PropertiesSetCountry;
 import properties.PropertiesSetFolder;
@@ -11,6 +12,7 @@ public class MenuProperties extends Menu {
     PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
     PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
     PropertiesView propertiesView = new PropertiesView();
+    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
 
     public MenuProperties() {
@@ -19,8 +21,10 @@ public class MenuProperties extends Menu {
 
     @Override
     public void showMenu() {
-        System.out.println();
-        consolePrinter.printLine("To jest menu ustawień");
+        consoleClearScreen.clrscr();
+        consolePrinter.printLine("================================");
+        consolePrinter.printLine("=        MENU USTAWIENIA       =");
+        consolePrinter.printLine("================================");
         consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 3. Pokaż ustawienia 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
@@ -39,9 +43,11 @@ public class MenuProperties extends Menu {
         switch (userChoice) {
 
             case 1:
+                new MenuSetProperties().MenuChange(userChoice);
                 propertiesSetCountry.defaultCountry();
                 break;
             case 2:
+                new MenuSetProperties().MenuChange(userChoice);
                 propertiesSetFolder.defaultFolder();
                 break;
             case 3:

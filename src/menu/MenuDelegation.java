@@ -1,5 +1,6 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import delegations.DelegationAccept;
 import delegations.DelegationAdd;
@@ -11,6 +12,7 @@ public class MenuDelegation extends Menu {
     private DelegationAdd addDelegationService = new DelegationAdd();
     private DelegationAccept acceptDelegation = new DelegationAccept();
     private DelegationPreview previewDelegation = new DelegationPreview();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
 
     /*
@@ -25,8 +27,9 @@ public class MenuDelegation extends Menu {
 
     @Override
     public void showMenu() {
-        System.out.println();
-        consolePrinter.printLine("---------MENU DELEGACJE---------");
+        consolePrinter.printLine("================================");
+        consolePrinter.printLine("=        MENU DELEGACJE        =");
+        consolePrinter.printLine("================================");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
         consolePrinter.printLine("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj / odrzuć delegację | ");
         consolePrinter.printLine("9. Powrót do głównego menu.Menu | 0. wyjście z programu");

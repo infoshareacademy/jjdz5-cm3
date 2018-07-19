@@ -3,37 +3,28 @@ package properties;
 import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
-import menu.MenuProperties;
 
 public class PropertiesSetCountry {
 
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
     ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
-    //MenuDelegation menuDelegation = new MenuDelegation();
-
 
     public void defaultCountry() {
 
-        consolePrinter.printLine("Obecnie domyślny kraj to: " + Properties.userDelegationCountry);
-        consolePrinter.printLine("1. Zmiana | 2. Powrót");
-
-        int userChoice = new MenuProperties().isChoiceNumber();
-
-        while (userChoice != 1 && userChoice != 2) {
-            consolePrinter.printLine("Wybór spoza zakresu");
-        }
-
-        switch (userChoice) {
-            case 1:
-                consolePrinter.printLine("Podaj kraj:");
-                Properties.userDelegationCountry = consoleReader.readLine();
+        consolePrinter.printLine("Podaj kraj:");
+        String userCountry = consoleReader.readLine();
+        while (true) {
+            if (userCountry.matches("[a-z A-Z]{4,100}")) {
+                Properties.userDelegationCountry = userCountry;
+                consoleClearScreen.pressAnyKeyToContinue();
                 consoleClearScreen.clrscr();
                 break;
-            default:
-                consoleClearScreen.clrscr();
-               new MenuProperties().showMenu();
-                break;
+            } else {
+                consolePrinter.printLine("Nie ma takiej krótkiej nazwy kraju. Podaj jeszce raz ");
+                userCountry = consoleReader.readLine();
+            }
         }
     }
 }
+

@@ -14,5 +14,6 @@ public class PropertiesView {
         consolePrinter.printLine("Domyślny kraj: " + Properties.userDelegationCountry);
         consolePrinter.printLine("Domyślny folder delegacji: " + Properties.userDelegationPath);
         consolePrinter.printLine("=========================================================");
+
     }
 }

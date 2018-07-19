@@ -1,5 +1,6 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import properties.PropertiesLoad;
 
@@ -9,6 +10,7 @@ public class MenuMain extends Menu {
     private MenuDelegation menuDelegation = new MenuDelegation();
     private MenuProperties menuProperties = new MenuProperties();
     private PropertiesLoad propertiesLoad = new PropertiesLoad();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
 
     /*
@@ -29,6 +31,8 @@ public class MenuMain extends Menu {
 
     @Override
     public void showMenu() {
+        System.out.println(System.getProperties());
+        consoleClearScreen.clrscr();
         consolePrinter.printLine("---------------Program do obsługi delegacji---------------");
         consolePrinter.printLine(" #     #  #####  #  #      #     #     #  #####  #      #  #     # ");
         consolePrinter.printLine(" # # # #  #   #     # #    #     # # # #  #      # #    #  #     # ");
