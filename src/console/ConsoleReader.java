@@ -2,7 +2,7 @@ package console;
 
 import java.util.Scanner;
 
-public class ReadFromConsole {
+public class ConsoleReader {
 
     public String readLine() {
 

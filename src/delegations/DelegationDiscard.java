@@ -1,9 +1,9 @@
 package delegations;
 
-public class DiscardDelegation {
+public class DelegationDiscard {
 
 
-    public void discardDelegation() {
+    public void delegationDiscard() {
         System.out.println("odrzucenie delegacji");
     }
 }

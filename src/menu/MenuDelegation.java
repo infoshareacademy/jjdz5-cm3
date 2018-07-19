@@ -1,16 +1,16 @@
 package menu;
 
 import console.ConsolePrinter;
-import delegations.AcceptDelegation;
-import delegations.AddDelegation;
-import delegations.PreviewDelegation;
+import delegations.DelegationAccept;
+import delegations.DelegationAdd;
+import delegations.DelegationPreview;
 
 public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
-    private AddDelegation addDelegationService = new AddDelegation();
-    private AcceptDelegation acceptDelegation = new AcceptDelegation();
-    private PreviewDelegation previewDelegation = new PreviewDelegation();
+    private DelegationAdd addDelegationService = new DelegationAdd();
+    private DelegationAccept acceptDelegation = new DelegationAccept();
+    private DelegationPreview previewDelegation = new DelegationPreview();
 
 
     /*
@@ -46,13 +46,13 @@ public class MenuDelegation extends Menu {
 
         switch (userChoice) {
             case 1:
-                addDelegationService.addDelegation();
+                addDelegationService.delegationAdd();
                 break;
             case 2:
-                previewDelegation.previewDelegation();
+                previewDelegation.delegationPreview();
                 break;
             case 3:
-                acceptDelegation.acceptDelegation();
+                acceptDelegation.delegationAccept();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);
