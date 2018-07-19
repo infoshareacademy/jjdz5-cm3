@@ -22,19 +22,23 @@ public class PropertiesSetFolder {
         String userPath = consoleReader.readLine();
 
         while (true) {
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                if (!userPath.matches("[a-z A-Z]\\:\\\\.*")) {
+                    consolePrinter.printLine("blad ścieżka musi się zaczynać od np.: c:\\ . Podaj ścieżkę");
+                    userPath = consoleReader.readLine();
+                    continue;
+                }
 
-            if (!userPath.matches("[a-z A-Z]\\:\\\\.*")) {
-                consolePrinter.printLine("blad ścieżka musi się zaczynać od np.: c:\\ . Podaj ścieżkę");
-                userPath = consoleReader.readLine();
-                continue;
-            }
+                if (!Arrays.toString(discs).contains(userPath.substring(0, 2).toUpperCase())) {
+                    consolePrinter.printLine("blad brak takiego dysku: Możliwy wybór to: " + Arrays.toString(discs));
+                    userPath = consoleReader.readLine();
+                    continue;
+                }
 
-            if (!Arrays.toString(discs).contains(userPath.substring(0, 2).toUpperCase())) {
-                consolePrinter.printLine("blad brak takiego dysku: Możliwy wybór to: " + Arrays.toString(discs));
-                userPath = consoleReader.readLine();
-                continue;
+                break;
+            }else {
+
             }
-            break;
         }
 
         Properties.userDelegationPath = Paths.get(userPath);
