@@ -29,7 +29,7 @@ public class DelegationPreview {
         out.append ("|")
                 .append (" Data").append (chrRepeat (" ", 5))
                 .append (" | " )
-                .append ("Inię").append (chrRepeat (" ",9))
+                .append ("Imię").append (chrRepeat (" ",9))
                 .append (" | ")
                 .append ("Nazwisko").append (chrRepeat (" ", 8))
                 .append (" | ")
