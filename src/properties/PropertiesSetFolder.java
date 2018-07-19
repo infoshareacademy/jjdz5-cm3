@@ -5,6 +5,7 @@ import console.ConsolePrinter;
 import console.ConsoleReader;
 
 import java.io.File;
+import java.nio.file.FileSystem;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -36,17 +37,21 @@ public class PropertiesSetFolder {
                 }
 
                 break;
-            }else {
-
+            } else {
+                if (!userPath.matches("^/.*")) {
+                    consolePrinter.printLine("blad ścieżka musi się zaczynać od: / . Podaj ścieżkę ");
+                    userPath = consoleReader.readLine();
+                    continue;
+                }
+                break;
             }
         }
 
+      
         Properties.userDelegationPath = Paths.get(userPath);
 
         consoleClearScreen.clrscr();
         consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
-
-
     }
 }
 
