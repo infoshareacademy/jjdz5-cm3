@@ -1,8 +1,8 @@
 package delegations;
 
-public class AddDelegation {
+public class DelegationAdd {
 
-    public void addDelegation() {
+    public void delegationAdd() {
         System.out.println("dodawanie delegacji");
     }
 }

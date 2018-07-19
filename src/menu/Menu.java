@@ -4,6 +4,8 @@ import console.ConsolePrinter;
 import console.ConsoleReader;
 import properties.PropertiesSaveToJson;
 
+
+
 public abstract class Menu {
 
     public abstract void showMenu();
@@ -13,6 +15,7 @@ public abstract class Menu {
     private ConsolePrinter consolePrinter = new ConsolePrinter();
 
     ConsoleReader consoleReader = new ConsoleReader();
+
 
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
