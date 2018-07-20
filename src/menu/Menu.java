@@ -39,6 +39,16 @@ public abstract class Menu {
             menuMain.menuMainRun();
         }
     }
+
+    public int yesNo(){
+
+        int userChoice = new MenuSetProperties().isChoiceNumber();
+        while (userChoice != 1 && userChoice != 2) {
+            consolePrinter.printLine("Wybór spoza zakresu");
+            userChoice = isChoiceNumber();
+        }
+        return userChoice;
+    }
 }
 
 

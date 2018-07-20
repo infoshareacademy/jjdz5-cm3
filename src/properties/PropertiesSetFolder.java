@@ -3,9 +3,12 @@ package properties;
 import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
+import menu.MenuProperties;
 
 import java.io.File;
-import java.nio.file.FileSystem;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -14,7 +17,10 @@ public class PropertiesSetFolder {
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
     ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
+    PropertiesCreateFolder propertiesCreateFolder = new PropertiesCreateFolder();
+    PropertiesMoveDelegation propertiesMoveDelegation = new PropertiesMoveDelegation();
     File[] discs = File.listRoots();
+
 
     public void defaultFolder() {
 
@@ -24,8 +30,8 @@ public class PropertiesSetFolder {
 
         while (true) {
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                if (!userPath.matches("[a-z A-Z]\\:\\\\.*")) {
-                    consolePrinter.printLine("blad ścieżka musi się zaczynać od np.: c:\\ . Podaj ścieżkę");
+                if (!userPath.matches("[a-z A-Z]\\:\\\\.*\\\\$")) {
+                    consolePrinter.printLine("blad ścieżka musi się zaczynać od np.: c:\\ i kończyć znakiem \"\\\". Podaj ścieżkę");
                     userPath = consoleReader.readLine();
                     continue;
                 }
@@ -47,8 +53,10 @@ public class PropertiesSetFolder {
             }
         }
 
-      
-        Properties.userDelegationPath = Paths.get(userPath);
+        propertiesCreateFolder.createFolder(userPath);
+        propertiesMoveDelegation.moveDlegation(userPath);
+
+        Properties.userDelegationPath = Paths.get(userPath + Properties.fileName);
 
         consoleClearScreen.clrscr();
         consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);

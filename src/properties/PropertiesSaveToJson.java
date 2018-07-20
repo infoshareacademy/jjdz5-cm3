@@ -17,7 +17,7 @@ public void saveJson (){
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder = stringBuilder
             .append("{")
-            .append("\"userCountry\"")
+            .append("\"userDelegationCountry\"")
             .append(": ")
             .append("\"")
             .append(Properties.userDelegationCountry)

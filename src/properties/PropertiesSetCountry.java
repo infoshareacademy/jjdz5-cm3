@@ -23,6 +23,7 @@ public class PropertiesSetCountry {
             } else {
                 consolePrinter.printLine("Nie ma takiej krótkiej nazwy kraju. Podaj jeszce raz ");
                 userCountry = consoleReader.readLine();
+                continue;
             }
         }
     }
