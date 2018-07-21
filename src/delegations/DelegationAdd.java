@@ -3,23 +3,91 @@ package delegations;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+
 public class DelegationAdd {
 
+    DelegationRepository delegationRepository = new DelegationRepository();
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
+    Destination destination = new Destination();
     Delegation delegation = new Delegation();
     Employee employee = new Employee(  );
 
 
     public void delegationAdd() {
 
+        //wprowadzanie danych przez uzytkownika
         consolePrinter.printLine("Podaj date tworzenia delegacji (RRRR-MM-DD): ");
         delegation.setCreationDate( consoleReader.getDate() );
-        consolePrinter.printLine("Podaj imie: ");
-        employee.setEmployeeName(consoleReader.readLine());
 
-        consolePrinter.printLine( "Data utworzenia delegacji: " + delegation.getCreationDate() );
-        consolePrinter.printLine("Imie: " + employee.getEmployeeName());
+        consolePrinter.printLine("Podaj imie: ");
+        employee.setEmployeeName(consoleReader.getStringOneWord());
+
+        consolePrinter.printLine("Podaj nazwisko: ");
+        employee.setEmployeeSurname(consoleReader.getStringOneWord());
+
+        delegation.setEmployee( employee );
+
+        consolePrinter.printLine("Podaj date rozpoczecia delegacji (RRRR-MM-DD): ");
+        delegation.setStartDate(consoleReader.getDate());
+
+        consolePrinter.printLine("Podaj date zakonczenia delegacji (RRRR-MM-DD): ");
+        delegation.setEndDate(consoleReader.getDate());
+
+        consolePrinter.printLine("Podaj kraj wyjazdu: ");
+        destination.setDestinationCountry(consoleReader.getStringMoreWords());
+
+        consolePrinter.printLine("Podaj miasto: ");
+        destination.setDestinationCity(consoleReader.getStringMoreWords());
+
+        consolePrinter.printLine("Podaj nazwe firmy: ");
+        destination.setDestinationCompany(consoleReader.getString());
+
+        consolePrinter.printLine("Podaj adres firmy: ");
+        destination.setDestinationCompanyAddress(consoleReader.getString());
+
+        delegation.setDestination( destination );
+
+        consolePrinter.printLine("Podaj cel delegacji: ");
+        delegation.setPurpose(consoleReader.getString());
+
+        delegation.setStatus("TOACCEPT");
+
+        consolePrinter.printLine("Podaj miejsce wyjazdu (miasto): ");
+        delegation.setStartPoint(consoleReader.getStringMoreWords());
+
+
+
+        Delegation newDelegation = new Delegation(delegation.getCreationDate(), delegation.getStartDate(),
+                delegation.getEndDate(), delegation.getPurpose(), delegation.getStatus(),
+                delegation.getStartPoint(), delegation.getEmployee(),delegation.getDestination());
+
+                delegationRepository.addListDelegation( newDelegation );
+
+        System.out.println("Delegacja: " + newDelegation);
+
+
+
+//                public Delegation(LocalDate creationDate,
+//                LocalDate startDate,
+//                LocalDate endDate,
+//                String purpose,
+//                String status,
+//                String startPoint,
+//                Employee employee,
+//                Destination destination) {
+//            this.creationDate = creationDate;
+//            this.startDate = startDate;
+//            this.endDate = endDate;
+//            this.purpose = purpose;
+//            this.status = status;
+//            this.startPoint = startPoint;
+//            this.employee = employee;
+//            this.destination = destination;
+
 
 
 

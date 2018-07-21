@@ -109,17 +109,11 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return "Delegation{" +
-                "creationDate='" + creationDate + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", purpose='" + purpose + '\'' +
-                ", status='" + status + '\'' +
-                ", startPoint='" + startPoint + '\'' +
-                ", employee=" + employee +
-                ", destination=" + destination +
-                '}' + '\n';
+        return creationDate + "," + startDate + "," + endDate + "," + purpose + "," + status + "," +
+                startPoint + "," + employee + "," + destination;
+
     }
+
 
 
 }

@@ -8,18 +8,49 @@ import java.util.Scanner;
 
 public class ConsoleReader {
 
-    // Uwagi: mozna wyciagnac scannera na poczatek kodu
 
+    Scanner scanner = new Scanner(System.in);
 
-    public String readLine() {
-
-        return new Scanner( System.in ).nextLine();
+    public Integer getInt() {
+        return scanner.nextInt();
     }
+
+    public String getString() {
+        return scanner.nextLine();
+    }
+
+    public String getStringOneWord() {
+
+        String stringFromUser = scanner.nextLine();
+        boolean testString = false;
+        while (!testString) {
+            if (stringFromUser.trim().matches( "^[A-Z][a-z]{1,30}$" )) {
+                    testString = true; }
+             else {
+                System.out.println( "Prosze wpisac jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr)" );
+                stringFromUser = scanner.nextLine();
+            }
+        } return stringFromUser;
+    }
+
+    public String getStringMoreWords() {
+
+        String stringFromUser = scanner.nextLine();
+        boolean testString = false;
+        while (!testString) {
+            if (stringFromUser.trim().matches( "([A-Z][a-zA-Z]*\\s*)+" )) {
+                testString = true; }
+            else {
+                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr)" );
+                stringFromUser = scanner.nextLine();
+            }
+        } return stringFromUser;
+    }
+
 
 
     public LocalDate getDate() {
 
-        Scanner scanner = new Scanner( System.in );
         String dateFromUser = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd" );
 
@@ -27,10 +58,10 @@ public class ConsoleReader {
         boolean dateCheck = false;
         while (!dateCheck) {
             try {
-                LocalDate date = formatter.parse( dateFromUser, LocalDate::from );
+                formatter.parse( dateFromUser, LocalDate::from );
                 dateCheck = true;
             } catch (DateTimeParseException e) {
-                System.out.println( "Niepoprawny format daty. Sprobuj jeszcze raz." );
+                System.out.println( "Niepoprawny format daty (RRRR-MM-DD). Sprobuj jeszcze raz." );
                 dateFromUser = scanner.nextLine();
 
             }

@@ -5,6 +5,8 @@ import delegations.DelegationAccept;
 import delegations.DelegationAdd;
 import delegations.DelegationPreview;
 
+import java.io.IOException;
+
 public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();

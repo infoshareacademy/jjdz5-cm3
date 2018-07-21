@@ -12,7 +12,7 @@ public class DelegationPreview {
     public void delegationPreview(){
 
         // tu: odczyt danych z pliku konfiguracyjnego
-        String fileDelegation = "delegation.txt";
+        String fileDelegation = "DelegetionList.txt";
 
         delegationReadFile.delegationReadFile (fileDelegation);
 
