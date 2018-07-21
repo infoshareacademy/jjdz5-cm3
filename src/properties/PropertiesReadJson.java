@@ -10,17 +10,17 @@ public class PropertiesReadJson {
     Properties properties = new Properties();
 
 
-        public String readJson() {
+    public String readJson() {
 
-            try {
-                List<String> linesJson = Files.readAllLines(properties.getPropertiesPath());
-                StringBuilder stringBuilder = new StringBuilder();
-                for (String s : linesJson) {
-                    stringBuilder.append(s);
-                }
-                return stringBuilder.toString();
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
+        try {
+            List<String> linesJson = Files.readAllLines(properties.getPropertiesPath());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String s : linesJson) {
+                stringBuilder.append(s);
             }
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
+    }
 }

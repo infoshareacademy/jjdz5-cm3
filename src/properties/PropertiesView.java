@@ -8,7 +8,7 @@ public class PropertiesView {
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
-    public void showProperties(){
+    public void showProperties() {
         consoleClearScreen.clrscr();
         consolePrinter.printLine("=========================================================");
         consolePrinter.printLine("Domyślny kraj: " + Properties.userDelegationCountry);

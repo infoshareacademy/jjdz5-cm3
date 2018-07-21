@@ -11,12 +11,12 @@ public class PropertiesLoad {
     Properties properties = new Properties();
     PropertiesReadJson propertiesReadJson = new PropertiesReadJson();
 
-    public void loadProperties () {
-        if (Files.notExists(properties.getPropertiesPath())){
+    public void loadProperties() {
+        if (Files.notExists(properties.getPropertiesPath())) {
             Properties.userDelegationPath = properties.getDefaultDelegationPath();
             Properties.userDelegationCountry = properties.getDefaultCountry();
 
-        }else {
+        } else {
             String jsonString = propertiesReadJson.readJson();
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
@@ -27,6 +27,5 @@ public class PropertiesLoad {
             }
 
         }
-
     }
 }

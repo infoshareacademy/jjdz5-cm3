@@ -3,12 +3,8 @@ package properties;
 import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
-import menu.MenuProperties;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -56,7 +52,7 @@ public class PropertiesSetFolder {
         propertiesCreateFolder.createFolder(userPath);
         propertiesMoveDelegation.moveDlegation(userPath);
 
-        Properties.userDelegationPath = Paths.get(userPath + Properties.fileName);
+        Properties.userDelegationPath = Paths.get(userPath, Properties.fileName);
 
         consoleClearScreen.clrscr();
         consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);

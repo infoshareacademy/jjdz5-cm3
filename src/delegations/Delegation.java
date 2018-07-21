@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Delegation {
 
-    private LocalDate creationDate ;
-    private LocalDate startDate ;
-    private LocalDate endDate ;
-    private String purpose ;
-    private String status ;
-    private String startPoint ;
+    private LocalDate creationDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String purpose;
+    private String status;
+    private String startPoint;
 
 
     /*Obiekty z klas zawierających pola i metody */
@@ -18,7 +18,7 @@ public class Delegation {
 
     private DelegationAdd delegationAdd = new DelegationAdd();
     private DelegationAccept delegationAccept = new DelegationAccept();
-    private DelegationDiscard delegationDiscard = new DelegationDiscard ();
+    private DelegationDiscard delegationDiscard = new DelegationDiscard();
     private DelegationPreview delegationPreview = new DelegationPreview();
 
     public Delegation(LocalDate creationDate,
@@ -42,13 +42,12 @@ public class Delegation {
     public Delegation() {
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public Employee getEmployee() {
-        return employee;
     }
 
     public Destination getDestination() {

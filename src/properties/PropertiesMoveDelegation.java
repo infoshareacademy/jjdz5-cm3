@@ -1,11 +1,14 @@
 package properties;
 
+
 import console.ConsolePrinter;
 import menu.MenuProperties;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 
 public class PropertiesMoveDelegation {
@@ -13,14 +16,21 @@ public class PropertiesMoveDelegation {
 
     public boolean isNotEmpty() {
         boolean bool = true;
+
         try {
-            if (Files.newBufferedReader(Properties.userDelegationPath).readLine() != null) {
-                bool = true;
-            } else {
-                bool = false;
+            Path path = Properties.userDelegationPath;
+            List<String> lista = Files.readAllLines(path);
+            bool = false;
+            for (String s : lista) {
+                if (s.trim().length() > 1) {
+                    bool = true;
+                    break;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return bool;
     }
@@ -34,13 +44,20 @@ public class PropertiesMoveDelegation {
             int userChoice = new MenuProperties().yesNo();
             if (userChoice == 1) {
                 try {
-                    Files.move(Properties.userDelegationPath, Paths.get(userPath + Properties.fileName));
-                    Files.delete(Properties.userDelegationPath);
+                    Path tempPath = Paths.get(userPath, Properties.fileName);
+                    Files.move(Properties.userDelegationPath, tempPath);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 return;
+            }
+        } else {
+            try {
+                Files.deleteIfExists(Properties.userDelegationPath);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

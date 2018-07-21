@@ -40,7 +40,7 @@ public abstract class Menu {
         }
     }
 
-    public int yesNo(){
+    public int yesNo() {
 
         int userChoice = new MenuSetProperties().isChoiceNumber();
         while (userChoice != 1 && userChoice != 2) {

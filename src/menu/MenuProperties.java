@@ -8,11 +8,11 @@ import properties.PropertiesView;
 
 public class MenuProperties extends Menu {
 
-    private ConsolePrinter consolePrinter = new ConsolePrinter();
     PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
     PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
     PropertiesView propertiesView = new PropertiesView();
     ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
 
 
     public MenuProperties() {

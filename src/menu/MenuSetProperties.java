@@ -8,13 +8,11 @@ import properties.PropertiesSetFolder;
 
 public class MenuSetProperties extends MenuProperties {
 
+    int i;
     private PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
     private PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private PropertiesSaveToJson propertiesSaveToJson = new PropertiesSaveToJson();
-
-
-    int i;
 
     public void MenuChange(int userChoice) {
 
@@ -34,7 +32,7 @@ public class MenuSetProperties extends MenuProperties {
             }
 
 
-           userChoice = yesNo();
+            userChoice = yesNo();
 
             switch (userChoice) {
                 case 1:
