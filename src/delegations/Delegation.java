@@ -8,24 +8,20 @@ public class Delegation {
     private LocalDate startDate ;
     private LocalDate endDate ;
     private String purpose ;
-    private String status ;
+    private DelegationStatus delegationStatus;
     private String startPoint ;
 
 
-    /*Obiekty z klas zawierających pola i metody */
+       /*Obiekty z klas zawierających pola i metody */
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
-
-    private DelegationAccept delegationAccept = new DelegationAccept();
-    private DelegationDiscard delegationDiscard = new DelegationDiscard ();
-    private DelegationPreview delegationPreview = new DelegationPreview();
 
     public Delegation(LocalDate creationDate,
                       LocalDate startDate,
                       LocalDate endDate,
                       String purpose,
-                      String status,
+                      DelegationStatus delegationStatus,
                       String startPoint,
                       Employee employee,
                       Destination destination) {
@@ -33,7 +29,7 @@ public class Delegation {
         this.startDate = startDate;
         this.endDate = endDate;
         this.purpose = purpose;
-        this.status = status;
+        this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
         this.employee = employee;
         this.destination = destination;
@@ -91,13 +87,14 @@ public class Delegation {
         this.purpose = purpose;
     }
 
-    public String getStatus() {
-        return status;
+    public DelegationStatus getDelegationStatus() {
+        return delegationStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDelegationStatus(DelegationStatus delegationStatus) {
+        this.delegationStatus = delegationStatus;
     }
+
 
     public String getStartPoint() {
         return startPoint;
@@ -109,7 +106,7 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return creationDate + "," + startDate + "," + endDate + "," + purpose + "," + status + "," +
+        return creationDate + "," + startDate + "," + endDate + "," + purpose + "," + delegationStatus + "," +
                 startPoint + "," + employee + "," + destination;
 
     }

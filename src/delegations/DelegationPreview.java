@@ -12,7 +12,7 @@ public class DelegationPreview {
     public void delegationPreview(){
 
         // tu: odczyt danych z pliku konfiguracyjnego
-        String fileDelegation = "DelegetionList.txt";
+        String fileDelegation = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
 
         delegationReadFile.delegationReadFile (fileDelegation);
 
@@ -105,7 +105,7 @@ public class DelegationPreview {
                     .append(" | ")
                     .append(p.getPurpose())
                     .append(" | ")
-                    .append(p.getStatus())
+                    .append(p.getDelegationStatus())
                     .append(" | ")
                     .append(p.getStartPoint())
                     .append(" | ")

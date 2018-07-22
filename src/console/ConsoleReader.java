@@ -1,6 +1,9 @@
 package console;
 
 
+import delegations.Delegation;
+
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,15 +12,27 @@ import java.util.Scanner;
 public class ConsoleReader {
 
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner( System.in );
+
 
     public Integer getInt() {
         return scanner.nextInt();
     }
 
     public String getString() {
-        return scanner.nextLine();
+        String stringFromUser = scanner.nextLine();
+        boolean testString = false;
+        while (!testString) {
+            if (!stringFromUser.isEmpty()) {
+                testString = true;
+            } else {
+                System.out.println( "Pole nie moze byc puste" );
+                stringFromUser = scanner.nextLine();
+            }
+        }
+        return stringFromUser;
     }
+
 
     public String getStringOneWord() {
 
@@ -25,12 +40,13 @@ public class ConsoleReader {
         boolean testString = false;
         while (!testString) {
             if (stringFromUser.trim().matches( "^[A-Z][a-z]{1,30}$" )) {
-                    testString = true; }
-             else {
+                testString = true;
+            } else {
                 System.out.println( "Prosze wpisac jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr)" );
                 stringFromUser = scanner.nextLine();
             }
-        } return stringFromUser;
+        }
+        return stringFromUser;
     }
 
     public String getStringMoreWords() {
@@ -39,18 +55,19 @@ public class ConsoleReader {
         boolean testString = false;
         while (!testString) {
             if (stringFromUser.trim().matches( "([A-Z][a-zA-Z]*\\s*)+" )) {
-                testString = true; }
-            else {
+                testString = true;
+            } else {
                 System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr)" );
                 stringFromUser = scanner.nextLine();
             }
-        } return stringFromUser;
+        }
+        return stringFromUser;
     }
 
 
+    public LocalDate getDateStart() {
 
-    public LocalDate getDate() {
-
+        Scanner scanner = new Scanner( System.in );
         String dateFromUser = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd" );
 
@@ -58,15 +75,35 @@ public class ConsoleReader {
         boolean dateCheck = false;
         while (!dateCheck) {
             try {
-                formatter.parse( dateFromUser, LocalDate::from );
-                dateCheck = true;
-            } catch (DateTimeParseException e) {
-                System.out.println( "Niepoprawny format daty (RRRR-MM-DD). Sprobuj jeszcze raz." );
-                dateFromUser = scanner.nextLine();
 
+                formatter.parse( dateFromUser, LocalDate::from );
+
+                if (LocalDate.parse( dateFromUser ).isAfter( LocalDate.now()) ){
+                    dateCheck = true;
+                    break;
+                } else {
+                    System.out.println("Data rozpoczecia delegacji powinna byc pozniejsza niz data jej utworzenia: " + LocalDate.now());
+                }
+                dateFromUser = scanner.nextLine();
+            } catch (DateTimeParseException e) {
+                System.out.println( "Niepoprawny format daty (RRRR-MM-DD)." );
+                System.out.println("Sprobuj jeszcze raz.");
+                dateFromUser = scanner.nextLine();
             }
 
-        }
-        return LocalDate.parse( dateFromUser );
+        } return LocalDate.parse( dateFromUser );
+
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+

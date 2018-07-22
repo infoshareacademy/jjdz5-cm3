@@ -14,6 +14,9 @@ public class DelegationReadFile {
 
 
     private final DelegationRepository delegationRepository = new DelegationRepository ();
+    private final Delegation delegation = new Delegation(  );
+
+
 
 
     public void delegationReadFile( String fileDelegation) {
@@ -73,7 +76,7 @@ public class DelegationReadFile {
                                 tempStartDate,
                                 tempEndDate,
                                 tempList.get(9),
-                                tempList.get(10),
+                                (delegation.getDelegationStatus()),
                                 tempList.get(11),
                                 (new Employee( tempList.get(1), tempList.get(2) )
                                 ),
