@@ -107,8 +107,8 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return creationDate + "," + startDate + "," + endDate + "," + purpose + "," + delegationStatus + "," +
-                startPoint + "," + employee + "," + destination;
+        return creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
+                purpose + "," + delegationStatus + "," + startPoint;
 
     }
 

@@ -1,2 +1,1 @@
-[2018-07-23,2018-08-15,2018-08-30,druga - pomylki i akc,TOACCEPT,Gdansk,Monika,Biskup,Polska,Warszawa,firma,adres]
-[2018-07-23,2018-08-01,2018-09-01,3 del - zapisana,TOACCEPT,Gdansk,Monika,Biskup,Kraj,Miasto,firma,adres]
+[2018-07-23,Jan,Kowalski,2018-08-01,2018-08-15,Kraj,Miasto,Firma,adres,cel,TOACCEPT,Gdansk]
