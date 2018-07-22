@@ -40,7 +40,7 @@ public class PropertiesSetFolder {
 
                 break;
             } else {
-                if (!userPath.matches("^/.*")) {
+                if (!userPath.matches("^/.*/$")) {
                     consolePrinter.printLine("blad ścieżka musi się zaczynać od: / . Podaj ścieżkę ");
                     userPath = consoleReader.readLine();
                     continue;

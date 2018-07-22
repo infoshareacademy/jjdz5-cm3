@@ -20,7 +20,7 @@ public class PropertiesLoad {
             String jsonString = propertiesReadJson.readJson();
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
-                Properties.userDelegationCountry = jsonObject.getString("userDelegationPath");
+                Properties.userDelegationCountry = jsonObject.getString("userDelegationCountry");
                 Properties.userDelegationPath = Paths.get(jsonObject.getString("userDelegationPath"));
             } catch (JSONException e) {
                 e.printStackTrace();

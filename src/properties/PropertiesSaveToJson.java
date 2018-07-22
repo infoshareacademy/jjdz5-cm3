@@ -12,25 +12,8 @@ public class PropertiesSaveToJson {
 
     public void saveJson() {
 
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder = stringBuilder
-                .append("{")
-                .append("\"userDelegationCountry\"")
-                .append(": ")
-                .append("\"")
-                .append(Properties.userDelegationCountry)
-                .append("\"")
-                .append(", ")
-                .append("\"userDelegationPath\"")
-                .append(": ")
-                .append("\"")
-                .append(Properties.userDelegationPath.toString().replace("\\", "\\\\"))
-                .append("\"")
-                .append("}");
-
         try {
-            JSONObject jsonObject = new JSONObject(stringBuilder.toString());
+            JSONObject jsonObject = new JSONObject(properties.toString());
             Files.write(properties.getPropertiesPath(), Collections.singletonList(jsonObject.toString()));
         } catch (IOException e) {
             throw new UnsupportedOperationException();

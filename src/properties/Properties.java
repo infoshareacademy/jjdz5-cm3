@@ -26,5 +26,9 @@ public class Properties {
         return defaultDelegationPath;
     }
 
-
+    @Override
+    public String toString() {
+        return "{ \"userDelegationCountry\": \"" + Properties.userDelegationCountry + "\",\"userDelegationPath\": \""
+                + Properties.userDelegationPath.toString().replace("\\", "\\\\") + "\"}";
+    }
 }
