@@ -1,9 +1,5 @@
 package console;
 
-
-import delegations.Delegation;
-
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,7 +12,17 @@ public class ConsoleReader {
 
 
     public Integer getInt() {
-        return scanner.nextInt();
+        Integer stringFromUser = scanner.nextInt();
+        boolean testString = false;
+        while (!testString) {
+            if (stringFromUser==1||stringFromUser==2) {
+                testString = true;
+            } else {
+                System.out.println( "Wybrales liczne poza zakresem. Wpisz jeszcze raz." );
+                stringFromUser = scanner.nextInt();
+            }
+        }
+        return stringFromUser;
     }
 
     public String getString() {

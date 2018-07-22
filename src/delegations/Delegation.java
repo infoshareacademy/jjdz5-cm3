@@ -18,21 +18,22 @@ public class Delegation {
 
 
     public Delegation(LocalDate creationDate,
+                      Employee employee,
                       LocalDate startDate,
                       LocalDate endDate,
+                      Destination destination,
                       String purpose,
                       DelegationStatus delegationStatus,
-                      String startPoint,
-                      Employee employee,
-                      Destination destination) {
+                      String startPoint) {
         this.creationDate = creationDate;
+        this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.destination = destination;
         this.purpose = purpose;
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
-        this.employee = employee;
-        this.destination = destination;
+
     }
 
     public Delegation() {

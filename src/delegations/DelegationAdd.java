@@ -2,10 +2,10 @@ package delegations;
 
 import console.ConsolePrinter;
 import console.ConsoleReader;
+
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+
 
 
 public class DelegationAdd {
@@ -16,6 +16,7 @@ public class DelegationAdd {
     Destination destination = new Destination();
     Delegation delegation = new Delegation();
     Employee employee = new Employee();
+
 
 
     public void delegationAdd() {
@@ -38,7 +39,7 @@ public class DelegationAdd {
         consolePrinter.printLine( "Podaj date zakonczenia delegacji (RRRR-MM-DD): " );
 
         delegation.setEndDate( consoleReader.getDateStart());
-        // musze tutaj zwalidowac koncowa date, poniewaz jesli to robie z ConsoleReader, nie widzi on StartDate (jest dla niego nullem)
+
         if (!delegation.getEndDate().isAfter( delegation.getStartDate() )) {
             System.out.println("Data zakonczenia delegacji powinna byc pozniejsza niz data jej rozpoczecia.");
             System.out.println("Sprobuj jeszcze raz.");
@@ -68,14 +69,14 @@ public class DelegationAdd {
         consolePrinter.printLine( "Podaj miejsce wyjazdu (miasto): " );
         delegation.setStartPoint( consoleReader.getStringMoreWords() );
 
+        Delegation newDelegation = new Delegation( delegation.getCreationDate(), delegation.getEmployee(), delegation.getStartDate(),
+                delegation.getEndDate(),  delegation.getDestination(), delegation.getPurpose(), delegation.getDelegationStatus(),
+                delegation.getStartPoint());
 
-        Delegation newDelegation = new Delegation( delegation.getCreationDate(), delegation.getStartDate(),
-                delegation.getEndDate(), delegation.getPurpose(), delegation.getDelegationStatus(),
-                delegation.getStartPoint(), delegation.getEmployee(), delegation.getDestination() );
+        consolePrinter.printLine("Czy chcesz zapisac delegacje?");
+        consolePrinter.printLine("Wpisz 1 - ZAPISZ || Wpisz 2- ODRZUC");
+        delegationRepository.addDelegation( newDelegation );
 
-        delegationRepository.addListDelegation( newDelegation );
-
-        System.out.println( "Delegacja: " + newDelegation );
     }
 
 

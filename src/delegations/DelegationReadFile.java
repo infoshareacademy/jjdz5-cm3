@@ -73,19 +73,18 @@ public class DelegationReadFile {
 
                         delegationRepository.addListDelegation(new Delegation(
                                 tempCreationDate,
-                                tempStartDate,
-                                tempEndDate,
-                                tempList.get(9),
-                                (delegation.getDelegationStatus()),
-                                tempList.get(11),
                                 (new Employee( tempList.get(1), tempList.get(2) )
                                 ),
-                                (new Destination(
-                                        tempList.get(5),
-                                        tempList.get(6),
-                                        tempList.get(7),
-                                        tempList.get(8))))
-                        );
+                                tempStartDate,
+                                tempEndDate,
+                                        (new Destination(
+                                                tempList.get(5),
+                                                tempList.get(6),
+                                                tempList.get(7),
+                                                tempList.get(8))),
+                                tempList.get(9),
+                                (delegation.getDelegationStatus()),
+                                tempList.get(11)));
                     }
                 }
             }
