@@ -3,27 +3,27 @@ package delegations;
 
 import console.ConsolePrinter;
 
+import java.util.List;
+
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
     private final DelegationRepository delegationRepository = new DelegationRepository ();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    public void delegationPreview(){
-
+    protected List<Delegation> getDelegations() {
         // tu: odczyt danych z pliku konfiguracyjnego
-        String fileDelegation = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
+        String fileDelegation = "C:\\Users\\grabi_000\\development\\jjdz5-cm3\\paths\\data\\delegation.txt";
 
         delegationReadFile.delegationReadFile (fileDelegation);
+        return delegationRepository.listDelegations;
+    }
 
+    public void delegationPreview(){
         StringBuilder out = new StringBuilder();
-
         out.trimToSize ();
-
-
         out.append (chrRepeat ("=",222) )
                 .append("\n");
-
 
         // nagłówek pierwsza linia
         out.append ("|")
@@ -82,7 +82,7 @@ public class DelegationPreview {
         out.append (chrRepeat ("=",222) )
                 .append("\n");
 
-        for (Delegation p: delegationRepository.listDelegations) {
+        for (Delegation p: getDelegations()) {
 
             out.append("| ")
                     .append(p.getCreationDate())
