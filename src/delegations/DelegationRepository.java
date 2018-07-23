@@ -15,6 +15,7 @@ import delegations.*;
 public class DelegationRepository {
 
     public final static List<Delegation> listDelegations = new ArrayList<>();
+
     ConsoleReader consoleReader = new ConsoleReader();
     ConsolePrinter consolePrinter = new ConsolePrinter();
 
@@ -24,6 +25,7 @@ public class DelegationRepository {
 
     public void addDelegation(Delegation delegation) {
 
+
         Integer intFromUser = consoleReader.getInt();
 
         switch (intFromUser) {
@@ -31,24 +33,22 @@ public class DelegationRepository {
             case 1:
                 String fileName = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
                 File file = new File( fileName );
-                listDelegations.add( delegation );
 
             try (
 
                     FileWriter fileWriter = new FileWriter( file, true );
                     BufferedWriter writer = new BufferedWriter( fileWriter );
             ) {
-                writer.write( String.valueOf( listDelegations ) );
+                writer.write( String.valueOf( delegation ) );
                 writer.newLine();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            listDelegations.clear();
+
             break;
 
             case 2:
-                listDelegations.clear();
                 consolePrinter.printLine("Odrzucasz delegacje");
                 break;
 
