@@ -20,9 +20,15 @@ public class PropertiesSetFolder {
 
     public void defaultFolder() {
 
+        String userPath = "";
 
-        consolePrinter.printLine("Podaj ścieżkę:");
-        String userPath = consoleReader.readLine();
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            consolePrinter.printLine("Podaj ścieżkę:");
+            userPath = consoleReader.readLine();
+        }else{
+            consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/" );
+            userPath = System.getProperty("user.home") + "/" + consoleReader.readLine();
+        }
 
         while (true) {
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
@@ -40,8 +46,8 @@ public class PropertiesSetFolder {
 
                 break;
             } else {
-                if (!userPath.matches("^/.*/$")) {
-                    consolePrinter.printLine("blad ścieżka musi się zaczynać od: / . Podaj ścieżkę ");
+                if (!userPath.matches("^[a-zA-Z].*/$")) {
+                    consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
                     userPath = consoleReader.readLine();
                     continue;
                 }
@@ -49,13 +55,14 @@ public class PropertiesSetFolder {
             }
         }
 
-        propertiesCreateFolder.createFolder(userPath);
-        propertiesMoveDelegation.moveDlegation(userPath);
+        if (propertiesCreateFolder.createFolder(userPath) == 1){
+            propertiesMoveDelegation.moveDlegation(userPath);
+            Properties.userDelegationPath = Paths.get(userPath, Properties.fileName);
+            consoleClearScreen.clrscr();
+            consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
+        }
 
-        Properties.userDelegationPath = Paths.get(userPath, Properties.fileName);
 
-        consoleClearScreen.clrscr();
-        consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
     }
 }
 

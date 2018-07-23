@@ -11,11 +11,11 @@ public class PropertiesCreateFolder {
 
     ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    public void createFolder(String userPath) {
-
+    public int createFolder(String userPath) {
+        int userChoice = 1;
         if (Files.notExists(Paths.get(userPath))) {
             consolePrinter.printLine("\nFolder nie istnieje. Czy utworzyć ? 1. tak |  2. nie");
-            int userChoice = new MenuProperties().yesNo();
+            userChoice = new MenuProperties().yesNo();
             if (userChoice == 1) {
 
                 try {
@@ -24,8 +24,10 @@ public class PropertiesCreateFolder {
                     e.printStackTrace();
                 }
             } else {
-                return;
+                consolePrinter.printLine("Scieżka nie została utworzona");
+
             }
         }
+        return userChoice;
     }
 }
