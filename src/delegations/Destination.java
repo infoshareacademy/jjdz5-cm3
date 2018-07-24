@@ -80,11 +80,7 @@ public class Destination {
 
     @Override
     public String toString() {
-        return "Destination{" +
-                "destinationCountry='" + destinationCountry + '\'' +
-                ", destinationCity='" + destinationCity + '\'' +
-                ", destinationCompany='" + destinationCompany + '\'' +
-                ", destinationCompanyAddress='" + destinationCompanyAddress + '\'' +
-                '}' + '\n';
+        return destinationCountry + "," + destinationCity + "," + destinationCompany + ","+ destinationCompanyAddress;
+
     }
 }
