@@ -1,10 +1,10 @@
 package properties;
 
-
 import console.ConsolePrinter;
 import menu.MenuProperties;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,14 +12,14 @@ import java.util.List;
 
 
 public class PropertiesMoveDelegation {
-    ConsolePrinter consolePrinter = new ConsolePrinter();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public boolean isNotEmpty() {
         boolean bool = true;
 
         try {
             Path path = Properties.userDelegationPath;
-            List<String> lista = Files.readAllLines(path);
+            List<String> lista = Files.readAllLines(path,StandardCharsets.ISO_8859_1);
             bool = false;
             for (String s : lista) {
                 if (s.trim().length() > 1) {
@@ -44,7 +44,7 @@ public class PropertiesMoveDelegation {
             int userChoice = new MenuProperties().yesNo();
             if (userChoice == 1) {
                 try {
-                    Path tempPath = Paths.get(userPath, Properties.fileName);
+                    Path tempPath = Paths.get(userPath, Properties.FILE_NAME);
                     Files.move(Properties.userDelegationPath, tempPath);
 
                 } catch (IOException e) {

@@ -8,10 +8,10 @@ import properties.PropertiesView;
 
 public class MenuProperties extends Menu {
 
-    PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
-    PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
-    PropertiesView propertiesView = new PropertiesView();
-    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
+    private PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
+    private PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
+    private PropertiesView propertiesView = new PropertiesView();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
     private ConsolePrinter consolePrinter = new ConsolePrinter();
 
 
@@ -61,4 +61,8 @@ public class MenuProperties extends Menu {
         showMenu();
     }
 
+    @Override
+    public int yesNo() {
+        return super.yesNo();
+    }
 }

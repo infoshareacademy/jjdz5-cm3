@@ -1,5 +1,6 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import properties.Properties;
 import properties.PropertiesSaveToJson;
@@ -13,6 +14,7 @@ public class MenuSetProperties extends MenuProperties {
     private PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private PropertiesSaveToJson propertiesSaveToJson = new PropertiesSaveToJson();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
     public void MenuChange(int userChoice) {
 
@@ -50,8 +52,6 @@ public class MenuSetProperties extends MenuProperties {
                     break;
             }
         }
-
     }
-
 }
 

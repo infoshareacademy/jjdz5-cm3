@@ -6,22 +6,24 @@ import console.ConsoleReader;
 
 public class PropertiesSetCountry {
 
-    ConsolePrinter consolePrinter = new ConsolePrinter();
-    ConsoleReader consoleReader = new ConsoleReader();
-    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
+    private ConsoleReader consoleReader = new ConsoleReader();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
     public void defaultCountry() {
 
         consolePrinter.printLine("Podaj kraj:");
         String userCountry = consoleReader.readLine();
         while (true) {
-            if (userCountry.matches("[a-z A-Z]{4,100}")) {
+            if (userCountry.matches("^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]{3,100}")) {
                 Properties.userDelegationCountry = userCountry;
+                consoleClearScreen.clrscr();
+                consolePrinter.printLine("Domyślny kraj ustawiono na: " + Properties.userDelegationCountry);
                 consoleClearScreen.pressAnyKeyToContinue();
                 consoleClearScreen.clrscr();
                 break;
             } else {
-                consolePrinter.printLine("Nie ma takiej krótkiej nazwy kraju. Podaj jeszce raz ");
+                consolePrinter.printLine("Błąd: Kraj podajemy z dużej litery i conajmniej 4 znaki. Podaj jeszce raz ");
                 userCountry = consoleReader.readLine();
                 continue;
             }

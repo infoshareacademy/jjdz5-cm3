@@ -9,7 +9,14 @@ import java.nio.file.Paths;
 
 public class PropertiesCreateFolder {
 
-    ConsolePrinter consolePrinter = new ConsolePrinter();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
+
+    /**
+     * Metoda sprawdza czy w wybrany przez klienta folder istnieje
+     * Jeżeli nie to czy dodać
+     * @param userPath string z podaną przez klienta ścieżką
+     * @return userChoice jako int
+     */
 
     public int createFolder(String userPath) {
         int userChoice = 1;
@@ -20,12 +27,12 @@ public class PropertiesCreateFolder {
 
                 try {
                     Files.createDirectories(Paths.get(userPath));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 consolePrinter.printLine("Scieżka nie została utworzona");
-
             }
         }
         return userChoice;

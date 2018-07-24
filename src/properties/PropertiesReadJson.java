@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PropertiesReadJson {
 
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
 
 
     public String readJson() {

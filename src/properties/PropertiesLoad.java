@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 
 public class PropertiesLoad {
 
-    Properties properties = new Properties();
-    PropertiesReadJson propertiesReadJson = new PropertiesReadJson();
+    private Properties properties = new Properties();
+    private PropertiesReadJson propertiesReadJson = new PropertiesReadJson();
 
     public void loadProperties() {
         if (Files.notExists(properties.getPropertiesPath())) {

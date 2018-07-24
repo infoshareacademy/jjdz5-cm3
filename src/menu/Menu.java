@@ -42,7 +42,7 @@ public abstract class Menu {
 
     public int yesNo() {
 
-        int userChoice = new MenuSetProperties().isChoiceNumber();
+        int userChoice = isChoiceNumber();
         while (userChoice != 1 && userChoice != 2) {
             consolePrinter.printLine("Wybór spoza zakresu");
             userChoice = isChoiceNumber();

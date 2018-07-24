@@ -8,7 +8,7 @@ import java.util.Collections;
 
 public class PropertiesSaveToJson {
 
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
 
     public void saveJson() {
 
