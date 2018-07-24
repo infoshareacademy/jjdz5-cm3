@@ -25,7 +25,7 @@ public class DelegationAccept {
         validationLoop:
         while (true){
             String delegationDecision = consoleReader.getString();
-            switch (delegationDecision) {
+            switch (delegationDecision.toUpperCase()) {
                 case "A":
                     delegation.setDelegationStatus(DelegationStatus.ACCEPT);
                     consolePrinter.printLine("Delegacja została zaakceptowana.");
