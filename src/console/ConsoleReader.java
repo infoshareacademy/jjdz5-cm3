@@ -45,7 +45,7 @@ public class ConsoleReader {
         String stringFromUser = scanner.nextLine();
         boolean testString = false;
         while (!testString) {
-            if (stringFromUser.trim().matches( "^[A-Z][a-z]{1,30}$" )) {
+            if (stringFromUser.trim().matches( "^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]{1,30}$" )) {
                 testString = true;
             } else {
                 System.out.println( "Prosze wpisac jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr)" );
@@ -60,7 +60,7 @@ public class ConsoleReader {
         String stringFromUser = scanner.nextLine();
         boolean testString = false;
         while (!testString) {
-            if (stringFromUser.trim().matches( "([A-Z][a-zA-Z]*\\s*)+" )) {
+            if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]*\\s*)+" )) {
                 testString = true;
             } else {
                 System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr)" );

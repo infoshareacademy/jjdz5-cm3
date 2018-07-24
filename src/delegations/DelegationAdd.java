@@ -11,7 +11,6 @@ import java.time.LocalDate;
 public class DelegationAdd {
 
     DelegationRepository delegationRepository = new DelegationRepository();
-    DelegationPreview delegationPreview = new DelegationPreview();
     ConsolePrinter consolePrinter = new ConsolePrinter();
     ConsoleReader consoleReader = new ConsoleReader();
     Destination destination = new Destination();

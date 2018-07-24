@@ -25,6 +25,8 @@ public class DelegationReadFile {
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
 
+        delegationRepository.listDelegations.clear();
+
         if ( fileDelegation.isEmpty () || (!delegationFile.exists ())) {
             System.out.println ("####");
             if ( fileDelegation.isEmpty ()) {
@@ -83,7 +85,7 @@ public class DelegationReadFile {
                                                 tempList.get(7),
                                                 tempList.get(8))),
                                 tempList.get(9),
-                                (delegation.getDelegationStatus()),
+                                (DelegationStatus.valueOf(tempList.get(10))),
                                 tempList.get(11)));
                     }
                 }
