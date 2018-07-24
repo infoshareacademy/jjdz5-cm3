@@ -14,9 +14,6 @@ public class DelegationReadFile {
 
 
     private final DelegationRepository delegationRepository = new DelegationRepository ();
-    private final Delegation delegation = new Delegation(  );
-
-
 
 
     public void delegationReadFile( String fileDelegation) {
@@ -52,6 +49,7 @@ public class DelegationReadFile {
         try {
             bufferedReader = new BufferedReader( fileReader );
             String line = "";
+            int fileLineNumber = 0;
             while ( ( line = bufferedReader.readLine() ) != null ) {
 
                 if (!line.equals("")){  //nie dodawaj pustych lini
@@ -72,7 +70,7 @@ public class DelegationReadFile {
                                 tempList.get(4).trim ().replace ("-","") , formatter );
 
                         delegationRepository.addListDelegation(new Delegation(
-                                tempCreationDate,
+                                fileLineNumber, tempCreationDate,
                                 (new Employee( tempList.get(1), tempList.get(2) )
                                 ),
                                 tempStartDate,
@@ -83,10 +81,11 @@ public class DelegationReadFile {
                                                 tempList.get(7),
                                                 tempList.get(8))),
                                 tempList.get(9),
-                                (delegation.getDelegationStatus()),
+                                DelegationStatus.valueOf(tempList.get(10)),
                                 tempList.get(11)));
                     }
                 }
+                fileLineNumber++;
             }
         } catch  (Exception e ) {
             System.out.println( e );

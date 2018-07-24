@@ -11,18 +11,16 @@ public class ConsoleReader {
     Scanner scanner = new Scanner( System.in );
 
 
-    public Integer getInt() {
-        Integer stringFromUser = scanner.nextInt();
-        boolean testString = false;
-        while (!testString) {
-            if (stringFromUser==1||stringFromUser==2) {
-                testString = true;
+    public Integer getInt(int minValue, int maxValue) {
+        while (true) {
+            Integer inputFromUser = scanner.nextInt();
+            if (inputFromUser>=minValue && inputFromUser<=maxValue) {
+                return inputFromUser;
             } else {
-                System.out.println( "Wybrales liczne poza zakresem. Wpisz jeszcze raz." );
-                stringFromUser = scanner.nextInt();
+                System.out.println( "Wybrales liczbe poza zakresem. Wpisz jeszcze raz." );
+                //java.util.InputMismatchException
             }
         }
-        return stringFromUser;
     }
 
     public String getString() {
@@ -63,7 +61,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z][a-zA-Z]*\\s*)+" )) {
                 testString = true;
             } else {
-                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr)" );
+                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }

@@ -3,7 +3,7 @@ package delegations;
 import java.time.LocalDate;
 
 public class Delegation {
-
+    private Integer fileLineNumber;
     private LocalDate creationDate ;
     private LocalDate startDate ;
     private LocalDate endDate ;
@@ -17,7 +17,8 @@ public class Delegation {
     private Destination destination = new Destination();
 
 
-    public Delegation(LocalDate creationDate,
+    public Delegation(Integer fileLineNumber,
+                      LocalDate creationDate,
                       Employee employee,
                       LocalDate startDate,
                       LocalDate endDate,
@@ -25,6 +26,7 @@ public class Delegation {
                       String purpose,
                       DelegationStatus delegationStatus,
                       String startPoint) {
+        this.fileLineNumber = fileLineNumber;
         this.creationDate = creationDate;
         this.employee = employee;
         this.startDate = startDate;
@@ -39,6 +41,9 @@ public class Delegation {
     public Delegation() {
     }
 
+    public Integer getFileLineNumber() {
+        return fileLineNumber;
+    }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
