@@ -61,7 +61,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z][a-zA-Z]*\\s*)+" )) {
                 testString = true;
             } else {
-                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr)" );
+                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }

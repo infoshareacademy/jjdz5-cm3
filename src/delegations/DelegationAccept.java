@@ -16,7 +16,7 @@ public class DelegationAccept {
         List<Delegation> delegations = delegationFilteredPreview.getDelegations();
         delegationFilteredPreview.delegationPreview();
 
-        consolePrinter.printLine("Wybierz delegacje wprowadzając numer wiersza:");
+        consolePrinter.printLine("Wybierz delegację wprowadzając numer wiersza:");
         Integer rowNumber = consoleReader.getInt(1,delegations.size());
 
         Delegation delegation = delegations.get(rowNumber - 1);
@@ -35,7 +35,7 @@ public class DelegationAccept {
                     consolePrinter.printLine("Delegacja została odrzucona.");
                     break validationLoop;
                 default:
-                    consolePrinter.printLine("Podano zły znak. Podaj znaki. "); //poprawić tekst.
+                    consolePrinter.printLine("Podano zły znak decyzji. Podaj znak: \"A\", aby zaakceptować lub \"O\", aby odrzucić wniosek delegacyjny");
             }
         }
         delegationRepository.changeDelegationStatus(delegation);
