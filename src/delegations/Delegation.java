@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Delegation {
 
-    private LocalDate creationDate;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private String purpose;
-    private String status;
-    private String startPoint;
+    private LocalDate creationDate ;
+    private LocalDate startDate ;
+    private LocalDate endDate ;
+    private String purpose ;
+    private DelegationStatus delegationStatus;
+    private String startPoint ;
 
 
-    /*Obiekty z klas zawierających pola i metody */
+       /*Obiekty z klas zawierających pola i metody */
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
@@ -22,32 +22,34 @@ public class Delegation {
     private DelegationPreview delegationPreview = new DelegationPreview();
 
     public Delegation(LocalDate creationDate,
+                      Employee employee,
                       LocalDate startDate,
                       LocalDate endDate,
+                      Destination destination,
                       String purpose,
-                      String status,
-                      String startPoint,
-                      Employee employee,
-                      Destination destination) {
+                      DelegationStatus delegationStatus,
+                      String startPoint) {
         this.creationDate = creationDate;
+        this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.purpose = purpose;
-        this.status = status;
-        this.startPoint = startPoint;
-        this.employee = employee;
         this.destination = destination;
+        this.purpose = purpose;
+        this.delegationStatus = delegationStatus;
+        this.startPoint = startPoint;
+
     }
 
     public Delegation() {
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
     }
 
     public Destination getDestination() {
@@ -90,12 +92,12 @@ public class Delegation {
         this.purpose = purpose;
     }
 
-    public String getStatus() {
-        return status;
+    public DelegationStatus getDelegationStatus() {
+        return delegationStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDelegationStatus(DelegationStatus delegationStatus) {
+        this.delegationStatus = delegationStatus;
     }
 
     public String getStartPoint() {
@@ -108,16 +110,9 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return "Delegation{" +
-                "creationDate='" + creationDate + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", purpose='" + purpose + '\'' +
-                ", status='" + status + '\'' +
-                ", startPoint='" + startPoint + '\'' +
-                ", employee=" + employee +
-                ", destination=" + destination +
-                '}' + '\n';
+        return creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
+                purpose + "," + delegationStatus + "," + startPoint;
+
     }
 
 }

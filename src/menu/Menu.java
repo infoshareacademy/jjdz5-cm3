@@ -18,7 +18,7 @@ public abstract class Menu {
         String userChoice = "";
 
         while (true) {
-            userChoice = consoleReader.readLine();
+            userChoice = consoleReader.getString();
             if (userChoice.matches("[0-9]")) {
                 break;
             } else {

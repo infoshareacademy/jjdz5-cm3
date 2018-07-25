@@ -14,6 +14,9 @@ public class DelegationReadFile {
 
 
     private final DelegationRepository delegationRepository = new DelegationRepository ();
+    private final Delegation delegation = new Delegation(  );
+
+
 
 
     public void delegationReadFile( String fileDelegation) {
@@ -21,6 +24,8 @@ public class DelegationReadFile {
 
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
+
+        delegationRepository.listDelegations.clear();
 
         if ( fileDelegation.isEmpty () || (!delegationFile.exists ())) {
             System.out.println ("####");
@@ -70,19 +75,18 @@ public class DelegationReadFile {
 
                         delegationRepository.addListDelegation(new Delegation(
                                 tempCreationDate,
-                                tempStartDate,
-                                tempEndDate,
-                                tempList.get(9),
-                                tempList.get(10),
-                                tempList.get(11),
                                 (new Employee( tempList.get(1), tempList.get(2) )
                                 ),
-                                (new Destination(
-                                        tempList.get(5),
-                                        tempList.get(6),
-                                        tempList.get(7),
-                                        tempList.get(8))))
-                        );
+                                tempStartDate,
+                                tempEndDate,
+                                        (new Destination(
+                                                tempList.get(5),
+                                                tempList.get(6),
+                                                tempList.get(7),
+                                                tempList.get(8))),
+                                tempList.get(9),
+                                (DelegationStatus.valueOf(tempList.get(10))),
+                                tempList.get(11)));
                     }
                 }
             }
