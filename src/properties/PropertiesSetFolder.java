@@ -58,32 +58,33 @@ public class PropertiesSetFolder {
                 break;
             }
         } else {
+            while (true) {
+                if (!userPath.matches("[a-zA-Z0-9].*/$")) {
+                    consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
+                    consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
+                    consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+                    userPath = consoleReader.getString();
+                    continue;
+                }
 
-            if (!userPath.matches("[a-zA-Z]*/$")) {
-                consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
-                consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
-                consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
-                userPath = consoleReader.getString();
-                continue;
+                userPath = System.getProperty("user.home") + "/" + userPath;
+                break;
             }
 
-            userPath = System.getProperty("user.home") + "/" + userPath;
-            break;
-        }
 
+            if (propertiesCreateFolder.createFolder(userPath) == 1) {
+                propertiesMoveDelegation.moveDlegation(userPath);
+                Properties.userDelegationPath = Paths.get(userPath, Properties.FILE_NAME);
+                consoleClearScreen.clrscr();
+                consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
+            }
 
-        if (propertiesCreateFolder.createFolder(userPath) == 1) {
-            propertiesMoveDelegation.moveDlegation(userPath);
-            Properties.userDelegationPath = Paths.get(userPath, Properties.FILE_NAME);
-            consoleClearScreen.clrscr();
-            consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
-        }
-
-        if (Files.notExists(Properties.userDelegationPath)) {
-            try {
-                Files.createFile(Properties.userDelegationPath);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (Files.notExists(Properties.userDelegationPath)) {
+                try {
+                    Files.createFile(Properties.userDelegationPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
