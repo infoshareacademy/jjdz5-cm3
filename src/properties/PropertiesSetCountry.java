@@ -12,8 +12,9 @@ public class PropertiesSetCountry {
 
     public void defaultCountry() {
 
-        consolePrinter.printLine("Podaj kraj:");
+        consolePrinter.printLine("Podaj kraj (przerwanie operacji wybierz 3):");
         String userCountry = consoleReader.getString();
+        if (userCountry.equalsIgnoreCase("3")){return;}
         while (true) {
             if (userCountry.matches("^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]{3,100}")) {
                 Properties.userDelegationCountry = userCountry;

@@ -1,16 +1,13 @@
 package delegations;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
 import console.ConsolePrinter;
 import console.ConsoleReader;
-import delegations.*;
+import properties.Properties;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class DelegationRepository {
 
@@ -24,7 +21,7 @@ public class DelegationRepository {
         switch (intFromUser) {
 
             case 1:
-                String fileName = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
+                String fileName = Properties.userDelegationPath.toString();
                 File file = new File( fileName );
 
             try (

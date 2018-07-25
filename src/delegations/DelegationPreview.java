@@ -2,6 +2,7 @@ package delegations;
 
 
 import console.ConsolePrinter;
+import properties.Properties;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class DelegationPreview {
         List<Delegation> previewDelegation; // = new Delegation();
 
         // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
-        String fileDelegation = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
+        String fileDelegation = Properties.userDelegationPath.toString();
 
         previewDelegation = delegationReadFile.delegationReadFile( fileDelegation );
 

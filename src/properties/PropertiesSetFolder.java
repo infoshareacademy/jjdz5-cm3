@@ -27,8 +27,9 @@ public class PropertiesSetFolder {
 
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             discs = propertiesWindowsDiscs.windowsDiscs();
-            consolePrinter.printLine("Podaj ścieżkę:");
+            consolePrinter.printLine("Podaj ścieżkę (przerwanie operacji wybierz 3 :");
             userPath = consoleReader.getString();
+           if (userPath.equalsIgnoreCase("3")){return;}
         } else {
             discs = File.listRoots();
             consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
