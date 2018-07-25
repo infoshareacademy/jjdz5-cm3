@@ -9,7 +9,7 @@ public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private DelegationAdd addDelegationService = new DelegationAdd();
-    private DelegationChangeStatus acceptDelegation = new DelegationChangeStatus();
+    private DelegationChangeStatus delegationChangeStatus = new DelegationChangeStatus();
     private DelegationPreview previewDelegation = new DelegationPreview();
 
 
@@ -52,7 +52,7 @@ public class MenuDelegation extends Menu {
                 previewDelegation.delegationPreview();
                 break;
             case 3:
-                acceptDelegation.delegationAccept();
+                delegationChangeStatus.delegationChangeStatus ();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);

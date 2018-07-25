@@ -68,6 +68,20 @@ public class ConsoleReader {
         return stringFromUser;
     }
 
+    public String getStringMoreWordsLow() {
+
+        String stringFromUser = scanner.nextLine();
+        boolean testString = false;
+        while (!testString) {
+            if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)" )) {
+                testString = true;
+            } else {
+                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr.)" );
+                stringFromUser = scanner.nextLine();
+            }
+        }
+        return stringFromUser;
+    }
 
     public LocalDate getDateStart() {
 

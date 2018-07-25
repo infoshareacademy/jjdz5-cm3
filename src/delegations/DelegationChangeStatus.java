@@ -10,9 +10,11 @@ public class DelegationChangeStatus {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final ConsoleReader consoleReader = new ConsoleReader();
     private final DelegationRepository delegationRepository = new DelegationRepository();
+    private final DelegationPreview delegationPreview = new DelegationPreview();
 
 
-    public void delegationAccept() {
+    public void delegationChangeStatus() {
+
         List<Delegation> delegations = delegationFilteredPreview.getDelegations();
         delegationFilteredPreview.delegationPreview();
 

@@ -19,12 +19,12 @@ public class DelegationRepository {
     ConsoleReader consoleReader = new ConsoleReader();
     ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    public void addListDelegation(Delegation delegation) {
-        listDelegations.add( delegation );
-    }
+//    public void addListDelegation(Delegation delegation) {
+//        listDelegations.add( delegation );
+//    }
 
     public void changeDelegationStatus(Delegation delegation){
-        File delegationFile = new File( "C:\\Users\\grabi_000\\development\\jjdz5-cm3\\paths\\data\\delegation.txt" );
+        File delegationFile = new File( "paths/data/delegation.txt" );
         FileReader fileReader = null;
         try {
             fileReader = new FileReader (delegationFile);
@@ -72,12 +72,12 @@ public class DelegationRepository {
     public void addDelegation(Delegation delegation) {
 
 
-        Integer intFromUser = consoleReader.getInt();
+        Integer intFromUser = consoleReader.getInt(1,2);
 
         switch (intFromUser) {
 
             case 1:
-                String fileName = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
+                String fileName = "paths/data/delegation.txt";
                 File file = new File( fileName );
 
             try (
