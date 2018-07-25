@@ -16,11 +16,6 @@ public class Delegation {
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
-    private DelegationAdd delegationAdd = new DelegationAdd();
-    private DelegationAccept delegationAccept = new DelegationAccept();
-    private DelegationDiscard delegationDiscard = new DelegationDiscard();
-    private DelegationPreview delegationPreview = new DelegationPreview();
-
     public Delegation(LocalDate creationDate,
                       Employee employee,
                       LocalDate startDate,

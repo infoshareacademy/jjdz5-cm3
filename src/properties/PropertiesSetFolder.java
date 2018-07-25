@@ -28,24 +28,24 @@ public class PropertiesSetFolder {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             discs = propertiesWindowsDiscs.windowsDiscs();
             consolePrinter.printLine("Podaj ścieżkę:");
-            userPath = consoleReader.readLine();
+            userPath = consoleReader.getString();
         } else {
             discs = File.listRoots();
             consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
-            userPath = System.getProperty("user.home") + "/" + consoleReader.readLine();
+            userPath = System.getProperty("user.home") + "/" + consoleReader.getString();
         }
 
         while (true) {
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
                 if (!userPath.matches("[a-z A-Z]\\:\\\\.*\\\\$")) {
                     consolePrinter.printLine("blad ścieżka musi się zaczynać od jednego z możliwych do wyboru dysków: " + Arrays.toString(discs) + " np.: c:\\ i kończyć znakiem \"\\\". Podaj ścieżkę");
-                    userPath = consoleReader.readLine();
+                    userPath = consoleReader.getString();
                     continue;
                 }
 
                 if (!Arrays.toString(discs).contains(userPath.substring(0, 2).toUpperCase())) {
                     consolePrinter.printLine("blad brak takiego dysku: Możliwy wybór to: " + Arrays.toString(discs));
-                    userPath = consoleReader.readLine();
+                    userPath = consoleReader.getString();
                     continue;
                 }
 
@@ -53,7 +53,7 @@ public class PropertiesSetFolder {
             } else {
                 if (!userPath.matches("^[a-zA-Z].*/$")) {
                     consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
-                    userPath = consoleReader.readLine();
+                    userPath = consoleReader.getString();
                     continue;
                 }
                 break;

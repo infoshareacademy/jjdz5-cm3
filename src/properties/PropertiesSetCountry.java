@@ -13,7 +13,7 @@ public class PropertiesSetCountry {
     public void defaultCountry() {
 
         consolePrinter.printLine("Podaj kraj:");
-        String userCountry = consoleReader.readLine();
+        String userCountry = consoleReader.getString();
         while (true) {
             if (userCountry.matches("^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]{3,100}")) {
                 Properties.userDelegationCountry = userCountry;
@@ -24,7 +24,7 @@ public class PropertiesSetCountry {
                 break;
             } else {
                 consolePrinter.printLine("Błąd: Kraj podajemy z dużej litery i conajmniej 4 znaki. Podaj jeszce raz ");
-                userCountry = consoleReader.readLine();
+                userCountry = consoleReader.getString();
                 continue;
             }
         }
