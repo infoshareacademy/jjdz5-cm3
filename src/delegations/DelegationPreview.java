@@ -3,6 +3,8 @@ package delegations;
 
 import console.ConsolePrinter;
 
+import java.util.List;
+
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
@@ -11,10 +13,12 @@ public class DelegationPreview {
 
     public void delegationPreview(){
 
+        List<Delegation> previewDelegation; // = new Delegation();
+
         // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
         String fileDelegation = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
 
-        delegationReadFile.delegationReadFile (fileDelegation);
+        previewDelegation = delegationReadFile.delegationReadFile( fileDelegation );
 
         StringBuilder out = new StringBuilder();
 
@@ -26,9 +30,9 @@ public class DelegationPreview {
             columnWidth[i] = 0;
         }
 
-        for (Delegation p: DelegationRepository.listDelegations) {
+        for (Delegation p: previewDelegation) {
 
-            Integer lenLP = DelegationRepository.listDelegations.indexOf(p);
+            Integer lenLP = previewDelegation.indexOf(p);
 
             if (  columnWidth[0] < lenLP.toString ().trim ().length ()){
                 columnWidth[0] = lenLP.toString ().trim ().length ();
@@ -197,9 +201,9 @@ public class DelegationPreview {
             out.append(chrRepeat("=", columnWideWidth))
                     .append("\n");
 
-            for (Delegation p : DelegationRepository.listDelegations) {
+            for (Delegation p : previewDelegation) {
 
-                Integer lenLP = DelegationRepository.listDelegations.indexOf(p);
+                Integer lenLP = previewDelegation.indexOf(p);
 
                 out.append("| ")
                         .append(lenLP.toString().trim())

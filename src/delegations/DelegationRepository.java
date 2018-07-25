@@ -14,17 +14,10 @@ import delegations.*;
 
 public class DelegationRepository {
 
-    public final static List<Delegation> listDelegations = new ArrayList<>();
-
     ConsoleReader consoleReader = new ConsoleReader();
     ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    public void addListDelegation(Delegation delegation) {
-        listDelegations.add( delegation );
-    }
-
     public void addDelegation(Delegation delegation) {
-
 
         Integer intFromUser = consoleReader.getInt();
 
