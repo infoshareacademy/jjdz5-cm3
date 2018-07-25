@@ -70,25 +70,25 @@ public class PropertiesSetFolder {
                 userPath = System.getProperty("user.home") + "/" + userPath;
                 break;
             }
+        }
 
+        if (propertiesCreateFolder.createFolder(userPath) == 1) {
+            propertiesMoveDelegation.moveDlegation(userPath);
+            Properties.userDelegationPath = Paths.get(userPath, Properties.FILE_NAME);
+            consoleClearScreen.clrscr();
+            consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
+        }
 
-            if (propertiesCreateFolder.createFolder(userPath) == 1) {
-                propertiesMoveDelegation.moveDlegation(userPath);
-                Properties.userDelegationPath = Paths.get(userPath, Properties.FILE_NAME);
-                consoleClearScreen.clrscr();
-                consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
-            }
-
-            if (Files.notExists(Properties.userDelegationPath)) {
-                try {
-                    Files.createFile(Properties.userDelegationPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        if (Files.notExists(Properties.userDelegationPath)) {
+            try {
+                Files.createFile(Properties.userDelegationPath);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 }
+
 
 
 
