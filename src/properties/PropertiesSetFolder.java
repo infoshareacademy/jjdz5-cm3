@@ -29,15 +29,20 @@ public class PropertiesSetFolder {
             discs = propertiesWindowsDiscs.windowsDiscs();
             consolePrinter.printLine("Podaj ścieżkę - tylko foldery bez nazwy pliku i musi się kończyć zankiem \"\\\" (przerwanie operacji wybierz 3) :");
             userPath = consoleReader.getString();
-           if (userPath.equalsIgnoreCase("3")){return;}
+            if (userPath.equalsIgnoreCase("3")) {
+                return;
+            }
         } else {
             discs = File.listRoots();
             consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
-            userPath = System.getProperty("user.home") + "/" + consoleReader.getString();
+            consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
+            consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+            userPath = consoleReader.getString();
         }
 
-        while (true) {
-            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            while (true) {
                 if (!userPath.matches("[a-z A-Z]\\:\\\\.*\\\\$")) {
                     consolePrinter.printLine("blad ścieżka musi się zaczynać od jednego z możliwych do wyboru dysków: " + Arrays.toString(discs) + " np.: c:\\ i kończyć znakiem \"\\\". Podaj ścieżkę");
                     userPath = consoleReader.getString();
@@ -51,15 +56,21 @@ public class PropertiesSetFolder {
                 }
 
                 break;
-            } else {
-                if (!userPath.matches("^[a-zA-Z].*/$")) {
-                    consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
-                    userPath = consoleReader.getString();
-                    continue;
-                }
-                break;
             }
+        } else {
+
+            if (!userPath.matches("[a-zA-Z]*/$")) {
+                consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
+                consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
+                consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+                userPath = consoleReader.getString();
+                continue;
+            }
+
+            userPath = System.getProperty("user.home") + "/" + userPath;
+            break;
         }
+
 
         if (propertiesCreateFolder.createFolder(userPath) == 1) {
             propertiesMoveDelegation.moveDlegation(userPath);
@@ -68,7 +79,7 @@ public class PropertiesSetFolder {
             consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
         }
 
-        if(Files.notExists(Properties.userDelegationPath)){
+        if (Files.notExists(Properties.userDelegationPath)) {
             try {
                 Files.createFile(Properties.userDelegationPath);
             } catch (IOException e) {
