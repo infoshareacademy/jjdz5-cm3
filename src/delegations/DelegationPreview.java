@@ -146,7 +146,7 @@ public class DelegationPreview {
                     .append(" | ")
                     .append("Data").append(chrRepeat(" ", columnWidth[1] - 4))
                     .append("| ")
-                    .append("Inię").append(chrRepeat(" ", columnWidth[2] - 4))
+                    .append("Imię").append(chrRepeat(" ", columnWidth[2] - 4))
                     .append("| ")
                     .append("Nazwisko").append(chrRepeat(" ", columnWidth[3] - 8))
                     .append("| ")

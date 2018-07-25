@@ -54,15 +54,15 @@ public class DelegationAdd {
         destination.setDestinationCity( consoleReader.getStringMoreWords() );
 
         consolePrinter.printLine( "Podaj nazwe firmy: " );
-        destination.setDestinationCompany( consoleReader.getString() );
+        destination.setDestinationCompany( consoleReader.getStringMoreWords() );
 
         consolePrinter.printLine( "Podaj adres firmy: " );
-        destination.setDestinationCompanyAddress( consoleReader.getString() );
+        destination.setDestinationCompanyAddress( consoleReader.getStringMoreWords() );
 
         delegation.setDestination( destination );
 
         consolePrinter.printLine( "Podaj cel delegacji: " );
-        delegation.setPurpose( consoleReader.getString() );
+        delegation.setPurpose( consoleReader.getStringOneWord() );
 
         delegation.setDelegationStatus( DelegationStatus.TOACCEPT );
 
