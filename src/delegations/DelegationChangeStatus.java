@@ -5,7 +5,7 @@ import console.ConsoleReader;
 
 import java.util.List;
 
-public class DelegationAccept {
+public class DelegationChangeStatus {
     private final DelegationFilteredPreview delegationFilteredPreview = new DelegationFilteredPreview();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final ConsoleReader consoleReader = new ConsoleReader();
@@ -27,11 +27,11 @@ public class DelegationAccept {
             String delegationDecision = consoleReader.getString();
             switch (delegationDecision.toUpperCase()) {
                 case "A":
-                    delegation.setDelegationStatus(DelegationStatus.ACCEPT);
+                    delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
                     consolePrinter.printLine("Delegacja została zaakceptowana.");
                     break validationLoop;
                 case "O":
-                    delegation.setDelegationStatus(DelegationStatus.DISCRD);
+                    delegation.setDelegationStatus(DelegationStatus.DISCARTED);
                     consolePrinter.printLine("Delegacja została odrzucona.");
                     break validationLoop;
                 default:
