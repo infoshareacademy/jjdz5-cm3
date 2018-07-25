@@ -69,7 +69,7 @@ public class DelegationAdd {
         consolePrinter.printLine( "Podaj miejsce wyjazdu (miasto): " );
         delegation.setStartPoint( consoleReader.getStringMoreWords() );
 
-        Delegation newDelegation = new Delegation( delegation.getCreationDate(), delegation.getEmployee(), delegation.getStartDate(),
+        Delegation newDelegation = new Delegation(null, delegation.getCreationDate(), delegation.getEmployee(), delegation.getStartDate(),
                 delegation.getEndDate(),  delegation.getDestination(), delegation.getPurpose(), delegation.getDelegationStatus(),
                 delegation.getStartPoint());
 

@@ -1,17 +1,15 @@
 package menu;
 
 import console.ConsolePrinter;
-import delegations.DelegationAccept;
+import delegations.DelegationChangeStatus;
 import delegations.DelegationAdd;
 import delegations.DelegationPreview;
-
-import java.io.IOException;
 
 public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private DelegationAdd addDelegationService = new DelegationAdd();
-    private DelegationAccept acceptDelegation = new DelegationAccept();
+    private DelegationChangeStatus acceptDelegation = new DelegationChangeStatus();
     private DelegationPreview previewDelegation = new DelegationPreview();
 
 

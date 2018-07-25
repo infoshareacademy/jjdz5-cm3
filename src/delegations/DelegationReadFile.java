@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,14 +16,14 @@ public class DelegationReadFile {
     private final DelegationRepository delegationRepository = new DelegationRepository ();
     private final Delegation delegation = new Delegation(  );
 
-    public List<Delegation> delegationReadFile(String fileDelegation) {
 
-        List<Delegation> readDelegations = new ArrayList<>();
+
+
+    public void delegationReadFile( String fileDelegation) {
+
 
         File delegationFile = new File( fileDelegation );
         FileReader fileReader = null;
-
-//        delegationRepository.listDelegations.clear();
 
         if ( fileDelegation.isEmpty () || (!delegationFile.exists ())) {
             System.out.println ("####");
@@ -40,7 +39,7 @@ public class DelegationReadFile {
             System.out.println ("####");
 
 
-            return readDelegations;
+            return;
         } else {
             try {
                 fileReader = new FileReader (delegationFile);
@@ -53,6 +52,7 @@ public class DelegationReadFile {
         try {
             bufferedReader = new BufferedReader( fileReader );
             String line = "";
+            int fileLineNumber = 0;
             while ( ( line = bufferedReader.readLine() ) != null ) {
 
                 if (!line.equals("")){  //nie dodawaj pustych lini
@@ -72,23 +72,23 @@ public class DelegationReadFile {
                         LocalDate tempEndDate =  LocalDate.parse (
                                 tempList.get(4).trim ().replace ("-","") , formatter );
 
-                        readDelegations.add( new Delegation(
-                                tempCreationDate,
+                        delegationRepository.addListDelegation(new Delegation(
+                                fileLineNumber, tempCreationDate,
                                 (new Employee( tempList.get(1), tempList.get(2) )
                                 ),
                                 tempStartDate,
                                 tempEndDate,
-                                (new Destination(
-                                        tempList.get(5),
-                                        tempList.get(6),
-                                        tempList.get(7),
-                                        tempList.get(8))),
+                                        (new Destination(
+                                                tempList.get(5),
+                                                tempList.get(6),
+                                                tempList.get(7),
+                                                tempList.get(8))),
                                 tempList.get(9),
-                                (DelegationStatus.valueOf(tempList.get(10))),
-                                tempList.get(11)) );
-
+                                DelegationStatus.valueOf(tempList.get(10)),
+                                tempList.get(11)));
                     }
                 }
+                fileLineNumber++;
             }
         } catch  (Exception e ) {
             System.out.println( e );
@@ -101,7 +101,6 @@ public class DelegationReadFile {
             }
         }
 
-        return readDelegations;
     }
 
 }
