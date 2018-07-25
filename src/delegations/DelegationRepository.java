@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class DelegationRepository {
 
-    ConsoleReader consoleReader = new ConsoleReader();
-    ConsolePrinter consolePrinter = new ConsolePrinter();
+    private final ConsoleReader consoleReader = new ConsoleReader();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public void addDelegation(Delegation delegation) {
 

@@ -45,6 +45,16 @@ public class PropertiesMoveDelegation {
             if (userChoice == 1) {
                 try {
                     Path tempPath = Paths.get(userPath, Properties.FILE_NAME);
+                    if (Files.exists(tempPath)){
+                        consolePrinter.printLine("Istnieje już plik w tej lokalizacji 1.nadpisanie | 2. zostawienie ");
+                        userChoice = new MenuProperties().yesNo();
+                        if (userChoice == 1){
+                            Files.deleteIfExists(tempPath);
+                        }else{
+                            Path oldPath = Paths.get(userPath, "delegation_old.txt");
+                            Files.move(tempPath,oldPath);
+                        }
+                    }
                     Files.move(Properties.userDelegationPath, tempPath);
 
                 } catch (IOException e) {

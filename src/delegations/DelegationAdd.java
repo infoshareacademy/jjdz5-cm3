@@ -10,12 +10,12 @@ import java.time.LocalDate;
 
 public class DelegationAdd {
 
-    DelegationRepository delegationRepository = new DelegationRepository();
-    ConsolePrinter consolePrinter = new ConsolePrinter();
-    ConsoleReader consoleReader = new ConsoleReader();
-    Destination destination = new Destination();
-    Delegation delegation = new Delegation();
-    Employee employee = new Employee();
+    private final DelegationRepository delegationRepository = new DelegationRepository();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter();
+    private final ConsoleReader consoleReader = new ConsoleReader();
+    private final Destination destination = new Destination();
+    private final Delegation delegation = new Delegation();
+    private final Employee employee = new Employee();
 
 
 

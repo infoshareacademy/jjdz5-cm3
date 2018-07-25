@@ -27,7 +27,7 @@ public class PropertiesSetFolder {
 
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             discs = propertiesWindowsDiscs.windowsDiscs();
-            consolePrinter.printLine("Podaj ścieżkę (przerwanie operacji wybierz 3 :");
+            consolePrinter.printLine("Podaj ścieżkę - tylko foldery bez nazwy pliku i musi się kończyć zankiem \"\\\" (przerwanie operacji wybierz 3) :");
             userPath = consoleReader.getString();
            if (userPath.equalsIgnoreCase("3")){return;}
         } else {
