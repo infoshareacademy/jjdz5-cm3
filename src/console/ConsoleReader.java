@@ -23,6 +23,13 @@ public class ConsoleReader {
         }
     }
 
+    public Integer getInt() {
+
+            Integer inputFromUser = scanner.nextInt();
+        return  inputFromUser;
+
+    }
+
     public String getString() {
         String stringFromUser = scanner.nextLine();
         boolean testString = false;
@@ -30,7 +37,7 @@ public class ConsoleReader {
             if (!stringFromUser.isEmpty()) {
                 testString = true;
             } else {
-                System.out.println( "Pole nie moze byc puste" );
+                System.out.println( "Pole nie może być puste" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -46,7 +53,22 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]+(([\\-][A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])?[a-z,ążśźęćńół]*)" )) {
                 testString = true;
             } else {
-                System.out.println( "Prosze wpisac jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr)" );
+                System.out.println( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)" );
+                stringFromUser = scanner.nextLine();
+            }
+        }
+        return stringFromUser;
+    }
+
+    public String getStringOneWordLow() {
+
+        String stringFromUser = scanner.nextLine();
+        boolean testString = false;
+        while (!testString) {
+            if (stringFromUser.trim().matches( "((?!\\,).)*$" )) {
+                testString = true;
+            } else {
+                System.out.println( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -61,7 +83,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)" )) {
                 testString = true;
             } else {
-                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr.)" );
+                System.out.println( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -76,7 +98,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)" )) {
                 testString = true;
             } else {
-                System.out.println( "Prosze wpisac jeszcze raz dane (wielkie litery, brak cyfr.)" );
+                System.out.println( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }

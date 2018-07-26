@@ -45,6 +45,10 @@ public class Delegation {
         return fileLineNumber;
     }
 
+    public void setFileLineNumber(Integer fileLineNumber) {
+        this.fileLineNumber = fileLineNumber;
+    }
+
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
@@ -112,11 +116,7 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
+        return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
                 purpose + "," + delegationStatus + "," + startPoint;
-
     }
-
-
-
 }

@@ -49,7 +49,7 @@ public class MenuDelegation extends Menu {
                 addDelegationService.delegationAdd();
                 break;
             case 2:
-                previewDelegation.delegationPreview();
+                previewDelegation.delegationPreview(1);
                 break;
             case 3:
                 delegationChangeStatus.delegationChangeStatus ();

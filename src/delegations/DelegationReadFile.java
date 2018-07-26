@@ -59,36 +59,38 @@ public class DelegationReadFile {
 
                         List<String> tempList = Arrays.asList (line.split (","));
 
-                        if (tempList.size () == 12) {
+                        if (tempList.size () == 13) {
+
+
 
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("yyyyMMdd");
 
                             LocalDate tempCreationDate = LocalDate.parse (
-                                    tempList.get (0).trim ().replace ("-", ""), formatter);
+                                    tempList.get (1).trim ().replace ("-", ""), formatter);
 
                             LocalDate tempStartDate = LocalDate.parse (
-                                    tempList.get (3).trim ().replace ("-", ""), formatter);
-
-                            LocalDate tempEndDate = LocalDate.parse (
                                     tempList.get (4).trim ().replace ("-", ""), formatter);
 
+                            LocalDate tempEndDate = LocalDate.parse (
+                                    tempList.get (5).trim ().replace ("-", ""), formatter);
+
                             readDelegations.add (new Delegation (
-                                    fileLineNumber, tempCreationDate,
-                                    (new Employee (tempList.get (1), tempList.get (2))
+                                    ++fileLineNumber, tempCreationDate,
+                                    (new Employee (tempList.get (2), tempList.get (3))
                                     ),
                                     tempStartDate,
                                     tempEndDate,
                                     (new Destination (
-                                            tempList.get (5),
                                             tempList.get (6),
                                             tempList.get (7),
-                                            tempList.get (8))),
-                                    tempList.get (9),
-                                    DelegationStatus.valueOf (tempList.get (10)),
-                                    tempList.get (11)));
+                                            tempList.get (8),
+                                            tempList.get (9))),
+                                    tempList.get (10),
+                                    DelegationStatus.valueOf (tempList.get (11)),
+                                    tempList.get (12)));
                         }
                     }
-                    fileLineNumber++;
+                //    fileLineNumber++;
                 }
             } catch (Exception e) {
                 System.out.println (e);

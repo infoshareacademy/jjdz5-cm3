@@ -14,14 +14,8 @@ import delegations.*;
 
 public class DelegationRepository {
 
-  //  public final static List<Delegation> listDelegations = new ArrayList<>();
-
     ConsoleReader consoleReader = new ConsoleReader();
     ConsolePrinter consolePrinter = new ConsolePrinter();
-
-//    public void addListDelegation(Delegation delegation) {
-//        listDelegations.add( delegation );
-//    }
 
     public void changeDelegationStatus(Delegation delegation){
         File delegationFile = new File( "paths/data/delegation.txt" );
@@ -39,7 +33,7 @@ public class DelegationRepository {
             String line = "";
             int fileLineNumber = 0;
             while ( ( line = bufferedReader.readLine() ) != null ) {
-                if (fileLineNumber == delegation.getFileLineNumber()) {
+                if (fileLineNumber == delegation.getFileLineNumber()-1) {
                     out.append(String.valueOf( delegation ));
                 } else {
                     out.append(line);
@@ -101,5 +95,7 @@ public class DelegationRepository {
         }
 
     }
+
+
 }
 
