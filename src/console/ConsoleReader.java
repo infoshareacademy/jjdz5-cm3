@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ConsoleReader {
 
-
+    ConsolePrinter consolePrinter = new ConsolePrinter();
     Scanner scanner = new Scanner( System.in );
 
 
@@ -17,17 +17,25 @@ public class ConsoleReader {
             if (inputFromUser>=minValue && inputFromUser<=maxValue) {
                 return inputFromUser;
             } else {
-                System.out.println( "Wybrales liczbe z poza zakresu. Wpisz jeszcze raz." );
+                System.out.println( "Wybrałeś liczbę z poza zakresu. Wpisz jeszcze raz." );
                 //java.util.InputMismatchException
             }
         }
     }
 
     public Integer getInt() {
+        String inputFromUser = scanner.nextLine ();
 
-            Integer inputFromUser = scanner.nextInt();
-        return  inputFromUser;
-
+        boolean testString = false;
+        while (!testString) {
+            if (inputFromUser.matches( "[0-9]*" )) {
+                testString = true;
+            } else {
+                consolePrinter.printLine( "Proszę wpisać same cyfty." );
+                inputFromUser = scanner.nextLine();
+            }
+        }
+        return  Integer.parseInt (inputFromUser);
     }
 
     public String getString() {
@@ -37,7 +45,7 @@ public class ConsoleReader {
             if (!stringFromUser.isEmpty()) {
                 testString = true;
             } else {
-                System.out.println( "Pole nie może być puste" );
+                System.out.println( "Pole nie może być puste." );
                 stringFromUser = scanner.nextLine();
             }
         }
