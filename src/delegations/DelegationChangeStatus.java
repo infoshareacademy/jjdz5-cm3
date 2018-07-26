@@ -2,8 +2,7 @@ package delegations;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+
 
 
 public class DelegationChangeStatus {
@@ -16,9 +15,9 @@ public class DelegationChangeStatus {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
-        Delegation delegation = null;
-        Integer delegationDecision = 0;
-        Integer rowNumber = 0;
+        Delegation delegation;
+        Integer delegationDecision;
+        Integer rowNumber;
         while (true) {
             delegationPreview.delegationPreview(2);
 
