@@ -2,21 +2,16 @@ package delegations;
 
 import console.ConsolePrinter;
 import console.ConsoleReader;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class DelegationChangeStatus {
-
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final ConsoleReader consoleReader = new ConsoleReader();
     private final DelegationRepository delegationRepository = new DelegationRepository();
     private final DelegationPreview delegationPreview = new DelegationPreview();
 
-
     public void delegationChangeStatus() {
-
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
@@ -27,18 +22,15 @@ public class DelegationChangeStatus {
         while (true) {
             delegationPreview.delegationPreview(2);
 
-            consolePrinter.printLine("Wybierz delegację wprowadzając ID i naciśnij ENTER");
-            consolePrinter.printLine("| 0. Zrezygnuj ze zmian i powrót do Menu Delegacje |");
-            rowNumber = consoleReader.getInt();
+            consolePrinter.printLine("Wybierz delegację wprowadzając ID i naciśnij ENTER.");
+            consolePrinter.printLine("| 0. Zrezygnuj ze zmian i powróć do Menu Delegacje |");
+            rowNumber = consoleReader.getInt(1,delegationsAll.size());
 
             if (rowNumber == 0) {
                 return;
             }
-
             if (rowNumber > delegationsAll.size()) {
-
             } else {
-
                 delegation = delegationsAll.get(rowNumber - 1);
 
                 int counter = 0;
@@ -48,20 +40,17 @@ public class DelegationChangeStatus {
                         counter++;
                     }
                 }
-
                 if (counter == 0) {
-                    consolePrinter.printLine("Brak ID: " + rowNumber);
+                    consolePrinter.printLine("Brak delegacji o nr ID: " + rowNumber);
                     //    delegationChangeStatus();
-
                     return;
                 } else {
-                    consolePrinter.printLine("1. Akceptuj delegację | 2. Nie akceptuj delegacji |");
-                    consolePrinter.printLine("| 9. Zrezygnuj |");
-
+                    consolePrinter.printLine("1. Akceptuj delegację. | 2. Odrzuć delegację. |");
+                    consolePrinter.printLine("| 9. Zrezygnuj z akcji. |");
                 }
 
-            delegationDecision = consoleReader.getInt();
-
+                delegationDecision = consoleReader.getInt();
+            }
             switch (delegationDecision) {
                 case 9:
                     delegationChangeStatus();
@@ -85,7 +74,6 @@ public class DelegationChangeStatus {
                     delegationChangeStatus();
                     break;
             }
-        }
         }
     }
 }
