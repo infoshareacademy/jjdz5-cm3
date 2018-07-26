@@ -17,7 +17,7 @@ public class ConsoleReader {
             if (inputFromUser>=minValue && inputFromUser<=maxValue) {
                 return inputFromUser;
             } else {
-                System.out.println( "Wybrales liczbe poza zakresem. Wpisz jeszcze raz." );
+                System.out.println( "Wybrales liczbe z poza zakresu. Wpisz jeszcze raz." );
                 //java.util.InputMismatchException
             }
         }
