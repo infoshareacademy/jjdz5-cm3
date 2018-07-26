@@ -2,6 +2,8 @@ package delegations;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class DelegationChangeStatus {
@@ -14,19 +16,18 @@ public class DelegationChangeStatus {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
-        Delegation delegation;
-        Integer delegationDecision;
-
-        Integer rowNumber;
+        Delegation delegation = null;
+        Integer delegationDecision = 0;
+        Integer rowNumber = 0;
         while (true) {
             delegationPreview.delegationPreview(2);
 
             consolePrinter.printLine("Aby wybrać delegację podaj jej nr ID i naciśnij ENTER.");
             consolePrinter.printLine("| 0. Rezygnacja ze zmian i powrót do Menu Delegacje |");
-            rowNumber = consoleReader.getInt(1,delegationsAll.size());
+            rowNumber = consoleReader.getInt();
 
             if (rowNumber == 0) {
-                return;
+                return ;
             }
             if (rowNumber > delegationsAll.size()) {
             } else {
@@ -71,7 +72,7 @@ public class DelegationChangeStatus {
                     //    break;
                     default:
                         consolePrinter.printLine("Wpisano niepoprawny numer decyzji. Wpisz nr : \"1\", aby zaakceptować lub \"2\", aby odrzucić wniosek delegacyjny");
-                        /*delegationChangeStatus();*/
+                        delegationChangeStatus();
                         break;
 
                 }
