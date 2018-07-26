@@ -23,7 +23,7 @@ public class DelegationChangeStatus {
             delegationPreview.delegationPreview(2);
 
             consolePrinter.printLine("Aby wybrać delegację podaj jej nr ID i naciśnij ENTER.");
-            consolePrinter.printLine("| 0. Rezygnacja ze zmian i powrót do Menu Delegacje |");
+            consolePrinter.printLine("| 0 Rezygnacja ze zmian i powrót do Menu Delegacje |");
             rowNumber = consoleReader.getInt();
 
             if (rowNumber == 0) {
@@ -42,7 +42,7 @@ public class DelegationChangeStatus {
                 }
                 if (counter == 0) {
                     consolePrinter.printLine("Brak delegacji o nr ID: " + rowNumber);
-                    //    delegationChangeStatus();
+                    delegationChangeStatus();
                     return;
                 } else {
                     consolePrinter.printLine("1. Akceptuj delegację. | 2. Odrzuć delegację. |");
