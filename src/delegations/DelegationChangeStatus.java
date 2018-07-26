@@ -1,5 +1,4 @@
 package delegations;
-
 import console.ConsolePrinter;
 import console.ConsoleReader;
 import java.util.List;
@@ -15,15 +14,15 @@ public class DelegationChangeStatus {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
-        Delegation delegation = null;
-        Integer delegationDecision = 0;
+        Delegation delegation;
+        Integer delegationDecision;
 
-        Integer rowNumber = 0;
+        Integer rowNumber;
         while (true) {
             delegationPreview.delegationPreview(2);
 
-            consolePrinter.printLine("Wybierz delegację wprowadzając ID i naciśnij ENTER.");
-            consolePrinter.printLine("| 0. Zrezygnuj ze zmian i powróć do Menu Delegacje |");
+            consolePrinter.printLine("Aby wybrać delekację podaj jej nr ID i naciśnij ENTER.");
+            consolePrinter.printLine("| 0. Rezygnacja ze zmian i powrót do Menu Delegacje |");
             rowNumber = consoleReader.getInt(1,delegationsAll.size());
 
             if (rowNumber == 0) {
@@ -50,29 +49,32 @@ public class DelegationChangeStatus {
                 }
 
                 delegationDecision = consoleReader.getInt();
-            }
-            switch (delegationDecision) {
-                case 9:
-                    delegationChangeStatus();
-                    return;
-                //    break;
-                case 1:
-                    delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
-                    delegationRepository.changeDelegationStatus(delegation);
-                    consolePrinter.printLine("Delegacja została zaakceptowana.");
-                    delegationPreview.delegationPreview(2);
-                    return;
-                //   break;
-                case 2:
-                    delegation.setDelegationStatus(DelegationStatus.DISCARTED);
-                    delegationRepository.changeDelegationStatus(delegation);
-                    consolePrinter.printLine("Delegacja została odrzucona.");
-                    delegationPreview.delegationPreview(2);
-                    return;
-                //    break;
-                default:
-                    delegationChangeStatus();
-                    break;
+
+                switch (delegationDecision) {
+                    case 9:
+                        delegationChangeStatus();
+                        return;
+                    //    break;
+                    case 1:
+                        delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
+                        delegationRepository.changeDelegationStatus(delegation);
+                        consolePrinter.printLine("Delegacja została zaakceptowana.");
+                        delegationPreview.delegationPreview(2);
+                        return;
+                    //   break;
+                    case 2:
+                        delegation.setDelegationStatus(DelegationStatus.DISCARTED);
+                        delegationRepository.changeDelegationStatus(delegation);
+                        consolePrinter.printLine("Delegacja została odrzucona.");
+                        delegationPreview.delegationPreview(2);
+                        return;
+                    //    break;
+                    default:
+                        consolePrinter.printLine("Wpisano niepoprawny numer decyzji. Wpisz nr : \"1\", aby zaakceptować lub \"2\", aby odrzucić wniosek delegacyjny");
+                        /*delegationChangeStatus();*/
+                        break;
+
+                }
             }
         }
     }

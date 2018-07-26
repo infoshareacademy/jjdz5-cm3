@@ -1,4 +1,4 @@
-package delegations;
+/*package delegations;
 
 import console.ConsolePrinter;
 import console.ConsoleReader;
@@ -11,7 +11,7 @@ public class DelegationFilteredPreview { // extends DelegationPreview {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final ConsoleReader consoleReader = new ConsoleReader();
     private final DelegationRepository delegationRepository = new DelegationRepository();
-    private final DelegationPreview delegationPreview = new DelegationPreview();
+    private final DelegationPreview delegationPreview = new DelegationPreview();*/
 //    @Override
 //    public List<Delegation> getDelegations() {
 //
@@ -22,7 +22,7 @@ public class DelegationFilteredPreview { // extends DelegationPreview {
 //                .collect(Collectors.toList());
 //    }
 
-    public void test() {
+/*    public void test() {
 
         List<Delegation> xyz = delegationPreview.getDelegationsToAccept();
         System.out.println("------------");
@@ -34,5 +34,5 @@ public class DelegationFilteredPreview { // extends DelegationPreview {
 
 
 
-    }
-}
+    }*/
+/*}*/
