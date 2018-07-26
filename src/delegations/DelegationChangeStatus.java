@@ -20,47 +20,48 @@ public class DelegationChangeStatus {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
+        Delegation delegation = null;
+        Integer delegationDecision = 0;
 
         Integer rowNumber = 0;
+        while (true) {
+            delegationPreview.delegationPreview(2);
 
-        delegationPreview.delegationPreview(2);
+            consolePrinter.printLine("Wybierz delegację wprowadzając ID i naciśnij ENTER");
+            consolePrinter.printLine("| 0. Zrezygnuj ze zmian i powrót do Menu Delegacje |");
+            rowNumber = consoleReader.getInt();
 
-        consolePrinter.printLine("Wybierz delegację wprowadzając ID i naciśnij ENTER");
-        consolePrinter.printLine("| 0. Zrezygnuj ze zmian i powrót do Menu Delegacje |");
-        rowNumber = consoleReader.getInt();
-
-        if (rowNumber == 0){
-            return;
-        }
-
-        if (rowNumber > delegationsAll.size()){
-            delegationChangeStatus();
-            return;
-        }
-
-        Delegation delegation = delegationsAll.get(rowNumber - 1);
-
-        int counter = 0;
-
-        for (Delegation p : delegationsToAccept) {
-            if (rowNumber.equals( p.getFileLineNumber())) {
-             counter++;
+            if (rowNumber == 0) {
+                return;
             }
-        }
 
-        if (counter == 0 ){
-            consolePrinter.printLine("Brak ID: " + rowNumber );
-            delegationChangeStatus();
+            if (rowNumber > delegationsAll.size()) {
 
-            return;
-        }
+            } else {
 
-        consolePrinter.printLine("1. Akceptuj delegację | 2. Nie akceptuj delegacji |");
-        consolePrinter.printLine("9. Zrezygnuj |");
+                delegation = delegationsAll.get(rowNumber - 1);
 
-        while (true){
+                int counter = 0;
 
-            Integer delegationDecision = consoleReader.getInt();
+                for (Delegation p : delegationsToAccept) {
+                    if (rowNumber.equals(p.getFileLineNumber())) {
+                        counter++;
+                    }
+                }
+
+                if (counter == 0) {
+                    consolePrinter.printLine("Brak ID: " + rowNumber);
+                    //    delegationChangeStatus();
+
+                    return;
+                } else {
+                    consolePrinter.printLine("1. Akceptuj delegację | 2. Nie akceptuj delegacji |");
+                    consolePrinter.printLine("| 9. Zrezygnuj |");
+
+                }
+
+            delegationDecision = consoleReader.getInt();
+
             switch (delegationDecision) {
                 case 9:
                     delegationChangeStatus();
@@ -72,7 +73,7 @@ public class DelegationChangeStatus {
                     consolePrinter.printLine("Delegacja została zaakceptowana.");
                     delegationPreview.delegationPreview(2);
                     return;
-                 //   break;
+                //   break;
                 case 2:
                     delegation.setDelegationStatus(DelegationStatus.DISCARTED);
                     delegationRepository.changeDelegationStatus(delegation);
@@ -80,9 +81,11 @@ public class DelegationChangeStatus {
                     delegationPreview.delegationPreview(2);
                     return;
                 //    break;
-
-
+                default:
+                    delegationChangeStatus();
+                    break;
             }
+        }
         }
     }
 }
