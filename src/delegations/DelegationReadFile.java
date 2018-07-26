@@ -14,7 +14,7 @@ import java.util.List;
 public class DelegationReadFile {
 
 
-    private final DelegationRepository delegationRepository = new DelegationRepository ();
+//    private final DelegationRepository delegationRepository = new DelegationRepository ();
 
 
     public List<Delegation> delegationReadFile(String fileDelegation) {

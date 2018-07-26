@@ -10,9 +10,7 @@ import java.util.List;
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
-    private final DelegationRepository delegationRepository = new DelegationRepository ();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
-    private final Delegation delegation = new Delegation(  );
 
     public List<Delegation> getDelegationsToAccept() {
 
@@ -78,16 +76,6 @@ public class DelegationPreview {
 
         // ustawienia domyślne: wszystkie delegacje
         previewDelegation = getDelegationsAll();
-//
-//        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
-//        String fileDelegation = "paths/data/delegation.txt";
-//
-//        showDelegation = delegationReadFile.delegationReadFile(fileDelegation);
-//    }
-//
-//
-//
-//    public void showTable(){
 
         switch (pathOfAction) {
             case 1:
@@ -220,7 +208,7 @@ public class DelegationPreview {
 
             // nagłówek pierwsza linia
             out.append("|")
-                    .append(" Lp.").append(chrRepeat(" ", columnWidth[0] - 4))
+                    .append(" ID ").append(chrRepeat(" ", columnWidth[0] - 4))
                     .append(" | ")
                     .append("Data").append(chrRepeat(" ", columnWidth[1] - 4))
                     .append("| ")

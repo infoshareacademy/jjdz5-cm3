@@ -29,7 +29,7 @@ public class MenuDelegation extends Menu {
         consolePrinter.printLine("---------MENU DELEGACJE---------");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
         consolePrinter.printLine("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj / odrzuć delegację | ");
-        consolePrinter.printLine("9. Powrót do głównego menu.Menu | 0. wyjście z programu");
+        consolePrinter.printLine("9. Powrót do głównego Menu | 0. wyjście z programu");
 
         goMenu(isChoiceNumber());
 
