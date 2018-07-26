@@ -19,8 +19,10 @@ public class DelegationChangeStatus {
         delegationFilteredPreview.delegationPreview();
 
         consolePrinter.printLine("Wybierz delegację wprowadzając numer wiersza:");
-        Integer rowNumber = consoleReader.getInt(1,delegations.size());
-
+        Integer rowNumber = consoleReader.getInt(0,delegations.size());
+if (rowNumber == 0){
+    return;
+}
         Delegation delegation = delegations.get(rowNumber - 1);
 
         consolePrinter.printLine("Wpisz \"A\", aby zaakceptować lub \"O\", aby odrzucić wniosek delegacyjny");
@@ -28,6 +30,9 @@ public class DelegationChangeStatus {
         while (true){
             String delegationDecision = consoleReader.getString();
             switch (delegationDecision.toUpperCase()) {
+                case "0":
+                    return;
+              //      break validationLoop;
                 case "A":
                     delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
                     consolePrinter.printLine("Delegacja została zaakceptowana.");

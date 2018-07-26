@@ -3,6 +3,8 @@ package delegations;
 
 import console.ConsolePrinter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DelegationPreview {
@@ -10,19 +12,49 @@ public class DelegationPreview {
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
     private final DelegationRepository delegationRepository = new DelegationRepository ();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
+    private final Delegation delegation = new Delegation(  );
 
     protected List<Delegation> getDelegations() {
 
         List<Delegation> previewStatusDelegation;
+        List<Delegation> filteredDelegationToAccess = new ArrayList<>();
 
         // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
         String fileDelegation = "paths/data/delegation.txt";
         previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
+        System.out.println(previewStatusDelegation.size());
+        for (Delegation p: previewStatusDelegation
+             ) {
+            if (p.getDelegationStatus() == DelegationStatus.TOACCEPT) {
+                filteredDelegationToAccess.add(
+                        new Delegation(
+                null,
+                        p.getCreationDate(),
+                        p.getEmployee(),
+                        p.getStartDate(),
+                        p.getEndDate(),
+                        p.getDestination(),
+                        p.getPurpose(),
+                        p.getDelegationStatus(),
+                        p.getStartPoint()));
+            }
+            /*
+                    Delegation newDelegation = new Delegation(null,
+                    delegation.getCreationDate(),
+                     delegation.getEmployee(),
+                      delegation.getStartDate(),
+                delegation.getEndDate(),
+                 delegation.getDestination(),
+                 delegation.getPurpose(),
+                 delegation.getDelegationStatus(),
+                delegation.getStartPoint());
+             */
+            }
 
-        return previewStatusDelegation;
+        return filteredDelegationToAccess;
     }
 
-    public void delegationPreview(){
+    public void delegationPreview( ){
 
         List<Delegation> previewDelegation;
 
@@ -214,7 +246,7 @@ public class DelegationPreview {
 
             for (Delegation p : previewDelegation) {
 
-                Integer lenLP = previewDelegation.indexOf(p);
+                Integer lenLP = previewDelegation.indexOf(p) + 1;
 
                 out.append("| ")
                         .append(lenLP.toString().trim())

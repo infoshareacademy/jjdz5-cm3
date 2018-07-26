@@ -14,7 +14,7 @@ import delegations.*;
 
 public class DelegationRepository {
 
-    public final static List<Delegation> listDelegations = new ArrayList<>();
+  //  public final static List<Delegation> listDelegations = new ArrayList<>();
 
     ConsoleReader consoleReader = new ConsoleReader();
     ConsolePrinter consolePrinter = new ConsolePrinter();

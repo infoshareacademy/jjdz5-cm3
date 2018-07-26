@@ -15,7 +15,7 @@ public class DelegationReadFile {
 
 
     private final DelegationRepository delegationRepository = new DelegationRepository ();
-    private final Delegation delegation = new Delegation(  );
+
 
     public List<Delegation> delegationReadFile(String fileDelegation) {
 
