@@ -13,10 +13,6 @@ import java.util.List;
 
 public class DelegationReadFile {
 
-
-//    private final DelegationRepository delegationRepository = new DelegationRepository ();
-
-
     public List<Delegation> delegationReadFile(String fileDelegation) {
 
         List<Delegation> readDelegations = new ArrayList<>();
@@ -60,8 +56,6 @@ public class DelegationReadFile {
                         List<String> tempList = Arrays.asList (line.split (","));
 
                         if (tempList.size () == 13) {
-
-
 
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("yyyyMMdd");
 

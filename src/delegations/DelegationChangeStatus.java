@@ -20,6 +20,7 @@ public class DelegationChangeStatus {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
 
+
         Integer rowNumber = 0;
 
         delegationPreview.delegationPreview(2);
@@ -32,6 +33,10 @@ public class DelegationChangeStatus {
             return;
         }
 
+        if (rowNumber > delegationsAll.size()){
+            delegationChangeStatus();
+            return;
+        }
 
         Delegation delegation = delegationsAll.get(rowNumber - 1);
 
@@ -46,6 +51,7 @@ public class DelegationChangeStatus {
         if (counter == 0 ){
             consolePrinter.printLine("Brak ID: " + rowNumber );
             delegationChangeStatus();
+
             return;
         }
 
@@ -54,27 +60,27 @@ public class DelegationChangeStatus {
 
         while (true){
 
-            String delegationDecision = consoleReader.getString();
-            switch (delegationDecision.toUpperCase()) {
-                case "9":
+            Integer delegationDecision = consoleReader.getInt();
+            switch (delegationDecision) {
+                case 9:
+                    delegationChangeStatus();
                     return;
                 //    break;
-                case "1":
+                case 1:
                     delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
                     delegationRepository.changeDelegationStatus(delegation);
                     consolePrinter.printLine("Delegacja została zaakceptowana.");
                     delegationPreview.delegationPreview(2);
                     return;
                  //   break;
-                case "2":
+                case 2:
                     delegation.setDelegationStatus(DelegationStatus.DISCARTED);
                     delegationRepository.changeDelegationStatus(delegation);
                     consolePrinter.printLine("Delegacja została odrzucona.");
                     delegationPreview.delegationPreview(2);
                     return;
                 //    break;
-//                default:
-//                    consolePrinter.printLine("Podano zły znak decyzji. Podaj znak: \"A\", aby zaakceptować lub \"O\", aby odrzucić wniosek delegacyjny");
+
 
             }
         }
