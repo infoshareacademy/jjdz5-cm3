@@ -21,7 +21,7 @@ public class DelegationChangeStatus {
         while (true) {
             delegationPreview.delegationPreview(2);
 
-            consolePrinter.printLine("Aby wybrać delekację podaj jej nr ID i naciśnij ENTER.");
+            consolePrinter.printLine("Aby wybrać delegację podaj jej nr ID i naciśnij ENTER.");
             consolePrinter.printLine("| 0. Rezygnacja ze zmian i powrót do Menu Delegacje |");
             rowNumber = consoleReader.getInt(1,delegationsAll.size());
 
