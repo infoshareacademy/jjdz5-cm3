@@ -2,18 +2,12 @@ package delegations;
 
 import java.util.Objects;
 
-import delegations.*;
-
-/**
- *
- */
-
 public class Destination {
 
-    private String destinationCountry ;
-    private String destinationCity ;
-    private String destinationCompany ;
-    private String destinationCompanyAddress ;
+    private String destinationCountry;
+    private String destinationCity;
+    private String destinationCompany;
+    private String destinationCompanyAddress;
 
     public Destination(String destinationCountry,
                        String destinationCity,
@@ -64,23 +58,23 @@ public class Destination {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Destination that = (Destination) o;
-        return Objects.equals (destinationCountry, that.destinationCountry) &&
-                Objects.equals (destinationCity, that.destinationCity) &&
-                Objects.equals (destinationCompany, that.destinationCompany) &&
-                Objects.equals (destinationCompanyAddress, that.destinationCompanyAddress);
+        return Objects.equals(destinationCountry, that.destinationCountry) &&
+                Objects.equals(destinationCity, that.destinationCity) &&
+                Objects.equals(destinationCompany, that.destinationCompany) &&
+                Objects.equals(destinationCompanyAddress, that.destinationCompanyAddress);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash (destinationCountry, destinationCity, destinationCompany, destinationCompanyAddress);
+        return Objects.hash(destinationCountry, destinationCity, destinationCompany, destinationCompanyAddress);
     }
 
     @Override
     public String toString() {
-        return destinationCountry + "," + destinationCity + "," + destinationCompany + ","+ destinationCompanyAddress;
+        return destinationCountry + "," + destinationCity + "," + destinationCompany + "," + destinationCompanyAddress;
 
     }
 }

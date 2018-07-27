@@ -1,12 +1,18 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
-import properties.Properties;
+import properties.PropertiesSetCountry;
+import properties.PropertiesSetFolder;
+import properties.PropertiesView;
 
 public class MenuProperties extends Menu {
 
+    private PropertiesSetCountry propertiesSetCountry = new PropertiesSetCountry();
+    private PropertiesSetFolder propertiesSetFolder = new PropertiesSetFolder();
+    private PropertiesView propertiesView = new PropertiesView();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
     private ConsolePrinter consolePrinter = new ConsolePrinter();
-    Properties properties = new Properties();
 
 
     public MenuProperties() {
@@ -15,9 +21,11 @@ public class MenuProperties extends Menu {
 
     @Override
     public void showMenu() {
-        System.out.println();
-        consolePrinter.printLine("To jest menu ustawień");
-        consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
+        consoleClearScreen.clrscr();
+        consolePrinter.printLine("================================");
+        consolePrinter.printLine("=        MENU USTAWIENIA       =");
+        consolePrinter.printLine("================================");
+        consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 3. Pokaż ustawienia 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
     }
@@ -27,7 +35,7 @@ public class MenuProperties extends Menu {
 
     @Override
     public void goMenu(int userChoice) {
-        while (userChoice != 1 && userChoice != 2 && userChoice != 0 && userChoice != 9) {
+        while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 0 && userChoice != 9) {
             consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
@@ -35,10 +43,15 @@ public class MenuProperties extends Menu {
         switch (userChoice) {
 
             case 1:
-                properties.defaultCountry();
+                new MenuSetProperties().MenuChange(userChoice);
+                propertiesSetCountry.defaultCountry();
                 break;
             case 2:
-                properties.propertiesFolder();
+                new MenuSetProperties().MenuChange(userChoice);
+                propertiesSetFolder.defaultFolder();
+                break;
+            case 3:
+                propertiesView.showProperties();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);
@@ -48,4 +61,8 @@ public class MenuProperties extends Menu {
         showMenu();
     }
 
+    @Override
+    public int yesNo() {
+        return super.yesNo();
+    }
 }

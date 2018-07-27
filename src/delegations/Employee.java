@@ -2,10 +2,6 @@ package delegations;
 
 import java.util.Objects;
 
-/**
- *
- */
-
 public class Employee {
 
     private String employeeName;
@@ -40,21 +36,20 @@ public class Employee {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals (employeeName, employee.employeeName) &&
-                Objects.equals (employeeSurname, employee.employeeSurname);
+        return Objects.equals(employeeName, employee.employeeName) &&
+                Objects.equals(employeeSurname, employee.employeeSurname);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash (employeeName, employeeSurname);
+        return Objects.hash(employeeName, employeeSurname);
     }
 
     @Override
     public String toString() {
         return employeeName + "," + employeeSurname;
     }
-
 }

@@ -1,59 +1,29 @@
 package delegations;
 
-
 import console.ConsolePrinter;
+import properties.Properties;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DelegationPreview {
 
-    private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
+    private final DelegationReadFile delegationReadFile = new DelegationReadFile();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public List<Delegation> getDelegationsToAccept() {
 
-        List<Delegation> previewStatusDelegation  = new ArrayList<>();
+        List<Delegation> previewStatusDelegation = new ArrayList<>();
         List<Delegation> filteredDelegationToAccess = new ArrayList<>();
 
         // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
-        String fileDelegation = "paths/data/delegation.txt";
-        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
+        String fileDelegation = Properties.userDelegationPath.toString();
+        previewStatusDelegation = delegationReadFile.delegationReadFile(fileDelegation);
 
-        for (Delegation p: previewStatusDelegation
-             ) {
+        for (Delegation p : previewStatusDelegation
+                ) {
             if (p.getDelegationStatus() == DelegationStatus.TOACCEPT) {
                 filteredDelegationToAccess.add(
-                        new Delegation(
-                        p.getFileLineNumber(),
-                        p.getCreationDate(),
-                        p.getEmployee(),
-                        p.getStartDate(),
-                        p.getEndDate(),
-                        p.getDestination(),
-                        p.getPurpose(),
-                        p.getDelegationStatus(),
-                        p.getStartPoint()));
-            }
-            }
-
-        return filteredDelegationToAccess;
-    }
-
-    public List<Delegation> getDelegationsAll() {
-
-        List<Delegation> previewStatusDelegation  = new ArrayList<>();
-        List<Delegation> delegationAll = new ArrayList<>();
-
-        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
-        String fileDelegation = "paths/data/delegation.txt";
-        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
-
-        for (Delegation p: previewStatusDelegation
-                ) {
-
-            delegationAll.add(
                         new Delegation(
                                 p.getFileLineNumber(),
                                 p.getCreationDate(),
@@ -64,6 +34,35 @@ public class DelegationPreview {
                                 p.getPurpose(),
                                 p.getDelegationStatus(),
                                 p.getStartPoint()));
+            }
+        }
+
+        return filteredDelegationToAccess;
+    }
+
+    public List<Delegation> getDelegationsAll() {
+
+        List<Delegation> previewStatusDelegation = new ArrayList<>();
+        List<Delegation> delegationAll = new ArrayList<>();
+
+        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
+        String fileDelegation = Properties.userDelegationPath.toString();
+        previewStatusDelegation = delegationReadFile.delegationReadFile(fileDelegation);
+
+        for (Delegation p : previewStatusDelegation
+                ) {
+
+            delegationAll.add(
+                    new Delegation(
+                            p.getFileLineNumber(),
+                            p.getCreationDate(),
+                            p.getEmployee(),
+                            p.getStartDate(),
+                            p.getEndDate(),
+                            p.getDestination(),
+                            p.getPurpose(),
+                            p.getDelegationStatus(),
+                            p.getStartPoint()));
 
         }
 
@@ -75,7 +74,9 @@ public class DelegationPreview {
         List<Delegation> previewDelegation;
 
         // ustawienia domyślne: wszystkie delegacje
-        previewDelegation = getDelegationsAll();
+
+
+        previewDelegation = null;
 
         switch (pathOfAction) {
             case 1:
@@ -84,6 +85,8 @@ public class DelegationPreview {
             case 2:
                 previewDelegation = getDelegationsToAccept();
                 break;
+            default:
+                previewDelegation = getDelegationsAll();
         }
 
         StringBuilder out = new StringBuilder();
@@ -92,108 +95,108 @@ public class DelegationPreview {
         int[] columnWidth = new int[13];
 
         columnWideWidth = 0;
-        for (int i=0 ; i < 13 ;i++){
+        for (int i = 0; i < 13; i++) {
             columnWidth[i] = 0;
         }
 
-        for (Delegation p: previewDelegation) {
+        for (Delegation p : previewDelegation) {
 
             Integer lenLP = previewDelegation.indexOf(p);
 
-            if (  columnWidth[0] < lenLP.toString ().trim ().length ()){
-                columnWidth[0] = lenLP.toString ().trim ().length ();
-                if ( columnWidth[0] < 4){
+            if (columnWidth[0] < lenLP.toString().trim().length()) {
+                columnWidth[0] = lenLP.toString().trim().length();
+                if (columnWidth[0] < 4) {
                     columnWidth[0] = 4;
                 }
             }
 
-            if ( columnWidth[1] < p.getCreationDate().toString().trim().length()){
+            if (columnWidth[1] < p.getCreationDate().toString().trim().length()) {
                 columnWidth[1] = p.getCreationDate().toString().trim().length();
-                if ( columnWidth[1] < 5){
+                if (columnWidth[1] < 5) {
                     columnWidth[1] = 5;
                 }
             }
 
-            if (columnWidth[2] < p.getEmployee().getEmployeeName().trim().length()){
+            if (columnWidth[2] < p.getEmployee().getEmployeeName().trim().length()) {
                 columnWidth[2] = p.getEmployee().getEmployeeName().trim().length();
-                if (columnWidth[2] < 4){
+                if (columnWidth[2] < 4) {
                     columnWidth[2] = 4;
                 }
             }
 
-            if (columnWidth[3] < p.getEmployee().getEmployeeSurname().trim().length()){
+            if (columnWidth[3] < p.getEmployee().getEmployeeSurname().trim().length()) {
                 columnWidth[3] = p.getEmployee().getEmployeeSurname().trim().length();
-                if (columnWidth[3] < 8){
+                if (columnWidth[3] < 8) {
                     columnWidth[3] = 8;
                 }
             }
 
-            if (columnWidth[4] < p.getStartDate().toString().trim().length()){
+            if (columnWidth[4] < p.getStartDate().toString().trim().length()) {
                 columnWidth[4] = p.getStartDate().toString().trim().length();
-                if (columnWidth[4] < 10){
+                if (columnWidth[4] < 10) {
                     columnWidth[4] = 10;
                 }
             }
 
-            if (columnWidth[5] < p.getEndDate().toString().trim().length()){
+            if (columnWidth[5] < p.getEndDate().toString().trim().length()) {
                 columnWidth[5] = p.getEndDate().toString().trim().length();
-                if (columnWidth[5] < 10){
+                if (columnWidth[5] < 10) {
                     columnWidth[5] = 10;
                 }
             }
 
-            if (columnWidth[6] < p.getDestination().getDestinationCountry().trim().length()){
+            if (columnWidth[6] < p.getDestination().getDestinationCountry().trim().length()) {
                 columnWidth[6] = p.getDestination().getDestinationCountry().trim().length();
-                if (columnWidth[6] < 4){
+                if (columnWidth[6] < 4) {
                     columnWidth[6] = 4;
                 }
             }
 
-            if (columnWidth[7] < p.getDestination().getDestinationCity().trim().length()){
+            if (columnWidth[7] < p.getDestination().getDestinationCity().trim().length()) {
                 columnWidth[7] = p.getDestination().getDestinationCity().trim().length();
-                if (columnWidth[7] < 6){
+                if (columnWidth[7] < 6) {
                     columnWidth[7] = 6;
                 }
             }
 
-            if (columnWidth[8] < p.getDestination().getDestinationCompany().trim().length()){
+            if (columnWidth[8] < p.getDestination().getDestinationCompany().trim().length()) {
                 columnWidth[8] = p.getDestination().getDestinationCompany().trim().length();
-                if (columnWidth[8] < 5){
+                if (columnWidth[8] < 5) {
                     columnWidth[8] = 5;
                 }
             }
 
             if (columnWidth[9] < p.getDestination().getDestinationCompanyAddress().trim().length()) {
                 columnWidth[9] = p.getDestination().getDestinationCompanyAddress().trim().length();
-                if (columnWidth[9] < 5){
+                if (columnWidth[9] < 5) {
                     columnWidth[9] = 5;
                 }
             }
 
-            if (columnWidth[10] < p.getPurpose().trim().length()){
+            if (columnWidth[10] < p.getPurpose().trim().length()) {
                 columnWidth[10] = p.getPurpose().trim().length();
-                if (columnWidth[10] < 13){
+                if (columnWidth[10] < 13) {
                     columnWidth[10] = 13;
                 }
             }
 
-            if (columnWidth[11] < p.getDelegationStatus ().toString ().trim().length()){
-                columnWidth[11] = p.getDelegationStatus ().toString ().trim().length();
-                if (columnWidth[11] < 6){
+            if (columnWidth[11] < p.getDelegationStatus().toString().trim().length()) {
+                columnWidth[11] = p.getDelegationStatus().toString().trim().length();
+                if (columnWidth[11] < 6) {
                     columnWidth[11] = 6;
                 }
             }
 
-            if (columnWidth[12] < p.getStartPoint().trim().length()){
+            if (columnWidth[12] < p.getStartPoint().trim().length()) {
                 columnWidth[12] = p.getStartPoint().trim().length();
-                if (columnWidth[12] < 8){
+                if (columnWidth[12] < 8) {
                     columnWidth[12] = 8;
                 }
             }
         }
 
-        for (int i=0 ; i < 13 ;i++){
-            columnWideWidth  += columnWidth[i];
+        for (int i = 0; i < 13; i++) {
+            columnWideWidth += columnWidth[i];
         }
 
         if (columnWideWidth != 0) {
@@ -216,7 +219,7 @@ public class DelegationPreview {
                     .append("| ")
                     .append("Nazwisko").append(chrRepeat(" ", columnWidth[3] - 8))
                     .append("| ")
-                    .append(chrRepeat(" ",6)).append("Delegacja").append(chrRepeat(" ", columnWidth[4] + columnWidth[5] - 13))
+                    .append(chrRepeat(" ", 6)).append("Delegacja").append(chrRepeat(" ", columnWidth[4] + columnWidth[5] - 13))
                     .append("| ")
                     .append("Kraj").append(chrRepeat(" ", columnWidth[6] - 4))
                     .append("| ")
@@ -317,26 +320,27 @@ public class DelegationPreview {
             consolePrinter.printLine(out.toString());
         }
     }
-    private String chrRepeat(String str, int n){
 
-        StringBuilder spaceRep = new StringBuilder ();
+    private String chrRepeat(String str, int n) {
+
+        StringBuilder spaceRep = new StringBuilder();
 
         for (int i = 0; i <= n; i++) {
-            spaceRep.append (str);
+            spaceRep.append(str);
         }
 
-        return spaceRep.toString ();
+        return spaceRep.toString();
     }
 
-    public Integer delegationMaxId(){
+    public Integer delegationMaxId() {
         List<Delegation> maxDelegation = getDelegationsAll();
 
         Integer maxId = 0;
 
-        for (Delegation p:  maxDelegation)
+        for (Delegation p : maxDelegation)
 
         {
-            if (p.getFileLineNumber() > maxId ){
+            if (p.getFileLineNumber() > maxId) {
                 maxId = p.getFileLineNumber();
             }
         }

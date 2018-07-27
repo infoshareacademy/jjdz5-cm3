@@ -1,8 +1,9 @@
 package delegations;
+
 import console.ConsolePrinter;
 import console.ConsoleReader;
-import java.util.List;
 
+import java.util.List;
 
 
 public class DelegationChangeStatus {
@@ -21,7 +22,7 @@ public class DelegationChangeStatus {
         while (true) {
             delegationPreview.delegationPreview(2);
 
-            if ( delegationsToAccept.size () == 0){
+            if (delegationsToAccept.size() == 0) {
                 consolePrinter.printLine("||");
                 consolePrinter.printLine("|| Brak delegacji do akceptacji lub odrzucenia");
                 consolePrinter.printLine("||");
@@ -34,7 +35,7 @@ public class DelegationChangeStatus {
             rowNumber = consoleReader.getInt();
 
             if (rowNumber == 0) {
-                return ;
+                return;
             }
             if (rowNumber > delegationsAll.size()) {
             } else {

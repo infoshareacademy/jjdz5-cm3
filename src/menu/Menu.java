@@ -3,16 +3,14 @@ package menu;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 
-
 public abstract class Menu {
+
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
+    private ConsoleReader consoleReader = new ConsoleReader();
 
     public abstract void showMenu();
 
     public abstract void goMenu(int choice);
-
-    private ConsolePrinter consolePrinter = new ConsolePrinter();
-
-    ConsoleReader consoleReader = new ConsoleReader ();
 
     /*metoda sprawdza czy klieny wpisał lczbę całkowitą - jak nie to czeka do skutku */
     public int isChoiceNumber() {
@@ -42,7 +40,15 @@ public abstract class Menu {
         }
     }
 
+    public int yesNo() {
 
+        int userChoice = isChoiceNumber();
+        while (userChoice != 1 && userChoice != 2) {
+            consolePrinter.printLine("Wybór spoza zakresu");
+            userChoice = isChoiceNumber();
+        }
+        return userChoice;
+    }
 }
 
 

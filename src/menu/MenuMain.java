@@ -1,12 +1,16 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
+import properties.PropertiesLoad;
 
 public class MenuMain extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private MenuDelegation menuDelegation = new MenuDelegation();
     private MenuProperties menuProperties = new MenuProperties();
+    private PropertiesLoad propertiesLoad = new PropertiesLoad();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
 
     /*
@@ -20,12 +24,14 @@ public class MenuMain extends Menu {
     }
 
     public void menuMainRun() {
+        propertiesLoad.loadProperties();
         showMenu();
         goMenu(isChoiceNumber());
     }
 
     @Override
     public void showMenu() {
+        consolePrinter.printLine("");
         consolePrinter.printLine("---------------Program do obsługi delegacji---------------");
         consolePrinter.printLine(" #     #  #####  #  #      #     #     #  #####  #      #  #     # ");
         consolePrinter.printLine(" # # # #  #   #     # #    #     # # # #  #      # #    #  #     # ");
@@ -56,9 +62,7 @@ public class MenuMain extends Menu {
             default:
                 consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
                 System.exit(0);
-
         }
-
     }
 }
 

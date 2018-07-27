@@ -7,46 +7,44 @@ import java.util.Scanner;
 
 public class ConsoleReader {
 
+    private final Scanner scanner = new Scanner(System.in);
     ConsolePrinter consolePrinter = new ConsolePrinter();
-    Scanner scanner = new Scanner( System.in );
-
 
     public Integer getInt(int minValue, int maxValue) {
         while (true) {
             Integer inputFromUser = scanner.nextInt();
-            if (inputFromUser>=minValue && inputFromUser<=maxValue) {
+            if (inputFromUser >= minValue && inputFromUser <= maxValue) {
                 return inputFromUser;
             } else {
-                consolePrinter.printLine( "Wybrałeś liczbę spoza zakresu. Wpisz jeszcze raz." );
-                //java.util.InputMismatchException
+                consolePrinter.printLine("Wybrałeś liczbę spoza zakresu. Wpisz jeszcze raz.");
             }
         }
     }
 
     public Integer getInt() {
-        String inputFromUser = getString ();
+        String inputFromUser = getString();
 
         boolean testString = false;
         while (!testString) {
-            if (inputFromUser.matches( "[0-9]*" )) {
+            if (inputFromUser.matches("[0-9]*")) {
                 testString = true;
             } else {
-                consolePrinter.printLine( "Proszę wpisać same cyfty." );
+                consolePrinter.printLine("Proszę wpisać same cyfty.");
                 inputFromUser = getString();
             }
         }
-        return  Integer.parseInt (inputFromUser);
+        return Integer.parseInt(inputFromUser);
     }
 
     public String getString() {
         String stringFromUser = scanner.nextLine();
-        boolean testString = false;
-        while (!testString) {
-            if (!stringFromUser.isEmpty()) {
-                testString = true;
-            } else {
-                consolePrinter.printLine( "Pole nie może być puste." );
+        while (true) {
+            if (stringFromUser.isEmpty()) {
+                consolePrinter.printLine("Pole nie może być puste.");
                 stringFromUser = scanner.nextLine();
+                continue;
+            } else {
+                break;
             }
         }
         return stringFromUser;
@@ -56,13 +54,13 @@ public class ConsoleReader {
     public String getStringOneWord() {
 
         String stringFromUser = getString();
-        boolean testString = false;
-        while (!testString) {
-            if (stringFromUser.trim().matches( "^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]+(([\\-][A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])?[a-z,ążśźęćńół]*)" )) {
-                testString = true;
+        while (true) {
+            if (stringFromUser.trim().matches("^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]+(([\\-][A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])?[a-z,ążśźęćńół]*)")) {
+                break;
             } else {
-                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)" );
+                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)");
                 stringFromUser = getString();
+                continue;
             }
         }
         return stringFromUser;
@@ -71,13 +69,13 @@ public class ConsoleReader {
     public String getStringOneWordLow() {
 
         String stringFromUser = getString();
-        boolean testString = false;
-        while (!testString) {
-            if (stringFromUser.trim().matches( "((?!\\,).)*$" )) {
-                testString = true;
+        while (true) {
+            if (stringFromUser.trim().matches("((?!\\,).)*$")) {
+                break;
             } else {
-                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)" );
+                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)");
                 stringFromUser = getString();
+                continue;
             }
         }
         return stringFromUser;
@@ -85,14 +83,14 @@ public class ConsoleReader {
 
     public String getStringMoreWords() {
 
-        String stringFromUser = scanner.nextLine();
-        boolean testString = false;
-        while (!testString) {
-            if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)" )) {
-                testString = true;
+        String stringFromUser = getString();
+        while (true) {
+            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)")) {
+                break;
             } else {
-                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)" );
+                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
                 stringFromUser = getString();
+                continue;
             }
         }
         return stringFromUser;
@@ -101,13 +99,13 @@ public class ConsoleReader {
     public String getStringMoreWordsLow() {
 
         String stringFromUser = getString();
-        boolean testString = false;
-        while (!testString) {
-            if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)" )) {
-                testString = true;
+        while (true) {
+            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)")) {
+                break;
             } else {
-                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)" );
+                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)");
                 stringFromUser = getString();
+                continue;
             }
         }
         return stringFromUser;
@@ -115,35 +113,32 @@ public class ConsoleReader {
 
     public LocalDate getDateStart() {
 
-        Scanner scanner = new Scanner( System.in );
-        String dateFromUser = scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd" );
+        Scanner scanner = new Scanner(System.in);
+        String dateFromUser = getString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
         boolean dateCheck = false;
         while (!dateCheck) {
             try {
 
-                formatter.parse( dateFromUser, LocalDate::from );
+                formatter.parse(dateFromUser, LocalDate::from);
 
-                if (LocalDate.parse( dateFromUser ).isAfter( LocalDate.now()) ){
+                if (LocalDate.parse(dateFromUser).isAfter(LocalDate.now())) {
                     dateCheck = true;
                     break;
                 } else {
                     consolePrinter.printLine("Data rozpoczecia delegacji powinna byc pozniejsza niz data jej utworzenia: " + LocalDate.now());
                 }
-                dateFromUser = scanner.nextLine();
+                dateFromUser = getString();
             } catch (DateTimeParseException e) {
-                consolePrinter.printLine( "Niepoprawny format daty (RRRR-MM-DD)." );
+                consolePrinter.printLine("Niepoprawny format daty (RRRR-MM-DD).");
                 consolePrinter.printLine("Sprobuj jeszcze raz.");
-                dateFromUser = scanner.nextLine();
+                dateFromUser = getString();
             }
-
-        } return LocalDate.parse( dateFromUser );
-
+        }
+        return LocalDate.parse(dateFromUser);
     }
-
-
 }
 
 

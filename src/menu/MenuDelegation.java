@@ -1,8 +1,9 @@
 package menu;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
-import delegations.DelegationChangeStatus;
 import delegations.DelegationAdd;
+import delegations.DelegationChangeStatus;
 import delegations.DelegationPreview;
 
 public class MenuDelegation extends Menu {
@@ -11,6 +12,7 @@ public class MenuDelegation extends Menu {
     private DelegationAdd addDelegationService = new DelegationAdd();
     private DelegationChangeStatus delegationChangeStatus = new DelegationChangeStatus();
     private DelegationPreview previewDelegation = new DelegationPreview();
+    private ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
 
     /*
@@ -25,8 +27,9 @@ public class MenuDelegation extends Menu {
 
     @Override
     public void showMenu() {
-        System.out.println();
-        consolePrinter.printLine("---------MENU DELEGACJE---------");
+        consolePrinter.printLine("================================");
+        consolePrinter.printLine("=        MENU DELEGACJE        =");
+        consolePrinter.printLine("================================");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
         consolePrinter.printLine("| 1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj lub odrzuć delegację |");
         consolePrinter.printLine("| 9. Powrót do głównego Menu | 0. wyjście z programu |");
@@ -36,6 +39,7 @@ public class MenuDelegation extends Menu {
     }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
+
     @Override
     public void goMenu(int userChoice) {
 
@@ -52,13 +56,12 @@ public class MenuDelegation extends Menu {
                 previewDelegation.delegationPreview(1);
                 break;
             case 3:
-                delegationChangeStatus.delegationChangeStatus ();
+                delegationChangeStatus.delegationChangeStatus();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);
                 break;
         }
         showMenu();
-
     }
 }

@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Delegation {
     private Integer fileLineNumber;
-    private LocalDate creationDate ;
-    private LocalDate startDate ;
-    private LocalDate endDate ;
-    private String purpose ;
+    private LocalDate creationDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String purpose;
     private DelegationStatus delegationStatus;
-    private String startPoint ;
+    private String startPoint;
 
 
-       /*Obiekty z klas zawierających pola i metody */
+    /*Obiekty z klas zawierających pola i metody */
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
@@ -49,12 +49,12 @@ public class Delegation {
         this.fileLineNumber = fileLineNumber;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public Employee getEmployee() {
         return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Destination getDestination() {
@@ -104,7 +104,6 @@ public class Delegation {
     public void setDelegationStatus(DelegationStatus delegationStatus) {
         this.delegationStatus = delegationStatus;
     }
-
 
     public String getStartPoint() {
         return startPoint;
