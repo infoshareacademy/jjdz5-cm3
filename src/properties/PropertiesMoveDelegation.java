@@ -20,7 +20,7 @@ public class PropertiesMoveDelegation {
 
         try {
             Path path = Properties.userDelegationPath;
-            List<String> lista = Files.readAllLines(path,StandardCharsets.ISO_8859_1);
+            List<String> lista = Files.readAllLines(path, StandardCharsets.ISO_8859_1);
             bool = false;
             for (String s : lista) {
                 if (s.trim().length() > 1) {
@@ -46,15 +46,15 @@ public class PropertiesMoveDelegation {
             if (userChoice == 1) {
                 try {
                     Path tempPath = Paths.get(userPath, Properties.FILE_NAME);
-                    if (Files.exists(tempPath)){
+                    if (Files.exists(tempPath)) {
                         consolePrinter.printLine("Istnieje już plik w tej lokalizacji 1.nadpisanie | 2. zostawienie ");
                         userChoice = new MenuProperties().yesNo();
-                        if (userChoice == 1){
+                        if (userChoice == 1) {
                             Files.deleteIfExists(tempPath);
-                        }else{
+                        } else {
                             String oldDelegation = "delegation_old_" + LocalDateTime.now() + "_.txt";
                             Path oldPath = Paths.get(userPath, oldDelegation);
-                            Files.move(tempPath,oldPath);
+                            Files.move(tempPath, oldPath);
                         }
                     }
                     Files.move(Properties.userDelegationPath, tempPath);
@@ -63,13 +63,31 @@ public class PropertiesMoveDelegation {
                     e.printStackTrace();
                 }
             } else {
-                return;
-            }
-        } else {
-            try {
-                Files.deleteIfExists(Properties.userDelegationPath);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                Path tempPath = Paths.get(userPath, Properties.FILE_NAME);
+                if (Files.exists(tempPath)) {
+                    consolePrinter.printLine("Istnieje już plik w tej lokalizacji 1.nowy pusty plik | 2. zostawienie ");
+                    userChoice = new MenuProperties().yesNo();
+                    if (userChoice == 1) {
+                        try {
+                            Files.deleteIfExists(tempPath);
+                            Files.createFile(tempPath);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        return;
+                    }
+                    return;
+
+                } else {
+                    try {
+                        Files.deleteIfExists(Properties.userDelegationPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
