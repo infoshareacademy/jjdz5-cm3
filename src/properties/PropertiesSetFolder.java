@@ -27,16 +27,16 @@ public class PropertiesSetFolder {
 
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             discs = propertiesWindowsDiscs.windowsDiscs();
-            consolePrinter.printLine("Podaj ścieżkę - tylko foldery bez nazwy pliku i musi się kończyć zankiem \"\\\" np.: c:\\delegacje\\ (przerwanie operacji wybierz 3) :");
+            consolePrinter.printLine("| Podaj ścieżkę - tylko foldery bez nazwy pliku i musi się kończyć zankiem \"\\\" np.: c:\\delegacje\\ (przerwanie operacji wybierz 3) :");
             userPath = consoleReader.getString();
             if (userPath.equalsIgnoreCase("3")) {
                 return;
             }
         } else {
             discs = File.listRoots();
-            consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
-            consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
-            consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+            consolePrinter.printLine("| Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
+            consolePrinter.printLine("| podajesz tylko katalogi bez nazwy pliku");
+            consolePrinter.printLine("| np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegation.txt");
             userPath = consoleReader.getString();
             if (userPath.equalsIgnoreCase("3")) {
                 return;
@@ -52,8 +52,8 @@ public class PropertiesSetFolder {
                 }
 
                 if (!userPath.matches("[a-z A-Z]\\:\\\\.*\\\\$")) {
-                    consolePrinter.printLine("Błąd - ścieżka musi się zaczynać od jednego z możliwych do wyboru dysków: " + Arrays.toString(discs) + " i kończyć znakiem \"\\\" np.: c:\\delegacje\\ ");
-                    consolePrinter.printLine("Podaj ścieżkę jeszcze raz:");
+                    consolePrinter.printLine("| Błąd - ścieżka musi się zaczynać od jednego z możliwych do wyboru dysków: " + Arrays.toString(discs) + " i kończyć znakiem \"\\\" np.: c:\\delegacje\\ ");
+                    consolePrinter.printLine("| Podaj ścieżkę jeszcze raz:");
                     userPath = consoleReader.getString();
                     if (userPath.equalsIgnoreCase("3")) {
                         return;
@@ -62,7 +62,7 @@ public class PropertiesSetFolder {
                 }
 
                 if (!Arrays.toString(discs).contains(userPath.substring(0, 2).toUpperCase())) {
-                    consolePrinter.printLine("blad brak takiego dysku: Możliwy wybór to: " + Arrays.toString(discs));
+                    consolePrinter.printLine("| Błąd brak takiego dysku: Możliwy wybór to: " + Arrays.toString(discs));
                     userPath = consoleReader.getString();
                     if (userPath.equalsIgnoreCase("3")) {
                         return;
@@ -80,9 +80,9 @@ public class PropertiesSetFolder {
                 }
 
                 if (!userPath.matches("[a-zA-Z0-9].*/$")) {
-                    consolePrinter.printLine("ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
-                    consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
-                    consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+                    consolePrinter.printLine("| ścieżka nie może zaczynać się od / i musi kończyc się / . Podaj ścieżkę ");
+                    consolePrinter.printLine("| podajesz tylko katalogi bez nazwy pliku");
+                    consolePrinter.printLine("| np.:  jeżeli wpiszesz delegacje/  to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
                     userPath = consoleReader.getString();
                     if (userPath.equalsIgnoreCase("3")) {
                         return;
@@ -99,7 +99,7 @@ public class PropertiesSetFolder {
             propertiesMoveDelegation.moveDlegation(userPath);
             Properties.userDelegationPath = Paths.get(userPath, Properties.FILE_NAME);
             consoleClearScreen.clrscr();
-            consolePrinter.printLine("Scieżka ustawiona na: " + Properties.userDelegationPath);
+            consolePrinter.printLine("| Scieżka ustawiona na: " + Properties.userDelegationPath);
         }
 
         if (Files.notExists(Properties.userDelegationPath)) {

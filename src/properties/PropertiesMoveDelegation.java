@@ -40,7 +40,7 @@ public class PropertiesMoveDelegation {
         if (bool && isNotEmpty()) {
             consolePrinter.printLine("W poprzedniej lokalizacji jest plik z delegacjiami. Czy przenieść do nowej lokalizacji? ");
             consolePrinter.printLine("Jeżeli wybierzesz \"nie\" stary plik nadal będzie dostępny w poprzedniej lokalizcaji ");
-            consolePrinter.printLine("1. Tak | 2. Nie");
+            consolePrinter.printLine("| 1. Tak | 2. Nie |");
             int userChoice = new MenuProperties().yesNo();
             if (userChoice == 1) {
                 try {

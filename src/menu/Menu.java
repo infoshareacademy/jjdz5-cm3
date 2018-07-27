@@ -22,7 +22,7 @@ public abstract class Menu {
             if (userChoice.matches("[0-9]")) {
                 break;
             } else {
-                consolePrinter.printLine("Podałeś złą wartość - wpisz jeszcze raz");
+                consolePrinter.printLine("| Podałeś złą wartość - wpisz jeszcze raz");
             }
         }
         return Integer.parseInt(userChoice);
@@ -32,7 +32,7 @@ public abstract class Menu {
     /* metoda sprawdza czy było wybrane 0 lub 9 i odpowiednio przenosi do menu.MenuMain lub kończy program*/
     public void outOfProgramAndMainMenu(int choice) {
         if (choice == 0) {
-            consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
+            consolePrinter.printLine("| Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
             System.exit(0);
         } else {
             MenuMain menuMain = new MenuMain();
@@ -44,7 +44,7 @@ public abstract class Menu {
 
         int userChoice = isChoiceNumber();
         while (userChoice != 1 && userChoice != 2) {
-            consolePrinter.printLine("Wybór spoza zakresu");
+            consolePrinter.printLine("| Wybór spoza zakresu");
             userChoice = isChoiceNumber();
         }
         return userChoice;

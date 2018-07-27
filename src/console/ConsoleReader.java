@@ -16,7 +16,7 @@ public class ConsoleReader {
             if (inputFromUser >= minValue && inputFromUser <= maxValue) {
                 return inputFromUser;
             } else {
-                consolePrinter.printLine("Wybrałeś liczbę spoza zakresu. Wpisz jeszcze raz.");
+                consolePrinter.printLine("| Wybrałeś liczbę spoza zakresu. Wpisz jeszcze raz.");
             }
         }
     }
@@ -29,7 +29,7 @@ public class ConsoleReader {
             if (inputFromUser.matches("[0-9]*")) {
                 testString = true;
             } else {
-                consolePrinter.printLine("Proszę wpisać same cyfty.");
+                consolePrinter.printLine("| Proszę wpisać same cyfty.");
                 inputFromUser = getString();
             }
         }
@@ -40,7 +40,7 @@ public class ConsoleReader {
         String stringFromUser = scanner.nextLine();
         while (true) {
             if (stringFromUser.isEmpty()) {
-                consolePrinter.printLine("Pole nie może być puste.");
+                consolePrinter.printLine("| Pole nie może być puste.");
                 stringFromUser = scanner.nextLine();
                 continue;
             } else {
@@ -58,7 +58,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches("^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]+(([\\-][A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])?[a-z,ążśźęćńół]*)")) {
                 break;
             } else {
-                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)");
                 stringFromUser = getString();
                 continue;
             }
@@ -73,7 +73,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches("((?!\\,).)*$")) {
                 break;
             } else {
-                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)");
                 stringFromUser = getString();
                 continue;
             }
@@ -88,7 +88,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)")) {
                 break;
             } else {
-                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
                 stringFromUser = getString();
                 continue;
             }
@@ -103,7 +103,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)")) {
                 break;
             } else {
-                consolePrinter.printLine("Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)");
                 stringFromUser = getString();
                 continue;
             }
@@ -128,12 +128,12 @@ public class ConsoleReader {
                     dateCheck = true;
                     break;
                 } else {
-                    consolePrinter.printLine("Data rozpoczecia delegacji powinna byc pozniejsza niz data jej utworzenia: " + LocalDate.now());
+                    consolePrinter.printLine("Data rozpoczęcia delegacji powinna być poźniejsza niż data jej utworzenia: " + LocalDate.now());
                 }
                 dateFromUser = getString();
             } catch (DateTimeParseException e) {
                 consolePrinter.printLine("Niepoprawny format daty (RRRR-MM-DD).");
-                consolePrinter.printLine("Sprobuj jeszcze raz.");
+                consolePrinter.printLine("Spróbuj jeszcze raz.");
                 dateFromUser = getString();
             }
         }

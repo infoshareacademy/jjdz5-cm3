@@ -31,8 +31,11 @@ public class MenuDelegation extends Menu {
         consolePrinter.printLine("=        MENU DELEGACJE        =");
         consolePrinter.printLine("================================");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
-        consolePrinter.printLine("| 1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj lub odrzuć delegację |");
-        consolePrinter.printLine("| 9. Powrót do głównego Menu | 0. wyjście z programu |");
+        consolePrinter.printLine("| 1. Dodaj delegację |" );
+        consolePrinter.printLine("| 2. Wyświetl delegacje | ");
+        consolePrinter.printLine("| 3. Zaakceptuj lub odrzuć delegację |");
+        consolePrinter.printLine("| 9. Powrót do głównego Menu | ");
+        consolePrinter.printLine("| 0. wyjście z programu |");
 
         goMenu(isChoiceNumber());
 
@@ -44,7 +47,7 @@ public class MenuDelegation extends Menu {
     public void goMenu(int userChoice) {
 
         while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 0 && userChoice != 9) {
-            consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
+            consolePrinter.printLine("| Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
 
