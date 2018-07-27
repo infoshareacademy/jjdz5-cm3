@@ -32,7 +32,7 @@ public class ConsoleReader {
                 testString = true;
             } else {
                 consolePrinter.printLine( "Proszę wpisać same cyfty." );
-                inputFromUser = scanner.nextLine();
+                inputFromUser = getString();
             }
         }
         return  Integer.parseInt (inputFromUser);
@@ -62,7 +62,7 @@ public class ConsoleReader {
                 testString = true;
             } else {
                 consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)" );
-                stringFromUser = scanner.nextLine();
+                stringFromUser = getString();
             }
         }
         return stringFromUser;
@@ -77,7 +77,7 @@ public class ConsoleReader {
                 testString = true;
             } else {
                 consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)" );
-                stringFromUser = scanner.nextLine();
+                stringFromUser = getString();
             }
         }
         return stringFromUser;
@@ -92,7 +92,7 @@ public class ConsoleReader {
                 testString = true;
             } else {
                 consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)" );
-                stringFromUser = scanner.nextLine();
+                stringFromUser = getString();
             }
         }
         return stringFromUser;
@@ -100,14 +100,14 @@ public class ConsoleReader {
 
     public String getStringMoreWordsLow() {
 
-        String stringFromUser = scanner.nextLine();
+        String stringFromUser = getString();
         boolean testString = false;
         while (!testString) {
             if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)" )) {
                 testString = true;
             } else {
                 consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)" );
-                stringFromUser = scanner.nextLine();
+                stringFromUser = getString();
             }
         }
         return stringFromUser;
