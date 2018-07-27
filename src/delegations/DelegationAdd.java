@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 
 public class DelegationAdd {
-
+    private final DelegationPreview delegationPreview = new DelegationPreview();
     private final DelegationRepository delegationRepository = new DelegationRepository();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final ConsoleReader consoleReader = new ConsoleReader();
@@ -54,22 +54,24 @@ public class DelegationAdd {
         destination.setDestinationCity( consoleReader.getStringMoreWords() );
 
         consolePrinter.printLine( "Podaj nazwe firmy: " );
-        destination.setDestinationCompany( consoleReader.getStringMoreWords() );
+        destination.setDestinationCompany( consoleReader.getStringMoreWordsLow() );
 
         consolePrinter.printLine( "Podaj adres firmy: " );
-        destination.setDestinationCompanyAddress( consoleReader.getStringMoreWords() );
+        destination.setDestinationCompanyAddress( consoleReader.getStringMoreWordsLow() );
 
         delegation.setDestination( destination );
 
         consolePrinter.printLine( "Podaj cel delegacji: " );
-        delegation.setPurpose( consoleReader.getStringOneWord() );
+        delegation.setPurpose( consoleReader.getStringOneWordLow() );
 
         delegation.setDelegationStatus( DelegationStatus.TOACCEPT );
 
         consolePrinter.printLine( "Podaj miejsce wyjazdu (miasto): " );
         delegation.setStartPoint( consoleReader.getStringMoreWords() );
 
-        Delegation newDelegation = new Delegation( delegation.getCreationDate(), delegation.getEmployee(), delegation.getStartDate(),
+        delegation.setFileLineNumber(delegationPreview.delegationMaxId());
+
+        Delegation newDelegation = new Delegation(delegation.getFileLineNumber(), delegation.getCreationDate(), delegation.getEmployee(), delegation.getStartDate(),
                 delegation.getEndDate(),  delegation.getDestination(), delegation.getPurpose(), delegation.getDelegationStatus(),
                 delegation.getStartPoint());
 
@@ -77,7 +79,7 @@ public class DelegationAdd {
         consolePrinter.printLine( "=======================================================" );
         consolePrinter.printLine( "Data utworzenia: " + delegation.getCreationDate());
         consolePrinter.printLine( "Imie i nazwisko: " + delegation.getEmployee().getEmployeeName() + " " + delegation.getEmployee().getEmployeeSurname());
-        consolePrinter.printLine( "Delegacja od: " + delegation.getStartDate() + "do: " + delegation.getEndDate());
+        consolePrinter.printLine( "Delegacja od: " + delegation.getStartDate() + " do: " + delegation.getEndDate());
         consolePrinter.printLine( "Kraj: " + delegation.getDestination().getDestinationCity());
         consolePrinter.printLine( "Miasto: " + delegation.getDestination().getDestinationCity());
         consolePrinter.printLine( "Firma i jej adres: " + delegation.getDestination().getDestinationCompany() + "," + delegation.getDestination().getDestinationCompanyAddress());
@@ -86,8 +88,9 @@ public class DelegationAdd {
         consolePrinter.printLine( "=======================================================" );
         consolePrinter.printLine("");
 
-        consolePrinter.printLine("Czy chcesz zapisac powyzsza delegacje?");
-        consolePrinter.printLine("Wpisz 1 - ZAPISZ || Wpisz 2- ODRZUC");
+        consolePrinter.printLine("Czy chcesz zapisać powyższą delegacje?");
+        consolePrinter.printLine("| 1. Zapis delegację | 2. Nie zapisuj delegacji |");
+
         delegationRepository.addDelegation( newDelegation );
 
     }
