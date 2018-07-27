@@ -32,15 +32,18 @@ public class MenuMain extends Menu {
     @Override
     public void showMenu() {
         consolePrinter.printLine("");
-        consolePrinter.printLine("---------------Program do obsługi delegacji---------------");
+        consolePrinter.printLine("--------------------Program do obsługi delegacji-------------------");
         consolePrinter.printLine(" #     #  #####  #  #      #     #     #  #####  #      #  #     # ");
         consolePrinter.printLine(" # # # #  #   #     # #    #     # # # #  #      # #    #  #     # ");
         consolePrinter.printLine(" #  #  #  #####  #  #  #   #     #  #  #  ###    #  #   #  #     # ");
         consolePrinter.printLine(" #     #  #   #  #  #   #  #     #     #  #      #   #  #  #     # ");
         consolePrinter.printLine(" #     #  #   #  #  #    # #     #     #  #####  #    # #   # # #   ");
-
-        consolePrinter.printLine("\n Wybierz liczbę żeby wejść w:");
-        consolePrinter.printLine("\n 1. Delegacje | 2. Ustawienia | 0. wyjście z programu");
+        consolePrinter.printLine("");
+        consolePrinter.printLine("");
+        consolePrinter.printLine("| Wybierz liczbę żeby wejść w:");
+        consolePrinter.printLine("| 1. Delegacje");
+        consolePrinter.printLine("| 2. Ustawienia");
+        consolePrinter.printLine("| 0. wyjście z programu");
     }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
@@ -48,7 +51,7 @@ public class MenuMain extends Menu {
     public void goMenu(int userChoice) {
 
         while (userChoice != 1 && userChoice != 2 && userChoice != 0) {
-            consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
+            consolePrinter.printLine("| Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
 
@@ -60,7 +63,7 @@ public class MenuMain extends Menu {
                 menuProperties.showMenu();
                 break;
             default:
-                consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
+                consolePrinter.printLine("| Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
                 System.exit(0);
         }
     }

@@ -21,7 +21,9 @@ public class PropertiesCreateFolder {
     public int createFolder(String userPath) {
         int userChoice = 1;
         if (Files.notExists(Paths.get(userPath))) {
-            consolePrinter.printLine("\nFolder nie istnieje. Czy utworzyć ? 1. tak |  2. nie");
+            consolePrinter.printLine("\nFolder nie istnieje.");
+            consolePrinter.printLine("| Czy utworzyć?");
+            consolePrinter.printLine("| 1. tak |  2. nie |");
             userChoice = new MenuProperties().yesNo();
             if (userChoice == 1) {
 
@@ -32,7 +34,7 @@ public class PropertiesCreateFolder {
                     e.printStackTrace();
                 }
             } else {
-                consolePrinter.printLine("Scieżka nie została utworzona");
+                consolePrinter.printLine("| Scieżka nie została utworzona");
             }
         }
         return userChoice;

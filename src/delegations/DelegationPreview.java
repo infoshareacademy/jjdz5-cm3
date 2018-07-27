@@ -9,7 +9,7 @@ import java.util.List;
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile();
-    private final ConsolePrinter consolePrinter = new ConsolePrinter();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter ();
 
     public List<Delegation> getDelegationsToAccept() {
 
@@ -75,7 +75,6 @@ public class DelegationPreview {
 
         // ustawienia domyślne: wszystkie delegacje
 
-
         previewDelegation = null;
 
         switch (pathOfAction) {
@@ -87,6 +86,10 @@ public class DelegationPreview {
                 break;
             default:
                 previewDelegation = getDelegationsAll();
+        }
+
+        if (previewDelegation.isEmpty ()){
+            return;
         }
 
         StringBuilder out = new StringBuilder();

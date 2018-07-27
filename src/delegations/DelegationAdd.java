@@ -6,6 +6,7 @@ import console.ConsoleReader;
 import java.time.LocalDate;
 
 public class DelegationAdd {
+
     private final DelegationPreview delegationPreview = new DelegationPreview();
     private final DelegationRepository delegationRepository = new DelegationRepository();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
@@ -37,8 +38,8 @@ public class DelegationAdd {
         delegation.setEndDate(consoleReader.getDateStart());
 
         if (!delegation.getEndDate().isAfter(delegation.getStartDate())) {
-            System.out.println("Data zakończenia delegacji powinna być późniejsza niż data jej rozpoczęcia.");
-            System.out.println("Sprobuj jeszcze raz.");
+            consolePrinter.printLine ("Data zakończenia delegacji powinna być późniejsza niż data jej rozpoczęcia.");
+            consolePrinter.printLine("Sprobuj jeszcze raz.");
             delegation.setEndDate(consoleReader.getDateStart());
         }
 
@@ -83,7 +84,7 @@ public class DelegationAdd {
         consolePrinter.printLine("=======================================================");
         consolePrinter.printLine("");
 
-        consolePrinter.printLine("Czy chcesz zapisać powyższą delegację?");
+        consolePrinter.printLine("| Czy chcesz zapisać powyższą delegację?");
         consolePrinter.printLine("| 1. Zapisz delegację | 2. Nie zapisuj delegacji |");
 
         delegationRepository.addDelegation(newDelegation);

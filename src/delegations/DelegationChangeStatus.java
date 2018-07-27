@@ -53,8 +53,9 @@ public class DelegationChangeStatus {
                     delegationChangeStatus();
                     return;
                 } else {
-                    consolePrinter.printLine("1. Akceptuj delegację. | 2. Odrzuć delegację. |");
-                    consolePrinter.printLine("| 9. Zrezygnuj z akcji. |");
+                    consolePrinter.printLine("| 1. Akceptuj delegację");
+                    consolePrinter.printLine("| 2. Odrzuć delegację");
+                    consolePrinter.printLine("| 9. Zrezygnuj z akcji");
                 }
 
                 delegationDecision = consoleReader.getInt();
@@ -67,19 +68,21 @@ public class DelegationChangeStatus {
                     case 1:
                         delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
                         delegationRepository.changeDelegationStatus(delegation);
-                        consolePrinter.printLine("Delegacja została zaakceptowana.");
+                        consolePrinter.printLine("| Delegacja została zaakceptowana");
                         delegationPreview.delegationPreview(2);
                         return;
                     //   break;
                     case 2:
                         delegation.setDelegationStatus(DelegationStatus.DISCARTED);
                         delegationRepository.changeDelegationStatus(delegation);
-                        consolePrinter.printLine("Delegacja została odrzucona.");
+                        consolePrinter.printLine("| Delegacja została odrzucona");
                         delegationPreview.delegationPreview(2);
                         return;
                     //    break;
                     default:
-                        consolePrinter.printLine("Wpisano niepoprawny numer decyzji. Wpisz nr : \"1\", aby zaakceptować lub \"2\", aby odrzucić wniosek delegacyjny");
+                        consolePrinter.printLine("| Wpisano niepoprawny numer decyzji");
+                        consolePrinter.printLine("| 1. aby zaakceptować" );
+                        consolePrinter.printLine("| 2. aby odrzucić wniosek delegacyjny");
                         delegationChangeStatus();
                         break;
 

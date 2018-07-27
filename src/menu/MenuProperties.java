@@ -25,7 +25,11 @@ public class MenuProperties extends Menu {
         consolePrinter.printLine("================================");
         consolePrinter.printLine("=        MENU USTAWIENIA       =");
         consolePrinter.printLine("================================");
-        consolePrinter.printLine("1. Ustaw domyślny kraj | 2. Domyślny folder | 3. Pokaż ustawienia 9. Powrót do głównego menu.Menu | 0. Wyjście z programu");
+        consolePrinter.printLine("| 1. Ustaw domyślny kraj");
+        consolePrinter.printLine("| 2. Ustaw domyślny folder");
+        consolePrinter.printLine("| 3. Pokaż ustawienia");
+        consolePrinter.printLine("| 9. Powrót do głównego menu");
+        consolePrinter.printLine("| 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
     }
@@ -36,7 +40,7 @@ public class MenuProperties extends Menu {
     @Override
     public void goMenu(int userChoice) {
         while (userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 0 && userChoice != 9) {
-            consolePrinter.printLine("Wybór spoza zakresu. Wybierz jeszcze raz");
+            consolePrinter.printLine("| Wybór spoza zakresu. Wybierz jeszcze raz");
             userChoice = isChoiceNumber();
         }
 

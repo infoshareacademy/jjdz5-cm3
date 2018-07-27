@@ -23,13 +23,15 @@ public class MenuSetProperties extends MenuProperties {
                 consolePrinter.printLine("================================");
                 consolePrinter.printLine("Obecnie domyślny kraj to: " + Properties.userDelegationCountry);
                 consolePrinter.printLine("================================");
-                consolePrinter.printLine("1. Zmiana | 2. Powrót");
+                consolePrinter.printLine("| 1. Zmiana");
+                consolePrinter.printLine("| 2. Powrót");
                 i = 0;
             } else {
                 consolePrinter.printLine("================================");
                 consolePrinter.printLine("Obecnie domyślny folder to: " + Properties.userDelegationPath);
                 consolePrinter.printLine("================================");
-                consolePrinter.printLine("1. Zmiana | 2. Powrót");
+                consolePrinter.printLine("| 1. Zmiana");
+                consolePrinter.printLine("| 2. Powrót");
                 i = 1;
             }
 

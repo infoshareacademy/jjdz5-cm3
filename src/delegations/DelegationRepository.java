@@ -12,8 +12,10 @@ public class DelegationRepository {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public void changeDelegationStatus(Delegation delegation) {
+
         File delegationFile = new File(Properties.userDelegationPath.toString());
         FileReader fileReader = null;
+
         try {
             fileReader = new FileReader(delegationFile);
         } catch (FileNotFoundException e) {
