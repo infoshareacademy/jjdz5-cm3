@@ -21,6 +21,14 @@ public class DelegationChangeStatus {
         while (true) {
             delegationPreview.delegationPreview(2);
 
+            if ( delegationsToAccept.size () == 0){
+                consolePrinter.printLine("||");
+                consolePrinter.printLine("|| Brak delegacji do akceptacji lub odrzucenia");
+                consolePrinter.printLine("||");
+
+                return;
+            }
+
             consolePrinter.printLine("Aby wybrać delegację podaj jej nr ID i naciśnij ENTER.");
             consolePrinter.printLine("| 0 Rezygnacja ze zmian i powrót do Menu Delegacje |");
             rowNumber = consoleReader.getInt();
