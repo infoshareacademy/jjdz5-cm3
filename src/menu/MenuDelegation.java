@@ -1,17 +1,15 @@
 package menu;
 
 import console.ConsolePrinter;
-import delegations.DelegationAccept;
+import delegations.DelegationChangeStatus;
 import delegations.DelegationAdd;
 import delegations.DelegationPreview;
-
-import java.io.IOException;
 
 public class MenuDelegation extends Menu {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private DelegationAdd addDelegationService = new DelegationAdd();
-    private DelegationAccept acceptDelegation = new DelegationAccept();
+    private DelegationChangeStatus delegationChangeStatus = new DelegationChangeStatus();
     private DelegationPreview previewDelegation = new DelegationPreview();
 
 
@@ -30,8 +28,8 @@ public class MenuDelegation extends Menu {
         System.out.println();
         consolePrinter.printLine("---------MENU DELEGACJE---------");
         consolePrinter.printLine("Wybierz liczbę żeby wejść w:");
-        consolePrinter.printLine("1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj / odrzuć delegację | ");
-        consolePrinter.printLine("9. Powrót do głównego menu.Menu | 0. wyjście z programu");
+        consolePrinter.printLine("| 1. Dodaj delegację | 2. Wyświetl delegacje | 3. Zaakceptuj lub odrzuć delegację |");
+        consolePrinter.printLine("| 9. Powrót do głównego Menu | 0. wyjście z programu |");
 
         goMenu(isChoiceNumber());
 
@@ -51,10 +49,10 @@ public class MenuDelegation extends Menu {
                 addDelegationService.delegationAdd();
                 break;
             case 2:
-                previewDelegation.delegationPreview();
+                previewDelegation.delegationPreview(1);
                 break;
             case 3:
-                acceptDelegation.delegationAccept();
+                delegationChangeStatus.delegationChangeStatus ();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);

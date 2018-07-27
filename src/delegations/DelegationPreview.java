@@ -3,22 +3,88 @@ package delegations;
 
 import console.ConsolePrinter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile ();
-    private final DelegationRepository delegationRepository = new DelegationRepository ();
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
-    public void delegationPreview(){
+    public List<Delegation> getDelegationsToAccept() {
 
-        List<Delegation> previewDelegation; // = new Delegation();
+        List<Delegation> previewStatusDelegation  = new ArrayList<>();
+        List<Delegation> filteredDelegationToAccess = new ArrayList<>();
 
         // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
-        String fileDelegation = "/home/monika/development/jjdz5-cm3/paths/data/delegation.txt";
+        String fileDelegation = "paths/data/delegation.txt";
+        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
 
-        previewDelegation = delegationReadFile.delegationReadFile( fileDelegation );
+        for (Delegation p: previewStatusDelegation
+             ) {
+            if (p.getDelegationStatus() == DelegationStatus.TOACCEPT) {
+                filteredDelegationToAccess.add(
+                        new Delegation(
+                        p.getFileLineNumber(),
+                        p.getCreationDate(),
+                        p.getEmployee(),
+                        p.getStartDate(),
+                        p.getEndDate(),
+                        p.getDestination(),
+                        p.getPurpose(),
+                        p.getDelegationStatus(),
+                        p.getStartPoint()));
+            }
+            }
+
+        return filteredDelegationToAccess;
+    }
+
+    public List<Delegation> getDelegationsAll() {
+
+        List<Delegation> previewStatusDelegation  = new ArrayList<>();
+        List<Delegation> delegationAll = new ArrayList<>();
+
+        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
+        String fileDelegation = "paths/data/delegation.txt";
+        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
+
+        for (Delegation p: previewStatusDelegation
+                ) {
+
+            delegationAll.add(
+                        new Delegation(
+                                p.getFileLineNumber(),
+                                p.getCreationDate(),
+                                p.getEmployee(),
+                                p.getStartDate(),
+                                p.getEndDate(),
+                                p.getDestination(),
+                                p.getPurpose(),
+                                p.getDelegationStatus(),
+                                p.getStartPoint()));
+
+        }
+
+        return delegationAll;
+    }
+
+    public void delegationPreview(int pathOfAction) {
+
+        List<Delegation> previewDelegation;
+
+        // ustawienia domyślne: wszystkie delegacje
+        previewDelegation = getDelegationsAll();
+
+        switch (pathOfAction) {
+            case 1:
+                previewDelegation = getDelegationsAll();
+                break;
+            case 2:
+                previewDelegation = getDelegationsToAccept();
+                break;
+        }
 
         StringBuilder out = new StringBuilder();
 
@@ -142,7 +208,7 @@ public class DelegationPreview {
 
             // nagłówek pierwsza linia
             out.append("|")
-                    .append(" Lp.").append(chrRepeat(" ", columnWidth[0] - 4))
+                    .append(" ID ").append(chrRepeat(" ", columnWidth[0] - 4))
                     .append(" | ")
                     .append("Data").append(chrRepeat(" ", columnWidth[1] - 4))
                     .append("| ")
@@ -150,7 +216,7 @@ public class DelegationPreview {
                     .append("| ")
                     .append("Nazwisko").append(chrRepeat(" ", columnWidth[3] - 8))
                     .append("| ")
-                    .append("Delegacja").append(chrRepeat(" ", columnWidth[4] + columnWidth[5] - 6))
+                    .append(chrRepeat(" ",6)).append("Delegacja").append(chrRepeat(" ", columnWidth[4] + columnWidth[5] - 13))
                     .append("| ")
                     .append("Kraj").append(chrRepeat(" ", columnWidth[6] - 4))
                     .append("| ")
@@ -203,10 +269,10 @@ public class DelegationPreview {
 
             for (Delegation p : previewDelegation) {
 
-                Integer lenLP = previewDelegation.indexOf(p);
+                Integer lenLP = previewDelegation.indexOf(p) + 1;
 
                 out.append("| ")
-                        .append(lenLP.toString().trim())
+                        .append(p.getFileLineNumber().toString().trim())
                         .append(chrRepeat(" ", columnWidth[0] - lenLP.toString().trim().length()))
                         .append("| ")
                         .append(p.getCreationDate())
@@ -260,5 +326,21 @@ public class DelegationPreview {
         }
 
         return spaceRep.toString ();
+    }
+
+    public Integer delegationMaxId(){
+        List<Delegation> maxDelegation = getDelegationsAll();
+
+        Integer maxId = 0;
+
+        for (Delegation p:  maxDelegation)
+
+        {
+            if (p.getFileLineNumber() > maxId ){
+                maxId = p.getFileLineNumber();
+            }
+        }
+
+        return ++maxId;
     }
 }
