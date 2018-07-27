@@ -63,9 +63,7 @@ public class MenuMain extends Menu {
             default:
                 consolePrinter.printLine("Dziękujemy za skorzystanie z programu. Zapraszamy ponownie.");
                 System.exit(0);
-
         }
-
     }
 }
 

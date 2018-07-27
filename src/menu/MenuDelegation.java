@@ -2,8 +2,8 @@ package menu;
 
 import console.ConsoleClearScreen;
 import console.ConsolePrinter;
-import delegations.DelegationChangeStatus;
 import delegations.DelegationAdd;
+import delegations.DelegationChangeStatus;
 import delegations.DelegationPreview;
 
 public class MenuDelegation extends Menu {
@@ -39,6 +39,7 @@ public class MenuDelegation extends Menu {
     }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
+
     @Override
     public void goMenu(int userChoice) {
 
@@ -55,13 +56,12 @@ public class MenuDelegation extends Menu {
                 previewDelegation.delegationPreview(1);
                 break;
             case 3:
-                delegationChangeStatus.delegationChangeStatus ();
+                delegationChangeStatus.delegationChangeStatus();
                 break;
             default:
                 outOfProgramAndMainMenu(userChoice);
                 break;
         }
         showMenu();
-
     }
 }
