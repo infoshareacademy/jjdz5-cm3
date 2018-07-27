@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -51,7 +52,8 @@ public class PropertiesMoveDelegation {
                         if (userChoice == 1){
                             Files.deleteIfExists(tempPath);
                         }else{
-                            Path oldPath = Paths.get(userPath, "delegation_old.txt");
+                            String oldDelegation = "delegation_old_" + LocalDateTime.now() + "_.txt";
+                            Path oldPath = Paths.get(userPath, oldDelegation);
                             Files.move(tempPath,oldPath);
                         }
                     }
