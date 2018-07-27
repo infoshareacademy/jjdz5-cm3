@@ -34,9 +34,10 @@ public class PropertiesSetFolder {
             }
         } else {
             discs = File.listRoots();
-            consolePrinter.printLine("| Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
-            consolePrinter.printLine("| podajesz tylko katalogi bez nazwy pliku");
-            consolePrinter.printLine("| np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegation.txt");
+            consolePrinter.printLine("Twój system to linux - dlatego twoja ścieżka będzie zaczynać sie od" + System.getProperty("user.home") + "/");
+            consolePrinter.printLine("podajesz tylko katalogi bez nazwy pliku");
+            consolePrinter.printLine("np.:  jeżeli wpiszesz delegacje/   to twoja scieżka będzie taka: " + System.getProperty("user.home") + "/delegacje/delegations.txt");
+            consolePrinter.printLine("(przerwanie operacji wybierz 3)");
             userPath = consoleReader.getString();
             if (userPath.equalsIgnoreCase("3")) {
                 return;

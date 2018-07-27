@@ -3,6 +3,7 @@ package properties;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -12,6 +13,17 @@ public class PropertiesLoad {
     private PropertiesReadJson propertiesReadJson = new PropertiesReadJson();
 
     public void loadProperties() {
+
+        if (Files.notExists(properties.getDefaultDelegationPath())){
+            try {
+                Files.createDirectories(properties.getDefaultDataPath());
+                Files.createFile(properties.getDefaultDelegationPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         if (Files.notExists(properties.getPropertiesPath())) {
             Properties.userDelegationPath = properties.getDefaultDelegationPath();
             Properties.userDelegationCountry = properties.getDefaultCountry();
