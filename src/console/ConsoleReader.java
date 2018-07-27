@@ -17,14 +17,14 @@ public class ConsoleReader {
             if (inputFromUser>=minValue && inputFromUser<=maxValue) {
                 return inputFromUser;
             } else {
-                System.out.println( "Wybrałeś liczbę z poza zakresu. Wpisz jeszcze raz." );
+                consolePrinter.printLine( "Wybrałeś liczbę z poza zakresu. Wpisz jeszcze raz." );
                 //java.util.InputMismatchException
             }
         }
     }
 
     public Integer getInt() {
-        String inputFromUser = scanner.nextLine ();
+        String inputFromUser = getString ();
 
         boolean testString = false;
         while (!testString) {
@@ -45,7 +45,7 @@ public class ConsoleReader {
             if (!stringFromUser.isEmpty()) {
                 testString = true;
             } else {
-                System.out.println( "Pole nie może być puste." );
+                consolePrinter.printLine( "Pole nie może być puste." );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -55,13 +55,13 @@ public class ConsoleReader {
 
     public String getStringOneWord() {
 
-        String stringFromUser = scanner.nextLine();
+        String stringFromUser = getString();
         boolean testString = false;
         while (!testString) {
             if (stringFromUser.trim().matches( "^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]+(([\\-][A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])?[a-z,ążśźęćńół]*)" )) {
                 testString = true;
             } else {
-                System.out.println( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)" );
+                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, jeden wyraz, bez cyfr, po myślinku wielka litera)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -70,13 +70,13 @@ public class ConsoleReader {
 
     public String getStringOneWordLow() {
 
-        String stringFromUser = scanner.nextLine();
+        String stringFromUser = getString();
         boolean testString = false;
         while (!testString) {
             if (stringFromUser.trim().matches( "((?!\\,).)*$" )) {
                 testString = true;
             } else {
-                System.out.println( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)" );
+                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -91,7 +91,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)" )) {
                 testString = true;
             } else {
-                System.out.println( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)" );
+                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -106,7 +106,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches( "([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)" )) {
                 testString = true;
             } else {
-                System.out.println( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)" );
+                consolePrinter.printLine( "Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)" );
                 stringFromUser = scanner.nextLine();
             }
         }
@@ -130,12 +130,12 @@ public class ConsoleReader {
                     dateCheck = true;
                     break;
                 } else {
-                    System.out.println("Data rozpoczecia delegacji powinna byc pozniejsza niz data jej utworzenia: " + LocalDate.now());
+                    consolePrinter.printLine("Data rozpoczecia delegacji powinna byc pozniejsza niz data jej utworzenia: " + LocalDate.now());
                 }
                 dateFromUser = scanner.nextLine();
             } catch (DateTimeParseException e) {
-                System.out.println( "Niepoprawny format daty (RRRR-MM-DD)." );
-                System.out.println("Sprobuj jeszcze raz.");
+                consolePrinter.printLine( "Niepoprawny format daty (RRRR-MM-DD)." );
+                consolePrinter.printLine("Sprobuj jeszcze raz.");
                 dateFromUser = scanner.nextLine();
             }
 
