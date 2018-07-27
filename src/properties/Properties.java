@@ -12,6 +12,7 @@ public class Properties {
     private final Path propertiesPath = Paths.get(System.getProperty("user.dir"), "src", "properties", "properties.json");
     private final String defaultCountry = "Poland";
     private final Path defaultDelegationPath = Paths.get(System.getProperty("user.dir"), "paths", "data", FILE_NAME);
+    private final Path defaultDataPath = Paths.get(System.getProperty("user.dir"), "paths", "data");
 
 
     public Path getPropertiesPath() {
@@ -24,6 +25,10 @@ public class Properties {
 
     public Path getDefaultDelegationPath() {
         return defaultDelegationPath;
+    }
+
+    public Path getDefaultDataPath() {
+        return defaultDataPath;
     }
 
     @Override
