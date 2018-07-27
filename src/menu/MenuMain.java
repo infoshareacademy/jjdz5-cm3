@@ -31,8 +31,7 @@ public class MenuMain extends Menu {
 
     @Override
     public void showMenu() {
-        System.out.println(System.getProperties());
-        consoleClearScreen.clrscr();
+        consolePrinter.printLine("");
         consolePrinter.printLine("---------------Program do obsługi delegacji---------------");
         consolePrinter.printLine(" #     #  #####  #  #      #     #     #  #####  #      #  #     # ");
         consolePrinter.printLine(" # # # #  #   #     # #    #     # # # #  #      # #    #  #     # ");
