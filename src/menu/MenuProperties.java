@@ -25,11 +25,11 @@ public class MenuProperties extends Menu {
         consolePrinter.printLine("================================");
         consolePrinter.printLine("=        MENU USTAWIENIA       =");
         consolePrinter.printLine("================================");
-        consolePrinter.printLine("| 1. Ustaw domyślny kraj | ");
-        consolePrinter.printLine("| 2. Domyślny folder | ");
-        consolePrinter.printLine("| 3. Pokaż ustawienia |");
-        consolePrinter.printLine("| 9. Powrót do głównego menu |");
-        consolePrinter.printLine("| 0. Wyjście z programu |");
+        consolePrinter.printLine("| 1. Ustaw domyślny kraj");
+        consolePrinter.printLine("| 2. Domyślny folder");
+        consolePrinter.printLine("| 3. Pokaż ustawienia");
+        consolePrinter.printLine("| 9. Powrót do głównego menu");
+        consolePrinter.printLine("| 0. Wyjście z programu");
 
         this.goMenu(isChoiceNumber());
     }

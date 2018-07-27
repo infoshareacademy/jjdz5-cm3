@@ -38,11 +38,12 @@ public class MenuMain extends Menu {
         consolePrinter.printLine(" #  #  #  #####  #  #  #   #     #  #  #  ###    #  #   #  #     # ");
         consolePrinter.printLine(" #     #  #   #  #  #   #  #     #     #  #      #   #  #  #     # ");
         consolePrinter.printLine(" #     #  #   #  #  #    # #     #     #  #####  #    # #   # # #   ");
-
-        consolePrinter.printLine("\n| Wybierz liczbę żeby wejść w:");
-        consolePrinter.printLine("\n| 1. Delegacje | ");
-        consolePrinter.printLine("\n| 2. Ustawienia |");
-        consolePrinter.printLine("\n| 0. wyjście z programu |");
+        consolePrinter.printLine("");
+        consolePrinter.printLine("");
+        consolePrinter.printLine("| Wybierz liczbę żeby wejść w:");
+        consolePrinter.printLine("| 1. Delegacje");
+        consolePrinter.printLine("| 2. Ustawienia");
+        consolePrinter.printLine("| 0. wyjście z programu");
     }
 
     /*metoda sprawdza jak liczba z menu została wybrana i tworzy odpowiedni obiekt w zależności od wyboru */
