@@ -2,6 +2,7 @@ package delegations;
 
 import console.ConsolePrinter;
 import console.ConsoleReader;
+import properties.Properties;
 
 import java.time.LocalDate;
 
@@ -43,8 +44,10 @@ public class DelegationAdd {
             delegation.setEndDate(consoleReader.getDateStart());
         }
 
-        consolePrinter.printLine("Podaj kraj wyjazdu: ");
-        destination.setDestinationCountry(consoleReader.getStringMoreWords());
+        consolePrinter.printLine("Podaj kraj wyjazdu (domyślnie: " + Properties.userDelegationCountry + "): ");
+        consolePrinter.printLine("Jesli akceptujesz kraj, wcisnij ENTER, jesli chcesz go zmienic wpisz ponizej");
+
+        destination.setDestinationCountry(consoleReader.getStringDefaultCountry ());
 
         consolePrinter.printLine("Podaj miasto: ");
         destination.setDestinationCity(consoleReader.getStringMoreWords());
@@ -76,7 +79,7 @@ public class DelegationAdd {
         consolePrinter.printLine("Data utworzenia: " + delegation.getCreationDate());
         consolePrinter.printLine("Imię i nazwisko: " + delegation.getEmployee().getEmployeeName() + " " + delegation.getEmployee().getEmployeeSurname());
         consolePrinter.printLine("Delegacja od: " + delegation.getStartDate() + " do: " + delegation.getEndDate());
-        consolePrinter.printLine("Kraj: " + delegation.getDestination().getDestinationCity());
+        consolePrinter.printLine("Kraj: " + delegation.getDestination().getDestinationCountry());
         consolePrinter.printLine("Miasto: " + delegation.getDestination().getDestinationCity());
         consolePrinter.printLine("Firma i jej adres: " + delegation.getDestination().getDestinationCompany() + "," + delegation.getDestination().getDestinationCompanyAddress());
         consolePrinter.printLine("Cel delegacji: " + delegation.getPurpose());

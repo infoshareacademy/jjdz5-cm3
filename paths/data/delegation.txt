@@ -1,0 +1,2 @@
+1,2018-07-28,Monika,Biskup,2018-08-01,2018-08-15,Poland,Warszawa,Nazwa firmy,adres,cel delegacji ,TOACCEPT,Gdansk
+2,2018-07-28,Monika,Biskup,2018-08-01,2018-08-15,Poland,Warszawa,Nazwa firmy,adres firmy,cel delegacji,TOACCEPT,Gdansk

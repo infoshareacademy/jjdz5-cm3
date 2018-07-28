@@ -1,5 +1,7 @@
 package console;
 
+import properties.Properties;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -138,6 +140,20 @@ public class ConsoleReader {
             }
         }
         return LocalDate.parse(dateFromUser);
+    }
+
+    public String getStringDefaultCountry() {
+        String stringFromUser = scanner.nextLine ();
+        while (true) {
+            if (stringFromUser.isEmpty ()) {
+                return Properties.userDelegationCountry;
+            }
+            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)")) {
+                break;} else {
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
+                stringFromUser = scanner.nextLine ();
+                continue;}}
+        return stringFromUser;
     }
 }
 

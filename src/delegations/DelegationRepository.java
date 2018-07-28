@@ -69,20 +69,20 @@ public class DelegationRepository {
             case 1:
                 String fileName = Properties.userDelegationPath.toString();
                 File file = new File(fileName);
+                if (file.exists ()) {
+                    try (
+                            FileWriter fileWriter = new FileWriter(file, true);
+                            BufferedWriter writer = new BufferedWriter(fileWriter);
+                    ) {
+                        writer.write(String.valueOf(delegation));
+                        writer.newLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }} else {
+                    consolePrinter.printLine ("| Brak podanego pliku: " + file );
+                    consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Domyślny folder > .....");
+                }break;
 
-                try (
-
-                        FileWriter fileWriter = new FileWriter(file, true);
-                        BufferedWriter writer = new BufferedWriter(fileWriter);
-                ) {
-                    writer.write(String.valueOf(delegation));
-                    writer.newLine();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                break;
 
             case 2:
                 consolePrinter.printLine("Odrzucasz delegacje");
