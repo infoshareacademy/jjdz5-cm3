@@ -29,7 +29,7 @@ public class DelegationReadFile {
 
         if (!delegationFile.exists ()) {
             consolePrinter.printLine ("| Brak podanego pliku: " + fileDelegation);
-            consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Domyślny folder > .....");
+            consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Ustawienia > 2. Ustaw domyślny folder > .....");
         } else if (delegationFile.length () == 0) {
             consolePrinter.printLine ("| Plik jest pusty. ");
             consolePrinter.printLine ("| Dodaj delegację ");
