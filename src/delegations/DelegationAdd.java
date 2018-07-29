@@ -19,6 +19,8 @@ public class DelegationAdd {
 
     public void delegationAdd() {
 
+
+
         //wprowadzanie danych przez uzytkownika
         delegation.setCreationDate(LocalDate.now());
 
@@ -38,8 +40,8 @@ public class DelegationAdd {
 
         delegation.setEndDate(consoleReader.getDateStart());
 
-        if (!delegation.getEndDate().isAfter(delegation.getStartDate())) {
-            consolePrinter.printLine ("Data zakończenia delegacji powinna być późniejsza niż data jej rozpoczęcia.");
+        if (!delegation.getEndDate().isAfter(delegation.getStartDate().minusDays(1))) {
+            consolePrinter.printLine ("Data zakończenia delegacji nie może być wcześniejsza niż data jej rozpoczęcia: " + delegation.getStartDate());
             consolePrinter.printLine("Sprobuj jeszcze raz.");
             delegation.setEndDate(consoleReader.getDateStart());
         }

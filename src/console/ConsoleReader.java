@@ -87,7 +87,7 @@ public class ConsoleReader {
 
         String stringFromUser = getString();
         while (true) {
-            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)")) {
+            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,)(?![0-9]).)*$)")) {
                 break;
             } else {
                 consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
@@ -105,7 +105,7 @@ public class ConsoleReader {
             if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)")) {
                 break;
             } else {
-                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka, brak cyfr.)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)");
                 stringFromUser = getString();
                 continue;
             }
