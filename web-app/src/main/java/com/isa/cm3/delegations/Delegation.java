@@ -115,7 +115,7 @@ public class Delegation {
 
     @Override
     public String toString() {
-        return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
+        return creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
                 purpose + "," + delegationStatus + "," + startPoint;
     }
 }
