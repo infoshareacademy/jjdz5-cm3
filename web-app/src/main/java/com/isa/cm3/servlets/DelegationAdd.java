@@ -3,12 +3,12 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
@@ -37,6 +37,8 @@ public class DelegationAdd extends HttpServlet {
         String purposeReq = req.getParameter("purpose");
         String startPointReq = req.getParameter("startPoint");
 
+        Path path = Paths.get(System.getProperty("jboss.server.data.dir"),"delegations.txt");
+
         writer.println(LocalDate.parse(startDateReq));
         writer.println(nameReq + " " + surNameReq + " " + startDateReq + " " + endDateReq + " " + countryReq + " " + cityReq + " " + companyReq + " " + companyAdresReq + " " + startPointReq + " "
                 + purposeReq);
@@ -63,6 +65,19 @@ public class DelegationAdd extends HttpServlet {
         delegation.setDelegationStatus(DelegationStatus.SAVED);
 
         DelegationSaveToFile delegationSaveToFile = new DelegationSaveToFile();
-       delegationSaveToFile.saveToFile(delegation);
+
+       DelegationSaveToFile.saveToFile(path,delegation);
+       DelegationSaveToFile.list.add(delegation);
+       writer.println("<br><br>");
+
+        for (Delegation del : DelegationSaveToFile.getList()) {
+
+            writer.println(del);
+            writer.println("<br><br>");
+
+        }
+        writer.println(DelegationSaveToFile.getList().size());
+
+
     }
 }
