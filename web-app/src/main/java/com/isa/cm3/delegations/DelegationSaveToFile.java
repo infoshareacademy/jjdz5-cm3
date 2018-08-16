@@ -2,17 +2,19 @@ package com.isa.cm3.delegations;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DelegationSaveToFile {
 
-    public static List<Delegation> list = new ArrayList<>();
+    Path path = Paths.get(System.getProperty("jboss.server.data.dir"),"delegations.txt");
 
-    public static void saveToFile (Path path, Delegation delegation){
+    public void saveToFile (Delegation delegation){
 
         if (Files.notExists(path)){
             try {
@@ -23,17 +25,18 @@ public class DelegationSaveToFile {
         }
 
         try {
-            Reader reader = Files.newBufferedReader(path);
+            Reader reader = Files.newBufferedReader(path,StandardCharsets.UTF_8);
             if (((BufferedReader) reader).readLine() == null){
-                Writer writeOnce = Files.newBufferedWriter(path,Charset.defaultCharset());
+                Writer writeOnce = Files.newBufferedWriter(path,StandardCharsets.UTF_8);
                 writeOnce.write(delegation.toString());
                 writeOnce.close();
-            }else {
-                Writer writeOut = Files.newBufferedWriter(path, Charset.defaultCharset(), StandardOpenOption.APPEND);
+                return;
+            }
+                Writer writeOut = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
                 ((BufferedWriter) writeOut).newLine();
                 writeOut.write(delegation.toString());
                 writeOut.close();
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,13 +44,5 @@ public class DelegationSaveToFile {
 
     }
 
-    public void saveToList (Delegation delegation){
 
-        this.list.add(delegation);
-
-    }
-
-    public static List<Delegation> getList() {
-        return list;
-    }
 }

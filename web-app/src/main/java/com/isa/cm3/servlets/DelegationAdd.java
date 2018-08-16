@@ -22,7 +22,7 @@ public class DelegationAdd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        req.getParameterMap();
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
         PrintWriter writer = resp.getWriter();
 
@@ -37,7 +37,7 @@ public class DelegationAdd extends HttpServlet {
         String purposeReq = req.getParameter("purpose");
         String startPointReq = req.getParameter("startPoint");
 
-        Path path = Paths.get(System.getProperty("jboss.server.data.dir"),"delegations.txt");
+
 
         writer.println(LocalDate.parse(startDateReq));
         writer.println(nameReq + " " + surNameReq + " " + startDateReq + " " + endDateReq + " " + countryReq + " " + cityReq + " " + companyReq + " " + companyAdresReq + " " + startPointReq + " "
@@ -66,17 +66,10 @@ public class DelegationAdd extends HttpServlet {
 
         DelegationSaveToFile delegationSaveToFile = new DelegationSaveToFile();
 
-       DelegationSaveToFile.saveToFile(path,delegation);
-       DelegationSaveToFile.list.add(delegation);
+       delegationSaveToFile.saveToFile(delegation);
        writer.println("<br><br>");
 
-        for (Delegation del : DelegationSaveToFile.getList()) {
 
-            writer.println(del);
-            writer.println("<br><br>");
-
-        }
-        writer.println(DelegationSaveToFile.getList().size());
 
 
     }
