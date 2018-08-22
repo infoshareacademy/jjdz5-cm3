@@ -1,5 +1,6 @@
 package delegations;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 import console.ConsoleReader;
 
@@ -11,6 +12,7 @@ public class DelegationChangeStatus {
     private final ConsoleReader consoleReader = new ConsoleReader();
     private final DelegationRepository delegationRepository = new DelegationRepository();
     private final DelegationPreview delegationPreview = new DelegationPreview();
+    private final ConsoleClearScreen consoleClearScreen =new ConsoleClearScreen();
 
     public void delegationChangeStatus() {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
@@ -27,6 +29,7 @@ public class DelegationChangeStatus {
                 consolePrinter.printLine("|| Brak delegacji do akceptacji lub odrzucenia");
                 consolePrinter.printLine("||");
 
+                consoleClearScreen.clrscr();
                 return;
             }
 

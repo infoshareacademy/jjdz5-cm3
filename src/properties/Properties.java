@@ -10,7 +10,7 @@ public class Properties {
     public static String userDelegationCountry;
 
     private final Path propertiesPath = Paths.get(System.getProperty("user.dir"), "src", "properties", "properties.json");
-    private final String defaultCountry = "Poland";
+    private final String defaultCountry = "Polska";
     private final Path defaultDelegationPath = Paths.get(System.getProperty("user.dir"), "paths", "data", FILE_NAME);
     private final Path defaultDataPath = Paths.get(System.getProperty("user.dir"), "paths", "data");
 

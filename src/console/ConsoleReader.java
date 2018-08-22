@@ -1,7 +1,7 @@
 package console;
 
+import delegations.DelegationAdd;
 import properties.Properties;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -52,7 +52,6 @@ public class ConsoleReader {
         return stringFromUser;
     }
 
-
     public String getStringOneWord() {
 
         String stringFromUser = getString();
@@ -87,10 +86,10 @@ public class ConsoleReader {
 
         String stringFromUser = getString();
         while (true) {
-            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,)(?![0-9]).)*$)")) {
+            if (stringFromUser.trim().matches("(^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,)(?![0-9,=,$,#,%,!,^,&,*,@]).)*$)")) {
                 break;
             } else {
-                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr.)");
+                consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (wielka litera na poczatku, brak cyfr i znakow specjalnych)");
                 stringFromUser = getString();
                 continue;
             }
@@ -102,7 +101,7 @@ public class ConsoleReader {
 
         String stringFromUser = getString();
         while (true) {
-            if (stringFromUser.trim().matches("([A-Z,ĄŻŚŹĘĆŃÓŁ,a-z,ążśźęćńół]((?!\\,).)*$)")) {
+            if (stringFromUser.trim().matches("([A-ZĄŻŚŹĘĆŃÓŁa-zążśźęćńół]((?!\\,).)*$)")) {
                 break;
             } else {
                 consolePrinter.printLine("| Proszę wpisać jeszcze raz dane (dowolne znaki, bez przecinka)");
@@ -115,7 +114,6 @@ public class ConsoleReader {
 
     public LocalDate getDateStart() {
 
-        Scanner scanner = new Scanner(System.in);
         String dateFromUser = getString();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -130,7 +128,7 @@ public class ConsoleReader {
                     dateCheck = true;
                     break;
                 } else {
-                    consolePrinter.printLine("Data rozpoczęcia delegacji powinna być poźniejsza niż data jej utworzenia: " + LocalDate.now());
+                    consolePrinter.printLine("Data musi być poźniejsza niż data utworzenia delegacji: " + LocalDate.now());
                 }
                 dateFromUser = getString();
             } catch (DateTimeParseException e) {
@@ -155,6 +153,7 @@ public class ConsoleReader {
                 continue;}}
         return stringFromUser;
     }
+
 }
 
 

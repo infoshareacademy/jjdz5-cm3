@@ -1,5 +1,6 @@
 package delegations;
 
+import console.ConsoleClearScreen;
 import console.ConsolePrinter;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.util.List;
 public class DelegationReadFile {
 
     private final ConsolePrinter consolePrinter = new ConsolePrinter ();
+    ConsoleClearScreen consoleClearScreen = new ConsoleClearScreen();
 
     public List<Delegation> delegationReadFile(String fileDelegation) {
 
@@ -28,14 +30,15 @@ public class DelegationReadFile {
         boolean isCheckedFile = false;
 
         if (!delegationFile.exists ()) {
+            consoleClearScreen.clrscr();
             consolePrinter.printLine ("| Brak podanego pliku: " + fileDelegation);
-            consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Ustawienia > 2. Ustaw domyślny folder > .....");
+            consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Domyślny folder > .....");
+            consoleClearScreen.clrscr();
         } else if (delegationFile.length () == 0) {
-            consolePrinter.printLine ("| Plik jest pusty. ");
-            consolePrinter.printLine ("| Dodaj delegację ");
-
-        } else {
-            isCheckedFile = true;
+            consoleClearScreen.clrscr();
+            consolePrinter.printLine( "| Plik jest pusty. " );
+            consolePrinter.printLine( "| Dodaj delegację " );
+            consoleClearScreen.clrscr();
         }
 
 

@@ -10,7 +10,7 @@ public class ConsoleClearScreen {
     }
 
     public void pressAnyKeyToContinue() {
-        System.out.println("\n Press Enter key to continue...");
+        System.out.println("\n Naciśnij dowolny klawisz aby kontynuować...");
         try {
             System.in.read();
         } catch (Exception e) {
