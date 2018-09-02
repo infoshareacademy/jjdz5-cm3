@@ -5,5 +5,6 @@
 5,2018-07-29,Żaneta,Bąkowska,2018-08-01,2018-08-01,Poland,Warszawa,Firma A,ul. SLonceczna 1,cel delegacji,TOACCEPT,Gdańsk
 6,2018-07-29,Zaneta,Bąkowska,2018-08-01,2018-08-01,Niemcy,Berlin,ul. Słoneczna 1,wdvssQ  WQ21 2, EFWESVDE,TOACCEPT,AWEGAWG
 7,2018-08-22,Ala,Ala,2018-08-30,2018-08-30,Poland,Warszawa,Firma A,adres firmy,cel,TOACCEPT, a
-1,2018-09-02,Monika ,Nazwisko-Nazwisko,2018-09-03,2018-09-03,Polska,Warszawa,Nazwa Firmy P%R,adres firmy, ,TOACCEPT,Miasto-Miasto
-1,2018-09-02,Anna-Maria,Surname,2019-10-10,2019-10-10,Polska,Miasto,Nazwa firmy 12,adres firmy,Cel 1,TOACCEPT,Miejsce wyjazdu
+8,2018-09-02,Monika ,Nazwisko-Nazwisko,2018-09-03,2018-09-03,Polska,Warszawa,Nazwa Firmy P%R,adres firmy, ,TOACCEPT,Miasto-Miasto
+9,2018-09-02,Anna-Maria,Surname,2019-10-10,2019-10-10,Polska,Miasto,Nazwa firmy 12,adres firmy,Cel 1,TOACCEPT,Miejsce wyjazdu
+10,2018-09-02,Imie,Nazwisko,2018-10-10,2018-10-11,Polska,Miasto,Firma A,adres firm yA,cel,ACCEPTED,Wyjaaaaazd

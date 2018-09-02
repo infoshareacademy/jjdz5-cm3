@@ -9,19 +9,15 @@ import java.util.List;
 public class DelegationPreview {
 
     private final DelegationReadFile delegationReadFile = new DelegationReadFile();
-    private final ConsolePrinter consolePrinter = new ConsolePrinter ();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter();
 
     public List<Delegation> getDelegationsToAccept() {
-
         List<Delegation> previewStatusDelegation = new ArrayList<>();
         List<Delegation> filteredDelegationToAccess = new ArrayList<>();
-
-        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
         String fileDelegation = Properties.userDelegationPath.toString();
-        previewStatusDelegation = delegationReadFile.delegationReadFile(fileDelegation);
+        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
 
-        for (Delegation p : previewStatusDelegation
-                ) {
+        for (Delegation p : previewStatusDelegation) {
             if (p.getDelegationStatus() == DelegationStatus.TOACCEPT) {
                 filteredDelegationToAccess.add(
                         new Delegation(
@@ -33,25 +29,19 @@ public class DelegationPreview {
                                 p.getDestination(),
                                 p.getPurpose(),
                                 p.getDelegationStatus(),
-                                p.getStartPoint()));
+                                p.getStartPoint() ) );
             }
         }
-
         return filteredDelegationToAccess;
     }
 
     public List<Delegation> getDelegationsAll() {
-
         List<Delegation> previewStatusDelegation = new ArrayList<>();
         List<Delegation> delegationAll = new ArrayList<>();
-
-        // tu: odczyt ścieżki do pliku z danymi delegacji z pliku konfiguracyjnego
         String fileDelegation = Properties.userDelegationPath.toString();
-        previewStatusDelegation = delegationReadFile.delegationReadFile(fileDelegation);
+        previewStatusDelegation = delegationReadFile.delegationReadFile( fileDelegation );
 
-        for (Delegation p : previewStatusDelegation
-                ) {
-
+        for (Delegation p : previewStatusDelegation) {
             delegationAll.add(
                     new Delegation(
                             p.getFileLineNumber(),
@@ -62,19 +52,13 @@ public class DelegationPreview {
                             p.getDestination(),
                             p.getPurpose(),
                             p.getDelegationStatus(),
-                            p.getStartPoint()));
-
+                            p.getStartPoint() ) );
         }
-
         return delegationAll;
     }
 
     public void delegationPreview(int pathOfAction) {
-
         List<Delegation> previewDelegation;
-
-        // ustawienia domyślne: wszystkie delegacje
-
         previewDelegation = null;
 
         switch (pathOfAction) {
@@ -88,24 +72,20 @@ public class DelegationPreview {
                 previewDelegation = getDelegationsAll();
         }
 
-        if (previewDelegation.isEmpty ()){
+        if (previewDelegation.isEmpty()) {
             return;
         }
 
         StringBuilder out = new StringBuilder();
-
         int columnWideWidth;
         int[] columnWidth = new int[13];
-
         columnWideWidth = 0;
         for (int i = 0; i < 13; i++) {
             columnWidth[i] = 0;
         }
 
         for (Delegation p : previewDelegation) {
-
-            Integer lenLP = previewDelegation.indexOf(p);
-
+            Integer lenLP = previewDelegation.indexOf( p );
             if (columnWidth[0] < lenLP.toString().trim().length()) {
                 columnWidth[0] = lenLP.toString().trim().length();
                 if (columnWidth[0] < 4) {
@@ -203,151 +183,137 @@ public class DelegationPreview {
         }
 
         if (columnWideWidth != 0) {
-
             columnWideWidth += 3 * 2 + 11 * 3;
             out.trimToSize();
 
+            out.append( chrRepeat( "=", columnWideWidth ) )
+                    .append( "\n" );
 
-            out.append(chrRepeat("=", columnWideWidth))
-                    .append("\n");
+            out.append( "|" )
+                    .append( " ID " ).append( chrRepeat( " ", columnWidth[0] - 4 ) )
+                    .append( " | " )
+                    .append( "Data" ).append( chrRepeat( " ", columnWidth[1] - 4 ) )
+                    .append( "| " )
+                    .append( "Imię" ).append( chrRepeat( " ", columnWidth[2] - 4 ) )
+                    .append( "| " )
+                    .append( "Nazwisko" ).append( chrRepeat( " ", columnWidth[3] - 8 ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", 6 ) ).append( "Delegacja" ).append( chrRepeat( " ", columnWidth[4] + columnWidth[5] - 13 ) )
+                    .append( "| " )
+                    .append( "Kraj" ).append( chrRepeat( " ", columnWidth[6] - 4 ) )
+                    .append( "| " )
+                    .append( "Miasto" ).append( chrRepeat( " ", columnWidth[7] - 6 ) )
+                    .append( "| " )
+                    .append( "Firma" ).append( chrRepeat( " ", columnWidth[8] - 5 ) )
+                    .append( "| " )
+                    .append( "Adres" ).append( chrRepeat( " ", columnWidth[9] - 5 ) )
+                    .append( "| " )
+                    .append( "Cel delegacji" ).append( chrRepeat( " ", columnWidth[10] - 13 ) )
+                    .append( "| " )
+                    .append( "Status" ).append( chrRepeat( " ", columnWidth[11] - 6 ) )
+                    .append( "| " )
+                    .append( "z miasta" ).append( chrRepeat( " ", columnWidth[12] - 8 ) )
+                    .append( "|" )
+                    .append( "\n" );
 
+            out.append( "| " )
+                    .append( chrRepeat( " ", columnWidth[0] ) )
+                    .append( "| " )
+                    .append( "utworzenia " )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[2] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[3] ) )
+                    .append( "| " )
+                    .append( "    od     " )
+                    .append( "| " )
+                    .append( "    do     " )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[6] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[7] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[8] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[9] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[10] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[11] ) )
+                    .append( "| " )
+                    .append( chrRepeat( " ", columnWidth[12] ) )
+                    .append( "|" )
+                    .append( "\n" );
 
-            // nagłówek pierwsza linia
-            out.append("|")
-                    .append(" ID ").append(chrRepeat(" ", columnWidth[0] - 4))
-                    .append(" | ")
-                    .append("Data").append(chrRepeat(" ", columnWidth[1] - 4))
-                    .append("| ")
-                    .append("Imię").append(chrRepeat(" ", columnWidth[2] - 4))
-                    .append("| ")
-                    .append("Nazwisko").append(chrRepeat(" ", columnWidth[3] - 8))
-                    .append("| ")
-                    .append(chrRepeat(" ", 6)).append("Delegacja").append(chrRepeat(" ", columnWidth[4] + columnWidth[5] - 13))
-                    .append("| ")
-                    .append("Kraj").append(chrRepeat(" ", columnWidth[6] - 4))
-                    .append("| ")
-                    .append("Miasto").append(chrRepeat(" ", columnWidth[7] - 6))
-                    .append("| ")
-                    .append("Firma").append(chrRepeat(" ", columnWidth[8] - 5))
-                    .append("| ")
-                    .append("Adres").append(chrRepeat(" ", columnWidth[9] - 5))
-                    .append("| ")
-                    .append("Cel delegacji").append(chrRepeat(" ", columnWidth[10] - 13))
-                    .append("| ")
-                    .append("Status").append(chrRepeat(" ", columnWidth[11] - 6))
-                    .append("| ")
-                    .append("z miasta").append(chrRepeat(" ", columnWidth[12] - 8))
-                    .append("|")
-                    .append("\n");
-
-            // nagłówek druga linia
-            out.append("| ")
-                    .append(chrRepeat(" ", columnWidth[0]))
-                    .append("| ")
-                    .append("utworzenia ")
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[2]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[3]))
-                    .append("| ")
-                    .append("    od     ")
-                    .append("| ")
-                    .append("    do     ")
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[6]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[7]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[8]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[9]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[10]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[11]))
-                    .append("| ")
-                    .append(chrRepeat(" ", columnWidth[12]))
-                    .append("|")
-                    .append("\n");
-
-            out.append(chrRepeat("=", columnWideWidth))
-                    .append("\n");
+            out.append( chrRepeat( "=", columnWideWidth ) )
+                    .append( "\n" );
 
             for (Delegation p : previewDelegation) {
+                Integer lenLP = previewDelegation.indexOf( p ) + 1;
 
-                Integer lenLP = previewDelegation.indexOf(p) + 1;
-
-                out.append("| ")
-                        .append(p.getFileLineNumber().toString().trim())
-                        .append(chrRepeat(" ", columnWidth[0] - lenLP.toString().trim().length()))
-                        .append("| ")
-                        .append(p.getCreationDate())
-                        .append(" | ")
-                        .append(p.getEmployee().getEmployeeName().trim())
-                        .append(chrRepeat(" ", columnWidth[2] - p.getEmployee().getEmployeeName().trim().length()))
-                        .append("| ")
-                        .append(p.getEmployee().getEmployeeSurname().trim())
-                        .append(chrRepeat(" ", columnWidth[3] - p.getEmployee().getEmployeeSurname().trim().length()))
-                        .append("| ")
-                        .append(p.getStartDate())
-                        .append(" | ")
-                        .append(p.getEndDate())
-                        .append(" | ")
-                        .append(p.getDestination().getDestinationCountry().trim())
-                        .append(chrRepeat(" ", columnWidth[6] - p.getDestination().getDestinationCountry().trim().length()))
-                        .append("| ")
-                        .append(p.getDestination().getDestinationCity().trim())
-                        .append(chrRepeat(" ", columnWidth[7] - p.getDestination().getDestinationCity().trim().length()))
-                        .append("| ")
-                        .append(p.getDestination().getDestinationCompany().trim())
-                        .append(chrRepeat(" ", columnWidth[8] - p.getDestination().getDestinationCompany().trim().length()))
-                        .append("| ")
-                        .append(p.getDestination().getDestinationCompanyAddress().trim())
-                        .append(chrRepeat(" ", columnWidth[9] - p.getDestination().getDestinationCompanyAddress().trim().length()))
-                        .append("| ")
-                        .append(p.getPurpose().trim())
-                        .append(chrRepeat(" ", columnWidth[10] - p.getPurpose().trim().length()))
-                        .append("| ")
-                        .append(p.getDelegationStatus().toString())
-                        .append(chrRepeat(" ", columnWidth[11] - p.getDelegationStatus().toString().trim().length()))
-                        .append("| ")
-                        .append(p.getStartPoint().trim())
-                        .append(chrRepeat(" ", columnWidth[12] - p.getStartPoint().trim().length()))
-                        .append("|")
-                        .append("\n");
-
+                out.append( "| " )
+                        .append( p.getFileLineNumber().toString().trim() )
+                        .append( chrRepeat( " ", columnWidth[0] - lenLP.toString().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getCreationDate() )
+                        .append( " | " )
+                        .append( p.getEmployee().getEmployeeName().trim() )
+                        .append( chrRepeat( " ", columnWidth[2] - p.getEmployee().getEmployeeName().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getEmployee().getEmployeeSurname().trim() )
+                        .append( chrRepeat( " ", columnWidth[3] - p.getEmployee().getEmployeeSurname().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getStartDate() )
+                        .append( " | " )
+                        .append( p.getEndDate() )
+                        .append( " | " )
+                        .append( p.getDestination().getDestinationCountry().trim() )
+                        .append( chrRepeat( " ", columnWidth[6] - p.getDestination().getDestinationCountry().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getDestination().getDestinationCity().trim() )
+                        .append( chrRepeat( " ", columnWidth[7] - p.getDestination().getDestinationCity().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getDestination().getDestinationCompany().trim() )
+                        .append( chrRepeat( " ", columnWidth[8] - p.getDestination().getDestinationCompany().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getDestination().getDestinationCompanyAddress().trim() )
+                        .append( chrRepeat( " ", columnWidth[9] - p.getDestination().getDestinationCompanyAddress().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getPurpose().trim() )
+                        .append( chrRepeat( " ", columnWidth[10] - p.getPurpose().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getDelegationStatus().toString() )
+                        .append( chrRepeat( " ", columnWidth[11] - p.getDelegationStatus().toString().trim().length() ) )
+                        .append( "| " )
+                        .append( p.getStartPoint().trim() )
+                        .append( chrRepeat( " ", columnWidth[12] - p.getStartPoint().trim().length() ) )
+                        .append( "|" )
+                        .append( "\n" );
             }
-            out.append(chrRepeat("=", columnWideWidth))
-                    .append("\n");
-
-            consolePrinter.printLine(out.toString());
+            out.append( chrRepeat( "=", columnWideWidth ) )
+                    .append( "\n" );
+            consolePrinter.printLine( out.toString() );
         }
     }
 
     private String chrRepeat(String str, int n) {
 
         StringBuilder spaceRep = new StringBuilder();
-
         for (int i = 0; i <= n; i++) {
-            spaceRep.append(str);
+            spaceRep.append( str );
         }
-
         return spaceRep.toString();
     }
 
     public Integer delegationMaxId() {
         List<Delegation> maxDelegation = getDelegationsAll();
-
         Integer maxId = 0;
 
-        for (Delegation p : maxDelegation)
-
-        {
+        for (Delegation p : maxDelegation) {
             if (p.getFileLineNumber() > maxId) {
                 maxId = p.getFileLineNumber();
             }
         }
-
         return ++maxId;
     }
 }

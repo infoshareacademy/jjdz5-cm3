@@ -78,12 +78,11 @@ public class DelegationRepository {
                         writer.newLine();
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }} else {
+                    }
+                } else {
                     consolePrinter.printLine ("| Brak podanego pliku: " + file );
                     consolePrinter.printLine ("| Podaj nazwę pliku w MENU > 2. Domyślny folder > .....");
                 }break;
-
-
             case 2:
                 consolePrinter.printLine("Odrzucasz delegacje");
                 break;

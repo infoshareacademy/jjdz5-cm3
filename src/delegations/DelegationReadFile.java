@@ -39,8 +39,9 @@ public class DelegationReadFile {
             consolePrinter.printLine( "| Plik jest pusty. " );
             consolePrinter.printLine( "| Dodaj delegację " );
             consoleClearScreen.clrscr();
+        } else {
+            isCheckedFile = true;
         }
-
 
         if (isCheckedFile) {
             try {
