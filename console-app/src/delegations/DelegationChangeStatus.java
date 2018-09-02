@@ -17,7 +17,6 @@ public class DelegationChangeStatus {
     public void delegationChangeStatus() {
         List<Delegation> delegationsAll = delegationPreview.getDelegationsAll();
         List<Delegation> delegationsToAccept = delegationPreview.getDelegationsToAccept();
-
         Delegation delegation;
         Integer delegationDecision;
         Integer rowNumber;
@@ -28,7 +27,6 @@ public class DelegationChangeStatus {
                 consolePrinter.printLine("||");
                 consolePrinter.printLine("|| Brak delegacji do akceptacji lub odrzucenia");
                 consolePrinter.printLine("||");
-
                 consoleClearScreen.clrscr();
                 return;
             }
@@ -67,28 +65,24 @@ public class DelegationChangeStatus {
                     case 9:
                         delegationChangeStatus();
                         return;
-                    //    break;
                     case 1:
                         delegation.setDelegationStatus(DelegationStatus.ACCEPTED);
                         delegationRepository.changeDelegationStatus(delegation);
                         consolePrinter.printLine("| Delegacja została zaakceptowana");
                         delegationPreview.delegationPreview(2);
                         return;
-                    //   break;
                     case 2:
                         delegation.setDelegationStatus(DelegationStatus.DISCARTED);
                         delegationRepository.changeDelegationStatus(delegation);
                         consolePrinter.printLine("| Delegacja została odrzucona");
                         delegationPreview.delegationPreview(2);
                         return;
-                    //    break;
                     default:
                         consolePrinter.printLine("| Wpisano niepoprawny numer decyzji");
                         consolePrinter.printLine("| 1. aby zaakceptować" );
                         consolePrinter.printLine("| 2. aby odrzucić wniosek delegacyjny");
                         delegationChangeStatus();
                         break;
-
                 }
             }
         }

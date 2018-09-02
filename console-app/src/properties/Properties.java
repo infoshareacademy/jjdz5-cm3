@@ -9,10 +9,10 @@ public class Properties {
     public static Path userDelegationPath;
     public static String userDelegationCountry;
 
-    private final Path propertiesPath = Paths.get(System.getProperty("user.dir"), "src", "properties", "properties.json");
-    private final String defaultCountry = "Polska";
-    private final Path defaultDelegationPath = Paths.get(System.getProperty("user.dir"), "paths", "data", FILE_NAME);
-    private final Path defaultDataPath = Paths.get(System.getProperty("user.dir"), "paths", "data");
+    private final Path propertiesPath = Paths.get(System.getProperty("user.home"), "development","jjdz5-cm3","src", "properties", "properties.json");
+    private final String defaultCountry = "Poland";
+    private final Path defaultDelegationPath = Paths.get(System.getProperty("user.home"), "development","jjdz5-cm3","console-app","paths", "data", FILE_NAME);
+    private final Path defaultDataPath = Paths.get(System.getProperty("user.home"), "development","jjdz5-cm3","console-app", "paths", "data");
 
 
     public Path getPropertiesPath() {

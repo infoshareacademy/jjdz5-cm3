@@ -13,7 +13,6 @@ public class Employee {
     }
 
     Employee() {
-
     }
 
     public String getEmployeeName() {
