@@ -62,7 +62,7 @@ public class DelegationRepository {
     public void addDelegation(Delegation delegation) {
 
 
-        Integer intFromUser = consoleReader.getInt(1, 2);
+        Integer intFromUser = consoleReader.getShortInt();
 
         switch (intFromUser) {
 
