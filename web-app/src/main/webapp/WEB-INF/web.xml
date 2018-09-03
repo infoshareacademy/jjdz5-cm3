@@ -2,6 +2,18 @@
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
+
 <web-app>
+
+    <servlet>
+        <servlet-name>DelegationAdd</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAdd</servlet-class>
+
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DelegationAdd</servlet-name>
+        <url-pattern>/DelegationAdd</url-pattern>
+    </servlet-mapping>
     <display-name>Archetype Created Web Application</display-name>
 </web-app>

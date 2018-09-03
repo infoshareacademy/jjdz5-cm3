@@ -11,7 +11,7 @@
     <div class="form">
 
         <label>Data delegacji</label>
-        <form action="./delegation-add" method="get">
+        <form action="DelegationAdd" method="post">
             Podaj imię <input type="text" name="name"> &nbsp&nbsp&nbsp &nbsp&nbsp&nbspPodaj nazwisko <input type="text" name="surname"><br><br>
            Podaj datę wyjazdu: <input type="date" name="startDate"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Podaj datę powrotu:<input type="date" name="endDate"><br><br>
             Wybierz kraj

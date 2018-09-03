@@ -6,6 +6,7 @@ import com.isa.cm3.delegations.*;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 public class DelegationAdd extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.getParameterMap();
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
@@ -37,8 +38,15 @@ public class DelegationAdd extends HttpServlet {
         String purposeReq = req.getParameter("purpose");
         String startPointReq = req.getParameter("startPoint");
 
+        Cookie[] t = req.getCookies();
+        for (Cookie cookie : t) {
+            writer.println(cookie + "<br>");
 
-
+        }
+        writer.println(req.getRemoteUser() + "<br>");
+        writer.println(req.getPathInfo() + "<br>");
+        writer.println(req.getContextPath() + "<br>");
+        writer.println(req.getServletPath() + "<br>");
         writer.println(LocalDate.parse(startDateReq));
         writer.println(nameReq + " " + surNameReq + " " + startDateReq + " " + endDateReq + " " + countryReq + " " + cityReq + " " + companyReq + " " + companyAdresReq + " " + startPointReq + " "
                 + purposeReq);
@@ -48,7 +56,9 @@ public class DelegationAdd extends HttpServlet {
         Delegation delegation = new Delegation();
         Employee employee = new Employee();
         Destination destination = new Destination();
+        DelegationRepository delegationRepository = new DelegationRepository();
 
+        delegation.setFileLineNumber(delegationRepository.getDelegationId());
         delegation.setCreationDate(LocalDate.now());
         employee.setEmployeeName(nameReq);
         employee.setEmployeeSurname(surNameReq);
@@ -67,7 +77,9 @@ public class DelegationAdd extends HttpServlet {
         DelegationSaveToFile delegationSaveToFile = new DelegationSaveToFile();
 
        delegationSaveToFile.saveToFile(delegation);
+       delegationRepository.setDelegationId(delegationRepository.getDelegationId());
        writer.println("<br><br>");
+
 
 
 
