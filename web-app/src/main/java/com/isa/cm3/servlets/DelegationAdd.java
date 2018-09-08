@@ -3,6 +3,7 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.*;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -17,6 +18,8 @@ import java.time.LocalDate;
 @WebServlet("/delegation-add")
 public class DelegationAdd extends HttpServlet {
 
+    @Inject
+    DelegationRepository delegationRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +52,8 @@ public class DelegationAdd extends HttpServlet {
         Delegation delegation = new Delegation();
         Employee employee = new Employee();
         Destination destination = new Destination();
-        DelegationRepository delegationRepository = new DelegationRepository();
+
+
 
         delegation.setFileLineNumber(delegationRepository.getDelegationId());
         delegation.setCreationDate(LocalDate.now());

@@ -8,12 +8,23 @@
     <servlet>
         <servlet-name>DelegationAdd</servlet-name>
         <servlet-class>com.isa.cm3.servlets.DelegationAdd</servlet-class>
-
     </servlet>
-    
+
+
     <servlet-mapping>
         <servlet-name>DelegationAdd</servlet-name>
         <url-pattern>/DelegationAdd</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DelegationAddForm</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAddForm</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelegationAddForm</servlet-name>
+        <url-pattern>/DelegationAddForm</url-pattern>
     </servlet-mapping>
     <display-name>Archetype Created Web Application</display-name>
 </web-app>

@@ -9,7 +9,7 @@
 <h1>STRONA STARTOWA DELEGACJI</h1>
 
 
-<a href="addDelegation.jsp">Dodanie delegacji</a>
+<a href="/delegations-web/DelegationAddForm">Dodanie delegacji</a>
 
 </body>
 </html>
