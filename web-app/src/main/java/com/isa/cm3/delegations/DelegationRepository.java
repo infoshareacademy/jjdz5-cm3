@@ -12,34 +12,34 @@ import java.util.List;
 
 public class DelegationRepository {
 
+    public static List<Delegation> list = new ArrayList<>();
     private static Integer delegationInicialId = loadId();
     private Integer delegationId = getDelegationInicialId();
 
-
-
-
-    public static List<Delegation> list = new ArrayList<>();
-
-    public static Integer loadId (){
-            Integer i = 1;
-            Path path = Paths.get(System.getProperty("jboss.server.data.dir"),"delegations.txt");
+    public static Integer loadId() {
+        Integer i = 1;
+        Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
         try {
-            Reader reader = Files.newBufferedReader(path,StandardCharsets.UTF_8);
+            Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
 
 
-            if (((BufferedReader) reader).readLine() == null){
-                return 1;}
-                else {
-            do {
-                i++;
-            }
-            while (((BufferedReader) reader).readLine() != null);
+            if (((BufferedReader) reader).readLine() == null) {
+                return 1;
+            } else {
+                do {
+                    i++;
+                }
+                while (((BufferedReader) reader).readLine() != null);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return i;
 
+    }
+
+    public static List<Delegation> getList() {
+        return list;
     }
 
     public Integer getDelegationInicialId() {
@@ -52,9 +52,5 @@ public class DelegationRepository {
 
     public void setDelegationId(Integer delegationId) {
         this.delegationId = delegationId + 1;
-    }
-
-    public static List<Delegation> getList() {
-        return list;
     }
 }

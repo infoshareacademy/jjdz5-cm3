@@ -3,7 +3,6 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -12,17 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 
 
 @WebServlet("/delegation-add")
 public class DelegationAdd extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         req.getParameterMap();
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
         PrintWriter writer = resp.getWriter();
@@ -38,19 +39,11 @@ public class DelegationAdd extends HttpServlet {
         String purposeReq = req.getParameter("purpose");
         String startPointReq = req.getParameter("startPoint");
 
-        Cookie[] t = req.getCookies();
-        for (Cookie cookie : t) {
-            writer.println(cookie + "<br>");
 
-        }
-        writer.println(req.getRemoteUser() + "<br>");
-        writer.println(req.getPathInfo() + "<br>");
-        writer.println(req.getContextPath() + "<br>");
-        writer.println(req.getServletPath() + "<br>");
-        writer.println(LocalDate.parse(startDateReq));
+        resp.setContentType("text/html;charset=UTF-8");
         writer.println(nameReq + " " + surNameReq + " " + startDateReq + " " + endDateReq + " " + countryReq + " " + cityReq + " " + companyReq + " " + companyAdresReq + " " + startPointReq + " "
                 + purposeReq);
-        getServletContext().getResourcePaths("delegations.txt");
+        //getServletContext().getResourcePaths("delegations.txt");
         //writer.println("<br>" + );
         //tworzenie obiektu
         Delegation delegation = new Delegation();
@@ -78,7 +71,7 @@ public class DelegationAdd extends HttpServlet {
 
        delegationSaveToFile.saveToFile(delegation);
        delegationRepository.setDelegationId(delegationRepository.getDelegationId());
-       writer.println("<br><br>");
+       writer.println("Delegacja zapisana <br><br>");
 
 
 
