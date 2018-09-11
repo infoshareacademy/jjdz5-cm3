@@ -67,9 +67,9 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="validationCustomCity">Kraj</label>
-
-                    <input type="text" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"
-                           name="country" value="Polska" required>
+                    <#include "countryList.ftlh">
+                    <#--<input type="text" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"-->
+                           <#--name="country" value="Polska" required>-->
                         <#include "formValidationDivCode.ftlh">
 
                 </div>
