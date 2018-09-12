@@ -1,7 +1,9 @@
 package com.isa.cm3.delegations;
 
+import javax.enterprise.context.RequestScoped;
 import java.time.LocalDate;
 
+@RequestScoped
 public class Delegation {
     private Integer fileLineNumber;
     private LocalDate creationDate;

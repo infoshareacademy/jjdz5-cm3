@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>DelegationAdd</servlet-name>
-        <servlet-class>com.isa.cm3.servlets.DelegationAdd</servlet-class>
+        <servlet-class>com.isa.cm3.servlets.DelegationAddProces</servlet-class>
     </servlet>
 
 
