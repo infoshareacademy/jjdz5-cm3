@@ -24,7 +24,7 @@
         </div>
     </div>
     <div id="container-fluid">
-        <#if .data_model == "mapa">
+        <#if data_model == "mapa">
         <form class="needs-validation" action="delegation-add" method="GET" novalidate>
             <div class="form-row">
 

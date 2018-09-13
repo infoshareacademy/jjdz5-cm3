@@ -48,7 +48,7 @@ public class DelegationAddProces extends HttpServlet {
         for (String s : req.getParameterMap().keySet()) {
             String[] str = req.getParameterMap().get(s);
             for (String s1 : str) {
-                writer.println("klucz: " + s + " , value: " + s1);
+//                writer.println("klucz: " + s + " , value: " + s1);
                 parameterMap.put(s, s1);
             }
         }
@@ -57,7 +57,7 @@ public class DelegationAddProces extends HttpServlet {
 
         if (!validationInfo.equalsIgnoreCase("ok")) {
 
-            model.put("errorMessage", validationInfo);
+            model.put("mapa", validationInfo);
         } else {
             model.put("mapa", parameterMap);
         }

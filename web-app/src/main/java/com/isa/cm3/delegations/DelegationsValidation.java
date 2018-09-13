@@ -11,7 +11,7 @@ public class DelegationsValidation {
 
     private final String regExNameAndSurname = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final String city = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół])";
+    private final String city = "(^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,)(?![0-9,=,$,#,%,!,^,&,*,@]).)*$)";
     private final String company = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private final String companyAdres = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private final String startPoint = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
@@ -23,7 +23,9 @@ public class DelegationsValidation {
 
             String value = map.get(key);
 
-            if (key == "name") {
+            if (key.equals("country") || key.equals("pupose")) {
+                continue;
+            } else if (key.equals("name")) {
                 if (!value.matches(regExNameAndSurname)) {
                     return "Błędnie wpisane Imię";
                 }
@@ -38,8 +40,9 @@ public class DelegationsValidation {
             } else if (key.equals("endDate")) {
                 if (!dateVAlidation(value, formater).equals("ok")) {
                     return dateVAlidation(map.get(key), formater);
-                }continue;
-            } else if (key == "city") {
+                }
+                continue;
+            } else if (key.equals("city")) {
                 if (!value.matches(city)) {
                     return "Błędnie wpisane miasto - wpisz tylko litery";
                 }
@@ -56,7 +59,8 @@ public class DelegationsValidation {
                     return "Błędnie podana adres firmy";
                 }
             }
-        } return "true";
+        }
+        return "ok";
     }
 
 
