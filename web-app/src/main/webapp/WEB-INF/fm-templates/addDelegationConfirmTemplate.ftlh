@@ -19,45 +19,38 @@
 <div style="width: 1100px; margin-left: auto;margin-right: auto">
     <div class="jumbotron jumbotron-fluid bg-info text-white text-center">
         <div class="container">
-            <h1 class="display-1">Dodawanie delegacji </h1>
+            <h1 class="display-1">Podsumowanie delgecji </h1>
             <p class="lead"> by CM3</p>
         </div>
     </div>
-    <div id="container-fluid">
-        <#if data_model == "mapa">
-        <form class="needs-validation" action="delegation-add" method="GET" novalidate>
-            <div class="form-row">
+<div id="container-fluid">
+        <#if mapa?is_string>
+             <div class="alert alert-info" role="alert">
 
-                <div class="col-md-4 mb-3 lg-4">
-                    <label for="validationCustom01">Imię</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="Imię"
-                           name="name" value="Marek" required>
-                    <#include "formValidationDivCode.ftlh">
-                </div>
+             </div>
 
-                <div class="col-md-4 mb-3 lg-4">
-                    <label for="validationCustom02">Nazwisko</label>
-                    <input type="text" class="form-control" id="validationCustom02" placeholder="Nazwisko"
-                           name="surname" value="Kalkowski" required>
-                    <#include "formValidationDivCode.ftlh">
-                </div>
-            </div>
         <#else>
 
-            <div class="alert alert-info" role="alert">
+        <ul class="list-group">
+            <li class="list-group-item">Imię: ${mapa.name}</li>
+            <li class="list-group-item">Nazwisko: ${mapa.surname}</li>
+            <li class="list-group-item">Data od: ${mapa.startDate}</li>
+            <li class="list-group-item">Data do: ${mapa.endDate}</li>
+            <li class="list-group-item">Kraj: ${mapa.country}</li>
+            <li class="list-group-item">Miasto: ${mapa.city}</li>
+            <li class="list-group-item">Firma: ${mapa.company}</li>
+            <li class="list-group-item">Adres Firm: ${mapa.companyAdres}</li>
+            <li class="list-group-item">Cel wyjazdu: ${mapa.purpose}</li>
+            <li class="list-group-item">Miejsce startu: ${mapa.startPoint}</li>
+        </ul>
 
-            </div>
+        <form class="needs-validation" action="delegation-add" method="GET" novalidate>
+            <button class="btn btn-primary" type="submit" lang="pl-PL">Zapisz</button>
+        </form>
+</div>
+</div>
+          </div>
         </#if>
-
-
-
-    </div>
-
-    <button class="btn btn-primary" type="submit" lang="pl-PL" >Zapisz</button>
-    </form>
-</div>
-</div>
-
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

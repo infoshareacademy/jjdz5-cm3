@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/addForm")
-public class DelegationAddForm extends HttpServlet {
+public class DelegationAddFormServlet extends HttpServlet {
 
     @Inject
     TemplateProvider templateProvider;

@@ -2,6 +2,7 @@ package com.isa.cm3.servlets;
 
 
 import com.isa.cm3.delegations.Delegation;
+import com.isa.cm3.delegations.DelegationMapForValidation;
 import com.isa.cm3.delegations.DelegationRepository;
 import com.isa.cm3.delegations.DelegationsValidation;
 import com.isa.cm3.freemarker.TemplateProvider;
@@ -21,10 +22,13 @@ import java.util.Map;
 
 
 @WebServlet("/delegation-add")
-public class DelegationAddProces extends HttpServlet {
+public class DelegationAddProcesServlet extends HttpServlet {
 
     @Inject
     DelegationRepository delegationRepository;
+
+    @Inject
+    DelegationMapForValidation delegationMapForValidation;
 
     @Inject
     DelegationsValidation delegationsValidation;
@@ -39,7 +43,7 @@ public class DelegationAddProces extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        Map<String, String> parameterMap = new HashMap<>();
+
         Map<String, Object> model = new HashMap<>();
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
@@ -48,18 +52,17 @@ public class DelegationAddProces extends HttpServlet {
         for (String s : req.getParameterMap().keySet()) {
             String[] str = req.getParameterMap().get(s);
             for (String s1 : str) {
-//                writer.println("klucz: " + s + " , value: " + s1);
-                parameterMap.put(s, s1);
+                delegationMapForValidation.setParametrMap(s, s1);
             }
         }
 
-        String validationInfo = delegationsValidation.requestValidation(parameterMap);
+        String validationInfo = delegationsValidation.requestValidation(delegationMapForValidation.getParametrMap());
 
         if (!validationInfo.equalsIgnoreCase("ok")) {
 
             model.put("mapa", validationInfo);
         } else {
-            model.put("mapa", parameterMap);
+            model.put("mapa", delegationMapForValidation.getParametrMap());
         }
 
         Template template = templateProvider
@@ -71,25 +74,8 @@ public class DelegationAddProces extends HttpServlet {
         }
 
 
-//        writer.println("##########################");
-//        for (Map.Entry<String, String[]> entry : req.getParameterMap().entrySet()) {
-//            String key = entry.getKey();
-//            String str = String.valueOf(Arrays.toString(entry.getValue())).replace('[', ' ').replace(']', ' ').trim();
-//            parameterMap.put(key, str);
 
 
-//        writer.println(parameterMap.toString());
-//
-//        String nameReq = req.getParameter("name");
-//        String surNameReq = req.getParameter("surname");
-//        String startDateReq = req.getParameter("startDate");
-//        String endDateReq = req.getParameter("endDate");
-//        String countryReq = req.getParameter("country");
-//        String cityReq = req.getParameter("city");
-//        String companyReq = req.getParameter("company");
-//        String companyAdresReq = req.getParameter("companyAdres");
-//        String purposeReq = req.getParameter("purpose");
-//        String startPointReq = req.getParameter("startPoint");
 //
 //
 //        resp.setContentType("text/html;charset=UTF-8");
