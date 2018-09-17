@@ -1,7 +1,10 @@
 package com.isa.cm3.delegations;
 
+import javax.enterprise.context.RequestScoped;
 import java.util.Objects;
 
+
+@RequestScoped
 public class Employee {
 
     private String employeeName;

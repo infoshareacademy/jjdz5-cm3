@@ -23,34 +23,39 @@
             <p class="lead"> by CM3</p>
         </div>
     </div>
-<div id="container-fluid">
-        <#if mapa?is_string>
-             <div class="alert alert-info" role="alert">
-
-             </div>
-
+    <div id="container-fluid">
+        <#if mapa?is_hash>
+            <ul class="list-group">
+                <li class="list-group-item">Imię: ${mapa.name}</li>
+                <li class="list-group-item">Nazwisko: ${mapa.surname}</li>
+                <li class="list-group-item">Data od: ${mapa.startDate}</li>
+                <li class="list-group-item">Data do: ${mapa.endDate}</li>
+                <li class="list-group-item">Kraj: ${mapa.country}</li>
+                <li class="list-group-item">Miasto: ${mapa.city}</li>
+                <li class="list-group-item">Firma: ${mapa.company}</li>
+                <li class="list-group-item">Adres Firm: ${mapa.companyAdres}</li>
+                <li class="list-group-item">Cel wyjazdu: ${mapa.purpose}</li>
+                <li class="list-group-item">Miejsce startu: ${mapa.startPoint}</li>
+            </ul>
+            <form class="needs-validation" action="delegation-save" method="POST" novalidate>
+                <button class="btn btn-primary" type="submit" lang="pl-PL">Zapisz</button>
+            </form>
+            <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
+                <button class="btn btn-primary" type="submit" lang="pl-PL">powrót</button>
+            </form>
         <#else>
-
-        <ul class="list-group">
-            <li class="list-group-item">Imię: ${mapa.name}</li>
-            <li class="list-group-item">Nazwisko: ${mapa.surname}</li>
-            <li class="list-group-item">Data od: ${mapa.startDate}</li>
-            <li class="list-group-item">Data do: ${mapa.endDate}</li>
-            <li class="list-group-item">Kraj: ${mapa.country}</li>
-            <li class="list-group-item">Miasto: ${mapa.city}</li>
-            <li class="list-group-item">Firma: ${mapa.company}</li>
-            <li class="list-group-item">Adres Firm: ${mapa.companyAdres}</li>
-            <li class="list-group-item">Cel wyjazdu: ${mapa.purpose}</li>
-            <li class="list-group-item">Miejsce startu: ${mapa.startPoint}</li>
-        </ul>
-
-        <form class="needs-validation" action="delegation-add" method="GET" novalidate>
-            <button class="btn btn-primary" type="submit" lang="pl-PL">Zapisz</button>
-        </form>
-</div>
-</div>
-          </div>
+        <div class="alert alert-info" role="alert">
+            ${mapa}
+        </div>
+            <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
+                <button class="btn btn-primary" type="submit" lang="pl-PL">powrót</button>
+            </form>
         </#if>
+
+    </div>
+</div>
+</div>
+
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

@@ -1,7 +1,9 @@
 package com.isa.cm3.delegations;
 
+import javax.enterprise.context.RequestScoped;
 import java.util.Objects;
 
+@RequestScoped
 public class Destination {
 
     private String destinationCountry;

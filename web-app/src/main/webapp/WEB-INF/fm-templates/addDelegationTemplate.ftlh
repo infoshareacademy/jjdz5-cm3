@@ -68,8 +68,8 @@
                 <div class="col-md-4 mb-3">
                     <label for="validationCustomCity">Kraj</label>
                     <#include "countryList.ftlh">
-                    <#--<input type="text" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"-->
-                           <#--name="country" value="Polska" required>-->
+                <#--<input type="text" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"-->
+                <#--name="country" value="Polska" required>-->
                         <#include "formValidationDivCode.ftlh">
 
                 </div>
@@ -115,7 +115,10 @@
 
     </div>
 
-    <button class="btn btn-primary" type="submit" lang="pl-PL" >Zatwierdź</button>
+    <button class="btn btn-primary" type="submit" lang="pl-PL">Zatwierdź</button>
+    </form>
+    <form class="needs-validation" action="/delegations-web/">
+        <button class="btn btn-primary" type="submit" lang="pl-PL">powrót</button>
     </form>
 </div>
 </div>
