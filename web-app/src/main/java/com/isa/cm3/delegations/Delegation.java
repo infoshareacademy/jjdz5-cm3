@@ -1,10 +1,13 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
-@RequestScoped
-public class Delegation {
+@SessionScoped
+public class Delegation implements Serializable {
     private Integer fileLineNumber;
     private LocalDate creationDate;
     private LocalDate startDate;
@@ -113,6 +116,28 @@ public class Delegation {
 
     public void setStartPoint(String startPoint) {
         this.startPoint = startPoint;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Delegation that = (Delegation) o;
+        return Objects.equals(fileLineNumber, that.fileLineNumber) &&
+                Objects.equals(creationDate, that.creationDate) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate) &&
+                Objects.equals(purpose, that.purpose) &&
+                delegationStatus == that.delegationStatus &&
+                Objects.equals(startPoint, that.startPoint) &&
+                Objects.equals(employee, that.employee) &&
+                Objects.equals(destination, that.destination);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(fileLineNumber, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, employee, destination);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.delegations.Delegation;
+import com.isa.cm3.delegations.DelegationRepository;
+import com.isa.cm3.delegations.DelegationsLoadFromFile;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(urlPatterns = {"/toAccept"})
@@ -19,15 +23,23 @@ public class DelegationsToAcceptViewServlet extends HttpServlet {
 
     @Inject
     TemplateProvider templateProvider;
+    @Inject
+    DelegationRepository delegationRepository;
+    @Inject
+    DelegationsLoadFromFile delegationsLoadFromFile;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
+       delegationsLoadFromFile.loadDelegationsFromFile();
+        List<Delegation> test = delegationRepository.getList();
         Map<String,Object> model   = new HashMap<>();
+        model.put("delegations",delegationRepository.getList());
         Template template = templateProvider
-                .getTemplate(getServletContext(), "addDelegationTemplate");
+                .getTemplate(getServletContext(), "delegationsToAcceptViewTemplate");
 
         try {
             template.process(model, resp.getWriter());

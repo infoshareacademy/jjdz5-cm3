@@ -9,7 +9,8 @@
 <h1>STRONA STARTOWA DELEGACJI</h1>
 
 
-<a href="/delegations-web/DelegationAddForm">Dodanie delegacji</a>
+<a href="/delegations-web/DelegationAddForm">Dodanie delegacji</a> ||||
+<a href="/delegations-web/toAccept">Akceptacja / odrzucenie delegacji</a>
 
 </body>
 </html>
