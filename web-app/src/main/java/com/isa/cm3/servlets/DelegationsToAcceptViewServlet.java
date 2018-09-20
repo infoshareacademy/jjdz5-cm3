@@ -2,6 +2,7 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.DelegationRepository;
+import com.isa.cm3.delegations.DelegationStatus;
 import com.isa.cm3.delegations.DelegationsLoadFromFile;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
