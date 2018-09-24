@@ -16,6 +16,17 @@
         <url-pattern>/DelegationAdd</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DelegationAcceptDiscardServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAcceptDiscardServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>DelegationAcceptDiscardServlet</servlet-name>
+        <url-pattern>/accept</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>DelegationAddFormServlet</servlet-name>

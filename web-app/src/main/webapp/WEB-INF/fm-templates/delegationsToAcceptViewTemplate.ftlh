@@ -24,10 +24,41 @@
             <p class="lead"> by CM3</p>
         </div>
     </div>
+    <form action="acceptServlet" method="get">
+         <#list delegations as d>
 
-<#list delegations as d>
-    ${d}
-</#list>
+         <div class="form-check">
+             <input class="form-check-input" type="radio" name="wybor" id="lista" value="${d.getFileLineNumber()}">
+             <label class="form-check-label" for="lista">
+                 ${d}
+             </label>
+         </div>
+
+
+         <#--<div class="input-group mb-3">-->
+             <#--<div class="input-group-prepend">-->
+                 <#--<div class="input-group-text">-->
+                     <#--<input type="checkbox" name="${d.getFileLineNumber}" value="${d.getFileLineNumber}">-->
+                 <#--</div>-->
+             <#--</div>-->
+             <#--<input type="text" class="form-control" value="${d} ">-->
+         <#--</div>-->
+
+
+
+
+             <#--<div class="form-check">-->
+                 <#--<label class="form-check-label" for="check1">-->
+                     <#--<input type="checkbox" class="form-check-input" id="check1" name="${d.getFileLineNumber()}"-->
+                            <#--value="${d.getFileLineNumber()}"> ${d}-->
+                 <#--</label>-->
+             <#--</div>-->
+
+         </#list>
+        <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept">Akceptuj</button>
+        <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard">odrzuć </button>
+
+    </form>
 
 </div>
 </body>

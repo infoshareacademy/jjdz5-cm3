@@ -42,21 +42,6 @@ public class DelegationsLoadFromFile {
                 if (!line.equals("")) {
                     List<String> tempList = Arrays.asList(line.split(","));
 
-//                    delegation.setFileLineNumber(Integer.valueOf(tempList.get(0).trim()));
-//                    delegation.setCreationDate(LocalDate.parse(tempList.get(1).trim(), formater));
-//                    employee.setEmployeeName(tempList.get(2).trim());
-//                    employee.setEmployeeSurname(tempList.get(3).trim());
-//                    delegation.setStartDate(LocalDate.parse(tempList.get(4).trim(), formater));
-//                    delegation.setEndDate(LocalDate.parse(tempList.get(5).trim(), formater));
-//                    destination.setDestinationCountry(tempList.get(6).trim());
-//                    destination.setDestinationCity(tempList.get(7).trim());
-//                    destination.setDestinationCompany(tempList.get(8).trim());
-//                    destination.setDestinationCompanyAddress(tempList.get(9).trim());
-//                    delegation.setPurpose(tempList.get(10).trim());
-//                    delegation.setDelegationStatus(DelegationStatus.valueOf(tempList.get(11).trim()));
-//                    delegation.setStartPoint(tempList.get(12).trim());
-//                    delegation.setEmployee(employee);
-//                    delegation.setDestination(destination);
                     if (DelegationStatus.valueOf(tempList.get(11).trim()).equals(DelegationStatus.SAVED)) {
 
                         delegationRepository.setList(new Delegation(
@@ -82,6 +67,6 @@ public class DelegationsLoadFromFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       // return list;
+
     }
 }
