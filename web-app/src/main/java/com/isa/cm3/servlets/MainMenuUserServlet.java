@@ -1,6 +1,6 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.freemarker.MapModelGenerator;
+
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet(urlPatterns = "")
-public class WelcomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/mainMenuUser")
+public class MainMenuUserServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -27,7 +27,7 @@ public class WelcomeServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "welcomeTemplate");
+                .getTemplate(getServletContext(), "mainMenuForUser");
         try {
             template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {
