@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet(urlPatterns = "/mainMenuAdmin")
-public class MainMenuAdminServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/searchDelegations")
+public class DelegationSearchServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -26,7 +27,7 @@ public class MainMenuAdminServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "mainMenuForAdministrator");
+                .getTemplate(getServletContext(), "searchingDelegationsTemplate");
         try {
             template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {

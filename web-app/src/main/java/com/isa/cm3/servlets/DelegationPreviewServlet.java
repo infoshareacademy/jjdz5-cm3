@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet(urlPatterns = "/mainMenuUser")
-public class MainMenuUserServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/myDelegations")
+public class DelegationPreviewServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -27,7 +27,7 @@ public class MainMenuUserServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "mainMenuForUser");
+                .getTemplate(getServletContext(), "previewMyDelegations");
         try {
             template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {

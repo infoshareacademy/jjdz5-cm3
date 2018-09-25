@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
-    <title>Sign in</title>
+    <title>Main menu</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -33,43 +33,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/delegations-web/"> &#9992 delegations-web.com</a>
+            <a class="navbar-brand" href="/delegations-web/mainMenu"> &#9992 delegations-web.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/delegations-web/myDelegations">Moje delegacje</a></li>
+                <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
+                <li><a href="/delegations-web/searchDelegations">Szukaj delegacji</a></li>
+                <li><a href="/delegations-web/manageDelegations">Zarządzaj delegacjami</a></li>
+                <li><a href="/delegations-web/contact">Kontakt</a></li>
+                <li><a href="/delegations-web/about">O nas</a></li>
+                <li>
+                    <a href="/delegations-web/sign-in" class="btn btn-default btn-outline btn-circle">Wyloguj się</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
-<div class="container" style="width: 500px">
-    <div class="row" style="margin: 15px">
-        <div class="col-md-12">
-            <p align="center">
-                <img src="images/globe.jpg" alt="logo" style="width:30%">
-            </p>
+<div class="container" style="width: 600px; text-align: center; margin-top: 25px">
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Wpisz swój adres email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <form action="">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nazwa użytkownika</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Wpisz nazwę użytkownika">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Hasło</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Wpisz Hasło">
-                    <small id="passwordHelp" class="form-text text-muted">Zapomniałeś nazwy użytkownika bądź hasła?</small>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
-                </div>
-            </form>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Wybierz rodzaj wiadomości</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Zapytanie</option>
+                <option>Chęć nawiązania współpracy</option>
+                <option>Prośba o kontakt</option>
+                <option>Skarga</option>
+            </select>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Wpisz treść wiadomości</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+        </div>
+    </form>
 </div>
 <div class="container" style="width: 100%; text-align: center">
     <div class="row">
         <div class="col-md-12">
-            <form action="/delegations-web/mainMenu">
-                <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin-top: 5px">Zaloguj się</button>
+            <form action="/delegations-web/messageSent">
+                <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin-top: 5px">Wyślij</button>
             </form>
         </div>
     </div>
@@ -77,7 +83,6 @@
 <footer class="footer">
     <p class="float">&copy; 2018 Kurs InfoShare Academy &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 </footer>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
