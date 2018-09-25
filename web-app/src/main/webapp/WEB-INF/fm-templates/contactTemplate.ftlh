@@ -74,7 +74,7 @@
 <div class="container" style="width: 100%; text-align: center">
     <div class="row">
         <div class="col-md-12">
-            <form action="/delegations-web/messageSent">
+            <form action="/delegations-web/messageSender">
                 <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin-top: 5px">Wyślij</button>
             </form>
         </div>

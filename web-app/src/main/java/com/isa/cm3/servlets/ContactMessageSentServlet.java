@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet(urlPatterns = "/messageSent")
+@WebServlet(urlPatterns = "/messageSender")
 public class ContactMessageSentServlet extends HttpServlet {
 
     @Inject
@@ -27,7 +27,7 @@ public class ContactMessageSentServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "messageSentTemplate");
+                .getTemplate(getServletContext(), "messageSenderTemplate");
         try {
             template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {
