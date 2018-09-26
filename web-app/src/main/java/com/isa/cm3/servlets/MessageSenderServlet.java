@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/messageSender")
-public class ContactMessageSentServlet extends HttpServlet {
+public class MessageSenderServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
