@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/toAccept"})
 public class DelegationsToAcceptViewServlet extends HttpServlet {
@@ -38,7 +39,9 @@ public class DelegationsToAcceptViewServlet extends HttpServlet {
        delegationsLoadFromFile.loadDelegationsFromFile();
         List<Delegation> test = delegationRepository.getList();
         Map<String,Object> model   = new HashMap<>();
-        model.put("delegations",delegationRepository.getList());
+        model.put("delegations",delegationRepository.getList().stream()
+                .sorted((d1,d2)-> d1.getFileLineNumber() - d2.getFileLineNumber() )
+                .collect(Collectors.toList()));
         Template template = templateProvider
                 .getTemplate(getServletContext(), "delegationsToAcceptViewTemplate");
 

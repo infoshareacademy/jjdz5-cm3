@@ -55,8 +55,8 @@
              <#--</div>-->
 
          </#list>
-        <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept">Akceptuj</button>
-        <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard">odrzuć </button>
+        <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept" name="button">Akceptuj</button>
+        <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="button">Odrzuć </button>
 
     </form>
 
