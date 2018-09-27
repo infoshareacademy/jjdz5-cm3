@@ -5,6 +5,10 @@
 
 <web-app>
 
+    <welcome-file-list>
+        <welcome-file>/signIntemplate</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>DelegationAddProcesServlet</servlet-name>
         <servlet-class>com.isa.cm3.servlets.DelegationAddProcesServlet</servlet-class>

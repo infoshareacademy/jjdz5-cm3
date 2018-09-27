@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
-@WebServlet(urlPatterns = "/addForm")
-public class DelegationAddFormServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/sign-in")
+public class SignInServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -25,12 +24,10 @@ public class DelegationAddFormServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        Map<String,Object> model   = new HashMap<>();
         Template template = templateProvider
-                .getTemplate(getServletContext(), "addDelegationTemplate");
-
+                .getTemplate(getServletContext(), "signIntemplate");
         try {
-            template.process(model, resp.getWriter());
+            template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
