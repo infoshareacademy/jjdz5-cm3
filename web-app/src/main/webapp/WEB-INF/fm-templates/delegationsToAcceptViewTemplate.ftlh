@@ -25,7 +25,14 @@
         </div>
     </div>
     <form action="acceptServlet" method="get">
-         <#list delegations as d>
+
+        <#if delegations?is_string>
+            alskdaskldjlsak
+        <#else >
+
+
+        <#list delegations as d>
+
 
          <div class="form-check">
              <input class="form-check-input" type="radio" name="wybor" id="lista" value="${d.getFileLineNumber()}">
@@ -35,29 +42,10 @@
          </div>
 
 
-         <#--<div class="input-group mb-3">-->
-             <#--<div class="input-group-prepend">-->
-                 <#--<div class="input-group-text">-->
-                     <#--<input type="checkbox" name="${d.getFileLineNumber}" value="${d.getFileLineNumber}">-->
-                 <#--</div>-->
-             <#--</div>-->
-             <#--<input type="text" class="form-control" value="${d} ">-->
-         <#--</div>-->
-
-
-
-
-             <#--<div class="form-check">-->
-                 <#--<label class="form-check-label" for="check1">-->
-                     <#--<input type="checkbox" class="form-check-input" id="check1" name="${d.getFileLineNumber()}"-->
-                            <#--value="${d.getFileLineNumber()}"> ${d}-->
-                 <#--</label>-->
-             <#--</div>-->
-
-         </#list>
+        </#list>
         <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept" name="button">Akceptuj</button>
-        <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="button">Odrzuć </button>
-
+        <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="button">Odrzuć</button>
+</#if>
     </form>
 
 </div>

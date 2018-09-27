@@ -2,8 +2,6 @@ package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @RequestScoped
 public class DelegationAcceptDiscardSaveToFile {
@@ -15,18 +13,33 @@ public class DelegationAcceptDiscardSaveToFile {
     DelegationRepository delegationRepository;
 
     @Inject
-    DelegationSaveToFile delegationSaveToFile;
+    DelegationAddToFile delegationSaveToFile;
 
 
-    public void decisionSaving (Integer id, String button, Delegation delegation){
+    public void decisionSaving(Integer id, String button, Delegation delegation) {
+
+        DelegationStatus status;
+
+        if (button.equals("accept")) {
+            status = DelegationStatus.ACCEPTED;
+        } else {
+            status = DelegationStatus.DISCARTED;
+        }
 
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-        int index = delegationRepository.getList().indexOf(delegation);
+        delegationRepository.getList().forEach(delegation1 -> {
+                    if (delegation.getFileLineNumber().equals(id)) {
+                        delegation.setDelegationStatus(status);
+                    }
+                }
+        );
 
-        delegationRepository.getList().remove(index);
 
-        delegationSaveToFile.saveToFile(delegation);
+
+
+
+
 
 
     }

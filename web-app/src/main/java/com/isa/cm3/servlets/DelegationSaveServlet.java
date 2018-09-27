@@ -1,7 +1,7 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.DelegationInstanceGenerator;
-import com.isa.cm3.delegations.DelegationSaveToFile;
+import com.isa.cm3.delegations.DelegationAddToFile;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -22,7 +22,7 @@ public class DelegationSaveServlet extends HttpServlet {
     private DelegationInstanceGenerator delegationInstanceGenerator;
 
     @Inject
-    private DelegationSaveToFile delegationSaveToFile;
+    private DelegationAddToFile delegationSaveToFile;
 
     @Inject
     private TemplateProvider templateProvider;

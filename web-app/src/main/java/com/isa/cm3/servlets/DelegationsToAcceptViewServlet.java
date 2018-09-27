@@ -2,7 +2,6 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.DelegationRepository;
-import com.isa.cm3.delegations.DelegationStatus;
 import com.isa.cm3.delegations.DelegationsLoadFromFile;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -36,12 +35,20 @@ public class DelegationsToAcceptViewServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-       delegationsLoadFromFile.loadDelegationsFromFile();
-        List<Delegation> test = delegationRepository.getList();
-        Map<String,Object> model   = new HashMap<>();
-        model.put("delegations",delegationRepository.getList().stream()
-                .sorted((d1,d2)-> d1.getFileLineNumber() - d2.getFileLineNumber() )
-                .collect(Collectors.toList()));
+        delegationsLoadFromFile.loadDelegationsFromFile();
+        //List<Delegation> test = delegationRepository.getList();
+        Map<String, Object> model = new HashMap<>();
+
+        if (delegationRepository.getList().isEmpty()){
+            model.put("delegations","Brak elemntów na liście");
+
+        }else{
+            model.put("delegations", delegationRepository.getList().stream()
+                    .sorted((d1, d2) -> d1.getFileLineNumber() - d2.getFileLineNumber())
+                    .collect(Collectors.toList()));
+        }
+
+
         Template template = templateProvider
                 .getTemplate(getServletContext(), "delegationsToAcceptViewTemplate");
 
