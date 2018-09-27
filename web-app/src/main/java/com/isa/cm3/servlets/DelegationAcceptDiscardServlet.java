@@ -1,7 +1,7 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.delegations.DelegationAcceptDiscardSaveToFile;
 import com.isa.cm3.delegations.DelegationRepository;
-import com.isa.cm3.delegations.DelegationStatus;
 import com.isa.cm3.delegations.DelegationsLoadFromFile;
 
 import javax.inject.Inject;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/acceptServlet")
 public class DelegationAcceptDiscardServlet extends HttpServlet {
@@ -22,6 +21,9 @@ public class DelegationAcceptDiscardServlet extends HttpServlet {
 
     @Inject
     DelegationsLoadFromFile delegationsLoadFromFile;
+
+    @Inject
+    DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,16 +35,14 @@ public class DelegationAcceptDiscardServlet extends HttpServlet {
         String wybor = req.getParameter("wybor");
         String button = req.getParameter("button");
         Integer id = Integer.parseInt(wybor);
-        DelegationStatus choice;
-        if (button.equals("accept")) {
-            choice = DelegationStatus.ACCEPTED;
-        } else {
-            choice = DelegationStatus.DISCARTED;
-        }
 
-        delegationsLoadFromFile.loadDelegationsFromFile();
-        writer.println(delegationRepository.getList().stream().filter(delegation -> delegation.getFileLineNumber().equals(id)).peek(delegation -> delegation.setDelegationStatus(choice)).collect(Collectors.toSet()));
+        delegationAcceptDiscardSaveToFile.decisionSaving(id, button);
+
+        delegationRepository.getList().forEach(delegation -> writer.println(delegation));
 
 
     }
+
+
 }
+

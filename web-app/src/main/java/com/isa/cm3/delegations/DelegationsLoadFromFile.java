@@ -32,7 +32,7 @@ public class DelegationsLoadFromFile {
 
     public String loadDelegationsFromFile() {
 
-        int bom = 1;
+
         String line;
         Reader reader;
         try {
@@ -49,7 +49,7 @@ public class DelegationsLoadFromFile {
                             if (DelegationStatus.valueOf(tempList.get(11).trim()).equals(DelegationStatus.SAVED)) {
 
                                 delegationRepository.setList(new Delegation(
-                                        Integer.parseInt(tempList.get(0).trim().substring(bom)),
+                                        Integer.parseInt(tempList.get(0).trim()),
                                         LocalDate.parse(tempList.get(1).trim(), formater),
                                         (new Employee(
                                                 tempList.get(2).trim(),
@@ -66,7 +66,7 @@ public class DelegationsLoadFromFile {
                                         tempList.get(12).trim()));
                             }
                         }
-                        bom = 0;
+
                         line = ((BufferedReader) reader).readLine();
                     }
                     reader.close();

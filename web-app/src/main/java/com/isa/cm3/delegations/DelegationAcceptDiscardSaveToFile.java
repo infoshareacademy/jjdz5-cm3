@@ -6,6 +6,8 @@ import javax.inject.Inject;
 @RequestScoped
 public class DelegationAcceptDiscardSaveToFile {
 
+
+
     @Inject
     DelegationsLoadFromFile delegationsLoadFromFile;
 
@@ -13,10 +15,10 @@ public class DelegationAcceptDiscardSaveToFile {
     DelegationRepository delegationRepository;
 
     @Inject
-    DelegationAddToFile delegationSaveToFile;
+   DelegationListSaveToFile delegationListSaveToFile;
 
 
-    public void decisionSaving(Integer id, String button, Delegation delegation) {
+    public void decisionSaving(Integer id, String button) {
 
         DelegationStatus status;
 
@@ -28,21 +30,15 @@ public class DelegationAcceptDiscardSaveToFile {
 
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-        delegationRepository.getList().forEach(delegation1 -> {
-                    if (delegation.getFileLineNumber().equals(id)) {
-                        delegation.setDelegationStatus(status);
-                    }
-                }
-        );
+       delegationListSaveToFile.saveToFile();
 
 
+//        delegationRepository.getList().forEach(delegation1 -> {
+//                    if (delegation1.getFileLineNumber().equals(id)) {
+//                        delegation1.setDelegationStatus(status);
+//                    }
+//                }
 
-
-
-
-
-
+//        );
     }
-
-
 }

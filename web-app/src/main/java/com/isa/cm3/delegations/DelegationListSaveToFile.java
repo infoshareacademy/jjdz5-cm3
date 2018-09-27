@@ -1,42 +1,43 @@
 package com.isa.cm3.delegations;
 
-import java.io.*;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import java.io.IOException;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+@RequestScoped
 public class DelegationListSaveToFile {
 
-    private Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
+    @Inject
+    Settings settings;
 
+    @Inject
+    DelegationRepository delegationRepository;
 
-    public void saveToFile(Delegation delegation) {
+    public void saveToFile() {
 
-        if (Files.notExists(path)) {
+        Writer writer;
+
+        for (Delegation delegation : delegationRepository.getList()) {
             try {
-                Files.createFile(path);
+
+
+                if (delegation.getFileLineNumber().equals(1)) {
+                    writer = Files.newBufferedWriter(settings.getPath(), StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
+                    writer.write(delegation.toString());
+                } else {
+
+                    writer = Files.newBufferedWriter(settings.getPath(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+                    writer.write(delegation.toString());
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
 
-        try {
-            Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-            if (((BufferedReader) reader).readLine() == null) {
-                Writer writeOnce = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
-                writeOnce.write(delegation.toString());
-                writeOnce.close();
-                return;
-            }
-            Writer writeOut = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
-            ((BufferedWriter) writeOut).newLine();
-            writeOut.write(delegation.toString());
-            writeOut.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
