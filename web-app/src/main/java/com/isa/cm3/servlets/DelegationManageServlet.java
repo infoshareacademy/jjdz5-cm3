@@ -7,6 +7,7 @@ import com.isa.cm3.delegations.DelegationsLoadFromFile;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +24,11 @@ import java.util.stream.Collectors;
 public class DelegationManageServlet extends HttpServlet {
 
     @Inject
-    TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
     @Inject
-    DelegationRepository delegationRepository;
+    private DelegationRepository delegationRepository;
     @Inject
-    DelegationsLoadFromFile delegationsLoadFromFile;
+    private DelegationsLoadFromFile delegationsLoadFromFile;
 
 
     @Override
@@ -39,16 +40,15 @@ public class DelegationManageServlet extends HttpServlet {
 
         Map<String, Object> model = new HashMap<>();
 
-        if (delegationRepository.getList().isEmpty()){
-            model.put("delegations","Brak elemntów na liście");
+        if (delegationRepository.getList().isEmpty()) {
+            model.put("delegations", "Brak elemntów na liście");
 
-        }else{
+        } else {
             model.put("delegations", delegationRepository.getList().stream()
                     .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
                     .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
                     .collect(Collectors.toList()));
         }
-
 
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageDelegationsTemplate");
@@ -58,6 +58,5 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -70,7 +70,6 @@ public class Destination {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(destinationCountry, destinationCity, destinationCompany, destinationCompanyAddress);
     }
 

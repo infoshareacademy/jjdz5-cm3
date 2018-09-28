@@ -1,6 +1,5 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,7 +14,7 @@ public class Delegation implements Serializable {
     private String purpose;
     private DelegationStatus delegationStatus;
     private String startPoint;
-    
+
 
 
     /*Obiekty z klas zawierających pola i metody */

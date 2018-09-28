@@ -46,25 +46,22 @@ public class DelegationsLoadFromFile {
                         if (!line.equals("")) {
                             List<String> tempList = Arrays.asList(line.split(","));
 
-                           // if (DelegationStatus.valueOf(tempList.get(11).trim()).equals(DelegationStatus.SAVED)) {
+                            delegationRepository.setList(new Delegation(
+                                    Integer.parseInt(tempList.get(0).trim()),
+                                    LocalDate.parse(tempList.get(1).trim(), formater),
+                                    (new Employee(
+                                            tempList.get(2).trim(),
+                                            tempList.get(3).trim())),
+                                    LocalDate.parse(tempList.get(4).trim(), formater),
+                                    LocalDate.parse(tempList.get(5).trim(), formater),
 
-                                delegationRepository.setList(new Delegation(
-                                        Integer.parseInt(tempList.get(0).trim()),
-                                        LocalDate.parse(tempList.get(1).trim(), formater),
-                                        (new Employee(
-                                                tempList.get(2).trim(),
-                                                tempList.get(3).trim())),
-                                        LocalDate.parse(tempList.get(4).trim(), formater),
-                                        LocalDate.parse(tempList.get(5).trim(), formater),
-
-                                        (new Destination(tempList.get(6).trim(),
-                                                tempList.get(7).trim(),
-                                                tempList.get(8).trim(),
-                                                tempList.get(9).trim())),
-                                        tempList.get(10).trim(),
-                                        DelegationStatus.valueOf(tempList.get(11).trim()),
-                                        tempList.get(12).trim()));
-                            //}
+                                    (new Destination(tempList.get(6).trim(),
+                                            tempList.get(7).trim(),
+                                            tempList.get(8).trim(),
+                                            tempList.get(9).trim())),
+                                    tempList.get(10).trim(),
+                                    DelegationStatus.valueOf(tempList.get(11).trim()),
+                                    tempList.get(12).trim()));
                         }
 
                         line = ((BufferedReader) reader).readLine();
@@ -74,11 +71,9 @@ public class DelegationsLoadFromFile {
                     e.printStackTrace();
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return "ok";
     }
 }

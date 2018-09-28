@@ -11,7 +11,7 @@ import java.nio.file.StandardOpenOption;
 public class DelegationAddToFile {
 
     @Inject
-    Settings settings;
+    private Settings settings;
 
     public void saveToFile(Delegation delegation) {
 
