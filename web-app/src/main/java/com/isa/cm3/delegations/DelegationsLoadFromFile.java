@@ -46,7 +46,7 @@ public class DelegationsLoadFromFile {
                         if (!line.equals("")) {
                             List<String> tempList = Arrays.asList(line.split(","));
 
-                            if (DelegationStatus.valueOf(tempList.get(11).trim()).equals(DelegationStatus.SAVED)) {
+                           // if (DelegationStatus.valueOf(tempList.get(11).trim()).equals(DelegationStatus.SAVED)) {
 
                                 delegationRepository.setList(new Delegation(
                                         Integer.parseInt(tempList.get(0).trim()),
@@ -64,7 +64,7 @@ public class DelegationsLoadFromFile {
                                         tempList.get(10).trim(),
                                         DelegationStatus.valueOf(tempList.get(11).trim()),
                                         tempList.get(12).trim()));
-                            }
+                            //}
                         }
 
                         line = ((BufferedReader) reader).readLine();

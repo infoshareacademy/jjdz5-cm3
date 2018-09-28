@@ -7,7 +7,6 @@ import javax.inject.Inject;
 public class DelegationAcceptDiscardSaveToFile {
 
 
-
     @Inject
     DelegationsLoadFromFile delegationsLoadFromFile;
 
@@ -15,7 +14,7 @@ public class DelegationAcceptDiscardSaveToFile {
     DelegationRepository delegationRepository;
 
     @Inject
-   DelegationListSaveToFile delegationListSaveToFile;
+    DelegationListSaveToFile delegationListSaveToFile;
 
 
     public void decisionSaving(Integer id, String button) {
@@ -30,15 +29,12 @@ public class DelegationAcceptDiscardSaveToFile {
 
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-       delegationListSaveToFile.saveToFile();
-
-
-//        delegationRepository.getList().forEach(delegation1 -> {
-//                    if (delegation1.getFileLineNumber().equals(id)) {
-//                        delegation1.setDelegationStatus(status);
-//                    }
-//                }
-
-//        );
+        delegationRepository.getList().forEach(delegation1 -> {
+                    if (delegation1.getFileLineNumber().equals(id)) {
+                        delegation1.setDelegationStatus(status);
+                    }
+                }
+        );
+        delegationListSaveToFile.saveToFile();
     }
 }

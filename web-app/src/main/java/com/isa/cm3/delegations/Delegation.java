@@ -15,6 +15,7 @@ public class Delegation implements Serializable {
     private String purpose;
     private DelegationStatus delegationStatus;
     private String startPoint;
+    
 
 
     /*Obiekty z klas zawierających pola i metody */

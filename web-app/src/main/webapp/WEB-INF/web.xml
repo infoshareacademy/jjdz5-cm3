@@ -13,29 +13,25 @@
         <servlet-name>DelegationAddProcesServlet</servlet-name>
         <servlet-class>com.isa.cm3.servlets.DelegationAddProcesServlet</servlet-class>
     </servlet>
-
-
     <servlet-mapping>
         <servlet-name>DelegationAddProcesServlet</servlet-name>
         <url-pattern>/DelegationAdd</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
-        <servlet-name>DelegationAcceptDiscardServlet</servlet-name>
-        <servlet-class>com.isa.cm3.servlets.DelegationAcceptDiscardServlet</servlet-class>
+        <servlet-name>DelegationManageServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationManageServlet</servlet-class>
     </servlet>
-
-
     <servlet-mapping>
-        <servlet-name>DelegationAcceptDiscardServlet</servlet-name>
-        <url-pattern>/accept</url-pattern>
+        <servlet-name>DelegationManageServlet</servlet-name>
+        <url-pattern>/manageDelegations</url-pattern>
     </servlet-mapping>
 
 
     <servlet>
         <servlet-name>DelegationAddFormServlet</servlet-name>
         <servlet-class>com.isa.cm3.servlets.DelegationAddFormServlet</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>DelegationAddFormServlet</servlet-name>
@@ -45,11 +41,12 @@
     <servlet>
         <servlet-name>DelegationSevaServlet</servlet-name>
         <servlet-class>com.isa.cm3.servlets.DelegationAddFormServlet</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>DelegationSevaServlet</servlet-name>
         <url-pattern>/DelegationSave</url-pattern>
     </servlet-mapping>
+
+
     <display-name>Archetype Created Web Application</display-name>
 </web-app>
