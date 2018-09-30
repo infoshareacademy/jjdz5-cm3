@@ -22,7 +22,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <h4 style="color: gray"><#if mapp == "accept" > Delegacja zaakceptowama <#else> Delegacja odrzucona </#if> </h4>
+                <h4 style="color: gray"><#if mapa == "accept" > Delegacja zaakceptowama <#elseif mapa == "discard"> Delegacja odrzucona <#else> Brak delegacji do wyswietlenia </#if> </h4>
             </div>
         </div>
     </nav>

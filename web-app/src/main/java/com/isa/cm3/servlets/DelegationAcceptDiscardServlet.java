@@ -29,17 +29,26 @@ public class DelegationAcceptDiscardServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
         req.getContentType();
 
-        String wybor = req.getParameter("wybor");
-        String button = req.getParameter("button");
-        Integer id = Integer.parseInt(wybor);
-
-        delegationAcceptDiscardSaveToFile.decisionSaving(id, button);
-
         Map<String, Object> model = new HashMap<>();
-
-        model.put("mapa", button);
         Template template = templateProvider
-                .getTemplate(getServletContext(), "delefationAfterManageRedirectTemplate");
+                .getTemplate(getServletContext(), "delegationAfterManageRedirectTemplate");
+
+        String wybor = req.getParameter("wybor");
+
+        if (wybor!= null && !wybor.isEmpty()) {
+            String button = req.getParameter("button");
+            Integer id = Integer.parseInt(wybor);
+
+
+            delegationAcceptDiscardSaveToFile.decisionSaving(id, button);
+
+
+            model.put("mapa", button);
+
+        } else {
+
+            model.put("mapa", "Brak sfdsfdsf sfddsfdsv sdfsdfd");
+        }
 
         try {
             template.process(model, resp.getWriter());

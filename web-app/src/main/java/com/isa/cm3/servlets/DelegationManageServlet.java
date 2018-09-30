@@ -40,15 +40,12 @@ public class DelegationManageServlet extends HttpServlet {
 
         Map<String, Object> model = new HashMap<>();
 
-        if (delegationRepository.getList().isEmpty()) {
-            model.put("delegations", "Brak elemntów na liście");
 
-        } else {
             model.put("delegations", delegationRepository.getList().stream()
                     .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
                     .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
                     .collect(Collectors.toList()));
-        }
+
 
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageDelegationsTemplate");

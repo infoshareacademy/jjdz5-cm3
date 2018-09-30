@@ -10,8 +10,11 @@
     <div class="row">
         <div class="col-md-12">
             <form action="acceptServlet" method="get">
-                 <#if delegations?is_string>
-                     alskdaskldjlsak
+                 <#if delegations?size == 0>
+                     Brak delegacji do wyświetlenia <br/>
+
+                         <a href="/delegations-web/mainMenu"> <button class="btn btn-secondary" type="button" lang="pl-PL" style="margin-top: 5px">powrót</button></a>
+
                  <#else >
                      <#list delegations as d>
                          <div class="form-check">
