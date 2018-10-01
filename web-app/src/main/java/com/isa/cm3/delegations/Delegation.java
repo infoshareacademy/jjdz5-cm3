@@ -14,7 +14,7 @@ public class Delegation implements Serializable {
     private String purpose;
     private DelegationStatus delegationStatus;
     private String startPoint;
-
+    private String discardReason = "";
 
 
     /*Obiekty z klas zawierających pola i metody */
@@ -40,6 +40,7 @@ public class Delegation implements Serializable {
         this.purpose = purpose;
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
+
 
     }
 
@@ -118,6 +119,10 @@ public class Delegation implements Serializable {
         this.startPoint = startPoint;
     }
 
+    public String getDiscardReason() { return discardReason; }
+
+    public void setDiscardReason(String discardReason) { this.discardReason = discardReason; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,6 +135,7 @@ public class Delegation implements Serializable {
                 Objects.equals(purpose, that.purpose) &&
                 delegationStatus == that.delegationStatus &&
                 Objects.equals(startPoint, that.startPoint) &&
+                Objects.equals(discardReason, that.discardReason) &&
                 Objects.equals(employee, that.employee) &&
                 Objects.equals(destination, that.destination);
     }
@@ -137,12 +143,17 @@ public class Delegation implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(fileLineNumber, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, employee, destination);
+        return Objects.hash(fileLineNumber, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, discardReason, employee, destination);
     }
 
     @Override
     public String toString() {
         return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
-                purpose + "," + delegationStatus + "," + startPoint;
+                purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
+    }
+
+    public String toAcceptView() {
+        return fileLineNumber + " | " + creationDate + " | " + employee + "," + startDate + "," + endDate + "," + destination + "," +
+                purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
     }
 }

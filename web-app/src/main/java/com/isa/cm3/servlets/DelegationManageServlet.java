@@ -4,6 +4,7 @@ import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.DelegationRepository;
 import com.isa.cm3.delegations.DelegationStatus;
 import com.isa.cm3.delegations.DelegationsLoadFromFile;
+import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -16,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @WebServlet("/manageDelegations")
 public class DelegationManageServlet extends HttpServlet {
 
+    @Inject
+    private MapModelGenerator mapModelGenerator;
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -38,20 +39,16 @@ public class DelegationManageServlet extends HttpServlet {
 
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-        Map<String, Object> model = new HashMap<>();
+        mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
+                .collect(Collectors.toList()));
 
 
-            model.put("delegations", delegationRepository.getList().stream()
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
-                    .collect(Collectors.toList()));
-
-
-        Template template = templateProvider
-                .getTemplate(getServletContext(), "manageDelegationsTemplate");
+        Template template = templateProvider.getTemplate(getServletContext(), "manageDelegationsTemplate");
 
         try {
-            template.process(model, resp.getWriter());
+            template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }

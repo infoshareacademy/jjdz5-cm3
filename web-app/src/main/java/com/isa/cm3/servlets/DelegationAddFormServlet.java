@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -17,6 +18,9 @@ import java.util.Map;
 public class DelegationAddFormServlet extends HttpServlet {
 
     @Inject
+    private MapModelGenerator mapModelGenerator;
+
+    @Inject
     private TemplateProvider templateProvider;
 
     @Override
@@ -25,12 +29,12 @@ public class DelegationAddFormServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        Map<String,Object> model   = new HashMap<>();
+        mapModelGenerator.setModel("","");
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplate");
 
         try {
-            template.process(model, resp.getWriter());
+            template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
