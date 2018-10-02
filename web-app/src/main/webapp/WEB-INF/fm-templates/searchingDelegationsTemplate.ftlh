@@ -2,7 +2,7 @@
 <html lang="pl-PL">
 <head>
     <title>Main menu</title>
-    < <#include "include/headAndMeta.ftlh">
+    <#include "include/headAndMeta.ftlh">
 </head>
 <body style="font-family: 'Open Sans', sans-serif">
 <#include "include/navbarHeaderTemplate.ftlh">
