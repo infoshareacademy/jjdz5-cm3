@@ -2,16 +2,16 @@
 <html lang="pl-PL">
 <head>
     <title>Main menu</title>
-     <#include "include/headAndMeta.ftlh">
+     <#include "../include/headAndMeta.ftlh">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
 <body style="font-family: 'Open Sans', sans-serif">
-    <#include "include/navbarHeaderTemplate.ftlh">
+    <#include "../include/navbarHeaderTemplate.ftlh">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="acceptServlet" method="get">
+                <form action="manageDelegations" method="POST">
                  <#if delegations?size == 0>
                      Brak delegacji do wyświetlenia <br/>
 
@@ -62,12 +62,12 @@
                                  <td>${d.getDestination().getDestinationCompanyAddress()}</td>
                                  <td>${d.getPurpose()}</td>
                                  <td>${d.getStartPoint()}</td>
-                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"></td>
+                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"  ></td>
 
                              </tr>
                                     </div>
                      </#list>
-                 </tbody>
+                        </tbody>
                  </table>
                      <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept" name="button">Akceptuj
                      </button>
@@ -79,7 +79,7 @@
 </div>
 </div>
 
-    <#include "include/footer.ftlh">
-    <#include "include/scripts.ftlh">
+    <#include "../include/footer.ftlh">
+    <#include "../include/scripts.ftlh">
 </body>
 </html>

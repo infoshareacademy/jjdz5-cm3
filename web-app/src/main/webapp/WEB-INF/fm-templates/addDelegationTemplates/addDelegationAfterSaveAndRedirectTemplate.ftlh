@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Zapisywanie delegacji</title>
-    <meta http-equiv="refresh" content="5;url=http://localhost:8080/delegations-web/mainMenu"/>
+    <meta http-equiv="refresh" content="2;url=http://localhost:8080/delegations-web/mainMenu"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -22,24 +22,12 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <h4 style="color: gray"> Status operacji</h4>
+                <h4 style="color: gray">Delegacja zapisana</h4>
             </div>
         </div>
     </nav>
 </header>
-
-    <#if mapa == "accept" > <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-        <h4 class="alert-heading">SUPER delegacja zaakceptowana!</h4>
-
-    </div>
-        <#elseif mapa == "discard"> <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-        <h4 class="alert-heading">Szkoda Delegacja odrzucona!</h4>
-        <#else> <div class="alert alert-primary" role="alert" style="width:60%;margin: auto">
-        <h4 class="alert-heading">Ups!! Nic nie zaznaczyłeś!!!  </h4>
-    </div>
-
-    </#if>
-<#include "include/scripts.ftlh">
-<#include "include/footer.ftlh">
+<#include "../include/scripts.ftlh">
+<#include "../include/footer.ftlh">
 </body>
 </html>

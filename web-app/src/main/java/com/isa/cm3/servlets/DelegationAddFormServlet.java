@@ -31,7 +31,7 @@ public class DelegationAddFormServlet extends HttpServlet {
 
         mapModelGenerator.setModel("","");
         Template template = templateProvider
-                .getTemplate(getServletContext(), "addDelegationTemplate");
+                .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationTemplate");
 
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());

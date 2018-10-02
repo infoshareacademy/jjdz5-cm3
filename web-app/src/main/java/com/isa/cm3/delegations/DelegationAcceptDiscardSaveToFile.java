@@ -18,6 +18,7 @@ public class DelegationAcceptDiscardSaveToFile {
 
     public void decisionSaving(Integer id, String button, String discardReason) {
 
+        String reason;
         DelegationStatus status;
 
         if (button.equals("accept")) {
@@ -26,15 +27,23 @@ public class DelegationAcceptDiscardSaveToFile {
             status = DelegationStatus.DISCARTED;
         }
 
+        if (discardReason.length() == 0) {
+            reason = "brak";
+        } else {
+            reason = discardReason;
+        }
+
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-        delegationRepository.getList().forEach(delegation1 -> {
-                    if (delegation1.getFileLineNumber().equals(id)) {
-                        delegation1.setDelegationStatus(status);
-                        delegation1.setDiscardReason(discardReason);
-                    }
-                }
-        );
+        delegationRepository.getList().stream()
+                .filter(delegation -> delegation.getFileLineNumber().equals(id))
+                .peek(delegation -> {
+                            if (delegation.getFileLineNumber().equals(id)) {
+                                delegation.setDelegationStatus(status);
+                                delegation.setDiscardReason(reason);
+                            }
+                        }
+                ).findFirst();
 
         delegationListSaveToFile.saveToFile();
     }

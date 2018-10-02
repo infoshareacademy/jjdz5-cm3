@@ -70,7 +70,7 @@
         </form>
         </#if>
 </div>
-<#include "include/footer.ftlh">
+<#include "../include/footer.ftlh">
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

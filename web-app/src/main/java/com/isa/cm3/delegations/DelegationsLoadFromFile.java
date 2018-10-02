@@ -32,7 +32,6 @@ public class DelegationsLoadFromFile {
 
     public String loadDelegationsFromFile() {
 
-
         String line;
         Reader reader;
         try {
@@ -61,7 +60,8 @@ public class DelegationsLoadFromFile {
                                             tempList.get(9).trim())),
                                     tempList.get(10).trim(),
                                     DelegationStatus.valueOf(tempList.get(11).trim()),
-                                    tempList.get(12).trim()));
+                                    tempList.get(12).trim(),
+                                    (tempList.get(13).trim())));
                         }
 
                         line = ((BufferedReader) reader).readLine();

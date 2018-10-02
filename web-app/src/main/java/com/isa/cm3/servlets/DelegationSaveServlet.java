@@ -36,7 +36,7 @@ public class DelegationSaveServlet extends HttpServlet {
 
         delegationSaveToFile.saveToFile(delegationInstanceGenerator.generateDelegationInstance());
         Template template = templateProvider
-                .getTemplate(getServletContext(), "addDelegationAfterSaveAndRedirectTemplate");
+                .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationAfterSaveAndRedirectTemplate");
         try {
             template.process(mapModelGenerator, resp.getWriter());
         } catch (TemplateException e) {

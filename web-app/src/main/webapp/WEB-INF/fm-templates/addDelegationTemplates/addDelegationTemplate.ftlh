@@ -37,19 +37,19 @@
     </nav>
 </header>
 <div class="container" style="width: 100%; text-align: center">
-    <form class="needs-validation" action="delegation-add" method="GET" novalidate>
+    <form class="needs-validation" action="delegation-add" method="POST" novalidate>
         <div class="form-row">
             <div class="col-md-6">
                 <label for="validationCustom01">Imię</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="Imię"
                        name="name" value="Marek" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02">Nazwisko</label>
                 <input type="text" class="form-control" id="validationCustom02" placeholder="Nazwisko"
                        name="surname" value="Kalkowski" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
         <div class="alert alert-secondary" role="alert" style="margin-top: 15px">
@@ -60,26 +60,26 @@
                 <label for="validationCustom01">Data wyjazdu</label>
                 <input type="date" class="form-control" id="validationCustom01" placeholder="Data od"
                        name="startDate" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="12.10.2018" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02">Data powrotu</label>
                 <input type="date" class="form-control" id="validationCustom02" placeholder="Data do"
                        name="endDate" value="14.10.2018" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6">
                 <label for="validationCustomCity">Kraj</label>
-                    <#include "include/countryList.ftlh">
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/countryList.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
             <div class="col-md-6">
                 <label for="validationCustom03">Miasto</label>
                 <input type="text" class="form-control" id="validationCustom03" placeholder="Miasto"
                        name="city" value="Elbląg" required>
-                   <#include "include/formValidationDivCode.ftlh">
+                   <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
         <div class="form-row">
@@ -87,14 +87,14 @@
                 <label for="validationCustom04">Firma</label>
                 <input type="text" class="form-control" id="validationCustom04" placeholder="Firma"
                        name="company" value="StacjaNatura" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
 
             <div class="col-md-6">
                 <label for="validationCustom05">Adres firmy</label>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Adres firmy"
                        name="companyAdres" value="Elbląg" required>
-                         <#include "include/formValidationDivCode.ftlh">
+                         <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
         <div class="form-row">
@@ -102,14 +102,14 @@
                 <label for="validationCustom04">Cel wyjazdu</label>
                 <input type="text" class="form-control" id="validationCustom04" placeholder="Cel wyjazdu"
                        name="purpose" value="Tak sobie" required>
-                    <#include "include/formValidationDivCode.ftlh">
+                    <#include "../include/formValidationDivCode.ftlh">
             </div>
 
             <div class="col-md-6">
                 <label for="validationCustom05">Miejsce startu</label>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Miejsce startu"
                        name="startPoint" value="Gdańsk" required>
-                         <#include "include/formValidationDivCode.ftlh">
+                         <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
         <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin-top: 5px">Zatwierdź</button>
@@ -124,7 +124,7 @@
         </div>
     </div>
 </div>
-<#include "include/footer.ftlh">
+<#include "../include/footer.ftlh">
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
@@ -145,6 +145,6 @@
         }, false);
     })();
 </script>
-<#include "include/scripts.ftlh">
+<#include "../include/scripts.ftlh">
 </body>
 </html>

@@ -1,9 +1,6 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.delegations.Delegation;
-import com.isa.cm3.delegations.DelegationRepository;
-import com.isa.cm3.delegations.DelegationStatus;
-import com.isa.cm3.delegations.DelegationsLoadFromFile;
+import com.isa.cm3.delegations.*;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -30,11 +27,14 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationRepository delegationRepository;
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
+    @Inject
+    private DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         delegationsLoadFromFile.loadDelegationsFromFile();
@@ -44,8 +44,37 @@ public class DelegationManageServlet extends HttpServlet {
                 .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
                 .collect(Collectors.toList()));
 
+        Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
-        Template template = templateProvider.getTemplate(getServletContext(), "manageDelegationsTemplate");
+        try {
+            template.process(mapModelGenerator.getModel(), resp.getWriter());
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        req.setCharacterEncoding("UTF-8");
+
+        Template template = templateProvider
+                .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
+
+        String wybor = req.getParameter("wybor");
+        if (wybor != null && !wybor.isEmpty()) {
+            String button = req.getParameter("button");
+            String discardReason = req.getParameter("discardReason");
+            Integer id = Integer.parseInt(wybor);
+
+            delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
+            mapModelGenerator.setModel("mapa", button);
+
+        } else {
+            mapModelGenerator.setModel("mapa", "test");
+        }
 
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());

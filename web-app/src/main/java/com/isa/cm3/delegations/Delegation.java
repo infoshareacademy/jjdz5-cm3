@@ -14,7 +14,7 @@ public class Delegation implements Serializable {
     private String purpose;
     private DelegationStatus delegationStatus;
     private String startPoint;
-    private String discardReason = "";
+    private String discardReason;
 
 
     /*Obiekty z klas zawierających pola i metody */
@@ -30,7 +30,8 @@ public class Delegation implements Serializable {
                       Destination destination,
                       String purpose,
                       DelegationStatus delegationStatus,
-                      String startPoint) {
+                      String startPoint,
+                      String discardReason) {
         this.fileLineNumber = fileLineNumber;
         this.creationDate = creationDate;
         this.employee = employee;
@@ -40,6 +41,7 @@ public class Delegation implements Serializable {
         this.purpose = purpose;
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
+        this.discardReason = discardReason;
 
 
     }
@@ -119,9 +121,13 @@ public class Delegation implements Serializable {
         this.startPoint = startPoint;
     }
 
-    public String getDiscardReason() { return discardReason; }
+    public String getDiscardReason() {
+        return discardReason;
+    }
 
-    public void setDiscardReason(String discardReason) { this.discardReason = discardReason; }
+    public void setDiscardReason(String discardReason) {
+        this.discardReason = discardReason;
+    }
 
     @Override
     public boolean equals(Object o) {
