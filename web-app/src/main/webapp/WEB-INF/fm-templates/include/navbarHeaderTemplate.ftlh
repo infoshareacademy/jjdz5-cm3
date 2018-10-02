@@ -15,6 +15,7 @@
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/searchDelegations">Szukaj delegacji</a></li>
                 <li><a href="/delegations-web/manageDelegations">Zarządzaj delegacjami</a></li>
+                <li><a href="/delegations-web/import">Importuj delegacje</a></li>
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
