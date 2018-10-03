@@ -12,14 +12,13 @@ import java.nio.file.Paths;
 @Dependent
 public class DelegationAutoincrementId {
 
-    public  Integer loadId() {
+    public Integer loadId() {
         Integer i = 1;
         Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
         Reader reader;
 
         try {
             reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-
 
             if (((BufferedReader) reader).readLine() == null) {
                 return 1;
@@ -33,9 +32,6 @@ public class DelegationAutoincrementId {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return i;
-
     }
 }

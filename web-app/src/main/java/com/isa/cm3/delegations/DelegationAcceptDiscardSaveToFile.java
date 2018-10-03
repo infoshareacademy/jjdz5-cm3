@@ -1,0 +1,50 @@
+package com.isa.cm3.delegations;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
+@RequestScoped
+public class DelegationAcceptDiscardSaveToFile {
+
+    @Inject
+    private DelegationsLoadFromFile delegationsLoadFromFile;
+
+    @Inject
+    private DelegationRepository delegationRepository;
+
+    @Inject
+    private DelegationListSaveToFile delegationListSaveToFile;
+
+
+    public void decisionSaving(Integer id, String button, String discardReason) {
+
+        String reason;
+        DelegationStatus status;
+
+        if (button.equals("accept")) {
+            status = DelegationStatus.ACCEPTED;
+        } else {
+            status = DelegationStatus.DISCARTED;
+        }
+
+        if (discardReason.length() == 0) {
+            reason = "brak";
+        } else {
+            reason = discardReason;
+        }
+
+        delegationsLoadFromFile.loadDelegationsFromFile();
+
+        delegationRepository.getList().stream()
+                .filter(delegation -> delegation.getFileLineNumber().equals(id))
+                .peek(delegation -> {
+                            if (delegation.getFileLineNumber().equals(id)) {
+                                delegation.setDelegationStatus(status);
+                                delegation.setDiscardReason(reason);
+                            }
+                        }
+                ).findFirst();
+
+        delegationListSaveToFile.saveToFile();
+    }
+}

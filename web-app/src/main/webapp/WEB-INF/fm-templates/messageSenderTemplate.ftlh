@@ -2,17 +2,10 @@
 <html lang="pl-PL">
 <head>
     <title>Main menu</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<#--bootstrap
-    -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+     <#include "include/headAndMeta.ftlh">
 </head>
 <body style="font-family: 'Open Sans', sans-serif">
-<#include "navbarHeaderTemplate.ftlh">
+<#include "include/navbarHeaderTemplate.ftlh">
 <div class="container" style="width: 100%; text-align: center">
 <div class="alert alert-secondary" role="alert">
     <h4 class="alert-heading">Gratulacje!</h4>
@@ -22,7 +15,7 @@
         <a href="/delegations-web/mainMenu" style="text-decoration: none; color: #000000">Wróć do strony głównej</a></p>
 </div>
 </div>
-<#include "footer.ftlh">
+<#include "include/footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
