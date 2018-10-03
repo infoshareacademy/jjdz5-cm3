@@ -21,6 +21,17 @@
               </a>
 
          <#else >
+         <form action="/delegations-web/searchDelegationsSaved">
+         <button class="btn btn-primary" type="submit" lang="pl-PL" value="SAVED" name="status">SAVED
+         </button>
+         </form>
+
+
+         <form action="/delegations-web/searchDelegationsToAccept">
+             <button class="btn btn-primary" type="submit" lang="pl-PL" value="TOACCEPT" name="status">TOACCEPT</button>
+         </form>
+
+
               <table class="table table-bordered">
                  <thead class="thead-dark">
                  <tr>
