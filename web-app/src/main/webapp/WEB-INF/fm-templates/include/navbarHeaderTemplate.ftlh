@@ -11,7 +11,6 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/delegations-web/myDelegations">Moje delegacje</a></li>
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/searchDelegations?status=">Szukaj delegacji</a></li>
                 <li><a href="/delegations-web/manageDelegations">Zarządzaj delegacjami</a></li>
