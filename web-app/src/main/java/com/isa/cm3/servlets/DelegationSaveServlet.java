@@ -42,8 +42,6 @@ public class DelegationSaveServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-
-
     }
 }
 

@@ -12,4 +12,10 @@ public class Settings {
     public Path getPath() {
         return path;
     }
+
+    private final Path uploadDir = Paths.get(System.getProperty("jboss.server.data.dir"),"upload/");
+
+    public Path getUploadDir() {
+        return uploadDir;
+    }
 }
