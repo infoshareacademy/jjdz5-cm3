@@ -79,6 +79,7 @@
                      <th scope="col">Cel <br/> wyjazdu</th>
                      <th scope="col">Wyjazd z</th>
                      <th scope="col">Status</th>
+                     <th scope="col">Komentarz</th>
 
                  </tr>
                  </thead>
