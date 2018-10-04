@@ -43,12 +43,6 @@ public class DelegationSearchServlet extends HttpServlet {
 
         if (wybor != null) {
             switch (wybor) {
-                case "SAVED":
-                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
-                            .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
-                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
-                            .collect (Collectors.toList ()));
-                    break;
                 case "TOACCEPT":
                     mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                             .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
@@ -85,13 +79,5 @@ public class DelegationSearchServlet extends HttpServlet {
             }
 
     }
-
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        String  wybor = req.getParameter ("status");
-//
-//        System.out.println ("doPost switch " + wybor);
-//
-//    }
 
 }

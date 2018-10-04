@@ -16,7 +16,7 @@
             <#if delegations?size == 0>
                 Brak delegacji do wyświetlenia <br/>
                 <form action="/delegations-web/searchDelegations">
-                    <button class="btn btn-dark" type="submit" lang="pl-PL" value="" name="status">Wszystkie delegacje</button>
+                    <button class="btn btn-dark" type="submit" lang="pl-PL" value="" name="status" width="100%";>Wszystkie</button>
                 </form>
 
             <#else >
@@ -32,49 +32,30 @@
 
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
-                    <button class="btn btn-dark" type="submit" lang="pl-PL" value="" name="status">Wszystkie delegacje</button>
+                    <button class="btn btn-block btn-dark" type="submit" lang="pl-PL" value="" name="status";>Wszystkie</button>
                 </form>
             </div>
-
-
-
+            
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
-                    <button class="btn btn-info" type="submit" lang="pl-PL" value="SAVED" name="status">Delegacje zapisane</button>
-                </form>
-            </div>
-
-
-
-
-
-            <div class="col-sm-2">
-                <form action="/delegations-web/searchDelegations">
-                    <button class="btn btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status">Delegacje do akceptacji</button>
+                    <button class="btn btn-block btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status";>Do akceptacji</button>
                 </form>
             </div>
 
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
-                    <button class="btn btn-success" type="submit" lang="pl-PL" value="ACCEPTED" name="status">Delegacje zaakceptowane</button>
+                    <button class="btn btn-block btn-success" type="submit" lang="pl-PL" value="ACCEPTED" name="status";>Zaakceptowane</button>
                 </form>
             </div>
 
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
-                 <button class="btn btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Delegacje odrzucone</button>
+                 <button class="btn btn-block btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Odrzucone</button>
                 </form>
             </div>
         </div>
 
 
-
-
-        <#---
-<#if status == saved>
-assddd
-</#if>
---->
     </div>
 
 
