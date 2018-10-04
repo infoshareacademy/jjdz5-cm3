@@ -8,47 +8,81 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
     <#include "include/navbarHeaderTemplate.ftlh">
-<div class="container">
-    <div class="row">
-    <div class="col-md-12">
 
-         <#if delegations?size == 0>
-              Brak delegacji do wyświetlenia <br/>
-              <a href="/delegations-web/mainMenu">
-                  <button class="btn btn-secondary" type="button" lang="pl-PL" style="margin-top: 5px">
-                      powrót
-                  </button>
-              </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-         <#else >
+            <#if delegations?size == 0>
+                Brak delegacji do wyświetlenia <br/>
+                <form action="/delegations-web/searchDelegations">
+                    <button class="btn btn-dark" type="submit" lang="pl-PL" value="" name="status">Wszystkie delegacje</button>
+                </form>
 
-
-<div class="row">
-    <div class="col">
-         <form action="/delegations-web/searchDelegations" method="POST">
-             <button class="btn btn-info" type="submit" lang="pl-PL" value="SAVED" name="status">Delegacje zapisane</button>
-         </form>
-    </div>
-        <div class="col">
-         <form action="/delegations-web/searchDelegations" method="POST">
-             <button class="btn btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status">Delegacje do akceptacji</button>
-         </form>
-        </div>
-            <div class="col">
-         <form action="/delegations-web/searchDelegations" method="POST">
-             <button class="btn btn-success" type="submit" lang="pl-PL" value="ACCEPTED" name="status">Delegacje zaakceptowane</button>
-         </form>
+            <#else >
             </div>
-                <div class="col">
-         <form action="/delegations-web/searchDelegations" method="POST">
-             <button class="btn btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Delegacje odrzucone</button>
-         </form>
-                </div>
+        </div>
     </div>
 
-         </div>
 
-              <table class="table table-bordered">
+    <div class="container">
+        <div class="row">
+
+
+
+            <div class="col-sm-2">
+                <form action="/delegations-web/searchDelegations">
+                    <button class="btn btn-dark" type="submit" lang="pl-PL" value="" name="status">Wszystkie delegacje</button>
+                </form>
+            </div>
+
+
+
+            <div class="col-sm-2">
+                <form action="/delegations-web/searchDelegations">
+                    <button class="btn btn-info" type="submit" lang="pl-PL" value="SAVED" name="status">Delegacje zapisane</button>
+                </form>
+            </div>
+
+
+
+
+
+            <div class="col-sm-2">
+                <form action="/delegations-web/searchDelegations">
+                    <button class="btn btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status">Delegacje do akceptacji</button>
+                </form>
+            </div>
+
+            <div class="col-sm-2">
+                <form action="/delegations-web/searchDelegations">
+                    <button class="btn btn-success" type="submit" lang="pl-PL" value="ACCEPTED" name="status">Delegacje zaakceptowane</button>
+                </form>
+            </div>
+
+            <div class="col-sm-2">
+                <form action="/delegations-web/searchDelegations">
+                 <button class="btn btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Delegacje odrzucone</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+        <#---
+<#if status == saved>
+assddd
+</#if>
+--->
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                 <table class="table table-bordered">
                  <thead class="thead-dark">
                  <tr>
                      <th scope="col">ID</th>
@@ -111,7 +145,7 @@
         </form>
     </div>
 </div>
-</div>
+
 
     <#include "include/footer.ftlh">
     <#include "include/scripts.ftlh">

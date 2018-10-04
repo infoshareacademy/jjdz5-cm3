@@ -41,8 +41,6 @@ public class DelegationSearchServlet extends HttpServlet {
 
         String wybor = req.getParameter ("status");
 
-        System.out.println ("doGet switch " + wybor);
-
         if (wybor != null) {
             switch (wybor) {
                 case "SAVED":
@@ -70,7 +68,6 @@ public class DelegationSearchServlet extends HttpServlet {
                             .collect (Collectors.toList ()));
                     break;
                 default:
-                    System.out.println ("doGet wybor default " + wybor);
                     mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                             .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                             .collect (Collectors.toList ()));
@@ -89,12 +86,12 @@ public class DelegationSearchServlet extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String  wybor = req.getParameter ("status");
-
-        System.out.println ("doPost switch " + wybor);
-
-    }
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//        String  wybor = req.getParameter ("status");
+//
+//        System.out.println ("doPost switch " + wybor);
+//
+//    }
 
 }
