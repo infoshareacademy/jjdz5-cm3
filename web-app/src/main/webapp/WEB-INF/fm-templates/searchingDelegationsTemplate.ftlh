@@ -35,7 +35,7 @@
                     <button class="btn btn-block btn-dark" type="submit" lang="pl-PL" value="" name="status";>Wszystkie</button>
                 </form>
             </div>
-            
+
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
                     <button class="btn btn-block btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status";>Do akceptacji</button>
@@ -115,6 +115,7 @@
                  <td>${d.getPurpose()}</td>
                  <td>${d.getStartPoint()}</td>
                  <td>${d.getDelegationStatus()  }</td>
+                 <td>${d.getDiscardReason}</td>
 
              </tr>
               </div>
