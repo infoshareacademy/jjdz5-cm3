@@ -21,16 +21,32 @@
               </a>
 
          <#else >
-         <form action="/delegations-web/searchDelegationsSaved">
-         <button class="btn btn-primary" type="submit" lang="pl-PL" value="SAVED" name="status">SAVED
-         </button>
+
+
+<div class="row">
+    <div class="col">
+         <form action="/delegations-web/searchDelegations" method="POST">
+             <button class="btn btn-info" type="submit" lang="pl-PL" value="SAVED" name="status">Delegacje zapisane</button>
          </form>
-
-
-         <form action="/delegations-web/searchDelegationsToAccept">
-             <button class="btn btn-primary" type="submit" lang="pl-PL" value="TOACCEPT" name="status">TOACCEPT</button>
+    </div>
+        <div class="col">
+         <form action="/delegations-web/searchDelegations" method="POST">
+             <button class="btn btn-warning" type="submit" lang="pl-PL" value="TOACCEPT" name="status">Delegacje do akceptacji</button>
          </form>
+        </div>
+            <div class="col">
+         <form action="/delegations-web/searchDelegations" method="POST">
+             <button class="btn btn-success" type="submit" lang="pl-PL" value="ACCEPTED" name="status">Delegacje zaakceptowane</button>
+         </form>
+            </div>
+                <div class="col">
+         <form action="/delegations-web/searchDelegations" method="POST">
+             <button class="btn btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Delegacje odrzucone</button>
+         </form>
+                </div>
+    </div>
 
+         </div>
 
               <table class="table table-bordered">
                  <thead class="thead-dark">

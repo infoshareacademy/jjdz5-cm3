@@ -41,8 +41,8 @@ public class DelegationSearchSavedServlet extends HttpServlet {
 
 
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
 
             Template template = templateProvider.getTemplate (getServletContext (), "searchingDelegationsTemplate");

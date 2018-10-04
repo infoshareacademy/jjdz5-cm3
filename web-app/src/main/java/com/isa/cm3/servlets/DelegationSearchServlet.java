@@ -34,29 +34,50 @@ public class DelegationSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String wybor = " ";
-
         resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         delegationsLoadFromFile.loadDelegationsFromFile ();
 
-        wybor = req.getParameter ("status");
+        String wybor = req.getParameter ("status");
 
         System.out.println ("doGet switch " + wybor);
+
         if (wybor != null) {
             switch (wybor) {
                 case "SAVED":
-                    System.out.println ("doGet wybor " + wybor);
+                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                            .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
+                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                            .collect (Collectors.toList ()));
+                    break;
+                case "TOACCEPT":
+                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                            .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                            .collect (Collectors.toList ()));
+                    break;
+                case "ACCEPTED":
+                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                            .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.ACCEPTED))
+                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                            .collect (Collectors.toList ()));
+                    break;
+                case "DISCARTED":
+                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                            .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.DISCARTED))
+                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                            .collect (Collectors.toList ()));
                     break;
                 default:
                     System.out.println ("doGet wybor default " + wybor);
+                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                            .collect (Collectors.toList ()));
                     break;
             }
         }
-            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
-                    .collect (Collectors.toList ()));
+
 
             Template template = templateProvider.getTemplate (getServletContext (), "searchingDelegationsTemplate");
 
@@ -68,6 +89,12 @@ public class DelegationSearchServlet extends HttpServlet {
 
     }
 
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String  wybor = req.getParameter ("status");
+
+        System.out.println ("doPost switch " + wybor);
+
+    }
 
 }
