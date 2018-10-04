@@ -54,7 +54,7 @@ public class DelegationInstanceGenerator {
         delegation.setFileLineNumber(delegationAutoincrementId.loadId());
         delegation.setDestination(destination);
         delegation.setEmployee(employee);
-        delegation.setDelegationStatus(DelegationStatus.SAVED);
+        delegation.setDelegationStatus(DelegationStatus.TOACCEPT);
         delegation.setCreationDate(LocalDate.now());
 
         return delegation;

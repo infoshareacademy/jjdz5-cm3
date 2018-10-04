@@ -22,7 +22,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <h4 style="color: gray">Delegacja zapisana</h4>
+                <h4 style="color: gray">Delegacja wysłana</h4>
             </div>
         </div>
     </nav>

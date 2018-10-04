@@ -56,7 +56,7 @@
 </div>
 <div class="container" style="width: 100%; text-align: center">
         <form class="needs-validation" action="delegation-save" method="POST" novalidate>
-            <button class="btn btn-secondary" type="submit" lang="pl-PL">Zapisz</button>
+            <button class="btn btn-secondary" type="submit" lang="pl-PL">Wyślij</button>
         </form>
         <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
             <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">powrót</button>
