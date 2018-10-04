@@ -117,7 +117,7 @@
                  <td>${d.getStartPoint()}</td>
                  <td>${d.getDelegationStatus()  }</td>
                  <td>
-                     <#if d.getDiscardReason()??>
+                     <#if d.getDiscardReason()!="null">
                          ${d.getDiscardReason()}
                      <#else>
                      </#if>
