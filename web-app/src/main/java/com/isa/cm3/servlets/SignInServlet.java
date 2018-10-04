@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.delegations.IdTokenVerifierAndParser;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -11,25 +12,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import javax.servlet.http.HttpSession;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 
 @WebServlet(urlPatterns = "/sign-in")
 public class SignInServlet extends HttpServlet {
 
-    @Inject
-    private TemplateProvider templateProvider;
+   /* @Inject
+    private TemplateProvider templateProvider;*/
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp)
+                         throws ServletException, IOException {
 
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        Template template = templateProvider
-                .getTemplate(getServletContext(), "signIntemplate");
+        /*Template template = templateProvider
+                .getTemplate(getServletContext(), "signIntemplate");*/
         try {
-            template.process(new HashMap<>(), resp.getWriter());
-        } catch (TemplateException e) {
+            String idToken = req.getParameter("id_token");
+            GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
+            String name = (String) payLoad.get("name");
+            String email = payLoad.getEmail();
+            System.out.println("User name: " + name);
+            System.out.println("User email: " + email);
+
+            HttpSession session = req.getSession(true);
+            session.setAttribute("userName", name);
+            req.getServletContext()
+                    .getRequestDispatcher("/mainMenu").forward(req, resp);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+         /*   template.process(new HashMap<>(), resp.getWriter());*/
+        } /*catch (TemplateException e) {
             e.printStackTrace();
-        }
+        }*/
+
     }
 }
