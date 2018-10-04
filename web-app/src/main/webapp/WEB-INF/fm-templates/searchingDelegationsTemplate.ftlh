@@ -116,7 +116,7 @@
                  <td>${d.getPurpose()}</td>
                  <td>${d.getStartPoint()}</td>
                  <td>${d.getDelegationStatus()  }</td>
-                 <td>${d.getDiscardReason}</td>
+                 <td>${d.getDiscardReason()}</td>
 
              </tr>
               </div>
