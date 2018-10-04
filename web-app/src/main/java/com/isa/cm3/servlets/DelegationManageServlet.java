@@ -41,7 +41,7 @@ public class DelegationManageServlet extends HttpServlet {
 
         mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
                 .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.SAVED))
+                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
                 .collect(Collectors.toList()));
 
         Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
