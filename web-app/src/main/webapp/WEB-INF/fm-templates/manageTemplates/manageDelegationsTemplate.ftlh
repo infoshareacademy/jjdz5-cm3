@@ -8,6 +8,41 @@
 </head>
 <body style="font-family: 'Open Sans', sans-serif">
     <#include "../include/navbarHeaderTemplate.ftlh">
+
+<div class="container">
+    <div class="row">
+                <#if names?size == 0>
+
+                <#else >
+                <div class="col-sm-12">
+                    <form action="/delegations-web/manageDelegations" method="get">
+                        <select name="name">
+                             <#list names as n>
+                                 <option>${n}</option>
+                             </#list>
+                        </select>
+
+                        <select name="surname">
+                             <#list surnames as s>
+                                 <option>${s}</option>
+                             </#list>
+                        </select>
+
+                        <select name="country">
+                             <#list countries as s>
+                                 <option>${s}</option>
+                             </#list>
+                        </select>
+
+                        <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
+
+                    </form>
+                </div >
+                </#if>
+    </div>
+</div>
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -22,33 +57,6 @@
                          </a>
 
                  <#else >
-
-    <div class="container">
-        <div class="row">
-                <#if names?size == 0>
-
-                <#else >
-                <div class="col-sm-2">
-                     <form action="/delegations-web/manageDelegations">
-                         <select name="name">
-                             <#list names as n>
-                             <option>${n}</option>
-                             </#list>
-                         </select>
-
-                         <select name="surname">
-                             <#list surnames as s>
-                                 <option>${s}</option>
-                             </#list>
-                         </select>
-                     </form>
-                </div >
-                </#if>
-        </div>
-    </div>
-
-
-
 
                     <table class="table">
                         <thead class="thead-dark">

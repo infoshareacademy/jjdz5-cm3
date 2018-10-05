@@ -63,8 +63,13 @@ public class DelegationsLoadFromFile {
                                     tempList.get(12).trim(),
                                     (tempList.get(13).trim())));
 
+                            delegationRepository.setNameList("");
+                            delegationRepository.setSurNameList("");
+                            delegationRepository.setDestinationCountryList("");
+
                             delegationRepository.setNameList(tempList.get(2).trim());
                             delegationRepository.setSurNameList(tempList.get(3).trim());
+                            delegationRepository.setDestinationCountryList(tempList.get(6).trim());
                         }
 
                         line = ((BufferedReader) reader).readLine();

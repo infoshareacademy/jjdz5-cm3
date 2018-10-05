@@ -39,10 +39,81 @@ public class DelegationManageServlet extends HttpServlet {
 
         delegationsLoadFromFile.loadDelegationsFromFile();
 
-        mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                .collect(Collectors.toList()));
+        final String wyborName = req.getParameter ("name").trim();
+        final String wyborSurname = req.getParameter ("surname").trim();
+        final String wyborCountry = req.getParameter ("country").trim();
+
+        System.out.println("Wybór: "+wyborName);
+        System.out.println("Wybór: "+wyborSurname);
+        System.out.println("Wybór: "+wyborCountry);
+
+        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
+                    .filter(  delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( wyborName.isEmpty() && !wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
+                    .filter(  delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname) )
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( !wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
+                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( wyborName.isEmpty() && !wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
+                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( !wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
+                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( !wyborName.isEmpty() && !wyborSurname.isEmpty() && wyborCountry.isEmpty() ) {
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
+                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
+
+        if ( !wyborName.isEmpty() && !wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
+                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
+                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
+                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+        }
 
         mapModelGenerator.setModel("names", delegationRepository.getNameList().stream()
                 .collect(Collectors.toList()));
@@ -50,6 +121,8 @@ public class DelegationManageServlet extends HttpServlet {
         mapModelGenerator.setModel("surnames", delegationRepository.getSurnameList().stream()
                 .collect(Collectors.toList()));
 
+        mapModelGenerator.setModel("countries", delegationRepository.getDestinationCountryList().stream()
+                .collect(Collectors.toList()));
 
         Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 

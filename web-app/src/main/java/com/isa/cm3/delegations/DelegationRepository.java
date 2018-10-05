@@ -13,6 +13,7 @@ public class DelegationRepository {
 
     private Set<String> nameList = new HashSet<>();
     private Set<String> surnameList = new HashSet<>();
+    private Set<String> destinationCountryList = new HashSet<>();
 
     public List<Delegation> getList() {
         return list;
@@ -26,6 +27,10 @@ public class DelegationRepository {
         return surnameList;
     }
 
+    public Set<String> getDestinationCountryList() {
+        return destinationCountryList;
+    }
+
         public void setList(Delegation delegation) {
         this.list.add(delegation);
     }
@@ -36,6 +41,10 @@ public class DelegationRepository {
 
     public void setSurNameList(String surNamesList){
         this.surnameList.add(surNamesList);
+    }
+
+    public void setDestinationCountryList(String destinationCountryList){
+        this.destinationCountryList.add(destinationCountryList);
     }
 }
 
