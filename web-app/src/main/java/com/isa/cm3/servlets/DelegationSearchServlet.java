@@ -62,9 +62,9 @@ public class DelegationSearchServlet extends HttpServlet {
                             .collect (Collectors.toList ()));
                     break;
                 default:
-                    mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
-                            .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
-                            .collect (Collectors.toList ()));
+                    mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                            .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                            .collect(Collectors.toList()));
                     break;
             }
         }

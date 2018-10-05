@@ -62,6 +62,9 @@ public class DelegationsLoadFromFile {
                                     DelegationStatus.valueOf(tempList.get(11).trim()),
                                     tempList.get(12).trim(),
                                     (tempList.get(13).trim())));
+
+                            delegationRepository.setNameList(tempList.get(2).trim());
+                            delegationRepository.setSurNameList(tempList.get(3).trim());
                         }
 
                         line = ((BufferedReader) reader).readLine();

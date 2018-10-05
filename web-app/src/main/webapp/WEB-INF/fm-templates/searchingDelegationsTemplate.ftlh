@@ -28,8 +28,6 @@
     <div class="container">
         <div class="row">
 
-
-
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
                     <button class="btn btn-block btn-dark" type="submit" lang="pl-PL" value="" name="status";>Wszystkie</button>
@@ -57,7 +55,6 @@
 
 
     </div>
-
 
     <div class="container">
         <div class="row">
