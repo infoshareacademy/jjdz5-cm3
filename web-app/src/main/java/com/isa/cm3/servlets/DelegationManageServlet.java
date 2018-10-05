@@ -36,159 +36,211 @@ public class DelegationManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("yyyy-MM-dd");
 
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationsLoadFromFile.loadDelegationsFromFile();
+        delegationsLoadFromFile.loadDelegationsFromFile ();
 
-        final String wyborName = req.getParameter ("name").trim();
-        final String wyborSurname = req.getParameter ("surname").trim();
-        final String wyborCountry = req.getParameter ("country").trim();
-        final String wyborCreationDate = req.getParameter ("created").trim();
+        final String wyborName = req.getParameter ("name").trim ();
+        final String wyborSurname = req.getParameter ("surname").trim ();
+        final String wyborCountry = req.getParameter ("country").trim ();
+        final String wyborCreationDate = req.getParameter ("created").trim ();
 
-        System.out.println("Wybór: "+wyborName);
-        System.out.println("Wybór: "+wyborSurname);
-        System.out.println("Wybór: "+wyborCountry);
-        System.out.println("Wybór: "+wyborCreationDate);
-        
-        System.out.println(delegationRepository.getCreationDateList());
-        System.out.println(String.format(wyborCreationDate,formatter ));
+        System.out.println ("Wybór: " + wyborName);
+        System.out.println ("Wybór: " + wyborSurname);
+        System.out.println ("Wybór: " + wyborCountry);
+        System.out.println ("Wybór: " + wyborCreationDate);
 
-        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() && wyborCreationDate.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
-            System.out.println("W1");
+        System.out.println (delegationRepository.getCreationDateList ());
+        System.out.println (String.format (wyborCreationDate, formatter));
+
+        if (wyborName.isEmpty () && wyborSurname.isEmpty () && wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+            System.out.println ("W1");
         }
 
-        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() && !wyborCreationDate.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
-                    .filter(  delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
-                    .filter(  delegation -> delegation.getCreationDate().equals(String.format(wyborCreationDate,formatter )) )
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
-            System.out.println("W2");
+        if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+            System.out.println ("W2");
         }
 
-        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() && wyborCreationDate.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
-                    .filter( delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
-            System.out.println("W3");
+        if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+            System.out.println ("W3");
         }
 
-        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
-                    .filter(  delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+
+        if (wyborName.isEmpty () && !wyborSurname.isEmpty () && wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( wyborName.isEmpty() && !wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
-                    .filter(  delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname) )
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (wyborName.isEmpty () && !wyborSurname.isEmpty () && wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( !wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
-                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && wyborSurname.isEmpty () && wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( wyborName.isEmpty() && !wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
-                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && wyborSurname.isEmpty () && wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( !wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
-                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (wyborName.isEmpty () && !wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( !wyborName.isEmpty() && !wyborSurname.isEmpty() && wyborCountry.isEmpty() ) {
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
-                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (wyborName.isEmpty () && !wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        if ( !wyborName.isEmpty() && !wyborSurname.isEmpty() && !wyborCountry.isEmpty() ) {
-            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                    .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                    .filter(  delegation -> delegation.getEmployee().getEmployeeName().equals(wyborName) )
-                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(wyborSurname))
-                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry))
-                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                    .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
         }
 
-        mapModelGenerator.setModel("names", delegationRepository.getNameList().stream()
-                .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+        }
 
-        mapModelGenerator.setModel("surnames", delegationRepository.getSurnameList().stream()
-                .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && !wyborSurname.isEmpty () && wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+        }
 
-        mapModelGenerator.setModel("countries", delegationRepository.getDestinationCountryList().stream()
-                .collect(Collectors.toList()));
+        if (!wyborName.isEmpty () && !wyborSurname.isEmpty () && wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+        }
 
-        Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
+        if (!wyborName.isEmpty () && !wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+        }
+
+        if (!wyborName.isEmpty () && !wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
+                    .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
+                    .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+        }
+
+        mapModelGenerator.setModel ("names", delegationRepository.getNameList ().stream ()
+                .collect (Collectors.toList ()));
+
+        mapModelGenerator.setModel ("surnames", delegationRepository.getSurnameList ().stream ()
+                .collect (Collectors.toList ()));
+
+        mapModelGenerator.setModel ("countries", delegationRepository.getDestinationCountryList ().stream ()
+                .collect (Collectors.toList ()));
+
+        Template template = templateProvider.getTemplate (getServletContext (), "manageTemplates/manageDelegationsTemplate");
 
         try {
-            template.process(mapModelGenerator.getModel(), resp.getWriter());
+            template.process (mapModelGenerator.getModel (), resp.getWriter ());
         } catch (TemplateException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-        req.setCharacterEncoding("UTF-8");
+        resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        req.setCharacterEncoding ("UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
+                .getTemplate (getServletContext (), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String wybor = req.getParameter("wybor");
-        if (wybor != null && !wybor.isEmpty()) {
-            String button = req.getParameter("button");
-            String discardReason = req.getParameter("discardReason");
-            Integer id = Integer.parseInt(wybor);
+        String wybor = req.getParameter ("wybor");
+        if (wybor != null && !wybor.isEmpty ()) {
+            String button = req.getParameter ("button");
+            String discardReason = req.getParameter ("discardReason");
+            Integer id = Integer.parseInt (wybor);
 
-            delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
-            mapModelGenerator.setModel("mapa", button);
+            delegationAcceptDiscardSaveToFile.decisionSaving (id, button, discardReason);
+            mapModelGenerator.setModel ("mapa", button);
 
         } else {
-            mapModelGenerator.setModel("mapa", "test");
+            mapModelGenerator.setModel ("mapa", "test");
         }
 
         try {
-            template.process(mapModelGenerator.getModel(), resp.getWriter());
+            template.process (mapModelGenerator.getModel (), resp.getWriter ());
         } catch (TemplateException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
     }
 }
