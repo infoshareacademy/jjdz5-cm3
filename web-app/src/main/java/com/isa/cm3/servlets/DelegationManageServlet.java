@@ -64,14 +64,23 @@ public class DelegationManageServlet extends HttpServlet {
             System.out.println ("W1");
         }
 
+        if (wyborName.isEmpty () && wyborSurname.isEmpty () && wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
+            mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                    .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                    .filter (delegation -> delegation.getCreationDate ().equals (wyborCreationDate))
+                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .collect (Collectors.toList ()));
+            System.out.println ("W2");
+        }
+
         if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .filter (delegation -> delegation.getCreationDate ().equals (wyborCreationDate))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W2");
+            System.out.println ("W3");
         }
 
         if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
@@ -80,7 +89,7 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W3");
+            System.out.println ("W4");
         }
 
 
