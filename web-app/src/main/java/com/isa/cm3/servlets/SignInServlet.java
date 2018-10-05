@@ -1,3 +1,4 @@
+/*
 package com.isa.cm3.servlets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 
@@ -45,10 +46,12 @@ public class SignInServlet extends HttpServlet {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-            template.process(new HashMap<>(), resp.getWriter());
-        } catch (TemplateException e) {
-            e.printStackTrace();
+        }try
+        {
+                template.process(new HashMap<>(), resp.getWriter());
+            } catch (TemplateException e1) {
+                e1.printStackTrace();
+            }
         }
-
     }
-}
+*/
