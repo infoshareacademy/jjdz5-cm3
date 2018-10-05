@@ -1,6 +1,7 @@
 package com.isa.cm3.delegations;
 
 import org.apache.logging.log4j.*;
+import org.apache.logging.slf4j.Log4jLogger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,8 +22,7 @@ public class DelegationUploadProcess {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private static final Logger LOG =
-            LogManager.getLogger(Log4jLogger.class);
+    private static final Logger LOGGER = LogManager.getLogger(Log4jLogger.class);
 
     public String uploadFromFileProcess(Part part) {
         String line;
@@ -53,9 +53,11 @@ public class DelegationUploadProcess {
 
                     try {
                         date = LocalDate.parse(tempList.get(0).trim(), settings.getFormater());
+                        LOGGER.warn("BOM na początku pliku ");
                     } catch (java.time.format.DateTimeParseException e) {
                         String substring = tempList.get(0).substring(1, tempList.get(0).length());
                         date = LocalDate.parse(substring, settings.getFormater());
+                        LOGGER.info("Błąd parsowania");
                     }
 
                     delegationRepository.setList(new Delegation(
