@@ -16,18 +16,21 @@
                 <#else >
                 <div class="col-sm-12">
                     <form action="/delegations-web/manageDelegations" method="get">
+                        <label>Imię:</label>
                         <select name="name">
                              <#list names as n>
                                  <option>${n}</option>
                              </#list>
                         </select>
 
+                        <label>Nazwisko:</label>
                         <select name="surname">
                              <#list surnames as s>
                                  <option>${s}</option>
                              </#list>
                         </select>
 
+                        <label>Kraj wyjazdu:</label>
                         <select name="country">
                              <#list countries as s>
                                  <option>${s}</option>
