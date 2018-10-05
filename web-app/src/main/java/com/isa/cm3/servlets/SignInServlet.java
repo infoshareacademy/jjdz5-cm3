@@ -1,4 +1,5 @@
 package com.isa.cm3.servlets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 
 import com.isa.cm3.delegations.IdTokenVerifierAndParser;
 import com.isa.cm3.freemarker.TemplateProvider;
@@ -14,13 +15,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-
 @WebServlet(urlPatterns = "/sign-in")
 public class SignInServlet extends HttpServlet {
 
-   /* @Inject
-    private TemplateProvider templateProvider;*/
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req,
@@ -30,8 +29,7 @@ public class SignInServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        /*Template template = templateProvider
-                .getTemplate(getServletContext(), "signIntemplate");*/
+        Template template = templateProvider.getTemplate(getServletContext(), "signIntemplate");
         try {
             String idToken = req.getParameter("id_token");
             GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
@@ -47,10 +45,10 @@ public class SignInServlet extends HttpServlet {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-         /*   template.process(new HashMap<>(), resp.getWriter());*/
-        } /*catch (TemplateException e) {
+            template.process(new HashMap<>(), resp.getWriter());
+        } catch (TemplateException e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 }
