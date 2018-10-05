@@ -63,10 +63,12 @@ public class DelegationsLoadFromFile {
                                     tempList.get(12).trim(),
                                     (tempList.get(13).trim())));
 
+                            delegationRepository.setCreationDateList("");
                             delegationRepository.setNameList("");
                             delegationRepository.setSurNameList("");
                             delegationRepository.setDestinationCountryList("");
 
+                            delegationRepository.setCreationDateList(tempList.get(1).trim());
                             delegationRepository.setNameList(tempList.get(2).trim());
                             delegationRepository.setSurNameList(tempList.get(3).trim());
                             delegationRepository.setDestinationCountryList(tempList.get(6).trim());

@@ -16,6 +16,14 @@
                 <#else >
                 <div class="col-sm-12">
                     <form action="/delegations-web/manageDelegations" method="get">
+
+                        <label>Data utworzenia:</label>
+                        <select name="date">
+                             <#list dates as d>
+                                 <option>${d}</option>
+                             </#list>
+                        </select>
+
                         <label>Imię:</label>
                         <select name="name">
                              <#list names as n>
@@ -37,9 +45,7 @@
                              </#list>
                         </select>
 
-                        <label>Data utworzenia:</label>
-                        <input type="date" name="created">
-                        </input>
+
 
                         <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
 

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -46,12 +45,8 @@ public class DelegationManageServlet extends HttpServlet {
         final String wyborName = req.getParameter ("name").trim ();
         final String wyborSurname = req.getParameter ("surname").trim ();
         final String wyborCountry = req.getParameter ("country").trim ();
-        final String wyborCreationDate = req.getParameter ("created").trim ();
+        final String wyborCreationDate = req.getParameter ("date").trim ();
 
-        System.out.println ("Wybór: " + wyborName);
-        System.out.println ("Wybór: " + wyborSurname);
-        System.out.println ("Wybór: " + wyborCountry);
-        System.out.println ("Wybór: " + wyborCreationDate);
 
         System.out.println (delegationRepository.getCreationDateList ());
         System.out.println (String.format (wyborCreationDate, formatter));
@@ -61,26 +56,23 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W1");
         }
 
         if (wyborName.isEmpty () && wyborSurname.isEmpty () && wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
-                    .filter (delegation -> delegation.getCreationDate ().equals (wyborCreationDate))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W2");
         }
 
         if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && !wyborCreationDate.isEmpty ()) {
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
-                    .filter (delegation -> delegation.getCreationDate ().equals (wyborCreationDate))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W3");
         }
 
         if (wyborName.isEmpty () && wyborSurname.isEmpty () && !wyborCountry.isEmpty () && wyborCreationDate.isEmpty ()) {
@@ -89,7 +81,6 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
-            System.out.println ("W4");
         }
 
 
@@ -97,8 +88,7 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))             .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
 
@@ -114,7 +104,7 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
@@ -132,8 +122,7 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))             .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
 
@@ -151,8 +140,7 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
 
@@ -170,8 +158,7 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))             .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
 
@@ -190,8 +177,7 @@ public class DelegationManageServlet extends HttpServlet {
                     .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (wyborName))
                     .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (wyborSurname))
                     .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (wyborCountry))
-                    .filter (delegation -> delegation.getCreationDate ().equals (String.format (wyborCreationDate, formatter)))
-                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                    .filter (delegation -> delegation.getCreationDate ().format (formatter).equals ( wyborCreationDate))                    .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
 
@@ -204,6 +190,9 @@ public class DelegationManageServlet extends HttpServlet {
                     .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
                     .collect (Collectors.toList ()));
         }
+
+        mapModelGenerator.setModel ("dates", delegationRepository.getCreationDateList ().stream ()
+                .collect (Collectors.toList ()));
 
         mapModelGenerator.setModel ("names", delegationRepository.getNameList ().stream ()
                 .collect (Collectors.toList ()));

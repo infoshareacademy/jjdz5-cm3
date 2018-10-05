@@ -12,13 +12,18 @@ public class DelegationRepository {
 
     private List<Delegation> list = new ArrayList<>();
 
+    private Set<String> creationDateList = new HashSet<>();
     private Set<String> nameList = new HashSet<>();
     private Set<String> surnameList = new HashSet<>();
     private Set<String> destinationCountryList = new HashSet<>();
-    private LocalDate creationDateList;
+
 
     public List<Delegation> getList() {
         return list;
+    }
+
+    public Set<String> getCreationDateList() {
+        return creationDateList;
     }
 
     public Set<String> getNameList(){
@@ -29,15 +34,16 @@ public class DelegationRepository {
         return surnameList;
     }
 
-    public LocalDate getCreationDateList() {
-        return creationDateList.now();
-    }
 
     public Set<String> getDestinationCountryList() {
         return destinationCountryList;
     }
 
-        public void setList(Delegation delegation) {
+    public void setCreationDateList(String creationDateList) {
+        this.creationDateList.add(creationDateList);
+    }
+
+    public void setList(Delegation delegation) {
         this.list.add(delegation);
     }
 
