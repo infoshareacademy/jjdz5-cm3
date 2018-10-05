@@ -37,6 +37,10 @@
                              </#list>
                         </select>
 
+                        <label>Data utworzenia:</label>
+                        <input type="date" name="created">
+                        </input>
+
                         <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
 
                     </form>

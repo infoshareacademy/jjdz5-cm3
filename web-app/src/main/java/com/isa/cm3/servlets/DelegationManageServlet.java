@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -34,6 +36,8 @@ public class DelegationManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
@@ -42,16 +46,41 @@ public class DelegationManageServlet extends HttpServlet {
         final String wyborName = req.getParameter ("name").trim();
         final String wyborSurname = req.getParameter ("surname").trim();
         final String wyborCountry = req.getParameter ("country").trim();
+        final String wyborCreationDate = req.getParameter ("created").trim();
 
         System.out.println("Wybór: "+wyborName);
         System.out.println("Wybór: "+wyborSurname);
         System.out.println("Wybór: "+wyborCountry);
+        System.out.println("Wybór: "+wyborCreationDate);
+        
+        System.out.println(delegationRepository.getCreationDateList());
+        System.out.println(String.format(wyborCreationDate,formatter ));
 
-        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() ){
+        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && wyborCountry.isEmpty() && wyborCreationDate.isEmpty() ){
             mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
                     .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
                     .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
                     .collect(Collectors.toList()));
+            System.out.println("W1");
+        }
+
+        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() && !wyborCreationDate.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
+                    .filter(  delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
+                    .filter(  delegation -> delegation.getCreationDate().equals(String.format(wyborCreationDate,formatter )) )
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+            System.out.println("W2");
+        }
+
+        if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() && wyborCreationDate.isEmpty() ){
+            mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
+                    .filter( delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT) )
+                    .filter( delegation -> delegation.getDestination().getDestinationCountry().equals(wyborCountry) )
+                    .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                    .collect(Collectors.toList()));
+            System.out.println("W3");
         }
 
         if ( wyborName.isEmpty() && wyborSurname.isEmpty() && !wyborCountry.isEmpty() ){
