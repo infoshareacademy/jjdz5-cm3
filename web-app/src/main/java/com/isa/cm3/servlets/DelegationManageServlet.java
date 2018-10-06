@@ -30,7 +30,6 @@ public class DelegationManageServlet extends HttpServlet {
     @Inject
     private DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
