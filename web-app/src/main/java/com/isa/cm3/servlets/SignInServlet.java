@@ -1,6 +1,7 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.freemarker.TemplateProvider;
+
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import javax.inject.Inject;
@@ -20,7 +21,6 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
