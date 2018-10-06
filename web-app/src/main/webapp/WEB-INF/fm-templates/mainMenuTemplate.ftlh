@@ -18,7 +18,7 @@
                         <tbody>
                         <tr>
                             <th scope="row">Imię i nazwisko</th>
-                            <td>(session.getAttribute("userName"))</td> //CHECK
+                            <td>${mapa}</td>
                         </tr>
                         <tr>
                             <th scope="row">Stanowisko</th>
