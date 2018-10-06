@@ -1,4 +1,4 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
 
 import javax.enterprise.context.Dependent;
 import java.io.BufferedReader;
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Dependent
-public class DelegationAutoincrementId {
+public class DelegationAutoincrementIdService {
 
     public Integer loadId() {
         Integer i = 1;

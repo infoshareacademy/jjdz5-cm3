@@ -1,4 +1,7 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
+
+import com.isa.cm3.delegations.*;
+import com.isa.cm3.services.DelegationAutoincrementIdService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -7,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @RequestScoped
-public class DelegationInstanceGenerator {
+public class DelegationInstanceGeneratorService {
 
     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Inject
@@ -19,7 +22,7 @@ public class DelegationInstanceGenerator {
     @Inject
     private Employee employee;
     @Inject
-    private DelegationAutoincrementId delegationAutoincrementId;
+    private DelegationAutoincrementIdService delegationAutoincrementIdService;
 
     public Delegation generateDelegationInstance() {
 
@@ -51,7 +54,7 @@ public class DelegationInstanceGenerator {
             }
         }
 
-        delegation.setFileLineNumber(delegationAutoincrementId.loadId());
+        delegation.setFileLineNumber(delegationAutoincrementIdService.loadId());
         delegation.setDestination(destination);
         delegation.setEmployee(employee);
         delegation.setDelegationStatus(DelegationStatus.TOACCEPT);

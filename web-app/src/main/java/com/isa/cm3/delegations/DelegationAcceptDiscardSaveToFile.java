@@ -1,5 +1,7 @@
 package com.isa.cm3.delegations;
 
+import com.isa.cm3.services.DelegationListSaveToFileService;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -13,7 +15,7 @@ public class DelegationAcceptDiscardSaveToFile {
     private DelegationRepository delegationRepository;
 
     @Inject
-    private DelegationListSaveToFile delegationListSaveToFile;
+    private DelegationListSaveToFileService delegationListSaveToFileService;
 
 
     public void decisionSaving(Integer id, String button, String discardReason) {
@@ -45,6 +47,6 @@ public class DelegationAcceptDiscardSaveToFile {
                         }
                 ).findFirst();
 
-        delegationListSaveToFile.saveToFile();
+        delegationListSaveToFileService.saveToFile();
     }
 }

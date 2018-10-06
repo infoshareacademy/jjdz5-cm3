@@ -1,7 +1,7 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.DelegationMapForValidation;
-import com.isa.cm3.delegations.DelegationsValidation;
+import com.isa.cm3.services.DelegationsValidationServices;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -23,7 +23,7 @@ public class DelegationAddProcesServlet extends HttpServlet {
     private DelegationMapForValidation delegationMapForValidation;
 
     @Inject
-    private DelegationsValidation delegationsValidation;
+    private DelegationsValidationServices delegationsValidationServices;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -45,7 +45,7 @@ public class DelegationAddProcesServlet extends HttpServlet {
             }
         }
 
-        String validationInfo = delegationsValidation.requestValidation(delegationMapForValidation.getParametrMap());
+        String validationInfo = delegationsValidationServices.requestValidation(delegationMapForValidation.getParametrMap());
 
         if (!validationInfo.equalsIgnoreCase("ok")) {
             mapModelGenerator.setModel("mapa", validationInfo);

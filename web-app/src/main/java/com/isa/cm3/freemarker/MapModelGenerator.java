@@ -16,4 +16,5 @@ public class MapModelGenerator {
     public void setModel(String s, Object o) {
         this.model.put(s, o);
     }
+
 }

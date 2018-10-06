@@ -1,4 +1,4 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
 
 import javax.enterprise.context.RequestScoped;
 import java.time.LocalDate;
@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 @RequestScoped
-public class DelegationsValidation {
+public class DelegationsValidationServices {
 
     private final String regExNameAndSurname = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
