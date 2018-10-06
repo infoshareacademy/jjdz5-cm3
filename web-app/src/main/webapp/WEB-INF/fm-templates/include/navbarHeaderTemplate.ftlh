@@ -17,7 +17,15 @@
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
-                    <a href="/delegations-web/sign-in" class="btn btn-default btn-outline btn-circle">Wyloguj się</a>
+                    <a href="/delegations-web/sign-in" onclick="signOut();">Wyloguj się</a>
+                    <script>
+                        function signOut() {
+                            var auth2 = gapi.auth2.getAuthInstance();
+                            auth2.signOut().then(function () {
+                                console.log('USER SIGNED OUT');
+                            });
+                        }
+                    </script>
                 </li>
             </ul>
         </div>
