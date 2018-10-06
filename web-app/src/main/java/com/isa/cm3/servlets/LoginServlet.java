@@ -3,8 +3,6 @@ package com.isa.cm3.servlets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.isa.cm3.delegations.IdTokenVerifierAndParser;
 import com.isa.cm3.freemarker.TemplateProvider;
-
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
