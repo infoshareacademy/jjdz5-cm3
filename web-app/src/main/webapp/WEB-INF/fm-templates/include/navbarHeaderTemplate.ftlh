@@ -14,10 +14,20 @@
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/searchDelegations?status=">Szukaj delegacji</a></li>
                 <li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=">Zarządzaj delegacjami</a></li>
+                <li><a href="/delegations-web/import">Importuj delegacje</a></li>
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
-                    <a href="/delegations-web/sign-in" class="btn btn-default btn-outline btn-circle">Wyloguj się</a>
+                    <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>
+                    <#--<a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>-->
+                    <#--<script>-->
+                        <#--function signOut() {-->
+                            <#--var auth2 = gapi.auth2.getAuthInstance();-->
+                            <#--auth2.signOut().then(function () {-->
+                                <#--console.log('USER SIGNED OUT');-->
+                            <#--});-->
+                        <#--}-->
+                    <#--</script>-->
                 </li>
             </ul>
         </div>

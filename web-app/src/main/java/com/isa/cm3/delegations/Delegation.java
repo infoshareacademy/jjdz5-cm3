@@ -158,8 +158,5 @@ public class Delegation implements Serializable {
                 purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
     }
 
-    public String toAcceptView() {
-        return fileLineNumber + " | " + creationDate + " | " + employee + "," + startDate + "," + endDate + "," + destination + "," +
-                purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
-    }
+
 }

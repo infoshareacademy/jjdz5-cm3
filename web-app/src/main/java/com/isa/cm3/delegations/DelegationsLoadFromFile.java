@@ -73,7 +73,6 @@ public class DelegationsLoadFromFile {
                             delegationRepository.setSurNameList(tempList.get(3).trim());
                             delegationRepository.setDestinationCountryList(tempList.get(6).trim());
                         }
-
                         line = ((BufferedReader) reader).readLine();
                     }
                     reader.close();

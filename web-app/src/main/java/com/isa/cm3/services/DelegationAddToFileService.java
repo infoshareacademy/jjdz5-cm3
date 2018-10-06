@@ -1,4 +1,7 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
+
+import com.isa.cm3.delegations.Delegation;
+import com.isa.cm3.delegations.Settings;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -8,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 
 @RequestScoped
-public class DelegationAddToFile {
+public class DelegationAddToFileService {
 
     @Inject
     private Settings settings;
