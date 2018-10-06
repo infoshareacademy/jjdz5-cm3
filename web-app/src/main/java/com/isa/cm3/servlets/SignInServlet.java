@@ -25,9 +25,9 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+
 
         Template template = templateProvider
                 .getTemplate(getServletContext(), "signIntemplate");
@@ -35,21 +35,6 @@ public class SignInServlet extends HttpServlet {
             template.process(new HashMap<>(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
-        }
-        try {
-            String idToken = req.getParameter("id_token");
-            GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
-            String name = (String) payLoad.get("name");
-            String email = payLoad.getEmail();
-            System.out.println("User name: " + name);
-            System.out.println("User email: " + email);
-
-            HttpSession session = req.getSession(true);
-            session.setAttribute("userName", name);
-            req.getServletContext()
-                    .getRequestDispatcher("/mainMenu").forward(req, resp);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 }

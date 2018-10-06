@@ -6,10 +6,9 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 public class IdTokenVerifierAndParser {
-    private static final String GOOGLE_CLIENT_ID = "589731494851-gnjn3gne68h4fnch3j9d0molr53p0ftf.apps.googleusercontent.com";
+    private static final String GOOGLE_CLIENT_ID = "179499498447-sjdfn312llnmr2kgmd7alrn77buk2dt1.apps.googleusercontent.com";
 
     public static GoogleIdToken.Payload getPayload (String tokenString) throws Exception {
-
         JacksonFactory jacksonFactory = new JacksonFactory();
         GoogleIdTokenVerifier googleIdTokenVerifier =
                 new GoogleIdTokenVerifier(new NetHttpTransport(), jacksonFactory);
