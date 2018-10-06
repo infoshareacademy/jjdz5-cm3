@@ -1,9 +1,7 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.delegations.DelegationListSaveToFile;
-import com.isa.cm3.delegations.DelegationRepository;
-import com.isa.cm3.delegations.DelegationUploadProcess;
-import com.isa.cm3.delegations.Settings;
+import com.isa.cm3.services.DelegationListSaveToFileService;
+import com.isa.cm3.services.DelegationImportService;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -30,10 +28,10 @@ public class DelegationImportServlet extends HttpServlet {
     MapModelGenerator mapModelGenerator;
 
     @Inject
-    DelegationUploadProcess delegationUploadProcess;
+    DelegationImportService delegationUploadProcess;
 
     @Inject
-    DelegationListSaveToFile delegationListSaveToFile;
+    DelegationListSaveToFileService delegationListSaveToFileService;
 
 
     @Override
@@ -58,15 +56,12 @@ public class DelegationImportServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
         req.setCharacterEncoding("UTF-8");
-        //        final String path = settings.getUploadDir().toString();
-//        final File uploadDir = new File(path);
-//        if (!uploadDir.exists()) {
-//            uploadDir.mkdir();
+
 //        }
         Part filePart = req.getPart("file");
 
         if (delegationUploadProcess.uploadFromFileProcess(filePart).equals("ok")) {
-            delegationListSaveToFile.saveToFile();
+            delegationListSaveToFileService.saveToFile();
             mapModelGenerator.setModel("mapa", "zapisano do pliku");
         } else {
             mapModelGenerator.setModel("mapa", delegationUploadProcess.uploadFromFileProcess(filePart));

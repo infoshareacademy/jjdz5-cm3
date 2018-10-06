@@ -1,7 +1,6 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
 
-import org.apache.logging.log4j.*;
-import org.apache.logging.slf4j.Log4jLogger;
+import com.isa.cm3.delegations.*;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,49 +14,43 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequestScoped
-public class DelegationUploadProcess {
+public class DelegationImportService {
 
+
+    private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
     @Inject
     private Settings settings;
     @Inject
     private DelegationRepository delegationRepository;
 
-    private static final Logger LOGGER = LogManager.getLogger(Log4jLogger.class);
-
     public String uploadFromFileProcess(Part part) {
         String line;
         BufferedReader reader;
-
+        LocalDate date;
+        int id = 1;
         try {
-
-            if (part.getSize() == 0) {
-                return "Plik jest pusty";
-            }
-
             InputStream fileStream = part.getInputStream();
             reader = new BufferedReader(new InputStreamReader(fileStream, StandardCharsets.UTF_8));
             line = reader.readLine().trim();
 
-            if (line.isEmpty()) {
-                return "Plik jest pusty";
-            }
-            LocalDate date;
-            int id = 1;
             while (line != null) {
                 try {
+                    if (line.equals("")) {
+                        return message + " : zawiera puste linie.";
+                    }
                     List<String> tempList = Arrays.asList(line.split(","));
                     if (tempList.size() != 11) {
-                        return "Są błędy w pliku. Długość jednej z lini to: " + tempList.size() + " a powinno być 11." +
-                                "\n Żadne dane nie zostały zapisane. Popraw plik i spóbuj jeszcze raz";
+                        return message;
                     }
 
-                    try {
+                    String dateValidationInfo = bomAndDateValidation(tempList, id);
+                    if (dateValidationInfo.equals("ok")) {
                         date = LocalDate.parse(tempList.get(0).trim(), settings.getFormater());
-                        LOGGER.warn("BOM na początku pliku ");
-                    } catch (java.time.format.DateTimeParseException e) {
-                        String substring = tempList.get(0).substring(1, tempList.get(0).length());
-                        date = LocalDate.parse(substring, settings.getFormater());
-                        LOGGER.info("Błąd parsowania");
+                    } else if (dateValidationInfo.equals("bom")) {
+                        String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
+                        date = LocalDate.parse(substring);
+                    } else {
+                        return message;
                     }
 
                     delegationRepository.setList(new Delegation(
@@ -81,7 +74,7 @@ public class DelegationUploadProcess {
                     line = reader.readLine();
                     id++;
                 } catch (Exception e) {
-                   e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             reader.close();
@@ -90,5 +83,36 @@ public class DelegationUploadProcess {
         }
         return "ok";
     }
+
+    private String bomAndDateValidation(List<String> tempList, int counter) {
+
+        String regex = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
+        boolean allMatches = tempList.get(0).trim().matches(regex) && tempList.get(3).trim().matches(regex) && tempList.get(4).trim().matches(regex);
+        boolean twoMatches = tempList.get(3).trim().matches(regex) && tempList.get(4).trim().matches(regex);
+
+        if (counter == 1) {
+            if (allMatches) {
+                return "ok";
+            } else {
+                String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
+                if (substring.matches(regex) && twoMatches) {
+                    return "bom";
+                } else {
+                    return message;
+                }
+            }
+        }
+
+        if (counter > 1) {
+            if (allMatches) {
+                return "ok";
+            } else {
+                return message;
+            }
+        }
+        return "ok";
+    }
 }
+
+
 

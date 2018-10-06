@@ -42,13 +42,13 @@
             <div class="col-md-6">
                 <label for="validationCustom01">Imię</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="Imię"
-                       name="name" value="Marek" required>
+                       name="name" value="Cmtrzy" required>
                     <#include "../include/formValidationDivCode.ftlh">
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02">Nazwisko</label>
                 <input type="text" class="form-control" id="validationCustom02" placeholder="Nazwisko"
-                       name="surname" value="Kalkowski" required>
+                       name="surname" value="ToZgranaPaka" required>
                     <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="col-md-6">
                 <label for="validationCustom03">Miasto</label>
                 <input type="text" class="form-control" id="validationCustom03" placeholder="Miasto"
-                       name="city" value="Elbląg" required>
+                       name="city" value="Gdańsk" required>
                    <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
@@ -86,14 +86,14 @@
             <div class="col-md-6">
                 <label for="validationCustom04">Firma</label>
                 <input type="text" class="form-control" id="validationCustom04" placeholder="Firma"
-                       name="company" value="StacjaNatura" required>
+                       name="company" value="InfoShareAcademy" required>
                     <#include "../include/formValidationDivCode.ftlh">
             </div>
 
             <div class="col-md-6">
                 <label for="validationCustom05">Adres firmy</label>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Adres firmy"
-                       name="companyAdres" value="Elbląg" required>
+                       name="companyAdres" value="OliwiaBusinesCenter" required>
                          <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="col-md-6">
                 <label for="validationCustom04">Cel wyjazdu</label>
                 <input type="text" class="form-control" id="validationCustom04" placeholder="Cel wyjazdu"
-                       name="purpose" value="Tak sobie" required>
+                       name="purpose" value="Prezentacja" required>
                     <#include "../include/formValidationDivCode.ftlh">
             </div>
 

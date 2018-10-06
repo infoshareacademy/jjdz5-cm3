@@ -1,7 +1,7 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.delegations.DelegationInstanceGenerator;
-import com.isa.cm3.delegations.DelegationAddToFile;
+import com.isa.cm3.services.DelegationInstanceGeneratorService;
+import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -18,10 +18,10 @@ import java.io.IOException;
 public class DelegationSaveServlet extends HttpServlet {
 
     @Inject
-    private DelegationInstanceGenerator delegationInstanceGenerator;
+    private DelegationInstanceGeneratorService delegationInstanceGeneratorService;
 
     @Inject
-    private DelegationAddToFile delegationSaveToFile;
+    private DelegationAddToFileService delegationSaveToFile;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -34,7 +34,7 @@ public class DelegationSaveServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationSaveToFile.saveToFile(delegationInstanceGenerator.generateDelegationInstance());
+        delegationSaveToFile.saveToFile(delegationInstanceGeneratorService.generateDelegationInstance());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationAfterSaveAndRedirectTemplate");
         try {
