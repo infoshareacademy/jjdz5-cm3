@@ -1,7 +1,6 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +15,6 @@ public class DelegationRepository {
     private Set<String> nameList = new HashSet<>();
     private Set<String> surnameList = new HashSet<>();
     private Set<String> destinationCountryList = new HashSet<>();
-
 
     public List<Delegation> getList() {
         return list;
@@ -33,7 +31,6 @@ public class DelegationRepository {
     public Set<String> getSurnameList() {
         return surnameList;
     }
-
 
     public Set<String> getDestinationCountryList() {
         return destinationCountryList;

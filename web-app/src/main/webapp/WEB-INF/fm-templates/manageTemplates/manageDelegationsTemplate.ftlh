@@ -11,9 +11,7 @@
 
 <div class="container">
     <div class="row">
-                <#if names?size == 0>
-
-                <#else >
+                <#if names?size != 0>
                 <div class="col-sm-12">
                     <form action="/delegations-web/manageDelegations" method="get">
 
