@@ -8,6 +8,52 @@
 </head>
 <body style="font-family: 'Open Sans', sans-serif">
     <#include "../include/navbarHeaderTemplate.ftlh">
+
+<div class="container">
+    <div class="row">
+                <#if names?size != 0>
+                <div class="col-sm-12">
+                    <form action="/delegations-web/manageDelegations" method="get">
+
+                        <label>Data utworzenia:</label>
+                        <select name="date">
+                             <#list dates as d>
+                                 <option>${d}</option>
+                             </#list>
+                        </select>
+
+                        <label>Imię:</label>
+                        <select name="name">
+                             <#list names as n>
+                                 <option>${n}</option>
+                             </#list>
+                        </select>
+
+                        <label>Nazwisko:</label>
+                        <select name="surname">
+                             <#list surnames as s>
+                                 <option>${s}</option>
+                             </#list>
+                        </select>
+
+                        <label>Kraj wyjazdu:</label>
+                        <select name="country">
+                             <#list countries as s>
+                                 <option>${s}</option>
+                             </#list>
+                        </select>
+
+
+
+                        <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
+
+                    </form>
+                </div >
+                </#if>
+    </div>
+</div>
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -22,6 +68,7 @@
                          </a>
 
                  <#else >
+
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>

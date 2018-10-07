@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -33,52 +34,207 @@ public class DelegationManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("yyyy-MM-dd");
 
-        delegationsLoadFromFile.loadDelegationsFromFile();
+        resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                .collect(Collectors.toList()));
-
-        Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
+        delegationsLoadFromFile.loadDelegationsFromFile ();
 
         try {
-            template.process(mapModelGenerator.getModel(), resp.getWriter());
+            final String choiceName = req.getParameter ("name").trim ();
+            final String choiceSurname = req.getParameter ("surname").trim ();
+            final String choiceCountry = req.getParameter ("country").trim ();
+            final String choiceCreationDate = req.getParameter ("date").trim ();
+            
+            if (choiceName.isEmpty () && choiceSurname.isEmpty () && choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && choiceSurname.isEmpty () && choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && choiceSurname.isEmpty () && !choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && choiceSurname.isEmpty () && !choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && !choiceSurname.isEmpty () && choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate)).sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && !choiceSurname.isEmpty () && choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && choiceSurname.isEmpty () && choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && choiceSurname.isEmpty () && choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && !choiceSurname.isEmpty () && !choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate)).sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (choiceName.isEmpty () && !choiceSurname.isEmpty () && !choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && choiceSurname.isEmpty () && !choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate)).sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && choiceSurname.isEmpty () && !choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && !choiceSurname.isEmpty () && choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate)).sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && !choiceSurname.isEmpty () && choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && !choiceSurname.isEmpty () && !choiceCountry.isEmpty () && !choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .filter (delegation -> delegation.getCreationDate ().format (formatter).equals (choiceCreationDate)).sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+
+            if (!choiceName.isEmpty () && !choiceSurname.isEmpty () && !choiceCountry.isEmpty () && choiceCreationDate.isEmpty ()) {
+                mapModelGenerator.setModel ("delegations", delegationRepository.getList ().stream ()
+                        .filter (delegation -> delegation.getDelegationStatus ().equals (DelegationStatus.TOACCEPT))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeName ().equals (choiceName))
+                        .filter (delegation -> delegation.getEmployee ().getEmployeeSurname ().equals (choiceSurname))
+                        .filter (delegation -> delegation.getDestination ().getDestinationCountry ().equals (choiceCountry))
+                        .sorted (Comparator.comparingInt (Delegation::getFileLineNumber))
+                        .collect (Collectors.toList ()));
+            }
+        } catch (Exception e){
+            System.out.println("Wywolanie bez parametrow: /manageDelegations");
+        }
+        mapModelGenerator.setModel ("dates", delegationRepository.getCreationDateList ().stream ()
+                .collect (Collectors.toList ()));
+
+        mapModelGenerator.setModel ("names", delegationRepository.getNameList ().stream ()
+                .collect (Collectors.toList ()));
+
+        mapModelGenerator.setModel ("surnames", delegationRepository.getSurnameList ().stream ()
+                .collect (Collectors.toList ()));
+
+        mapModelGenerator.setModel ("countries", delegationRepository.getDestinationCountryList ().stream ()
+                .collect (Collectors.toList ()));
+
+        Template template = templateProvider.getTemplate (getServletContext (), "manageTemplates/manageDelegationsTemplate");
+
+        try {
+            template.process (mapModelGenerator.getModel (), resp.getWriter ());
         } catch (TemplateException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-        req.setCharacterEncoding("UTF-8");
+        resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        req.setCharacterEncoding ("UTF-8");
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
+                .getTemplate (getServletContext (), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String wybor = req.getParameter("wybor");
-        if (wybor != null && !wybor.isEmpty()) {
-            String button = req.getParameter("button");
-            String discardReason = req.getParameter("discardReason");
-            Integer id = Integer.parseInt(wybor);
+        String choiceStatus = req.getParameter ("wybor");
+        if (choiceStatus != null && !choiceStatus.isEmpty ()) {
+            String button = req.getParameter ("button");
+            String discardReason = req.getParameter ("discardReason");
+            Integer id = Integer.parseInt (choiceStatus);
 
-            delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
-            mapModelGenerator.setModel("mapa", button);
-
+            delegationAcceptDiscardSaveToFile.decisionSaving (id, button, discardReason);
+            mapModelGenerator.setModel ("mapa", button);
         } else {
-            mapModelGenerator.setModel("mapa", "test");
+            mapModelGenerator.setModel ("mapa", "test");
         }
 
         try {
-            template.process(mapModelGenerator.getModel(), resp.getWriter());
+            template.process (mapModelGenerator.getModel (), resp.getWriter ());
         } catch (TemplateException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
     }
 }
