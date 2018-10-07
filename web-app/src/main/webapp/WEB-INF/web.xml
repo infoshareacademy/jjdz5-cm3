@@ -1,0 +1,52 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+
+<web-app>
+
+    <welcome-file-list>
+        <welcome-file>/signIntemplate</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>DelegationAddProcesServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAddProcesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelegationAddProcesServlet</servlet-name>
+        <url-pattern>/DelegationAdd</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DelegationManageServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationManageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelegationManageServlet</servlet-name>
+        <url-pattern>/manageDelegations</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DelegationAddFormServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAddFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelegationAddFormServlet</servlet-name>
+        <url-pattern>/DelegationAddForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DelegationSevaServlet</servlet-name>
+        <servlet-class>com.isa.cm3.servlets.DelegationAddFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelegationSevaServlet</servlet-name>
+        <url-pattern>/DelegationSave</url-pattern>
+    </servlet-mapping>
+
+
+    <display-name>Archetype Created Web Application</display-name>
+</web-app>
