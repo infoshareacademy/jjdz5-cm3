@@ -109,7 +109,7 @@
                                  <td>${d.getDestination().getDestinationCompanyAddress()}</td>
                                  <td>${d.getPurpose()}</td>
                                  <td>${d.getStartPoint()}</td>
-                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"  ></td>
+                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód" required ></td>
 
                              </tr>
                                     </div>
