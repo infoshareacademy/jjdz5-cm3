@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -11,53 +12,71 @@
 
 <div class="container">
     <div class="row">
-                <#if names?size != 0>
-                <div class="col-sm-12">
-                    <form action="/delegations-web/manageDelegations" method="get">
 
-                        <label>Data utworzenia:</label>
-                        <select name="date">
+
+        <div class="col-sm-12">
+            <form action="/delegations-web/manageDelegations" method="get">
+
+                <label>Data utworzenia:</label>
+                <select name="date">
                              <#list dates as d>
+                                 <#if datesOption == d >
+                                 <option selected>${d}</option>
+                                 <#else>
                                  <option>${d}</option>
-                             </#list>
-                        </select>
+                                 </#if>
 
-                        <label>Imię:</label>
-                        <select name="name">
+                             </#list>
+                </select>
+
+                <label>Imię:</label>
+                <select name="name">
                              <#list names as n>
+                                 <#if namesOption == n >
+                                 <option selected>${n}</option>
+                                 <#else>
                                  <option>${n}</option>
+                                 </#if>
                              </#list>
-                        </select>
+                </select>
 
-                        <label>Nazwisko:</label>
-                        <select name="surname">
+                <label>Nazwisko:</label>
+                <select name="surname">
                              <#list surnames as s>
+                                 <#if surnamesOption == s >
+                                 <option selected>${s}</option>
+                                 <#else>
                                  <option>${s}</option>
+                                 </#if>
                              </#list>
-                        </select>
+                </select>
 
-                        <label>Kraj wyjazdu:</label>
-                        <select name="country">
+                <label>Kraj wyjazdu:</label>
+                <select name="country">
                              <#list countries as s>
-                                 <option>${s}</option>
+                                 <#if countriesOption == s >
+                                     <option selected>${s}</option>
+                                 <#else>
+                                     <option>${s}</option>
+                                 </#if>
                              </#list>
-                        </select>
+                </select>
 
 
 
-                        <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
+                <button class="btn btn-primary" type="submit" lang="pl-PL" >Filtruj</button>
 
-                    </form>
-                </div >
-                </#if>
+            </form>
+        </div >
+
     </div>
 </div>
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form action="manageDelegations" method="POST">
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <form action="manageDelegations" method="POST">
                  <#if delegations?size == 0>
                      Brak delegacji do wyświetlenia <br/>
 
@@ -90,28 +109,28 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <#list delegations as d>
-                             <tr>
-                                 <td>
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="radio" name="wybor" id="lista"
-                                                value="${d.getFileLineNumber()}">
-                                 </td>
-                                 <td>${d.getFileLineNumber()}</td>
-                                 <td>${d.getCreationDate()}</td>
-                                 <td>${d.getEmployee().getEmployeeName()}</td>
-                                 <td>${d.getEmployee().getEmployeeSurname()}</td>
-                                 <td>${d.getStartDate()}</td>
-                                 <td>${d.getEndDate()}</td>
-                                 <td>${d.getDestination().getDestinationCountry()}</td>
-                                 <td>${d.getDestination().getDestinationCity()}</td>
-                                 <td>${d.getDestination().getDestinationCompany()}</td>
-                                 <td>${d.getDestination().getDestinationCompanyAddress()}</td>
-                                 <td>${d.getPurpose()}</td>
-                                 <td>${d.getStartPoint()}</td>
-                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"  ></td>
+                     <#list delegations as d>
+                     <tr>
+                         <td>
+                             <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="choicestatus" id="lista"
+                                        value="${d.getFileLineNumber()}">
+                         </td>
+                         <td>${d.getFileLineNumber()}</td>
+                         <td>${d.getCreationDate()}</td>
+                         <td>${d.getEmployee().getEmployeeName()}</td>
+                         <td>${d.getEmployee().getEmployeeSurname()}</td>
+                         <td>${d.getStartDate()}</td>
+                         <td>${d.getEndDate()}</td>
+                         <td>${d.getDestination().getDestinationCountry()}</td>
+                         <td>${d.getDestination().getDestinationCity()}</td>
+                         <td>${d.getDestination().getDestinationCompany()}</td>
+                         <td>${d.getDestination().getDestinationCompanyAddress()}</td>
+                         <td>${d.getPurpose()}</td>
+                         <td>${d.getStartPoint()}</td>
+                         <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"  ></td>
 
-                             </tr>
+                     </tr>
                                     </div>
                      </#list>
                         </tbody>
@@ -121,7 +140,7 @@
                 <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="button" id="btn">Odrzuć</button>
                  * Jak odrzucasz koniecznie podaj powód!!!!
                  </#if>
-            </form>
+        </form>
     </div>
 </div>
 </div>

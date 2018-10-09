@@ -9,9 +9,9 @@
 <body style="font-family: 'Open Sans', sans-serif">
     <#include "include/navbarHeaderTemplate.ftlh">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
 
             <#if delegations?size == 0>
                 Brak delegacji do wyświetlenia <br/>
@@ -27,6 +27,8 @@
 
     <div class="container">
         <div class="row">
+
+
 
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
@@ -48,13 +50,14 @@
 
             <div class="col-sm-2">
                 <form action="/delegations-web/searchDelegations">
-                 <button class="btn btn-block btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Odrzucone</button>
+                    <button class="btn btn-block btn-danger" type="submit" lang="pl-PL" value="DISCARTED" name="status">Odrzucone</button>
                 </form>
             </div>
         </div>
 
 
     </div>
+
 
     <div class="container">
         <div class="row">
@@ -82,7 +85,7 @@
                  </thead>
 
                  <tbody>
-             <#list delegations as d>
+                <#list delegations as d>
                  <#switch d.getDelegationStatus()>
                      <#case "SAVED">
               <tr class="info">
@@ -100,35 +103,35 @@
               <tr>
                  </#switch>
 
-                 <td>${d.getFileLineNumber()}</td>
-                 <td>${d.getCreationDate()}</td>
-                 <td>${d.getEmployee().getEmployeeName()}</td>
-                 <td>${d.getEmployee().getEmployeeSurname()}</td>
-                 <td>${d.getStartDate()}</td>
-                 <td>${d.getEndDate()}</td>
-                 <td>${d.getDestination().getDestinationCountry()}</td>
-                 <td>${d.getDestination().getDestinationCity()}</td>
-                 <td>${d.getDestination().getDestinationCompany()}</td>
-                 <td>${d.getDestination().getDestinationCompanyAddress()}</td>
-                 <td>${d.getPurpose()}</td>
-                 <td>${d.getStartPoint()}</td>
-                 <td>${d.getDelegationStatus()  }</td>
-                 <td>
+                    <td>${d.getFileLineNumber()}</td>
+                    <td>${d.getCreationDate()}</td>
+                    <td>${d.getEmployee().getEmployeeName()}</td>
+                    <td>${d.getEmployee().getEmployeeSurname()}</td>
+                    <td>${d.getStartDate()}</td>
+                    <td>${d.getEndDate()}</td>
+                    <td>${d.getDestination().getDestinationCountry()}</td>
+                    <td>${d.getDestination().getDestinationCity()}</td>
+                    <td>${d.getDestination().getDestinationCompany()}</td>
+                    <td>${d.getDestination().getDestinationCompanyAddress()}</td>
+                    <td>${d.getPurpose()}</td>
+                    <td>${d.getStartPoint()}</td>
+                    <td>${d.getDelegationStatus()  }</td>
+                    <td>
                      <#if d.getDiscardReason()!="null">
                          ${d.getDiscardReason()}
                      <#else>
                      </#if>
-                 </td>
+                    </td>
 
-             </tr>
+                </tr>
               </div>
-             </#list>
+                </#list>
              </tbody>
              </table>
 
-         </#if>
-        </form>
-    </div>
+            </#if>
+    </form>
+</div>
 </div>
 
 

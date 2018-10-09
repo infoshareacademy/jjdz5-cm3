@@ -37,12 +37,12 @@ public class DelegationsLoadFromFile {
         try {
             reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
             line = ((BufferedReader) reader).readLine();
-            if (line == null) {
+            if(line == null) {
                 return "Brak delegacji do wyświetlenia";
             } else {
                 try {
-                    while (line != null) {
-                        if (!line.equals("")) {
+                    while(line != null) {
+                        if(!line.equals("")) {
                             List<String> tempList = Arrays.asList(line.split(","));
 
                             delegationRepository.setList(new Delegation(
@@ -62,25 +62,15 @@ public class DelegationsLoadFromFile {
                                     DelegationStatus.valueOf(tempList.get(11).trim()),
                                     tempList.get(12).trim(),
                                     (tempList.get(13).trim())));
-
-                            delegationRepository.setCreationDateList("");
-                            delegationRepository.setNameList("");
-                            delegationRepository.setSurNameList("");
-                            delegationRepository.setDestinationCountryList("");
-
-                            delegationRepository.setCreationDateList(tempList.get(1).trim());
-                            delegationRepository.setNameList(tempList.get(2).trim());
-                            delegationRepository.setSurNameList(tempList.get(3).trim());
-                            delegationRepository.setDestinationCountryList(tempList.get(6).trim());
                         }
                         line = ((BufferedReader) reader).readLine();
                     }
                     reader.close();
-                } catch (IOException e) {
+                } catch(IOException e) {
                     e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
         return "ok";
