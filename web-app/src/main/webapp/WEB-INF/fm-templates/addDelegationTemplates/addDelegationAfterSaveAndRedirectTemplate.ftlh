@@ -22,10 +22,14 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <h4 style="color: gray">Delegacja wysłana</h4>
+                <h4 style="color: gray">Delegacja wysłana do akceptacji</h4>
             </div>
         </div>
     </nav>
+
+    <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
+        <h4 class="alert-heading" style="text-align: center">Nastąpi przekierowanie na stronę główną.</h4>
+    </div>
 </header>
 <#include "../include/scripts.ftlh">
 <#include "../include/footer.ftlh">
