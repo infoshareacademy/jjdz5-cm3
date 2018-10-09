@@ -115,7 +115,7 @@
                     <td>${d.getDestination().getDestinationCompanyAddress()}</td>
                     <td>${d.getPurpose()}</td>
                     <td>${d.getStartPoint()}</td>
-                    <td>${d.getDelegationStatus()  }</td>
+                    <td>${d.getDelegationStatus().statusType()  }</td>
                     <td>
                      <#if d.getDiscardReason()!="null">
                          ${d.getDiscardReason()}
