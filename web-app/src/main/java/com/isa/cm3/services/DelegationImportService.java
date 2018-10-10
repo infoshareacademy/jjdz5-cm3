@@ -36,7 +36,7 @@ public class DelegationImportService {
             while (line != null) {
                 try {
                     if (line.equals("")) {
-                        return message + " : zawiera puste linie.";
+                        return message + " : Zawiera puste linie.";
                     }
                     List<String> tempList = Arrays.asList(line.split(","));
                     if (tempList.size() != 11) {
