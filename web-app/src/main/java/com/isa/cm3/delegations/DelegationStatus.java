@@ -2,8 +2,8 @@ package com.isa.cm3.delegations;
 
 public enum DelegationStatus {
     TOACCEPT("do akceptacji"),
-    ACCEPTED("akceptacja"),
-    DISCARTED("brak zgody");
+    ACCEPTED("zaakceptowano"),
+    DISCARTED("brak akceptacji");
 
     private final String message;
 

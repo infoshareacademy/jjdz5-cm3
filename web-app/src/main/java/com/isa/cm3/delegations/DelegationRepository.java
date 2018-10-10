@@ -11,7 +11,10 @@ public class DelegationRepository {
     private List<Delegation> list = new ArrayList<>();
     private List<Delegation> filteredDelegations = new ArrayList<>();
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    Settings formater = new Settings();
+
 
     private Set<String> creationDateList = new HashSet<>();
     private Set<String> nameList = new HashSet<>();
@@ -92,7 +95,7 @@ public class DelegationRepository {
     public List<Delegation> getFilteredListByCreationDate(String choiceCreationDate) {
 
         if(!choiceCreationDate.isEmpty()) {
-            filteredDelegations.removeIf(cd -> !cd.getCreationDate().format(formatter).equalsIgnoreCase(choiceCreationDate));
+            filteredDelegations.removeIf(cd -> !cd.getCreationDate().format(formater.getFormater()).equalsIgnoreCase(choiceCreationDate));
         }
         return filteredDelegations;
     }
@@ -123,7 +126,7 @@ public class DelegationRepository {
 
     public void setOptionDateCreation() {
         setCreationDateList("");
-        filteredDelegations.stream().map(i -> i.getCreationDate().format(formatter)).forEach(this::setCreationDateList);
+        filteredDelegations.stream().map(i -> i.getCreationDate().format(formater.getFormater())).forEach(this::setCreationDateList);
     }
 
     public void setOptionName() {
