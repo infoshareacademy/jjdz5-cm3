@@ -46,7 +46,6 @@ public class DelegationsValidationServices {
                 if (!dateVAlidation(value, formater).equals("ok")) {
                     return dateVAlidation(map.get(key), formater);
                 }
-
             } else if (key.equals("city")) {
                 if (!value.matches(city)) {
                     return "Błędnie wpisane miasto - wpisz tylko litery";
@@ -66,14 +65,18 @@ public class DelegationsValidationServices {
             }
         }
 
-        if (endDate.isBefore(startDate)) {
+        if (isBefore(startDate, endDate)) {
             return "Data powrotu nie może być wcześniejsza od daty wyjazdu";
         }
 
-        if (startDate.isBefore(LocalDate.now())) {
+        if (isBefore(LocalDate.now(), startDate)) {
             return "Data wyjazdu nie może być wcześniejsza od daty dzisiejszej";
         }
         return "ok";
+    }
+
+    private boolean isBefore(LocalDate startDate, LocalDate endDate) {
+        return endDate.isBefore(startDate);
     }
 
 
