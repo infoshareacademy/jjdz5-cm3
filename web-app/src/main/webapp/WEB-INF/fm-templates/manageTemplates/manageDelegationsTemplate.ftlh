@@ -25,7 +25,6 @@
                                  <#else>
                                  <option>${d}</option>
                                  </#if>
-
                              </#list>
                 </select>
 
