@@ -57,12 +57,11 @@
         </div>
         <div class="form-row">
             <div class="col-md-6">
-                <div class="col-md-6">
-                    <label for="validationCustom01">Data wyjazdu</label>
-                    <input type="date" class="form-control" id="validationCustom01" placeholder="Data od"
-                           name="startDate" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="12.10.2018" required>
+                <label for="validationCustom01">Data wyjazdu</label>
+                <input type="date" class="form-control" id="validationCustom01" placeholder="Data od"
+                       name="startDate" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="12.10.2018" required>
                     <#include "../include/formValidationDivCode.ftlh">
-                </div>
+            </div>
             <div class="col-md-6">
                 <label for="validationCustom02">Data powrotu</label>
                 <input type="date" class="form-control" id="validationCustom02" placeholder="Data do"
