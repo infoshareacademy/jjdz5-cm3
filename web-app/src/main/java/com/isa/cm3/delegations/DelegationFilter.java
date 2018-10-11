@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 @RequestScoped
 public class DelegationFilter {
 
-    @Inject
-    private DelegationsLoadFromFile delegationsLoadFromFile;
 
     @Inject
     private DelegationRepository delegationRepository;
@@ -26,8 +24,6 @@ public class DelegationFilter {
 
     @Inject
     private RemoveDestinationCountry removeDestinationCountry;
-
-    Settings formatter = new Settings();
 
     public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry) {
 

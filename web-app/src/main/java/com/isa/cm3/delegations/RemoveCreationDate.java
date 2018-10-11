@@ -9,11 +9,13 @@ public class RemoveCreationDate {
     @Inject
     private DelegationRepository delegationRepository;
 
-    Settings formatter = new Settings();
+    @Inject
+    private Settings settings;
+
 
     public void remove(String choiceCreationDate) {
         if(!choiceCreationDate.isEmpty()) {
-            delegationRepository.getList().removeIf(delegation -> !delegation.getCreationDate().format(formatter.getFormater()).equalsIgnoreCase(choiceCreationDate));
+            delegationRepository.getList().removeIf(delegation -> !delegation.getCreationDate().format(settings.getFormater()).equalsIgnoreCase(choiceCreationDate));
         }
     }
 }

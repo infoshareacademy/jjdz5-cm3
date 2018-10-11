@@ -63,10 +63,10 @@ public class DelegationManageServlet extends HttpServlet {
 
             delegationsLoadFromFile.loadDelegationsFromFile();
 
-            mapModelGenerator.setModel("datesOption", choiceCreationDate );
-            mapModelGenerator.setModel("namesOption", choiceName );
-            mapModelGenerator.setModel("surnamesOption", choiceSurname );
-            mapModelGenerator.setModel("countriesOption", choiceCountry );
+            mapModelGenerator.setModel("datesOption", choiceCreationDate);
+            mapModelGenerator.setModel("namesOption", choiceName);
+            mapModelGenerator.setModel("surnamesOption", choiceSurname);
+            mapModelGenerator.setModel("countriesOption", choiceCountry);
 
             dictionaryCreationDate.addOptionDateCreation();
             dictionaryName.addOptionName();
@@ -76,24 +76,21 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("delegations",
                     delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
             mapModelGenerator.setModel("dates", dictionaryCreationDate.getCreationDate());
-
             mapModelGenerator.setModel("names", dictionaryName.getName());
-
             mapModelGenerator.setModel("surnames", dictionarySurname.getSurname());
-
             mapModelGenerator.setModel("countries", dictionaryDestinationCountry.getDestinationCountry());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
             template.process(mapModelGenerator.getModel(), resp.getWriter());
 
-        } catch(TemplateException e) {
+        } catch (TemplateException e) {
             e.printStackTrace();
         }
     }
@@ -101,9 +98,9 @@ public class DelegationManageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setHeader ("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType ("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-        req.setCharacterEncoding ("UTF-8");
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        req.setCharacterEncoding("UTF-8");
 
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
@@ -119,12 +116,12 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("mapa", button);
 
         } else {
-            mapModelGenerator.setModel ("mapa", "test");
+            mapModelGenerator.setModel("mapa", "test");
         }
 
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());
-        } catch(TemplateException e) {
+        } catch (TemplateException e) {
             e.printStackTrace();
         }
     }

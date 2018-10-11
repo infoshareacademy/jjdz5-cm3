@@ -19,14 +19,9 @@ public class DelegationsLoadFromFile {
 
     @Inject
     private DelegationRepository delegationRepository;
-    @Inject
-    private Employee employee;
-    @Inject
-    private Destination destination;
-    @Inject
-    private Delegation delegation;
 
-    Settings formatter = new Settings();
+    @Inject
+    private Settings settings;
 
     private Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
 
@@ -47,12 +42,12 @@ public class DelegationsLoadFromFile {
 
                             delegationRepository.setList(new Delegation(
                                     Integer.parseInt(tempList.get(0).trim()),
-                                    LocalDate.parse(tempList.get(1).trim(), formatter.getFormater()),
+                                    LocalDate.parse(tempList.get(1).trim(), settings.getFormater()),
                                     (new Employee(
                                             tempList.get(2).trim(),
                                             tempList.get(3).trim())),
-                                    LocalDate.parse(tempList.get(4).trim(), formatter.getFormater()),
-                                    LocalDate.parse(tempList.get(5).trim(), formatter.getFormater()),
+                                    LocalDate.parse(tempList.get(4).trim(), settings.getFormater()),
+                                    LocalDate.parse(tempList.get(5).trim(), settings.getFormater()),
 
                                     (new Destination(tempList.get(6).trim(),
                                             tempList.get(7).trim(),
