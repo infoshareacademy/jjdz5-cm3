@@ -11,10 +11,7 @@ public class DelegationRepository {
     private List<Delegation> list = new ArrayList<>();
     private List<Delegation> filteredDelegations = new ArrayList<>();
 
-  //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     Settings formater = new Settings();
-
 
     private Set<String> creationDateList = new HashSet<>();
     private Set<String> nameList = new HashSet<>();
@@ -92,7 +89,7 @@ public class DelegationRepository {
         return filteredDelegations;
     }
 
-    public List<Delegation> getFilteredListByCreationDate(String choiceCreationDate) {
+    private List<Delegation> getFilteredListByCreationDate(String choiceCreationDate) {
 
         if(!choiceCreationDate.isEmpty()) {
             filteredDelegations.removeIf(cd -> !cd.getCreationDate().format(formater.getFormater()).equalsIgnoreCase(choiceCreationDate));
@@ -100,7 +97,7 @@ public class DelegationRepository {
         return filteredDelegations;
     }
 
-    public List<Delegation> getFilteredListByName(String choiceName) {
+    private List<Delegation> getFilteredListByName(String choiceName) {
 
         if(!choiceName.isEmpty()) {
             filteredDelegations.removeIf(n -> !n.getEmployee().getEmployeeName().equalsIgnoreCase(choiceName));
@@ -108,7 +105,7 @@ public class DelegationRepository {
         return filteredDelegations;
     }
 
-    public List<Delegation> getFilteredListBySurname(String choiceSurname) {
+    private List<Delegation> getFilteredListBySurname(String choiceSurname) {
 
         if(!choiceSurname.isEmpty()) {
             filteredDelegations.removeIf(sn -> !sn.getEmployee().getEmployeeSurname().equalsIgnoreCase(choiceSurname));
@@ -116,7 +113,7 @@ public class DelegationRepository {
         return filteredDelegations;
     }
 
-    public List<Delegation> getFilteredListByDestinationCountry(String choiceCountry) {
+    private List<Delegation> getFilteredListByDestinationCountry(String choiceCountry) {
 
         if(!choiceCountry.isEmpty()) {
             filteredDelegations.removeIf(dc -> !dc.getDestination().getDestinationCountry().equals(choiceCountry));
@@ -124,22 +121,22 @@ public class DelegationRepository {
         return filteredDelegations;
     }
 
-    public void setOptionDateCreation() {
+    private void setOptionDateCreation() {
         setCreationDateList("");
         filteredDelegations.stream().map(i -> i.getCreationDate().format(formater.getFormater())).forEach(this::setCreationDateList);
     }
 
-    public void setOptionName() {
+    private void setOptionName() {
         setNameList("");
         filteredDelegations.stream().map(i -> i.getEmployee().getEmployeeName()).forEach(this::setNameList);
     }
 
-    public void setOptionSurname() {
+    private void setOptionSurname() {
         setSurNameList("");
         filteredDelegations.stream().map(i -> i.getEmployee().getEmployeeSurname()).forEach(this::setSurNameList);
     }
 
-    public void setOptionDestinationCountry() {
+    private void setOptionDestinationCountry() {
         setDestinationCountryList("");
         filteredDelegations.stream().map(i -> i.getDestination().getDestinationCountry()).forEach(this::setDestinationCountryList);
     }
