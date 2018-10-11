@@ -76,4 +76,3 @@ public class DelegationsLoadFromFile {
         return "ok";
     }
 }
-

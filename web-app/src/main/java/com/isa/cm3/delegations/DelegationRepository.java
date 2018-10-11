@@ -1,7 +1,8 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestScoped
 public class DelegationRepository {

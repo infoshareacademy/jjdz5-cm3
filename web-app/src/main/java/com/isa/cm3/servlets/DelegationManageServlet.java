@@ -33,6 +33,18 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationFilter delegationFilter;
 
     @Inject
+    private DictionaryCreationDate dictionaryCreationDate;
+
+    @Inject
+    private DictionaryName dictionaryName;
+
+    @Inject
+    private DictionarySurname dictionarySurname;
+
+    @Inject
+    private DictionaryDestinationCountry dictionaryDestinationCountry;
+
+    @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
 
     @Inject
@@ -56,6 +68,11 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("surnamesOption", choiceSurname );
             mapModelGenerator.setModel("countriesOption", choiceCountry );
 
+            dictionaryCreationDate.addOptionDateCreation();
+            dictionaryName.addOptionName();
+            dictionarySurname.addOptionSurname();
+            dictionaryDestinationCountry.addOptionDestinationCountry();
+
             mapModelGenerator.setModel("delegations",
                     delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
 
@@ -64,13 +81,13 @@ public class DelegationManageServlet extends HttpServlet {
         }
 
         try {
-            mapModelGenerator.setModel("dates", delegationFilter.getCreationDateList());
+            mapModelGenerator.setModel("dates", dictionaryCreationDate.getCreationDate());
 
-            mapModelGenerator.setModel("names", delegationFilter.getNameList());
+            mapModelGenerator.setModel("names", dictionaryName.getName());
 
-            mapModelGenerator.setModel("surnames", delegationFilter.getSurnameList());
+            mapModelGenerator.setModel("surnames", dictionarySurname.getSurname());
 
-            mapModelGenerator.setModel("countries", delegationFilter.getDestinationCountryList());
+            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.getDestinationCountry());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
