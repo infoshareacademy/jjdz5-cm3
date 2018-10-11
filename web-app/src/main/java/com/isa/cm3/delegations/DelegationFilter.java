@@ -51,7 +51,7 @@ public class DelegationFilter {
         if(!choiceCountry.isEmpty()) {
             getFilteredListByDestinationCountry(choiceCountry);
         }
-        return delegationRepository.getList().stream().collect(Collectors.toList());
+        return delegationRepository.getList(); //.stream().collect(Collectors.toList());
     }
 
     private void getFilteredListByCreationDate(String choiceCreationDate) {

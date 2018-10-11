@@ -17,7 +17,6 @@ import java.util.List;
 @RequestScoped
 public class DelegationsLoadFromFile {
 
-//     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Inject
     private DelegationRepository delegationRepository;
     @Inject
