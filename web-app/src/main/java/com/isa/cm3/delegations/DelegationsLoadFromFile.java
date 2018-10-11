@@ -17,7 +17,7 @@ import java.util.List;
 @RequestScoped
 public class DelegationsLoadFromFile {
 
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Inject
     private DelegationRepository delegationRepository;
     @Inject
@@ -27,6 +27,7 @@ public class DelegationsLoadFromFile {
     @Inject
     private Delegation delegation;
 
+    Settings formatter = new Settings();
 
     private Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
 
@@ -47,12 +48,12 @@ public class DelegationsLoadFromFile {
 
                             delegationRepository.setList(new Delegation(
                                     Integer.parseInt(tempList.get(0).trim()),
-                                    LocalDate.parse(tempList.get(1).trim(), formater),
+                                    LocalDate.parse(tempList.get(1).trim(), formatter.getFormater()),
                                     (new Employee(
                                             tempList.get(2).trim(),
                                             tempList.get(3).trim())),
-                                    LocalDate.parse(tempList.get(4).trim(), formater),
-                                    LocalDate.parse(tempList.get(5).trim(), formater),
+                                    LocalDate.parse(tempList.get(4).trim(), formatter.getFormater()),
+                                    LocalDate.parse(tempList.get(5).trim(), formatter.getFormater()),
 
                                     (new Destination(tempList.get(6).trim(),
                                             tempList.get(7).trim(),

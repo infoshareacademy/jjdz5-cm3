@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @WebServlet("/manageDelegations")
@@ -27,6 +28,9 @@ public class DelegationManageServlet extends HttpServlet {
 
     @Inject
     private DelegationRepository delegationRepository;
+
+    @Inject
+    private DelegationFilter delegationFilter;
 
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
@@ -45,8 +49,6 @@ public class DelegationManageServlet extends HttpServlet {
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
             delegationsLoadFromFile.loadDelegationsFromFile();
 
             mapModelGenerator.setModel("datesOption", choiceCreationDate );
@@ -55,20 +57,20 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("countriesOption", choiceCountry );
 
             mapModelGenerator.setModel("delegations",
-                    delegationRepository.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
+                    delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
 
         } catch(Exception e) {
             e.printStackTrace();
         }
 
         try {
-            mapModelGenerator.setModel("dates", delegationRepository.getCreationDateList());
+            mapModelGenerator.setModel("dates", delegationFilter.getCreationDateList());
 
-            mapModelGenerator.setModel("names", delegationRepository.getNameList());
+            mapModelGenerator.setModel("names", delegationFilter.getNameList());
 
-            mapModelGenerator.setModel("surnames", delegationRepository.getSurnameList());
+            mapModelGenerator.setModel("surnames", delegationFilter.getSurnameList());
 
-            mapModelGenerator.setModel("countries", delegationRepository.getDestinationCountryList());
+            mapModelGenerator.setModel("countries", delegationFilter.getDestinationCountryList());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
