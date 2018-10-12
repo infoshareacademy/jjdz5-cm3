@@ -68,10 +68,10 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("surnamesOption", choiceSurname);
             mapModelGenerator.setModel("countriesOption", choiceCountry);
 
-            dictionaryCreationDate.addOptionDateCreation();
-            dictionaryName.addOptionName();
-            dictionarySurname.addOptionSurname();
-            dictionaryDestinationCountry.addOptionDestinationCountry();
+            dictionaryCreationDate.addDictionaryCreationDates();
+            dictionaryName.addDictionaryNames();
+            dictionarySurname.addDictionarySurnames();
+            dictionaryDestinationCountry.addDictionaryDestinationCountries();
 
             mapModelGenerator.setModel("delegations",
                     delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
@@ -81,10 +81,10 @@ public class DelegationManageServlet extends HttpServlet {
         }
 
         try {
-            mapModelGenerator.setModel("dates", dictionaryCreationDate.getCreationDate());
-            mapModelGenerator.setModel("names", dictionaryName.getName());
-            mapModelGenerator.setModel("surnames", dictionarySurname.getSurname());
-            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.getDestinationCountry());
+            mapModelGenerator.setModel("dates", dictionaryCreationDate.dictionaryCreationDates());
+            mapModelGenerator.setModel("names", dictionaryName.dictionaryNames());
+            mapModelGenerator.setModel("surnames", dictionarySurname.dictionarySurnames());
+            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.dictionaryDestinationCountries());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 

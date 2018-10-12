@@ -13,11 +13,11 @@ public class DictionaryName {
 
     private Set<String> names = new HashSet<>();
 
-    public Set<String> getName() {
+    public Set<String> dictionaryNames() {
         return names;
     }
 
-    public void addOptionName() {
+    public void addDictionaryNames() {
         add("");
         delegationRepository.getList().stream().map(delegation -> delegation.getEmployee().getEmployeeName()).forEach(this::add);
     }

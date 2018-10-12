@@ -13,11 +13,11 @@ public class DictionaryDestinationCountry {
 
     private Set<String> destinationCountries = new HashSet<>();
 
-    public Set<String> getDestinationCountry() {
+    public Set<String> dictionaryDestinationCountries() {
         return destinationCountries;
     }
 
-    public void addOptionDestinationCountry() {
+    public void addDictionaryDestinationCountries() {
         add("");
         delegationRepository.getList().stream().map(i -> i.getDestination().getDestinationCountry()).forEach(this::add);
     }

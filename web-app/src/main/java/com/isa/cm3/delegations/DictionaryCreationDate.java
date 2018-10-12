@@ -16,11 +16,11 @@ public class DictionaryCreationDate {
 
     private Set<String> creationDates = new HashSet<>();
 
-    public Set<String> getCreationDate() {
+    public Set<String> dictionaryCreationDates() {
         return creationDates;
     }
 
-    public void addOptionDateCreation() {
+    public void addDictionaryCreationDates() {
         add("");
         delegationRepository.getList().stream().map(i -> i.getCreationDate().format(settings.getFormater())).forEach(this::add);
     }
