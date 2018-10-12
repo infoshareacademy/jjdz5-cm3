@@ -13,7 +13,7 @@ public class DictionaryName {
 
     private Set<String> names = new HashSet<>();
 
-    public Set<String> dictionaryNames() {
+    public Set<String> getDictionaryNames() {
         return names;
     }
 
@@ -22,7 +22,7 @@ public class DictionaryName {
         delegationRepository.getList().stream().map(delegation -> delegation.getEmployee().getEmployeeName()).forEach(this::add);
     }
 
-    private void add(String nameList) {
-        this.names.add(nameList);
+    private void add(String name) {
+        this.names.add(name);
     }
 }

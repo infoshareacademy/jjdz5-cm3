@@ -13,7 +13,7 @@ public class DictionaryDestinationCountry {
 
     private Set<String> destinationCountries = new HashSet<>();
 
-    public Set<String> dictionaryDestinationCountries() {
+    public Set<String> getDictionaryDestinationCountries() {
         return destinationCountries;
     }
 
@@ -22,7 +22,7 @@ public class DictionaryDestinationCountry {
         delegationRepository.getList().stream().map(i -> i.getDestination().getDestinationCountry()).forEach(this::add);
     }
 
-    private void add(String destinationCountryList) {
-        this.destinationCountries.add(destinationCountryList);
+    private void add(String destinationCountry) {
+        this.destinationCountries.add(destinationCountry);
     }
 }

@@ -16,7 +16,7 @@ public class DictionaryCreationDate {
 
     private Set<String> creationDates = new HashSet<>();
 
-    public Set<String> dictionaryCreationDates() {
+    public Set<String> getDictionaryCreationDates() {
         return creationDates;
     }
 
@@ -25,7 +25,7 @@ public class DictionaryCreationDate {
         delegationRepository.getList().stream().map(i -> i.getCreationDate().format(settings.getFormater())).forEach(this::add);
     }
 
-    private void add(String creationDateList) {
-        this.creationDates.add(creationDateList);
+    private void add(String creationDate) {
+        this.creationDates.add(creationDate);
     }
 }

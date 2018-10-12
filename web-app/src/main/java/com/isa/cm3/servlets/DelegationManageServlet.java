@@ -81,10 +81,10 @@ public class DelegationManageServlet extends HttpServlet {
         }
 
         try {
-            mapModelGenerator.setModel("dates", dictionaryCreationDate.dictionaryCreationDates());
-            mapModelGenerator.setModel("names", dictionaryName.dictionaryNames());
-            mapModelGenerator.setModel("surnames", dictionarySurname.dictionarySurnames());
-            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.dictionaryDestinationCountries());
+            mapModelGenerator.setModel("dates", dictionaryCreationDate.getDictionaryCreationDates());
+            mapModelGenerator.setModel("names", dictionaryName.getDictionaryNames());
+            mapModelGenerator.setModel("surnames", dictionarySurname.getDictionarySurnames());
+            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.getDictionaryDestinationCountries());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
