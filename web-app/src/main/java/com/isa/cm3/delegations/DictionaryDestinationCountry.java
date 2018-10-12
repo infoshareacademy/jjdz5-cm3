@@ -11,10 +11,10 @@ public class DictionaryDestinationCountry {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private Set<String> destinationCountries = new HashSet<>();
+    private Set<String> dictionaryDestinationCountries = new HashSet<>();
 
     public Set<String> getDictionaryDestinationCountries() {
-        return destinationCountries;
+        return dictionaryDestinationCountries;
     }
 
     public void addDictionaryDestinationCountries() {
@@ -23,6 +23,6 @@ public class DictionaryDestinationCountry {
     }
 
     private void add(String destinationCountry) {
-        this.destinationCountries.add(destinationCountry);
+        this.dictionaryDestinationCountries.add(destinationCountry);
     }
 }

@@ -14,10 +14,10 @@ public class DictionaryCreationDate {
     @Inject
     private Settings settings;
 
-    private Set<String> creationDates = new HashSet<>();
+    private Set<String> dictionaryCreationDates = new HashSet<>();
 
     public Set<String> getDictionaryCreationDates() {
-        return creationDates;
+        return dictionaryCreationDates;
     }
 
     public void addDictionaryCreationDates() {
@@ -26,6 +26,6 @@ public class DictionaryCreationDate {
     }
 
     private void add(String creationDate) {
-        this.creationDates.add(creationDate);
+        this.dictionaryCreationDates.add(creationDate);
     }
 }

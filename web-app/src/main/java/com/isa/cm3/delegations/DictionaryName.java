@@ -11,10 +11,10 @@ public class DictionaryName {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private Set<String> names = new HashSet<>();
+    private Set<String> dictionaryNames = new HashSet<>();
 
     public Set<String> getDictionaryNames() {
-        return names;
+        return dictionaryNames;
     }
 
     public void addDictionaryNames() {
@@ -23,6 +23,6 @@ public class DictionaryName {
     }
 
     private void add(String name) {
-        this.names.add(name);
+        this.dictionaryNames.add(name);
     }
 }
