@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RequestScoped
-public class DictionarySurname {
+public class DictionarySurnameAddition {
 
     @Inject
     private DelegationRepository delegationRepository;

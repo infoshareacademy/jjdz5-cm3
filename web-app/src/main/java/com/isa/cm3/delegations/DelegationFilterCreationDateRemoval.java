@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class RemoveCreationDate {
+public class DelegationFilterCreationDateRemoval {
 
     @Inject
     private DelegationRepository delegationRepository;

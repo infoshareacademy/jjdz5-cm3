@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 @WebServlet("/manageDelegations")
 public class DelegationManageServlet extends HttpServlet {
@@ -33,16 +30,16 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationFilter delegationFilter;
 
     @Inject
-    private DictionaryCreationDate dictionaryCreationDate;
+    private DictionaryCreationDateAddition dictionaryCreationDateAddition;
 
     @Inject
-    private DictionaryName dictionaryName;
+    private DictionaryNameAddition dictionaryNameAddition;
 
     @Inject
-    private DictionarySurname dictionarySurname;
+    private DictionarySurnameAddition dictionarySurnameAddition;
 
     @Inject
-    private DictionaryDestinationCountry dictionaryDestinationCountry;
+    private DictionaryDestinationCountryAddition dictionaryDestinationCountryAddition;
 
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
@@ -68,23 +65,23 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("surnamesOption", choiceSurname);
             mapModelGenerator.setModel("countriesOption", choiceCountry);
 
-            dictionaryCreationDate.addDictionaryCreationDates();
-            dictionaryName.addDictionaryNames();
-            dictionarySurname.addDictionarySurnames();
-            dictionaryDestinationCountry.addDictionaryDestinationCountries();
+            dictionaryCreationDateAddition.addDictionaryCreationDates();
+            dictionaryNameAddition.addDictionaryNames();
+            dictionarySurnameAddition.addDictionarySurnames();
+            dictionaryDestinationCountryAddition.addDictionaryDestinationCountries();
 
             mapModelGenerator.setModel("delegations",
-                    delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
+                    delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            mapModelGenerator.setModel("dates", dictionaryCreationDate.getDictionaryCreationDates());
-            mapModelGenerator.setModel("names", dictionaryName.getDictionaryNames());
-            mapModelGenerator.setModel("surnames", dictionarySurname.getDictionarySurnames());
-            mapModelGenerator.setModel("countries", dictionaryDestinationCountry.getDictionaryDestinationCountries());
+            mapModelGenerator.setModel("dates", dictionaryCreationDateAddition.getDictionaryCreationDates());
+            mapModelGenerator.setModel("names", dictionaryNameAddition.getDictionaryNames());
+            mapModelGenerator.setModel("surnames", dictionarySurnameAddition.getDictionarySurnames());
+            mapModelGenerator.setModel("countries", dictionaryDestinationCountryAddition.getDictionaryDestinationCountries());
 
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 

@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class RemoveName {
+public class DelegationFilterNameRemoval {
 
     @Inject
     private DelegationRepository delegationRepository;

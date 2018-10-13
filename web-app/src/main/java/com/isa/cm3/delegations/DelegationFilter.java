@@ -9,35 +9,36 @@ import java.util.stream.Collectors;
 @RequestScoped
 public class DelegationFilter {
 
-
     @Inject
     private DelegationRepository delegationRepository;
 
     @Inject
-    private RemoveCreationDate removeCreationDate;
+    private DelegationFilterCreationDateRemoval filterCreationDateRemoval;
 
     @Inject
-    private RemoveName removeName;
+    private DelegationFilterNameRemoval delegationFilterDictionaryNameRemoval;
 
     @Inject
-    private RemoveSurname removeSurname;
+    private DelegationFilterSurnameRemoval removeSurname;
 
     @Inject
-    private RemoveDestinationCountry removeDestinationCountry;
+    private DelegationFilterStatusRemoval dictionaryStatusRemoval;
 
-    public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry) {
+    @Inject
+    private DelegationFilterDestinationCountryRemoval filterDestinationCountryRemoval;
 
-        delegationRepository.getList().stream()
-                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                .collect(Collectors.toList());
+    public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry, DelegationStatus choiceStatus) {
+
+        if(!choiceStatus.toString().isEmpty()) {
+            dictionaryStatusRemoval.remove(choiceStatus);
+        }
 
         if(!choiceCreationDate.isEmpty()) {
-            removeCreationDate.remove(choiceCreationDate);
+            filterCreationDateRemoval.remove(choiceCreationDate);
         }
 
         if(!choiceName.isEmpty()) {
-            removeName.remove(choiceName);
+            delegationFilterDictionaryNameRemoval.remove(choiceName);
         }
 
         if(!choiceSurname.isEmpty()) {
@@ -45,10 +46,13 @@ public class DelegationFilter {
         }
 
         if(!choiceCountry.isEmpty()) {
-            removeDestinationCountry.remove(choiceCountry);
+            filterDestinationCountryRemoval.remove(choiceCountry);
         }
 
-        return delegationRepository.getList();
+        return delegationRepository.getList().stream()
+                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                .collect(Collectors.toList());
+
     }
 
 }

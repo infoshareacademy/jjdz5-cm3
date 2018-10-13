@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class RemoveDestinationCountry {
+public class DelegationFilterDestinationCountryRemoval {
 
     @Inject
     private DelegationRepository delegationRepository;
