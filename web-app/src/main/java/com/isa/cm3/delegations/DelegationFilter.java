@@ -13,40 +13,40 @@ public class DelegationFilter {
     private DelegationRepository delegationRepository;
 
     @Inject
-    private DelegationFilterCreationDateRemoval filterCreationDateRemoval;
+    private DelegationFilterCreationDateRemoval delegationFilterCreationDateRemoval;
 
     @Inject
-    private DelegationFilterNameRemoval delegationFilterDictionaryNameRemoval;
+    private DelegationFilterNameRemoval delegationFilterNameRemoval;
 
     @Inject
-    private DelegationFilterSurnameRemoval removeSurname;
+    private DelegationFilterSurnameRemoval delegationFilterRemoveSurname;
 
     @Inject
-    private DelegationFilterStatusRemoval dictionaryStatusRemoval;
+    private DelegationFilterStatusRemoval delegationFilterStatusRemoval;
 
     @Inject
-    private DelegationFilterDestinationCountryRemoval filterDestinationCountryRemoval;
+    private DelegationFilterDestinationCountryRemoval delegationFilterDestinationCountryRemoval;
 
     public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry, DelegationStatus choiceStatus) {
 
         if(!choiceStatus.toString().isEmpty()) {
-            dictionaryStatusRemoval.remove(choiceStatus);
+            delegationFilterStatusRemoval.remove(choiceStatus);
         }
 
         if(!choiceCreationDate.isEmpty()) {
-            filterCreationDateRemoval.remove(choiceCreationDate);
+            delegationFilterCreationDateRemoval.remove(choiceCreationDate);
         }
 
         if(!choiceName.isEmpty()) {
-            delegationFilterDictionaryNameRemoval.remove(choiceName);
+            delegationFilterNameRemoval.remove(choiceName);
         }
 
         if(!choiceSurname.isEmpty()) {
-            removeSurname.remove(choiceSurname);
+            delegationFilterRemoveSurname.remove(choiceSurname);
         }
 
         if(!choiceCountry.isEmpty()) {
-            filterDestinationCountryRemoval.remove(choiceCountry);
+            delegationFilterDestinationCountryRemoval.remove(choiceCountry);
         }
 
         return delegationRepository.getList().stream()
