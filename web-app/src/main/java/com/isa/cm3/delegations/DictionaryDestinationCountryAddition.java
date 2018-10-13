@@ -2,8 +2,10 @@ package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RequestScoped
 public class DictionaryDestinationCountryAddition {
@@ -11,18 +13,34 @@ public class DictionaryDestinationCountryAddition {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private Set<String> dictionaryDestinationCountries = new HashSet<>();
+    private List<String> dictionaryDestinationCountries = new ArrayList<>();
 
-    public Set<String> getDictionaryDestinationCountries() {
+    public List<String> getDictionaryDestinationCountries() {
         return dictionaryDestinationCountries;
     }
 
     public void addDictionaryDestinationCountries() {
         add("");
-        delegationRepository.getList().stream().map(i -> i.getDestination().getDestinationCountry()).forEach(this::add);
+        addAll();
+        sort();
     }
 
     private void add(String destinationCountry) {
         this.dictionaryDestinationCountries.add(destinationCountry);
+    }
+
+    private void addAll() {
+        delegationRepository.getList().stream()
+                .map(i -> i.getDestination().getDestinationCountry())
+                .forEach(this::add);
+    }
+
+    private void sort() {
+
+        dictionaryDestinationCountries = dictionaryDestinationCountries.stream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
     }
 }

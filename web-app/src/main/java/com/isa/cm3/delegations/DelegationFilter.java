@@ -13,46 +13,82 @@ public class DelegationFilter {
     private DelegationRepository delegationRepository;
 
     @Inject
-    private DelegationFilterCreationDateRemoval delegationFilterCreationDateRemoval;
-
-    @Inject
-    private DelegationFilterNameRemoval delegationFilterNameRemoval;
-
-    @Inject
-    private DelegationFilterSurnameRemoval delegationFilterRemoveSurname;
-
-    @Inject
-    private DelegationFilterStatusRemoval delegationFilterStatusRemoval;
-
-    @Inject
-    private DelegationFilterDestinationCountryRemoval delegationFilterDestinationCountryRemoval;
+    private Settings settings;
 
     public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry, DelegationStatus choiceStatus) {
 
+        List<Delegation> filtered;
+
+        filtered = delegationRepository.getList();
+
         if(!choiceStatus.toString().isEmpty()) {
-            delegationFilterStatusRemoval.remove(choiceStatus);
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getDelegationStatus().equals(choiceStatus))
+                    .collect(Collectors.toList());
         }
 
         if(!choiceCreationDate.isEmpty()) {
-            delegationFilterCreationDateRemoval.remove(choiceCreationDate);
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getCreationDate()
+                            .format(settings.getFormater()).equalsIgnoreCase(choiceCreationDate))
+                    .collect(Collectors.toList());
         }
 
         if(!choiceName.isEmpty()) {
-            delegationFilterNameRemoval.remove(choiceName);
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getEmployee().getEmployeeName().equals(choiceName))
+                    .collect(Collectors.toList());
         }
 
         if(!choiceSurname.isEmpty()) {
-            delegationFilterRemoveSurname.remove(choiceSurname);
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(choiceSurname))
+                    .collect(Collectors.toList());
         }
 
         if(!choiceCountry.isEmpty()) {
-            delegationFilterDestinationCountryRemoval.remove(choiceCountry);
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(choiceCountry))
+                    .collect(Collectors.toList());
         }
 
-        return delegationRepository.getList().stream()
+        return filtered.stream()
                 .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
                 .collect(Collectors.toList());
-
     }
+    public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry) {
 
+        List<Delegation> filtered;
+
+        filtered = delegationRepository.getList();
+
+        if(!choiceCreationDate.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getCreationDate()
+                            .format(settings.getFormater()).equalsIgnoreCase(choiceCreationDate))
+                    .collect(Collectors.toList());
+        }
+
+        if(!choiceName.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getEmployee().getEmployeeName().equals(choiceName))
+                    .collect(Collectors.toList());
+        }
+
+        if(!choiceSurname.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(choiceSurname))
+                    .collect(Collectors.toList());
+        }
+
+        if(!choiceCountry.isEmpty()) {
+            filtered = filtered.stream()
+                    .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(choiceCountry))
+                    .collect(Collectors.toList());
+        }
+
+        return filtered.stream()
+                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                .collect(Collectors.toList());
+    }
 }

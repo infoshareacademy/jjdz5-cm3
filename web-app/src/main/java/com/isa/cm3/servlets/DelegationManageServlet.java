@@ -5,7 +5,6 @@ import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +21,6 @@ public class DelegationManageServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
-
-    @Inject
-    private DelegationRepository delegationRepository;
 
     @Inject
     private DelegationFilter delegationFilter;
@@ -52,6 +48,7 @@ public class DelegationManageServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+
         try {
             final String choiceCreationDate = req.getParameter("date").trim();
             final String choiceName = req.getParameter("name").trim();
@@ -64,6 +61,9 @@ public class DelegationManageServlet extends HttpServlet {
             mapModelGenerator.setModel("namesOption", choiceName);
             mapModelGenerator.setModel("surnamesOption", choiceSurname);
             mapModelGenerator.setModel("countriesOption", choiceCountry);
+
+            mapModelGenerator.setModel("delegations",
+                    delegationFilter.getFilteredList("", "", "", "", DelegationStatus.TOACCEPT));
 
             dictionaryCreationDateAddition.addDictionaryCreationDates();
             dictionaryNameAddition.addDictionaryNames();
@@ -102,7 +102,7 @@ public class DelegationManageServlet extends HttpServlet {
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String choiceStatus = req.getParameter("test");
+        String choiceStatus = req.getParameter("choicestatus");
 
         if(choiceStatus != null && !choiceStatus.isEmpty()) {
             String button = req.getParameter("button");
