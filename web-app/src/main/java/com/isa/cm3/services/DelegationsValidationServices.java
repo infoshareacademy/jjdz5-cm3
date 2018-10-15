@@ -29,7 +29,7 @@ public class DelegationsValidationServices {
                 continue;
             } else if (key.equals("name")) {
                 if (!value.matches(regExNameAndSurname)) {
-                    return "Błędnie wpisane Imię";
+                    return "Błędnie wpisane imię";
                 }
             } else if (key.equals("surname")) {
                 if (!value.matches(regExNameAndSurname)) {
