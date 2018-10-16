@@ -1,6 +1,9 @@
 package com.isa.cm3.services;
 
+import com.isa.cm3.delegations.Settings;
+
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,8 +12,10 @@ import java.util.Map;
 @RequestScoped
 public class DelegationsValidationServices {
 
+    @Inject
+    Settings settings;
+
     private final String regExNameAndSurname = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final String city = "(^[A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,)(?![0-9,=,$,#,%,!,^,&,*,@]).)*$)";
     private final String company = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private final String companyAdres = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
@@ -36,15 +41,15 @@ public class DelegationsValidationServices {
                     return "Błędnie wpisane nazwisko";
                 }
             } else if (key.equals("startDate")) {
-                startDate = LocalDate.parse(value, formater);
+                startDate = LocalDate.parse(value, settings.getFormater());
 
-                if (!dateVAlidation(value, formater).equals("ok")) {
-                    return dateVAlidation(map.get(key), formater);
+                if (!dateVAlidation(value, settings.getFormater()).equals("ok")) {
+                    return dateVAlidation(map.get(key), settings.getFormater());
                 }
             } else if (key.equals("endDate")) {
-                endDate = LocalDate.parse(value, formater);
-                if (!dateVAlidation(value, formater).equals("ok")) {
-                    return dateVAlidation(map.get(key), formater);
+                endDate = LocalDate.parse(value, settings.getFormater());
+                if (!dateVAlidation(value, settings.getFormater()).equals("ok")) {
+                    return dateVAlidation(map.get(key), settings.getFormater());
                 }
             } else if (key.equals("city")) {
                 if (!value.matches(city)) {
