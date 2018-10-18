@@ -5,6 +5,7 @@ import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,16 +27,7 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationFilter delegationFilter;
 
     @Inject
-    private DictionaryCreationDateAddition dictionaryCreationDateAddition;
-
-    @Inject
-    private DictionaryNameAddition dictionaryNameAddition;
-
-    @Inject
-    private DictionarySurnameAddition dictionarySurnameAddition;
-
-    @Inject
-    private DictionaryDestinationCountryAddition dictionaryDestinationCountryAddition;
+    private DelegationsCreateOptions delegationsCreateOptions;
 
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
@@ -57,18 +49,9 @@ public class DelegationManageServlet extends HttpServlet {
 
             delegationsLoadFromFile.loadDelegationsFromFile();
 
-            mapModelGenerator.setModel("datesOption", choiceCreationDate);
-            mapModelGenerator.setModel("namesOption", choiceName);
-            mapModelGenerator.setModel("surnamesOption", choiceSurname);
-            mapModelGenerator.setModel("countriesOption", choiceCountry);
+            delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
 
-            mapModelGenerator.setModel("delegations",
-                    delegationFilter.getFilteredList("", "", "", "", DelegationStatus.TOACCEPT));
-
-            dictionaryCreationDateAddition.addDictionaryCreationDates();
-            dictionaryNameAddition.addDictionaryNames();
-            dictionarySurnameAddition.addDictionarySurnames();
-            dictionaryDestinationCountryAddition.addDictionaryDestinationCountries();
+            delegationsCreateOptions.addOptionsTemplate();
 
             mapModelGenerator.setModel("delegations",
                     delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
@@ -77,12 +60,10 @@ public class DelegationManageServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        try {
-            mapModelGenerator.setModel("dates", dictionaryCreationDateAddition.getDictionaryCreationDates());
-            mapModelGenerator.setModel("names", dictionaryNameAddition.getDictionaryNames());
-            mapModelGenerator.setModel("surnames", dictionarySurnameAddition.getDictionarySurnames());
-            mapModelGenerator.setModel("countries", dictionaryDestinationCountryAddition.getDictionaryDestinationCountries());
 
+        delegationsCreateOptions.createOptionsTemplate();
+
+        try {
             Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
 
             template.process(mapModelGenerator.getModel(), resp.getWriter());

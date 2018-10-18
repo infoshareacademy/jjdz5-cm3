@@ -28,16 +28,7 @@ public class DelegationSearchServlet extends HttpServlet {
     private DelegationFilter delegationFilter;
 
     @Inject
-    private DictionaryCreationDateAddition dictionaryCreationDateAddition;
-
-    @Inject
-    private DictionaryNameAddition dictionaryNameAddition;
-
-    @Inject
-    private DictionarySurnameAddition dictionarySurnameAddition;
-
-    @Inject
-    private DictionaryDestinationCountryAddition dictionaryDestinationCountryAddition;
+    private DelegationsCreateOptions delegationsCreateOptions;
 
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
@@ -57,31 +48,22 @@ public class DelegationSearchServlet extends HttpServlet {
 
             delegationsLoadFromFile.loadDelegationsFromFile();
 
-            mapModelGenerator.setModel("datesOption", choiceCreationDate);
-            mapModelGenerator.setModel("namesOption", choiceName);
-            mapModelGenerator.setModel("surnamesOption", choiceSurname);
-            mapModelGenerator.setModel("countriesOption", choiceCountry);
-            mapModelGenerator.setModel("statusOption", choiceStatus);
+            delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
 
-            mapModelGenerator.setModel("delegations",
-                    delegationFilter.getFilteredList("", "", "", ""));
-
-            dictionaryCreationDateAddition.addDictionaryCreationDates();
-            dictionaryNameAddition.addDictionaryNames();
-            dictionarySurnameAddition.addDictionarySurnames();
-            dictionaryDestinationCountryAddition.addDictionaryDestinationCountries();
+            delegationsCreateOptions.addOptionsTemplate();
 
             DelegationStatus myStatus = null;
 
             try {
                 myStatus = DelegationStatus.valueOf(choiceStatus);
             } catch (Exception e) {
-                System.out.println("choiceStatus is empty");;
+                System.out.println("choiceStatus is empty");
+                ;
             }
 
             if(myStatus == null || myStatus.statusType().isEmpty()) {
                 mapModelGenerator.setModel("delegations",
-                        delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry));
+                        delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
             } else {
                 mapModelGenerator.setModel("delegations",
                         delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
@@ -91,12 +73,9 @@ public class DelegationSearchServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        try {
-            mapModelGenerator.setModel("dates", dictionaryCreationDateAddition.getDictionaryCreationDates());
-            mapModelGenerator.setModel("names", dictionaryNameAddition.getDictionaryNames());
-            mapModelGenerator.setModel("surnames", dictionarySurnameAddition.getDictionarySurnames());
-            mapModelGenerator.setModel("countries", dictionaryDestinationCountryAddition.getDictionaryDestinationCountries());
+        delegationsCreateOptions.createOptionsTemplate();
 
+        try {
             Template template = templateProvider.getTemplate(getServletContext(), "searchingDelegationsTemplate");
 
             template.process(mapModelGenerator.getModel(), resp.getWriter());
@@ -105,4 +84,5 @@ public class DelegationSearchServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }
