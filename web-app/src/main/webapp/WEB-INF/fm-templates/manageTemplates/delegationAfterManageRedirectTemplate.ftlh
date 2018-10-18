@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Zapisywanie delegacji</title>
-    <meta http-equiv="refresh" content="4;url=http://localhost:8080/delegations-web/manageDelegations?date=&name=&surname=&country="/>
+    <meta http-equiv="refresh" content="4;url=http://localhost:8080/delegations-web/manageDelegations?date=
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -32,16 +32,16 @@
 </header>
 
     <#if mapa == "accept" >
-            <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-                <h4 class="alert-heading">SUPER delegacja zaakceptowana!</h4>
+            <div class="alert alert-success" role="alert" style="width:60%;margin: auto; text-align: center">
+                <h4 class="alert-heading">SUPER delegacja zaakceptowana! <br/>Nastąpi przekierowanie na stronę główną. </h4>
             </div>
     <#elseif mapa == "discard">
-            <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-                <h4 class="alert-heading">Szkoda Delegacja odrzucona!</h4>
+            <div class="alert alert-success" role="alert" style="width:60%;margin: auto; text-align: center;">
+                <h4 class="alert-heading">Szkoda Delegacja odrzucona! <br/>Nastąpi przekierowanie na stronę główną. </h4>
             </div>
     <#else>
-            <div class="alert alert-primary" role="alert" style="width:60%;margin: auto">
-                <h4 class="alert-heading">Ups!! Nic nie zaznaczyłeś!!! </h4>
+            <div class="alert alert-primary" role="alert" style="width:60%;margin: auto; text-align: center">
+                <h4 class="alert-heading">Ups!! Nic nie zaznaczyłeś!!! <br/> Spróbuj jeszcze raz.... </h4>
             </div>
     </#if>
 
