@@ -62,7 +62,7 @@ public class DelegationImportServlet extends HttpServlet {
 
         if (delegationUploadProcess.uploadFromFileProcess(filePart).equals("ok")) {
             delegationListSaveToFileService.saveToFile();
-            mapModelGenerator.setModel("mapa", "zapisano do pliku");
+            mapModelGenerator.setModel("mapa", "Zapisano do pliku");
         } else {
             mapModelGenerator.setModel("mapa", delegationUploadProcess.uploadFromFileProcess(filePart));
         }
