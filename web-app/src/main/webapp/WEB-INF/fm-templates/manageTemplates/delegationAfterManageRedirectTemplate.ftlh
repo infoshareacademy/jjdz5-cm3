@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Zapisywanie delegacji</title>
-    <meta http-equiv="refresh" content="4;url=http://localhost:8080/delegations-web/manageDelegations?date=
+    <meta http-equiv="refresh" content="4;url=http://localhost:8080/delegations-web/manageDelegations?date=&name=&surname=&country="/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
