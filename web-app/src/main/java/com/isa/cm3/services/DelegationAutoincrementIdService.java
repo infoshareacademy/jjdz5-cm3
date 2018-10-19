@@ -1,6 +1,9 @@
 package com.isa.cm3.services;
 
+import com.isa.cm3.delegations.Settings;
+
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -12,13 +15,15 @@ import java.nio.file.Paths;
 @Dependent
 public class DelegationAutoincrementIdService {
 
+    @Inject
+    Settings settings;
+
     public Integer loadId() {
         Integer i = 1;
-        Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
         Reader reader;
 
         try {
-            reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+            reader = Files.newBufferedReader(settings.getPath(), StandardCharsets.UTF_8);
 
             if (((BufferedReader) reader).readLine() == null) {
                 return 1;

@@ -1,31 +1,22 @@
 package com.isa.cm3.services;
 
-import com.isa.cm3.delegations.Settings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DelegationsValidationServicesTest {
 
-    @Inject
-    Settings settings;
-    LocalDate startDate = LocalDate.now();
     private DelegationsValidationServices delegationsValidationServices;
     private Map<String, String> map = new HashMap<>();
 
     @BeforeEach
     void init() {
         delegationsValidationServices = new DelegationsValidationServices();
-
     }
 
     @Test
@@ -40,10 +31,10 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie wpisane imię\" when given name matches regex")
+    @DisplayName("Should return \"Błędnie wpisane imię\" when given name don't matche regex")
     void shouldReturnMessegeWhenGivenNameDoNotMatchesRegex() {
         //arrange
-        map.put("name", "1111");
+        map.put("name", "");
         //act
         String result = delegationsValidationServices.requestValidation(map);
         //assert
@@ -95,37 +86,68 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Shuld return true when all keys are ok")
-    void sholdReturnTrueWhenAllMapKeysAreCorrect(){
-        map.put("country","");
-        map.put("city","");
-
-        assertAll(
-                ()->assertTrue(map.containsKey("country")),
-                ()->assertTrue(map.containsKey("city"))
-        );
-    }
-
-    @Test
     @DisplayName("Should return \"ok\" when given company matches regex")
-    void shouldReturnOkWhenGivenCompanyMatchesRegex(){
+    void shouldReturnOkWhenGivenCompanyMatchesRegex() {
         //arrange
-        map.put("company","Firma");
+        map.put("company", "Firma");
         //act
         String result = delegationsValidationServices.requestValidation(map);
         //assert
-        assertEquals("ok",result);
+        assertEquals("ok", result);
     }
+
     @Test
     @DisplayName("Should return \"Błędnie podana nazwa firmy\" when given company don't matche regex")
-    void shouldReturnMessageWhenGivenCompanyMatchesRegex(){
+    void shouldReturnMessageWhenGivenCompanyMatchesRegex() {
         //arrange
-        map.put("company","1234");
+        map.put("company", "1234");
         //act
         String result = delegationsValidationServices.requestValidation(map);
         //assert
-        assertEquals("Błędnie podana nazwa firmy",result);
+        assertEquals("Błędnie podana nazwa firmy", result);
     }
 
-    
+    @Test
+    @DisplayName("Should return \"ok\" when given companyAdres matches regex")
+    void sholudReturnOkWhenCompanyAdresMatchesRegex() {
+        //arrange
+        map.put("companyAdres", "Firma");
+        //act
+        String result = delegationsValidationServices.requestValidation(map);
+        //assert
+        assertEquals("ok", result);
+    }
+
+    @Test
+    @DisplayName("Should return \"Błędnie podany adres firmy\" when given companyAdres don't matche regex")
+    void sholudReturnMessageWhenCompanyAdresDoNotMatcheRegex() {
+        //arrange
+        map.put("companyAdres", "111Firma");
+        //act
+        String result = delegationsValidationServices.requestValidation(map);
+        //assert
+        assertEquals("Błędnie podany adres firmy", result);
+    }
+
+    @Test
+    @DisplayName("Should return \"ok\" when given startPoint matches regex")
+    void sholudReturnOkWhenStartPointMatchesRegex() {
+        //arrange
+        map.put("startPoint", "Gdańsk");
+        //act
+        String result = delegationsValidationServices.requestValidation(map);
+        //assert
+        assertEquals("ok", result);
+    }
+
+    @Test
+    @DisplayName("Should return \"Błędnie podane mijsce startu\" when given startPoint matches regex")
+    void sholudReturnMessageWhenStartPointMatchesRegex() {
+        //arrange
+        map.put("startPoint", "111Gdańsk");
+        //act
+        String result = delegationsValidationServices.requestValidation(map);
+        //assert
+        assertEquals("Błędnie podane mijsce startu", result);
+    }
 }

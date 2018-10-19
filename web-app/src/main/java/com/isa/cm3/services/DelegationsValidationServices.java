@@ -61,11 +61,11 @@ public class DelegationsValidationServices {
                 }
             } else if (key.equals("companyAdres")) {
                 if (!value.matches(companyAdres)) {
-                    return "Błędnie podana adres firmy";
+                    return "Błędnie podany adres firmy";
                 }
             } else if (key.equals("startPoint")) {
                 if (!map.get(key).matches(startPoint)) {
-                    return "Błędnie podana adres firmy";
+                    return "Błędnie podane mijsce startu";
                 }
             }
         }

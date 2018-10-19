@@ -16,7 +16,6 @@ import java.util.List;
 @RequestScoped
 public class DelegationImportService {
 
-
     private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
     @Inject
     private Settings settings;
