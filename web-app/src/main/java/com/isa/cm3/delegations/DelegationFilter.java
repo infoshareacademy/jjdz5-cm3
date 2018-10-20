@@ -17,22 +17,22 @@ public class DelegationFilter {
 
     List<Delegation> filteredDelegations;
 
-    public List<Delegation> getFilteredList(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry, DelegationStatus choiceStatus) {
+    public List<Delegation> filterDelegation(String choiceCreationDate, String choiceName, String choiceSurname, String choiceCountry, DelegationStatus choiceStatus) {
 
         filteredDelegations = delegationRepository.getList();
 
-        getFilteredListByCreationDate(choiceCreationDate);
-        getFilteredListByEmployeeName(choiceName);
-        getFilteredListByEmployeeSurname(choiceSurname);
-        getFilteredListByDestinationCountry(choiceCountry);
-        getFilteredListByStatus(choiceStatus);
+        filterDelegationByCreationDate(choiceCreationDate);
+        filterDelegationByEmployeeName(choiceName);
+        filterDelegationByEmployeeSurname(choiceSurname);
+        filterDelegationByDestinationCountry(choiceCountry);
+        filterDelegationByStatus(choiceStatus);
 
         return filteredDelegations.stream()
                 .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
                 .collect(Collectors.toList());
     }
 
-    private void getFilteredListByCreationDate(String choiceCreationDate) {
+    private void filterDelegationByCreationDate(String choiceCreationDate) {
         if(!choiceCreationDate.isEmpty()) {
             filteredDelegations = filteredDelegations.stream()
                     .filter(delegation -> delegation.getCreationDate()
@@ -41,7 +41,7 @@ public class DelegationFilter {
         }
     }
 
-    private void getFilteredListByEmployeeName(String choiceName) {
+    private void filterDelegationByEmployeeName(String choiceName) {
         if(!choiceName.isEmpty()) {
             filteredDelegations = filteredDelegations.stream()
                     .filter(delegation -> delegation.getEmployee().getEmployeeName().equals(choiceName))
@@ -49,7 +49,7 @@ public class DelegationFilter {
         }
     }
 
-    private void getFilteredListByEmployeeSurname(String choiceSurname) {
+    private void filterDelegationByEmployeeSurname(String choiceSurname) {
         if(!choiceSurname.isEmpty()) {
             filteredDelegations = filteredDelegations.stream()
                     .filter(delegation -> delegation.getEmployee().getEmployeeSurname().equals(choiceSurname))
@@ -57,7 +57,7 @@ public class DelegationFilter {
         }
     }
 
-    private void getFilteredListByDestinationCountry(String choiceCountry) {
+    private void filterDelegationByDestinationCountry(String choiceCountry) {
         if(!choiceCountry.isEmpty()) {
             filteredDelegations = filteredDelegations.stream()
                     .filter(delegation -> delegation.getDestination().getDestinationCountry().equals(choiceCountry))
@@ -65,11 +65,9 @@ public class DelegationFilter {
         }
     }
 
-    private void getFilteredListByStatus(DelegationStatus choiceStatus) {
+    private void filterDelegationByStatus(DelegationStatus choiceStatus) {
         if(choiceStatus != null) {
-            if(!choiceStatus.toString().isEmpty())
-
-            {
+            if(!choiceStatus.toString().isEmpty()) {
                 filteredDelegations = filteredDelegations.stream()
                         .filter(delegation -> delegation.getDelegationStatus().equals(choiceStatus))
                         .collect(Collectors.toList());

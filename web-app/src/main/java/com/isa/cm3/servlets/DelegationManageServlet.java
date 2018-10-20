@@ -54,7 +54,7 @@ public class DelegationManageServlet extends HttpServlet {
             delegationsCreateOptions.addOptionsTemplate();
 
             mapModelGenerator.setModel("delegations",
-                    delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
+                    delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -63,10 +63,10 @@ public class DelegationSearchServlet extends HttpServlet {
 
             if(myStatus == null || myStatus.statusType().isEmpty()) {
                 mapModelGenerator.setModel("delegations",
-                        delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
+                        delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
             } else {
                 mapModelGenerator.setModel("delegations",
-                        delegationFilter.getFilteredList(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
+                        delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
 
             }
         } catch (Exception e) {
