@@ -14,7 +14,7 @@ class DelegationFilterTest {
     private DelegationFilter delegationFilter;
 
     @Test
-    void ShouldReturnNullWhenDataInvalid() {
+    void shouldReturnNullWhenDataInvalid() {
 
         // arrage
         String choiceCreationDate = "2018-10-08";

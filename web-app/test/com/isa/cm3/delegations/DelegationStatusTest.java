@@ -12,7 +12,7 @@ class DelegationStatusTest {
 
     @Test
     @DisplayName("Shuld return \"do akceptacji\" when DelegationStatus is TOACCEPT")
-    void ShouldReturnStatusTypeTOACCESS() {
+    void shouldReturnStatusTypeTOACCESS() {
         //arrage
         DelegationStatus choiceStatus = DelegationStatus.TOACCEPT;
 
@@ -25,7 +25,7 @@ class DelegationStatusTest {
 
     @Test
     @DisplayName("Shuld return \"zaakceptowano\" when DelegationStatus is ACCEPTED")
-    void ShouldReturnStatusTypeACCEPTED() {
+    void shouldReturnStatusTypeACCEPTED() {
         //arrage
         DelegationStatus choiceStatus = DelegationStatus.ACCEPTED;
 
@@ -38,7 +38,7 @@ class DelegationStatusTest {
 
     @Test
     @DisplayName("Shuld return \"brak akceptacji\" when DelegationStatus is DISCARTED")
-    void ShouldReturnStatusTypeDISCARTED() {
+    void shouldReturnStatusTypeDISCARTED() {
         //arrage
         DelegationStatus choiceStatus = DelegationStatus.DISCARTED;
 
