@@ -1,7 +1,6 @@
 package com.isa.cm3.services;
 
 import com.isa.cm3.delegations.*;
-import com.isa.cm3.services.DelegationAutoincrementIdService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

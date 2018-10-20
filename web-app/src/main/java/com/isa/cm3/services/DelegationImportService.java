@@ -84,7 +84,7 @@ public class DelegationImportService {
         return "ok";
     }
 
-    private String bomAndDateValidation(List<String> tempList, int counter) {
+    public String bomAndDateValidation(List<String> tempList, int counter) {
 
         String regex = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
         boolean allMatches = tempList.get(0).trim().matches(regex) && tempList.get(3).trim().matches(regex) && tempList.get(4).trim().matches(regex);
