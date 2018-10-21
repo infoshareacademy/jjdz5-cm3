@@ -17,16 +17,11 @@ import java.util.List;
 @RequestScoped
 public class DelegationsLoadFromFile {
 
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Inject
     private DelegationRepository delegationRepository;
-    @Inject
-    private Employee employee;
-    @Inject
-    private Destination destination;
-    @Inject
-    private Delegation delegation;
 
+    @Inject
+    private Settings settings;
 
     private Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
 
@@ -37,22 +32,22 @@ public class DelegationsLoadFromFile {
         try {
             reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
             line = ((BufferedReader) reader).readLine();
-            if (line == null) {
+            if(line == null) {
                 return "Brak delegacji do wyświetlenia";
             } else {
                 try {
-                    while (line != null) {
-                        if (!line.equals("")) {
+                    while(line != null) {
+                        if(!line.equals("")) {
                             List<String> tempList = Arrays.asList(line.split(","));
 
                             delegationRepository.setList(new Delegation(
                                     Integer.parseInt(tempList.get(0).trim()),
-                                    LocalDate.parse(tempList.get(1).trim(), formater),
+                                    LocalDate.parse(tempList.get(1).trim(), settings.getFormater()),
                                     (new Employee(
                                             tempList.get(2).trim(),
                                             tempList.get(3).trim())),
-                                    LocalDate.parse(tempList.get(4).trim(), formater),
-                                    LocalDate.parse(tempList.get(5).trim(), formater),
+                                    LocalDate.parse(tempList.get(4).trim(), settings.getFormater()),
+                                    LocalDate.parse(tempList.get(5).trim(), settings.getFormater()),
 
                                     (new Destination(tempList.get(6).trim(),
                                             tempList.get(7).trim(),
@@ -62,28 +57,17 @@ public class DelegationsLoadFromFile {
                                     DelegationStatus.valueOf(tempList.get(11).trim()),
                                     tempList.get(12).trim(),
                                     (tempList.get(13).trim())));
-
-                            delegationRepository.setCreationDateList("");
-                            delegationRepository.setNameList("");
-                            delegationRepository.setSurNameList("");
-                            delegationRepository.setDestinationCountryList("");
-
-                            delegationRepository.setCreationDateList(tempList.get(1).trim());
-                            delegationRepository.setNameList(tempList.get(2).trim());
-                            delegationRepository.setSurNameList(tempList.get(3).trim());
-                            delegationRepository.setDestinationCountryList(tempList.get(6).trim());
                         }
                         line = ((BufferedReader) reader).readLine();
                     }
                     reader.close();
-                } catch (IOException e) {
+                } catch(IOException e) {
                     e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
         return "ok";
     }
 }
-
