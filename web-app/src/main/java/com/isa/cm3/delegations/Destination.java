@@ -1,11 +1,17 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 @RequestScoped
 public class Destination {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String destinationCountry;
     private String destinationCity;
     private String destinationCompany;
@@ -23,6 +29,10 @@ public class Destination {
 
     public Destination() {
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getDestinationCountry() {
