@@ -1,12 +1,16 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.SessionScoped;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 @SessionScoped
+
 public class Delegation implements Serializable {
+
     private Integer fileLineNumber;
     private LocalDate creationDate;
     private LocalDate startDate;

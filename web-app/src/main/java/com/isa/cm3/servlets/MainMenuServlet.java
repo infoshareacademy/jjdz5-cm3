@@ -31,7 +31,10 @@ public class MainMenuServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
 
-        mapModelGenerator.setModel("mapa",req.getSession().getAttribute("userName").toString());
+        mapModelGenerator.setModel(
+                "mapa",
+                req.getSession().getAttribute("userName").toString() //todo handla nullpointer
+        );
         Template template = templateProvider
                 .getTemplate(getServletContext(), "mainMenuTemplate");
         try {
