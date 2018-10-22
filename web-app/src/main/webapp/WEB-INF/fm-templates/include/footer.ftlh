@@ -11,5 +11,5 @@
     }
 </style>
 <footer class="footer">
-    <p class="float">&copy; 2018 Kurs InfoShare Academy &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p class="float">&copy; 2018 Kurs InfoShare Academy</a></p>
 </footer>

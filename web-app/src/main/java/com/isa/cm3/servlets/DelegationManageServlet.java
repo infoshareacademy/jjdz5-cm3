@@ -13,20 +13,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 @WebServlet("/manageDelegations")
 public class DelegationManageServlet extends HttpServlet {
 
     @Inject
     private MapModelGenerator mapModelGenerator;
+
     @Inject
     private TemplateProvider templateProvider;
+
     @Inject
-    private DelegationRepository delegationRepository;
+    private DelegationFilter delegationFilter;
+
+    @Inject
+    private DelegationsCreateOptions delegationsCreateOptions;
+
     @Inject
     private DelegationsLoadFromFile delegationsLoadFromFile;
+
     @Inject
     private DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
 
@@ -36,17 +41,33 @@ public class DelegationManageServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationsLoadFromFile.loadDelegationsFromFile();
+        try {
+            final String choiceCreationDate = req.getParameter("date").trim();
+            final String choiceName = req.getParameter("name").trim();
+            final String choiceSurname = req.getParameter("surname").trim();
+            final String choiceCountry = req.getParameter("country").trim();
 
-        mapModelGenerator.setModel("delegations", delegationRepository.getList().stream()
-                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
-                .filter(delegation -> delegation.getDelegationStatus().equals(DelegationStatus.TOACCEPT))
-                .collect(Collectors.toList()));
+            delegationsLoadFromFile.loadDelegationsFromFile();
 
-        Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
+            delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
+
+            delegationsCreateOptions.addOptionsTemplate();
+
+            mapModelGenerator.setModel("delegations",
+                    delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        delegationsCreateOptions.createOptionsTemplate();
 
         try {
+            Template template = templateProvider.getTemplate(getServletContext(), "manageTemplates/manageDelegationsTemplate");
+
             template.process(mapModelGenerator.getModel(), resp.getWriter());
+
         } catch (TemplateException e) {
             e.printStackTrace();
         }
@@ -62,11 +83,12 @@ public class DelegationManageServlet extends HttpServlet {
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String wybor = req.getParameter("wybor");
-        if (wybor != null && !wybor.isEmpty()) {
+        String choiceStatus = req.getParameter("choicestatus");
+
+        if(choiceStatus != null && !choiceStatus.isEmpty()) {
             String button = req.getParameter("button");
             String discardReason = req.getParameter("discardReason");
-            Integer id = Integer.parseInt(wybor);
+            Integer id = Integer.parseInt(choiceStatus);
 
             delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
             mapModelGenerator.setModel("mapa", button);

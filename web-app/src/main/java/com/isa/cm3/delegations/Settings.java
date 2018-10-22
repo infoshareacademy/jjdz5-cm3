@@ -10,7 +10,7 @@ public class Settings {
 
     private final Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
 
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public Path getPath() {
         return path;
@@ -23,6 +23,6 @@ public class Settings {
     }
 
     public DateTimeFormatter getFormater() {
-        return formater;
+        return dateFormater;
     }
 }

@@ -19,6 +19,9 @@ public class Employee {
 
     }
 
+    public Employee(String trim) {
+    }
+
     public String getEmployeeName() {
         return employeeName;
     }
