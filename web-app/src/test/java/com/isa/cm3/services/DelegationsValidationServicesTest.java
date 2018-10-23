@@ -63,7 +63,7 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie wpisane nazwisko\" when given surname NotMaches regex")
+    @DisplayName("Should return \"Błędnie wpisane pole: nazwisko\" when given surname NotMaches regex")
     void shouldReturnFailedValidationMessageWhenGivenSurnameDoNotMatchesRegex() {
         //arrange
         map.put("surname", "nazwisko");
@@ -90,7 +90,7 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Sholud return \"Błędnie wpisane miasto - wpisz tylko litery\" when given City NotMaches regex ")
+    @DisplayName("Sholud return \"Błędnie wpisane pole: miasto\" when given City NotMaches regex ")
     void shouldReturnFailedValidationMessageWhenGivenCityDoNotMatchesRegex() {
         //arrange
         map.put("city", "gdańsk");
@@ -117,7 +117,7 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podana nazwa firmy\" when given company NotMaches regex")
+    @DisplayName("Should return \"Błędnie wpisane pole: nazwa firmy\" when given company NotMaches regex")
     void shouldReturnFailedValidationMessageWhenGivenCompanyMatchesRegex() {
         //arrange
         map.put("company", "1234");
@@ -144,7 +144,7 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podany adres firmy\" when given companyAdres NotMaches regex")
+    @DisplayName("Should return \"Błędnie wpisane pole: adres firmy\" when given companyAdres NotMaches regex")
     void sholudReturnFailedValidationMessageWhenCompanyAdresDoNotMatcheRegex() {
         //arrange
         map.put("companyAdres", "111Firma");
@@ -171,7 +171,7 @@ class DelegationsValidationServicesTest {
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podane mijsce startu\" when given startPoint NotMaches regex")
+    @DisplayName("Should return \"Błędnie wpisane pole: mijsce startu\" when given startPoint NotMaches regex")
     void sholudReturnFailedValidationMessageWhenStartPointMatchesRegex() {
         //arrange
         map.put("startPoint", "111Gdańsk");
