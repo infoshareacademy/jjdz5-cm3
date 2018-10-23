@@ -8,25 +8,35 @@ import java.util.Objects;
 
 
 @SessionScoped
-
+@Entity
+@Table(name = "delegations")
 public class Delegation implements Serializable {
 
-    private Integer fileLineNumber;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
+    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
+    @Column(name = "purpose", nullable = false)
     private String purpose;
+    @Column(name = "delegation_status", nullable = false)
     private DelegationStatus delegationStatus;
+    @Column(name = "start_point", nullable = false)
     private String startPoint;
+    @Column(name = "discard_reason", nullable = false)
     private String discardReason;
 
 
-    /*Obiekty z klas zawierających pola i metody */
     private Employee employee = new Employee();
     private Destination destination = new Destination();
 
 
-    public Delegation(Integer fileLineNumber,
+    public Delegation(int id,
                       LocalDate creationDate,
                       Employee employee,
                       LocalDate startDate,
@@ -36,7 +46,7 @@ public class Delegation implements Serializable {
                       DelegationStatus delegationStatus,
                       String startPoint,
                       String discardReason) {
-        this.fileLineNumber = fileLineNumber;
+        this.id = id;
         this.creationDate = creationDate;
         this.employee = employee;
         this.startDate = startDate;
@@ -50,16 +60,11 @@ public class Delegation implements Serializable {
 
     }
 
-    public Delegation() {
-    }
+    public Delegation() { }
 
-    public Integer getFileLineNumber() {
-        return fileLineNumber;
-    }
+    public int getId() { return id; }
 
-    public void setFileLineNumber(Integer fileLineNumber) {
-        this.fileLineNumber = fileLineNumber;
-    }
+    public void setId(int id) { this.id = id; }
 
     public Employee getEmployee() {
         return employee;
@@ -133,12 +138,14 @@ public class Delegation implements Serializable {
         this.discardReason = discardReason;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Delegation that = (Delegation) o;
-        return Objects.equals(fileLineNumber, that.fileLineNumber) &&
+        return id == that.id &&
                 Objects.equals(creationDate, that.creationDate) &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(endDate, that.endDate) &&
@@ -153,12 +160,12 @@ public class Delegation implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(fileLineNumber, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, discardReason, employee, destination);
+        return Objects.hash(id, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, discardReason, employee, destination);
     }
 
     @Override
     public String toString() {
-        return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
+        return id + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
                 purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
     }
 

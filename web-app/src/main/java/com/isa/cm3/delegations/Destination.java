@@ -6,15 +6,20 @@ import java.util.Objects;
 
 @Entity
 @RequestScoped
+@Table(name = "destinations")
 public class Destination {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "destination_country", nullable = false)
     private String destinationCountry;
+    @Column(name = "destination_city", nullable = false)
     private String destinationCity;
+    @Column(name = "destination_company", nullable = false)
     private String destinationCompany;
+    @Column(name = "destination_company_adress", nullable = false)
     private String destinationCompanyAddress;
 
     public Destination(String destinationCountry,
@@ -34,6 +39,8 @@ public class Destination {
     public int getId() {
         return id;
     }
+
+    public void setId(int id) { this.id = id; }
 
     public String getDestinationCountry() {
         return destinationCountry;
@@ -72,7 +79,8 @@ public class Destination {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Destination that = (Destination) o;
-        return Objects.equals(destinationCountry, that.destinationCountry) &&
+        return id == that.id &&
+                Objects.equals(destinationCountry, that.destinationCountry) &&
                 Objects.equals(destinationCity, that.destinationCity) &&
                 Objects.equals(destinationCompany, that.destinationCompany) &&
                 Objects.equals(destinationCompanyAddress, that.destinationCompanyAddress);
@@ -80,12 +88,13 @@ public class Destination {
 
     @Override
     public int hashCode() {
-        return Objects.hash(destinationCountry, destinationCity, destinationCompany, destinationCompanyAddress);
+
+        return Objects.hash(id, destinationCountry, destinationCity, destinationCompany, destinationCompanyAddress);
     }
 
     @Override
     public String toString() {
-        return destinationCountry + "," + destinationCity + "," + destinationCompany + "," + destinationCompanyAddress;
+        return id + "," + destinationCountry + "," + destinationCity + "," + destinationCompany + "," + destinationCompanyAddress;
 
     }
 }
