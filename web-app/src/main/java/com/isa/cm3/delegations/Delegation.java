@@ -31,8 +31,12 @@ public class Delegation implements Serializable {
     @Column(name = "discard_reason", nullable = false)
     private String discardReason;
 
-
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee = new Employee();
+
+    @ManyToOne
+    @JoinColumn(name = "destination_id")
     private Destination destination = new Destination();
 
 
@@ -60,11 +64,16 @@ public class Delegation implements Serializable {
 
     }
 
-    public Delegation() { }
+    public Delegation() {
+    }
 
-    public int getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -137,6 +146,7 @@ public class Delegation implements Serializable {
     public void setDiscardReason(String discardReason) {
         this.discardReason = discardReason;
     }
+
 
 
 

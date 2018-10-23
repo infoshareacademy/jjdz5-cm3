@@ -28,7 +28,7 @@ public class DelegationFilter {
         filterDelegationByStatus(choiceStatus);
 
         return filteredDelegations.stream()
-                .sorted(Comparator.comparingInt(Delegation::getFileLineNumber))
+                .sorted(Comparator.comparingInt(Delegation::getId))
                 .collect(Collectors.toList());
     }
 

@@ -28,7 +28,7 @@ public class DelegationListSaveToFileService {
 
         for (Delegation delegation : delegationRepository.getList()) {
             try {
-                if (delegation.getFileLineNumber().equals(1)) {
+                if (delegation.getId().equals(1)) {
                     writer = Files.newBufferedWriter(settings.getPath(), StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
                     writer.write(delegation.toString());
                     writer.close();

@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.services.DelegationInstanceGeneratorService;
 import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.freemarker.MapModelGenerator;
@@ -7,6 +8,8 @@ import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +19,9 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/delegation-save")
 public class DelegationSaveServlet extends HttpServlet {
+
+    @PersistenceContext
+    EntityManager em;
 
     @Inject
     private DelegationInstanceGeneratorService delegationInstanceGeneratorService;
@@ -29,12 +35,18 @@ public class DelegationSaveServlet extends HttpServlet {
     @Inject
     private MapModelGenerator mapModelGenerator;
 
+    @Inject
+    DelegationDao delegationDao;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationSaveToFile.saveToFile(delegationInstanceGeneratorService.generateDelegationInstance());
+
+        delegationDao.save(delegationInstanceGeneratorService.generateDelegationInstance());
+       
+        //delegationSaveToFile.saveToFile(delegationInstanceGeneratorService.generateDelegationInstance());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationAfterSaveAndRedirectTemplate");
         try {

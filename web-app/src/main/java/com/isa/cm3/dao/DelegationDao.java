@@ -17,7 +17,7 @@ public class DelegationDao {
 
     public Integer save(Delegation d) {
         entityManager.persist(d);
-        return d.getFileLineNumber();
+        return d.getId();
     }
 
     public Delegation update(Delegation d) {

@@ -3,6 +3,7 @@ package com.isa.cm3.delegations;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @RequestScoped
@@ -21,6 +22,9 @@ public class Destination {
     private String destinationCompany;
     @Column(name = "destination_company_adress", nullable = false)
     private String destinationCompanyAddress;
+
+    @OneToMany(mappedBy = "destination",fetch = FetchType.EAGER)
+    private Set<Delegation> delegations;
 
     public Destination(String destinationCountry,
                        String destinationCity,

@@ -1,11 +1,9 @@
 package com.isa.cm3.delegations;
 
 import javax.enterprise.context.RequestScoped;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @RequestScoped
 @Entity
@@ -18,6 +16,9 @@ public class Employee {
     private String employeeName;
     @Column(name = "employee_surname", nullable = false)
     private String employeeSurname;
+
+    @OneToMany(mappedBy = "employee",fetch = FetchType.EAGER)
+    private Set<Delegation> delegations;
 
     public Employee(String employeeName, String employeeSurname) {
         this.employeeName = employeeName;

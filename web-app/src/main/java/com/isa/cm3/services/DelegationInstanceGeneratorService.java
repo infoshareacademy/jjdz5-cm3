@@ -54,7 +54,7 @@ public class DelegationInstanceGeneratorService {
             }
         }
 
-        delegation.setFileLineNumber(delegationAutoincrementIdService.loadId());
+        delegation.setId(delegationAutoincrementIdService.loadId());
         delegation.setDestination(destination);
         delegation.setEmployee(employee);
         delegation.setDelegationStatus(DelegationStatus.TOACCEPT);

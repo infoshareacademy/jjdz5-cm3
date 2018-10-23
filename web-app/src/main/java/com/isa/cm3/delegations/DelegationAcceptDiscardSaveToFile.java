@@ -38,9 +38,9 @@ public class DelegationAcceptDiscardSaveToFile {
         delegationsLoadFromFile.loadDelegationsFromFile();
 
         delegationRepository.getList().stream()
-                .filter(delegation -> delegation.getFileLineNumber().equals(id))
+                .filter(delegation -> delegation.getId().equals(id))
                 .peek(delegation -> {
-                            if (delegation.getFileLineNumber().equals(id)) {
+                            if (delegation.getId().equals(id)) {
                                 delegation.setDelegationStatus(status);
                                 delegation.setDiscardReason(reason);
                             }
