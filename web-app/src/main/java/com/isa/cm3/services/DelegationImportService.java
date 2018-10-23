@@ -16,11 +16,13 @@ import java.util.List;
 @RequestScoped
 public class DelegationImportService {
 
-    private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
     @Inject
     private Settings settings;
     @Inject
     private DelegationRepository delegationRepository;
+
+    private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
+    private final String succesMessage = "ok";
 
     public String uploadFromFileProcess(Part part) {
         String line;
@@ -80,7 +82,7 @@ public class DelegationImportService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "ok";
+        return succesMessage;
     }
 
     private String bomAndDateValidation(List<String> tempList, int counter) {
@@ -91,7 +93,7 @@ public class DelegationImportService {
 
         if (counter == 1) {
             if (allMatches) {
-                return "ok";
+                return succesMessage;
             } else {
                 String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
                 if (substring.matches(regex) && twoMatches) {
@@ -104,14 +106,11 @@ public class DelegationImportService {
 
         if (counter > 1) {
             if (allMatches) {
-                return "ok";
+                return succesMessage;
             } else {
                 return message;
             }
         }
-        return "ok";
+        return succesMessage;
     }
 }
-
-
-

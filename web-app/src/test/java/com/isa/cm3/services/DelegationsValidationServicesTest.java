@@ -13,6 +13,9 @@ class DelegationsValidationServicesTest {
 
     private DelegationsValidationServices delegationsValidationServices;
     private Map<String, String> map = new HashMap<>();
+    private String expectedSuccessValidationResult = "ok";
+    private String FailedValidationMessage = "Błędnie wpisane pole: ";
+    private String expectedFailedValidationResult;
 
     @BeforeEach
     void init() {
@@ -24,21 +27,26 @@ class DelegationsValidationServicesTest {
     void shouldReturnOkWhenGivenNameMatchesRegex() {
         //arrange
         map.put("name", "Marek");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie wpisane imię\" when given name don't matche regex")
-    void shouldReturnMessegeWhenGivenNameDoNotMatchesRegex() {
+    @DisplayName("Should return \"Błędnie wpisane pole: imię \"  when given name NotMaches regex")
+    void shouldReturnFailedValidationMessageWhenGivenNameDoNotMatchesRegex() {
         //arrange
         map.put("name", "");
+        expectedFailedValidationResult = FailedValidationMessage + "imię";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("Błędnie wpisane imię", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 
     @Test
@@ -46,21 +54,26 @@ class DelegationsValidationServicesTest {
     void shouldReturnOkWhenGivenSurnameMatchesRegex() {
         //arrange
         map.put("surname", "Marek");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie wpisane nazwisko\" when given surname don't matches regex")
-    void shouldReturnMessegeWhenGivenSurnameDoNotMatchesRegex() {
+    @DisplayName("Should return \"Błędnie wpisane nazwisko\" when given surname NotMaches regex")
+    void shouldReturnFailedValidationMessageWhenGivenSurnameDoNotMatchesRegex() {
         //arrange
         map.put("surname", "nazwisko");
+        expectedFailedValidationResult = FailedValidationMessage + "nazwisko";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("Błędnie wpisane nazwisko", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 
     @Test
@@ -68,21 +81,26 @@ class DelegationsValidationServicesTest {
     void shouldReturnOkWhenGivenCityMatchesRegex() {
         //arrange
         map.put("city", "Gdańsk");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //asssert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Sholud return \"Błędnie wpisane miasto - wpisz tylko litery\" when given City don't matche regex ")
-    void shouldReturnMessageWhenGivenCityDoNotMatchesRegex() {
+    @DisplayName("Sholud return \"Błędnie wpisane miasto - wpisz tylko litery\" when given City NotMaches regex ")
+    void shouldReturnFailedValidationMessageWhenGivenCityDoNotMatchesRegex() {
         //arrange
         map.put("city", "gdańsk");
+        expectedFailedValidationResult = FailedValidationMessage + "miasto";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //asssert
-        assertEquals("Błędnie wpisane miasto - wpisz tylko litery", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 
     @Test
@@ -90,21 +108,26 @@ class DelegationsValidationServicesTest {
     void shouldReturnOkWhenGivenCompanyMatchesRegex() {
         //arrange
         map.put("company", "Firma");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podana nazwa firmy\" when given company don't matche regex")
-    void shouldReturnMessageWhenGivenCompanyMatchesRegex() {
+    @DisplayName("Should return \"Błędnie podana nazwa firmy\" when given company NotMaches regex")
+    void shouldReturnFailedValidationMessageWhenGivenCompanyMatchesRegex() {
         //arrange
         map.put("company", "1234");
+        expectedFailedValidationResult = FailedValidationMessage + "nazwa firmy";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("Błędnie podana nazwa firmy", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 
     @Test
@@ -112,21 +135,26 @@ class DelegationsValidationServicesTest {
     void sholudReturnOkWhenCompanyAdresMatchesRegex() {
         //arrange
         map.put("companyAdres", "Firma");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podany adres firmy\" when given companyAdres don't matche regex")
-    void sholudReturnMessageWhenCompanyAdresDoNotMatcheRegex() {
+    @DisplayName("Should return \"Błędnie podany adres firmy\" when given companyAdres NotMaches regex")
+    void sholudReturnFailedValidationMessageWhenCompanyAdresDoNotMatcheRegex() {
         //arrange
         map.put("companyAdres", "111Firma");
+        expectedFailedValidationResult = FailedValidationMessage + "adres firmy";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("Błędnie podany adres firmy", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 
     @Test
@@ -134,20 +162,25 @@ class DelegationsValidationServicesTest {
     void sholudReturnOkWhenStartPointMatchesRegex() {
         //arrange
         map.put("startPoint", "Gdańsk");
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("ok", result);
+        assertEquals(expectedSuccessValidationResult, result);
     }
 
     @Test
-    @DisplayName("Should return \"Błędnie podane mijsce startu\" when given startPoint matches regex")
-    void sholudReturnMessageWhenStartPointMatchesRegex() {
+    @DisplayName("Should return \"Błędnie podane mijsce startu\" when given startPoint NotMaches regex")
+    void sholudReturnFailedValidationMessageWhenStartPointMatchesRegex() {
         //arrange
         map.put("startPoint", "111Gdańsk");
+        expectedFailedValidationResult = FailedValidationMessage + "miejsce startu";
+
         //act
         String result = delegationsValidationServices.requestValidation(map);
+
         //assert
-        assertEquals("Błędnie podane mijsce startu", result);
+        assertEquals(expectedFailedValidationResult, result);
     }
 }
