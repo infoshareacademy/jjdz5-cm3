@@ -21,8 +21,8 @@ public class DelegationImportService {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
-    private final String succesMessage = "ok";
+    private static final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
+    private static final String succesMessage = "ok";
 
     public String uploadFromFileProcess(Part part) {
         String line;
