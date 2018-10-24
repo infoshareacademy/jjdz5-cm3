@@ -1,4 +1,6 @@
-<select name="country" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"
+<#-- countryList.ftlh -->
+
+<select name="country" class="form-control" id="validationCustomCity" placeholder="Kraj dokąd jedziesz"
         value="Polska" required>
     <option>Afganistan</option>
     <option>Albania</option>
@@ -165,7 +167,7 @@
     <option>Peru</option>
     <option>Pitcairn</option>
     <option>Polinezja Francuska</option>
-    <option value="Poland">Polska</option>
+    <option selected value="Polska">Polska</option>
     <option>Portoryko</option>
     <option>Portugalia</option>
     <option>Republika Południowej Afryki</option>
