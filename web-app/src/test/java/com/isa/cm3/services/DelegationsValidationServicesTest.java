@@ -13,8 +13,8 @@ class DelegationsValidationServicesTest {
 
     private DelegationsValidationServices delegationsValidationServices;
     private Map<String, String> map = new HashMap<>();
-    private String expectedSuccessValidationResult = "ok";
-    private String FailedValidationMessage = "Błędnie wpisane pole: ";
+    private final String expectedSuccessValidationResult = "ok";
+    private final String failedValidationMessage = "Błędnie wpisane pole: ";
     private String expectedFailedValidationResult;
 
     @BeforeEach
@@ -40,7 +40,7 @@ class DelegationsValidationServicesTest {
     void shouldReturnFailedValidationMessageWhenGivenNameDoNotMatchesRegex() {
         //arrange
         map.put("name", "");
-        expectedFailedValidationResult = FailedValidationMessage + "imię";
+        expectedFailedValidationResult = failedValidationMessage + "imię";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);
@@ -67,7 +67,7 @@ class DelegationsValidationServicesTest {
     void shouldReturnFailedValidationMessageWhenGivenSurnameDoNotMatchesRegex() {
         //arrange
         map.put("surname", "nazwisko");
-        expectedFailedValidationResult = FailedValidationMessage + "nazwisko";
+        expectedFailedValidationResult = failedValidationMessage + "nazwisko";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);
@@ -94,7 +94,7 @@ class DelegationsValidationServicesTest {
     void shouldReturnFailedValidationMessageWhenGivenCityDoNotMatchesRegex() {
         //arrange
         map.put("city", "gdańsk");
-        expectedFailedValidationResult = FailedValidationMessage + "miasto";
+        expectedFailedValidationResult = failedValidationMessage + "miasto";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);
@@ -121,7 +121,7 @@ class DelegationsValidationServicesTest {
     void shouldReturnFailedValidationMessageWhenGivenCompanyMatchesRegex() {
         //arrange
         map.put("company", "1234");
-        expectedFailedValidationResult = FailedValidationMessage + "nazwa firmy";
+        expectedFailedValidationResult = failedValidationMessage + "nazwa firmy";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);
@@ -148,7 +148,7 @@ class DelegationsValidationServicesTest {
     void sholudReturnFailedValidationMessageWhenCompanyAdresDoNotMatcheRegex() {
         //arrange
         map.put("companyAdres", "111Firma");
-        expectedFailedValidationResult = FailedValidationMessage + "adres firmy";
+        expectedFailedValidationResult = failedValidationMessage + "adres firmy";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);
@@ -175,7 +175,7 @@ class DelegationsValidationServicesTest {
     void sholudReturnFailedValidationMessageWhenStartPointMatchesRegex() {
         //arrange
         map.put("startPoint", "111Gdańsk");
-        expectedFailedValidationResult = FailedValidationMessage + "miejsce startu";
+        expectedFailedValidationResult = failedValidationMessage + "miejsce startu";
 
         //act
         String result = delegationsValidationServices.requestValidation(map);

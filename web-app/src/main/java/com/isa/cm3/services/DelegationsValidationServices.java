@@ -50,13 +50,13 @@ public class DelegationsValidationServices {
             } else if (key.equals("startDate")) {
                 startDate = LocalDate.parse(value, settings.getFormater());
 
-                if (!dateVAlidation(value, settings.getFormater()).equals(SUCCESS_VALIDATION_MESSAGE)) {
-                    return dateVAlidation(map.get(key), settings.getFormater());
+                if (!dateValidation(value, settings.getFormater()).equals(SUCCESS_VALIDATION_MESSAGE)) {
+                    return dateValidation(map.get(key), settings.getFormater());
                 }
             } else if (key.equals("endDate")) {
                 endDate = LocalDate.parse(value, settings.getFormater());
-                if (!dateVAlidation(value, settings.getFormater()).equals(SUCCESS_VALIDATION_MESSAGE)) {
-                    return dateVAlidation(map.get(key), settings.getFormater());
+                if (!dateValidation(value, settings.getFormater()).equals(SUCCESS_VALIDATION_MESSAGE)) {
+                    return dateValidation(map.get(key), settings.getFormater());
                 }
             } else if (key.equals("city")) {
                 if (!value.matches(CITY)) {
@@ -91,8 +91,7 @@ public class DelegationsValidationServices {
         return endDate.isBefore(startDate);
     }
 
-
-    private String dateVAlidation(String str, DateTimeFormatter formater) {
+    private String dateValidation(String str, DateTimeFormatter formater) {
 
         String message = "Błędna data"; //FIXME
 
