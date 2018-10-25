@@ -11,6 +11,8 @@ import java.util.Set;
 public class Employee {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "employee_name", nullable = false)
     private String employeeName;

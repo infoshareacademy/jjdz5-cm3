@@ -1,7 +1,6 @@
 package com.isa.cm3.services;
 
 import com.isa.cm3.delegations.*;
-import com.isa.cm3.services.DelegationAutoincrementIdService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,8 +20,7 @@ public class DelegationInstanceGeneratorService {
     private Destination destination;
     @Inject
     private Employee employee;
-    @Inject
-    private DelegationAutoincrementIdService delegationAutoincrementIdService;
+
 
     public Delegation generateDelegationInstance() {
 
@@ -54,7 +52,7 @@ public class DelegationInstanceGeneratorService {
             }
         }
 
-        delegation.setId(delegationAutoincrementIdService.loadId());
+
         delegation.setDestination(destination);
         delegation.setEmployee(employee);
         delegation.setDelegationStatus(DelegationStatus.TOACCEPT);

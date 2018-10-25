@@ -16,19 +16,27 @@ public class Delegation implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
+
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
+
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
+
     @Column(name = "purpose", nullable = false)
     private String purpose;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "delegation_status", nullable = false)
     private DelegationStatus delegationStatus;
+
     @Column(name = "start_point", nullable = false)
     private String startPoint;
-    @Column(name = "discard_reason", nullable = false)
+
+    @Column(name = "discard_reason", nullable = true)
     private String discardReason;
 
     @ManyToOne
@@ -60,8 +68,29 @@ public class Delegation implements Serializable {
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
         this.discardReason = discardReason;
+    }
 
+    public Delegation(
+            LocalDate creationDate,
+            Employee employee,
+            LocalDate startDate,
+            LocalDate endDate,
+            Destination destination,
+            String purpose,
+            DelegationStatus delegationStatus,
+            String startPoint,
+            String discardReason
+            ) {
 
+        this.creationDate = creationDate;
+        this.employee = employee;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.destination = destination;
+        this.purpose = purpose;
+        this.delegationStatus = delegationStatus;
+        this.startPoint = startPoint;
+        this.discardReason = discardReason;
     }
 
     public Delegation() {
@@ -146,8 +175,6 @@ public class Delegation implements Serializable {
     public void setDiscardReason(String discardReason) {
         this.discardReason = discardReason;
     }
-
-
 
 
     @Override

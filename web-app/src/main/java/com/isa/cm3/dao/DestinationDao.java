@@ -22,23 +22,23 @@ public class DestinationDao {
         return d.getId();
     }
 
-    public Delegation update(Delegation d) {
+    public Destination update(Destination d) {
         return entityManager.merge(d);
     }
 
     public void delete(Long id) {
-        final Delegation d = entityManager.find(Delegation.class, id);
+        final Destination d = entityManager.find(Destination.class, id);
         if (d != null) {
             entityManager.remove(d);
         }
     }
 
-    public Delegation findById(Long id) {
-        return entityManager.find(Delegation.class, id);
+    public Destination findById(Long id) {
+        return entityManager.find(Destination.class, id);
     }
 
-    public List<Delegation> findAll() {
-        final Query query = entityManager.createQuery("SELECT d FROM Delegation d ");
+    public List<Destination> findAll() {
+        final Query query = entityManager.createQuery("SELECT d FROM Destination d ");
 
         return query.getResultList();
     }
