@@ -87,7 +87,14 @@ public class DelegationManageServlet extends HttpServlet {
         String choiceButton = req.getParameter("choiceButton");
         String choiceDelegation = req.getParameter("choiceDelegation");
 
-        if (choiceButton != null && !choiceButton.isEmpty()) {
+
+        System.out.println("*" + choiceButton + "*");
+        System.out.println("*" + choiceDelegation + "*");
+
+        if (choiceButton != null
+                && !choiceButton.isEmpty()
+                && choiceDelegation != null
+                && !choiceDelegation.isEmpty()) {
             String button = req.getParameter("choiceButton");
             String discardReason = req.getParameter("discardReason");
             Integer id = Integer.parseInt(choiceDelegation);
