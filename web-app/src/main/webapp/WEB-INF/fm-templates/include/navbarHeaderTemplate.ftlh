@@ -1,3 +1,5 @@
+<#-- navbarHeaderTemplate.ftlh -->
+
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -7,8 +9,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="/delegations-web/mainMenu"> &#9992 delegations-web.com</a>
+
         </div>
+
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>

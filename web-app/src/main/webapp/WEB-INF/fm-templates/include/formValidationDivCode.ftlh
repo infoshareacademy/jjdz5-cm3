@@ -1,3 +1,5 @@
+<#-- formValidationDivCode.ftlh -->
+
 <div class="valid-feedback">
     OK!
 </div>

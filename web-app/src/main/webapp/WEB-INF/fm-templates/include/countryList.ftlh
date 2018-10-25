@@ -1,5 +1,6 @@
-<select name="country" class="form-control" id="validationCustomCity" placeholder="Kraj dokoąd jedziesz"
-        value="Polska" required>
+<#-- countryList.ftlh -->
+
+<select name="country" class="form-control" id="validationCustomCity" required>
     <option>Afganistan</option>
     <option>Albania</option>
     <option>Algieria</option>
@@ -39,13 +40,12 @@
     <option>Chile</option>
     <option>Chiny</option>
     <option>Chorwacja</option>
-    <option>C&ocirc;te d&rsquo;Ivoire</option>
-    <option>Cura&ccedil;ao</option>
+    <option>Curacao</option>
     <option>Cypr</option>
     <option>Czad</option>
-    <option>Czarnog&oacute;ra</option>
+    <option>Czarnogóra</option>
     <option>Czechy</option>
-    <option>Dalekie Wyspy Mniejsze Stan&oacute;w Zjednoczonych</option>
+    <option>Dalekie Wyspy Mniejsze Stanów Zjednoczonych</option>
     <option>Dania</option>
     <option>Demokratyczna Republika Konga</option>
     <option>Diego Garcia</option>
@@ -79,7 +79,7 @@
     <option>Gwatemala</option>
     <option>Gwinea</option>
     <option>Gwinea Bissau</option>
-    <option>Gwinea R&oacute;wnikowa</option>
+    <option>Gwinea Równikowa</option>
     <option>Haiti</option>
     <option>Hiszpania</option>
     <option>Holandia</option>
@@ -108,7 +108,7 @@
     <option>Komory</option>
     <option>Kongo</option>
     <option>Korea Południowa</option>
-    <option>Korea P&oacute;łnocna</option>
+    <option>Korea Północna</option>
     <option>Kosowo</option>
     <option>Kostaryka</option>
     <option>Kuba</option>
@@ -130,7 +130,7 @@
     <option>Malezja</option>
     <option>Mali</option>
     <option>Malta</option>
-    <option>Mariany P&oacute;łnocne</option>
+    <option>Mariany Północne</option>
     <option>Maroko</option>
     <option>Martynika</option>
     <option>Mauretania</option>
@@ -165,7 +165,7 @@
     <option>Peru</option>
     <option>Pitcairn</option>
     <option>Polinezja Francuska</option>
-    <option value="Poland">Polska</option>
+    <option selected value="Polska">Polska</option>
     <option>Portoryko</option>
     <option>Portugalia</option>
     <option>Republika Południowej Afryki</option>
@@ -179,7 +179,7 @@
     <option>Saint Kitts i Nevis</option>
     <option>Saint Lucia</option>
     <option>Saint Vincent i Grenadyny</option>
-    <option>Saint-Barth&eacute;lemy</option>
+    <option>Saint-Barthelemy</option>
     <option>Saint-Martin</option>
     <option>Saint-Pierre i Miquelon</option>
     <option>Salwador</option>
@@ -235,6 +235,7 @@
     <option>Wielka Brytania</option>
     <option>Wietnam</option>
     <option>Włochy</option>
+    <option>Wybrzeże Kości Słoniowej</option>
     <option>Wyspa Bożego Narodzenia</option>
     <option>Wyspa Guernsey</option>
     <option>Wyspa Jersey</option>
@@ -243,7 +244,7 @@
     <option>Wyspa Wniebowstąpienia</option>
     <option>Wyspy Alandzkie</option>
     <option>Wyspy Cooka</option>
-    <option>Wyspy Dziewicze Stan&oacute;w Zjednoczonych</option>
+    <option>Wyspy Dziewicze Stanów Zjednoczonych</option>
     <option>Wyspy Kanaryjskie</option>
     <option>Wyspy Kokosowe</option>
     <option>Wyspy Marshalla</option>

@@ -1,3 +1,5 @@
+<#-- footer.ftlh -->
+
 <style>
     .footer {
         position: fixed;
