@@ -87,10 +87,6 @@ public class DelegationManageServlet extends HttpServlet {
         String choiceButton = req.getParameter("choiceButton");
         String choiceDelegation = req.getParameter("choiceDelegation");
 
-
-        System.out.println("*" + choiceButton + "*");
-        System.out.println("*" + choiceDelegation + "*");
-
         if (choiceButton != null
                 && !choiceButton.isEmpty()
                 && choiceDelegation != null
