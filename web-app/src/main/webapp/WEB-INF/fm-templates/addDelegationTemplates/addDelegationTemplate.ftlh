@@ -7,8 +7,6 @@
 
         <title>Dodaj delegację</title>
 
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-
 <#include "../include/headAndMeta.ftlh">
 
         <style>

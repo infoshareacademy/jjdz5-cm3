@@ -5,7 +5,7 @@
 
     <head>
 
-    <title>Delegacje</title>
+        <title>Delegacje</title>
 
 <#include "include/headAndMeta.ftlh">
 

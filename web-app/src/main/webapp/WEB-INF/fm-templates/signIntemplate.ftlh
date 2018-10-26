@@ -5,7 +5,7 @@
 
     <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<#include "./include/headAndMeta.ftlh">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -17,7 +17,9 @@
 
     </head>
 
-    <body>
+    <body style="font-family: 'Open Sans', sans-serif">
+
+<#include "include/navbarLogoHeaderTemplate.ftlh">
 
     <h2>Delegacje: zaloguj się</h2>
     <br>
