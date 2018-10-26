@@ -11,16 +11,6 @@
 
 <#include "../include/headAndMeta.ftlh">
 
-    <#--bootstrap
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        -->
         <style>
             form {
                 text-align: center;
@@ -28,10 +18,24 @@
             }
         </style>
 
+
+        <script>
+            function setup(){
+                var dp = $('.base').datepicker().data('datepicker');
+                dp.focusDate = new Date(Date.UTC(2013, 7, 14));
+                dp.update();
+                $('.date').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+                $('.inline').datepicker();
+            }
+        </script>
+
     </head>
 
-    <body style="font-family: 'Open Sans', sans-serif">
+    <body data-capture=".base, .date, .datepicker" style="font-family: 'Open Sans', sans-serif">
 
+<#--
         <header>
             <nav class="navbar navbar-default">
                 <div class="container">
@@ -41,6 +45,9 @@
                 </div>
             </nav>
         </header>
+-->
+<#include "../include/navbarLogoHeaderTemplate.ftlh">
+        <h4 style="color: black; alignment: center; text-align: center;">Dodaj delegację</h4>
 
         <div class="container" style="width: 100%; text-align: center">
             <form class="needs-validation" action="delegation-add" method="POST" novalidate>
@@ -65,8 +72,8 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <label for="validationCustom01">Data wyjazdu</label>
-                        <input type="date" class="form-control" id="validationCustom01" placeholder="Data od"
-                               name="startDate" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required>
+                        <input type="date" class="form-control" id="validationCustom01"
+                               name="startDate" required>
 <#include "../include/formValidationDivCode.ftlh">
                     </div>
                     <div class="col-md-6">
@@ -134,8 +141,6 @@
                 </div>
             </div>
         </div>
-
-
 
 <#include "../include/footer.ftlh">
 <#include "../include/scripts.ftlh">

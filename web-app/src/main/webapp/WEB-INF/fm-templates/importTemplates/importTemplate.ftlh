@@ -15,6 +15,8 @@
 
 <#include "../include/navbarHeaderTemplate.ftlh">
 
+        <h4 style="color: black; alignment: center; text-align: center;">Import delegacji</h4>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="width= 100%;margin-left: 30%;margin-right: 30%">

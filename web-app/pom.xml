@@ -107,6 +107,14 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-datepicker -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-datepicker</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
     </dependencies>
     <packaging>war</packaging>
     <name>delegations-web-app</name>

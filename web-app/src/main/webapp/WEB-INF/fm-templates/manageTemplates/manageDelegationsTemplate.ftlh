@@ -20,10 +20,11 @@
 
         <div class="container">
             <div class="row">
-                <div class="table-responsive-sm" >
+                <div class="table-responsive-sm" style="width: 100%;">
                     <form action="manageDelegations" method="POST">
 
-                        <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="width: 100%; border: 0px; border-collapse: collapse;">
+                        <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
+                               style="width: 100%; border: 0px; border-collapse: collapse;">
 
                             <tr style="border: 0px; border-top: 2pt solid black;">
 

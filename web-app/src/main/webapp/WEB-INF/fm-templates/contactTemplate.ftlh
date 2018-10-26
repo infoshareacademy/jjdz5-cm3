@@ -15,6 +15,8 @@
 
 <#include "include/navbarHeaderTemplate.ftlh">
 
+        <h4 style="color: black; alignment: center; text-align: center;">Kontakt</h4>
+
         <div class="container" style="width: 600px; text-align: center; margin-top: 25px">
             <form>
                 <div class="form-group">
