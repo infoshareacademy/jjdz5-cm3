@@ -1,7 +1,7 @@
 <#-- navbarHeaderTemplate.ftlh -->
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid" style="width: 100%; text-align: left; display: inline-block;">
+    <div class="container" style="display: inline-block;">
         <div class="navbar-header">
 
             <a class="navbar-brand"
@@ -18,8 +18,8 @@
 
         </div>
 
-        <div class="collapse navbar-collapse" id="navbar-collapse-2">
-            <ul class="nav navbar-nav" style="display: inline-block;">
+        <div class="collapse navbar-collapse justify-content-center" id="navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/searchDelegations?date=&name=&surname=&country=&status=">Szukaj delegacji</a></li>
                 <li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=">Zarządzaj delegacjami</a></li>

@@ -1,19 +1,21 @@
 <#-- navbarLoginHeaderTemplate.ftlh -->
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid" style="width: 100%; text-align: left; display: inline-block;">
+    <div class="container" style="display: inline-block;">
         <div class="navbar-header">
 
             <a class="navbar-brand"
                href="#">
                 &#9992 delegations-web.com
             </a>
+
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">

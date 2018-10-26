@@ -87,7 +87,7 @@ public class DelegationManageServlet extends HttpServlet {
         String choiceButton = req.getParameter("choiceButton");
         String choiceDelegation = req.getParameter("choiceDelegation");
 
-        if (choiceButton != null && !choiceButton.isEmpty()) {
+        if (isChoodenButtonAndDelegation(choiceButton, choiceDelegation)) {
             String button = req.getParameter("choiceButton");
             String discardReason = req.getParameter("discardReason");
             Integer id = Integer.parseInt(choiceDelegation);
@@ -104,5 +104,12 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation){
+        return choiceButton != null
+                && !choiceButton.isEmpty()
+                && choiceDelegation != null
+                && !choiceDelegation.isEmpty();
     }
 }

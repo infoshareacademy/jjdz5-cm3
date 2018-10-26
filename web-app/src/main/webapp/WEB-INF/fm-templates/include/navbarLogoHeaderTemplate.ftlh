@@ -1,7 +1,7 @@
 <#-- navbarLogoHeaderTemplate.ftlh -->
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid" style="width: 100%; text-align: left; display: inline-block;">
+    <div class="container" style="display: inline-block;">
         <div class="navbar-header">
             <a class="navbar-brand"
                href="#">
