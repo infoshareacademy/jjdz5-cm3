@@ -41,7 +41,6 @@
                                 <th scope="col">Cel <br/> wyjazdu</th>
                                 <th scope="col">Wyjazd z</th>
                                 <th scope="col">Powód <br/>odrzucenia</th>
-
                             </tr>
 
                             <#if delegations?size != 0>

@@ -62,29 +62,29 @@
                             <tr>
                         </#switch>
 
-                        <td>${d.getFileLineNumber()}</td>
-                        <td>${d.getCreationDate()}</td>
-                        <td>${d.getEmployee().getEmployeeName()}</td>
-                        <td>${d.getEmployee().getEmployeeSurname()}</td>
-                        <td>${d.getStartDate()}</td>
-                        <td>${d.getEndDate()}</td>
-                        <td>${d.getDestination().getDestinationCountry()}</td>
-                        <td>${d.getDestination().getDestinationCity()}</td>
-                        <td>${d.getDestination().getDestinationCompany()}</td>
-                        <td>${d.getDestination().getDestinationCompanyAddress()}</td>
-                        <td>${d.getPurpose()}</td>
-                        <td>${d.getStartPoint()}</td>
-                        <td>${d.getDelegationStatus().statusType()  }</td>
-                        <td>
+                                <td>${d.getFileLineNumber()}</td>
+                                <td>${d.getCreationDate()}</td>
+                                <td>${d.getEmployee().getEmployeeName()}</td>
+                                <td>${d.getEmployee().getEmployeeSurname()}</td>
+                                <td>${d.getStartDate()}</td>
+                                <td>${d.getEndDate()}</td>
+                                <td>${d.getDestination().getDestinationCountry()}</td>
+                                <td>${d.getDestination().getDestinationCity()}</td>
+                                <td>${d.getDestination().getDestinationCompany()}</td>
+                                <td>${d.getDestination().getDestinationCompanyAddress()}</td>
+                                <td>${d.getPurpose()}</td>
+                                <td>${d.getStartPoint()}</td>
+                                <td>${d.getDelegationStatus().statusType()  }</td>
+                                <td>
 
-                        <#if d.getDiscardReason()!="null">
-                            ${d.getDiscardReason()}
-                        <#else>
-                        </#if>
+                                <#if d.getDiscardReason()!="null">
+                                    ${d.getDiscardReason()}
+                                <#else>
+                                </#if>
 
-                        </td>
+                                </td>
 
-                        </tr>
+                            </tr>
                         </#list>
 
                     </table>
