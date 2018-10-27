@@ -51,7 +51,7 @@
                                     <tr>
                                         <div class="form-check">
                                             <td>
-                                                <input class="form-check-input" type="radio" name="wybor" id="lista"
+                                                <input class="form-check-input" type="radio" name="choiceDelegation" id="lista"
                                                        value="${d.getFileLineNumber()}">
                                             </td>
                                             <td>${d.getFileLineNumber()}</td>
