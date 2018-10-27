@@ -1,11 +1,12 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
-@RequestScoped
+@Stateless
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -13,27 +14,38 @@ public class Employee {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "employee_name", nullable = false)
+    private Long id;
+
+    @Column(name = "employee_name", length = 30)
+    @NotNull
     private String employeeName;
-    @Column(name = "employee_surname", nullable = false)
+
+    @Column(name = "employee_surname", length = 30)
+    @NotNull
     private String employeeSurname;
 
-    @OneToMany(mappedBy = "employee",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     private Set<Delegation> delegations;
+
+    public Employee() {
+    }
 
     public Employee(String employeeName, String employeeSurname) {
         this.employeeName = employeeName;
         this.employeeSurname = employeeSurname;
     }
 
-    public Employee() { }
 
-    public Employee(String trim) { }
+//    public Employee(String trim) {
+//    }
 
-    public int getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmployeeName() {
         return employeeName;
@@ -57,15 +69,14 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id &&
-                Objects.equals(employeeName, employee.employeeName) &&
+        return Objects.equals(employeeName, employee.employeeName) &&
                 Objects.equals(employeeSurname, employee.employeeSurname);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, employeeName, employeeSurname);
+        return Objects.hash(employeeName, employeeSurname);
     }
 
     @Override

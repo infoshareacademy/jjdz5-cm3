@@ -1,7 +1,6 @@
 package com.isa.cm3.dao;
 
 
-import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.Destination;
 
 import javax.ejb.Stateless;
@@ -16,7 +15,7 @@ public class DestinationDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Integer save(Destination d) {
+    public Long save(Destination d) {
 
         entityManager.persist(d);
         return d.getId();

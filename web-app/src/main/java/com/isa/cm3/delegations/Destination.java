@@ -13,13 +13,17 @@ public class Destination {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
     @Column(name = "destination_country", nullable = false)
     private String destinationCountry;
+
     @Column(name = "destination_city", nullable = false)
     private String destinationCity;
+
     @Column(name = "destination_company", nullable = false)
     private String destinationCompany;
+
     @Column(name = "destination_company_adress", nullable = false)
     private String destinationCompanyAddress;
 
@@ -40,11 +44,11 @@ public class Destination {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getDestinationCountry() {
         return destinationCountry;

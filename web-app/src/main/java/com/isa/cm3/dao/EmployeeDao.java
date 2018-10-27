@@ -14,7 +14,7 @@ public class EmployeeDao {
         @PersistenceContext
         private EntityManager entityManager;
 
-        public Integer save(Employee employee) {
+        public Long save(Employee employee) {
 
             entityManager.persist(employee);
             return employee.getId();
@@ -25,7 +25,7 @@ public class EmployeeDao {
         }
 
         public void delete(Long id) {
-            final Delegation employee = entityManager.find(Delegation.class, id);
+            final Employee employee = entityManager.find(Employee.class, id);
             if (employee != null) {
                 entityManager.remove(employee);
             }
@@ -40,7 +40,6 @@ public class EmployeeDao {
 
             return query.getResultList();
         }
-
 
 
     }
