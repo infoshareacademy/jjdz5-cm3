@@ -7,15 +7,18 @@ import com.isa.cm3.delegations.*;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
-import java.util.Optional;
 
+@Transactional
 @RequestScoped
 public class DelegationSaveToDatabaseService {
 
     private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    @Inject
+    Settings settings;
     @Inject
     EmployeeDao employeeDao;
     @Inject
@@ -29,71 +32,32 @@ public class DelegationSaveToDatabaseService {
 
         Map<String, String> map = delegationMapForValidation.getParametrMap();
 
-       Employee employee = new Employee(map.get("name"),map.get("surname"));
-        Destination destination = new Destination();
-        Delegation delegation = new Delegation();
+        Employee employeeToCheck = new Employee(
+                map.get("name"),
+                map.get("surname"));
 
-        for (String key : map.keySet()) {
+        Destination destinationToCheck = new Destination(
+                map.get("country"),
+                map.get("city"),
+                map.get("company"),
+                map.get("companyAdres"));
 
-            String value = map.get(key);
+        Employee employee = employeeDao.findIfExist(employeeToCheck);
+        Destination destination = destinationDao.findIfExist(destinationToCheck);
 
-            if (key.equals("country")) {
-                destination.setDestinationCountry(value);
-            } else if (key.equals("purpose")) {
-                delegation.setPurpose(value);
-//            } else if (key.equals("name")) {
-//                employee.setEmployeeName(value);
-//            } else if (key.equals("surname")) {
-//                employee.setEmployeeSurname(value);
-//            }
-            }else if (key.equals("startDate")) {
-                delegation.setStartDate(LocalDate.parse(value, formater));
-            } else if (key.equals("endDate")) {
-                delegation.setEndDate(LocalDate.parse(value, formater));
-            } else if (key.equals("city")) {
-                destination.setDestinationCity(value);
-            } else if (key.equals("company")) {
-                destination.setDestinationCompany(value);
-            } else if (key.equals("companyAdres")) {
-                destination.setDestinationCompanyAddress(value);
-            } else if (key.equals("startPoint")) {
-                delegation.setStartPoint(value);
-            }
-        }
-        delegation.setDelegationStatus(DelegationStatus.TOACCEPT);
-        delegation.setCreationDate(LocalDate.now());
-        delegation.setDestination(destination);
+        Delegation delegation = new Delegation(
+                LocalDate.now(),
+                employee,
+                LocalDate.parse(map.get("startDate"),settings.getFormater()),
+                LocalDate.parse(map.get("endDate"),settings.getFormater()),
+                destination,
+                map.get("purpose"),
+                DelegationStatus.TOACCEPT,
+                map.get("startPoint")
+                );
 
-
-        saveEmployeeToDatabase(employee, delegation);
-
-
+        employeeDao.save(employee);
         destinationDao.save(destination);
         delegationDao.save(delegation);
-    }
-
-    private void saveEmployeeToDatabase(Employee employee, Delegation delegation) {
-        if (isEmployeeInDatabase(employee)){
-                    Long id = employeeDao.findAll().stream()
-                    .filter(e->e.equals(employee))
-                    .map(e1->e1.getId())
-                    .count();
-            Employee employee1 = employeeDao.findById(id);
-            delegation.setEmployee(employee1);
-            employeeDao.update(employee1);
-
-        }else{
-
-            employeeDao.save(employee);
-            delegation.setEmployee(employee);}
-    }
-
-    private boolean isEmployeeInDatabase (Employee employee){
-        Optional<Employee> isTrue = employeeDao.findAll().stream()
-                .filter(e->e.getEmployeeName().equals(employee.getEmployeeName()))
-                .filter(e1->e1.getEmployeeSurname().equals(employee.getEmployeeSurname()))
-                .findFirst();
-
-       return isTrue.isPresent();
     }
 }

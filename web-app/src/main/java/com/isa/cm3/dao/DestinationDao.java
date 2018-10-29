@@ -41,4 +41,21 @@ public class DestinationDao {
 
         return query.getResultList();
     }
+
+    public Destination findIfExist(Destination destination) {
+        final Query query = entityManager.createQuery(
+                "SELECT id FROM Destination WHERE destination_country = :country and destination_city = :city and destination_company = :company and destination_company_adress = :adress");
+        query.setParameter("country", destination.getDestinationCountry());
+        query.setParameter("city", destination.getDestinationCity());
+        query.setParameter("company", destination.getDestinationCompany());
+        query.setParameter("adress", destination.getDestinationCompanyAddress());
+        List<Long> idList = query.getResultList();
+        if (idList.size() == 1) {
+            Long id = idList.get(0);
+            Destination destination1 = findById(id);
+            return destination1;
+        } else {
+            return destination;
+        }
+    }
 }

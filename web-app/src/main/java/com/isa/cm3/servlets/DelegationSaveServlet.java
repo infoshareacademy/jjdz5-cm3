@@ -1,18 +1,12 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.dao.DelegationDao;
-
-import com.isa.cm3.dao.DestinationDao;
-import com.isa.cm3.dao.EmployeeDao;
-import com.isa.cm3.delegations.Delegation;
-import com.isa.cm3.delegations.Destination;
-import com.isa.cm3.delegations.Employee;
-import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.services.DelegationSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,15 +35,6 @@ public class DelegationSaveServlet extends HttpServlet {
     @Inject
     private MapModelGenerator mapModelGenerator;
 
-    @Inject
-    DelegationDao delegationDao;
-
-    @Inject
-    DestinationDao destinationDao;
-    
-    @Inject
-    EmployeeDao employeeDao;
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -65,6 +50,5 @@ public class DelegationSaveServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }
 

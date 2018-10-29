@@ -40,7 +40,4 @@ public class DelegationDao {
 
         return query.getResultList();
     }
-
-
-
 }

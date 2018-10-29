@@ -165,7 +165,7 @@
     <option>Peru</option>
     <option>Pitcairn</option>
     <option>Polinezja Francuska</option>
-    <option value="Poland">Polska</option>
+    <option value="Poland" selected>Polska</option>
     <option>Portoryko</option>
     <option>Portugalia</option>
     <option>Republika Południowej Afryki</option>

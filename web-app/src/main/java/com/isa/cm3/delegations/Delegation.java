@@ -78,9 +78,8 @@ public class Delegation implements Serializable {
             Destination destination,
             String purpose,
             DelegationStatus delegationStatus,
-            String startPoint,
-            String discardReason
-            ) {
+            String startPoint
+    ) {
 
         this.creationDate = creationDate;
         this.employee = employee;
@@ -90,7 +89,6 @@ public class Delegation implements Serializable {
         this.purpose = purpose;
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
-        this.discardReason = discardReason;
     }
 
     public Delegation() {
