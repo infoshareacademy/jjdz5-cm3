@@ -3,28 +3,28 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 
-    <head>
+<head>
 
-        <title>Delegacje</title>
+    <title>Delegacje</title>
 
 <#include "include/headAndMeta.ftlh">
 
-    </head>
+</head>
 
-    <body style="font-family: 'Open Sans', sans-serif">
+<body style="font-family: 'Open Sans', sans-serif">
 
 <#include "include/navbarHeaderTemplate.ftlh">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    Moje delegacje:
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            Moje delegacje:
         </div>
+    </div>
+</div>
 
 <#include "include/footer.ftlh">
 <#include "include/scripts.ftlh">
 
-    </body>
+</body>
 </html>

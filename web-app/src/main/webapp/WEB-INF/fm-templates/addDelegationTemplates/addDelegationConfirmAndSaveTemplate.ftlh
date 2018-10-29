@@ -35,7 +35,7 @@
         </header>
 -->
 <#include "../include/navbarLogoHeaderTemplate.ftlh">
-        <h4 style="color: black; alignment: center; text-align: center;">Podsumowanie delegacji</h4>
+<h4 style="color: black; alignment: center; text-align: center;">Podsumowanie delegacji</h4>
 
         <div class="container">
             <div class="row">

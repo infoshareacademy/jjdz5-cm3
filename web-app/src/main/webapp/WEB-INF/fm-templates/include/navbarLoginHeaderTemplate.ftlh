@@ -9,7 +9,8 @@
                 &#9992 delegations-web.com
             </a>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1">
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -22,8 +23,8 @@
             <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                 <li>
                     <a href="/delegations-web/sign-in"
-                        class="nav navbar-right btn btn-default btn-outline btn-circle">
-                       Zaloguj się
+                       class="nav navbar-right btn btn-default btn-outline btn-circle">
+                        Zaloguj się
                     </a>
                 </li>
             </ul>
