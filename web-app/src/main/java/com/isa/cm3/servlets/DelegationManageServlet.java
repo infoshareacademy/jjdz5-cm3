@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.delegations.*;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
@@ -35,6 +36,12 @@ public class DelegationManageServlet extends HttpServlet {
     @Inject
     private DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
 
+    @Inject
+    DelegationRepository delegationRepository;
+
+    @Inject
+    DelegationDao delegationDao;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -47,7 +54,9 @@ public class DelegationManageServlet extends HttpServlet {
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
 
-            delegationsLoadFromFile.loadDelegationsFromFile();
+           // delegationsLoadFromFile.loadDelegationsFromFile();
+
+            delegationRepository.setListDao(delegationDao.findAll());
 
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
 

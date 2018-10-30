@@ -1,5 +1,6 @@
 package com.isa.cm3.delegations;
 
+import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.services.DelegationListSaveToFileService;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,6 +17,9 @@ public class DelegationAcceptDiscardSaveToFile {
 
     @Inject
     private DelegationListSaveToFileService delegationListSaveToFileService;
+
+    @Inject
+    DelegationDao delegationDao;
 
 
     public void decisionSaving(Integer id, String button, String discardReason) {
@@ -35,7 +39,8 @@ public class DelegationAcceptDiscardSaveToFile {
             reason = discardReason;
         }
 
-        delegationsLoadFromFile.loadDelegationsFromFile();
+       // delegationsLoadFromFile.loadDelegationsFromFile();
+        delegationRepository.setListDao(delegationDao.findAll());
 
         delegationRepository.getList().stream()
                 .filter(delegation -> delegation.getId().equals(id))

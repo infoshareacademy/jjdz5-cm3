@@ -166,7 +166,7 @@
                     <tr>
                 </#switch>
 
-                        <td>${d.getFileLineNumber()}</td>
+                        <td>${d.getId()}</td>
                         <td>${d.getCreationDate()}</td>
                         <td>${d.getEmployee().getEmployeeName()}</td>
                         <td>${d.getEmployee().getEmployeeSurname()}</td>
@@ -181,7 +181,7 @@
                         <td>${d.getDelegationStatus().statusType()  }</td>
                         <td>
 
-                        <#if d.getDiscardReason()!="null">
+                        <#if d.getDiscardReason()??>
                             ${d.getDiscardReason()}
                         <#else>
                         </#if>
