@@ -12,125 +12,18 @@
 <body style="font-family: 'Open Sans', sans-serif">
 <#include "include/navbarHeaderTemplate.ftlh">
 
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm-12">
-
-            <form action="/delegations-web/searchDelegations" method="get">
-
-                <label>Data utworzenia:</label>
-                <select name="date">
-                     <#list dates as d>
-                         <#if datesOption == d >
-                         <option selected>${d}</option>
-                         <#else>
-                         <option>${d}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Imię:</label>
-                <select name="name">
-                     <#list names as n>
-                         <#if namesOption == n >
-                         <option selected>${n}</option>
-                         <#else>
-                         <option>${n}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Nazwisko:</label>
-                <select name="surname">
-                     <#list surnames as s>
-                         <#if surnamesOption == s >
-                         <option selected>${s}</option>
-                         <#else>
-                         <option>${s}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Kraj wyjazdu:</label>
-                <select name="country">
-                     <#list countries as s>
-                         <#if countriesOption == s >
-                             <option selected>${s}</option>
-                         <#else>
-                             <option>${s}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <br>
-
-                <label>Status delegacji:</label>
-                <select name="status">
-
-                <#if statusOption == "">
-                <option selected value="">
-                    wszystkie
-                </option>>
-                <#else >
-                 <option value="">
-                     wszystkie
-                 </option>>
-                </#if>
-
-                <#if statusOption == "TOACCEPT">
-                <option selected value="TOACCEPT">
-                    do akceptacji
-                </option>>
-                <#else>
-                <option value="TOACCEPT">
-                    do akceptacji
-                </option>>
-                </#if>
-
-                <#if statusOption == "ACCEPTED">
-                <option selected value="ACCEPTED">
-                    zaakceptowano
-                </option>>
-                <#else>
-                <option value="ACCEPTED">
-                    zaakceptowano
-                </option>>
-                </#if>
-
-                <#if statusOption == "DISCARTED">
-                <option selected value="DISCARTED">
-                    brak akceptacji
-                </option>>
-                <#else>
-                <option value="DISCARTED">
-                    brak akceptacji
-                </option>>
-                </#if>
-
-                </select>
-
-                <button class="btn btn-primary" type="submit" lang="pl-PL" >Szukaj</button>
-
-
-            </form>
-
-        </div >
-
-    </div>
-</div>
-
-
+<h4 style="color: black; alignment: center; text-align: center;">Wyszukiwanie delegacji</h4>
+<#include "include/filterDelegations.ftlh">
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
 
-            <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
+            <div class="table" >
+
+            <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="width: 100%; border: 0px; border-collapse: collapse;">
+                <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
                 <th scope="col">ID</th>
-                <th scope="col">Data <br/> utworzenia</th>
+                <th scope="col">Data<br/>utworzenia</th>
                 <th scope="col">Imię</th>
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Data <br/> od</th>
@@ -144,23 +37,21 @@
                 <th scope="col">Status</th>
                 <th scope="col">Komentarz</th>
 
-            </tr>
-            </thead>
 
                 <tbody>
                 <#list delegations as d>
                 <#switch d.getDelegationStatus()>
                     <#case "SAVED">
-                    <tr class="info">
+                    <tr class="info" style="border-top: 2pt solid black;">
                         <#break>
                     <#case "TOACCEPT">
-                    <tr class="warning">
+                    <tr class="warning" style="border-top: 2pt solid black;">
                         <#break>
                     <#case "ACCEPTED">
-                    <tr class="success">
+                    <tr class="success" style="border-top: 2pt solid black;">
                         <#break>
                     <#case "DISCARTED">
-                    <tr class="danger">
+                    <tr class="danger" style="border-top: 2pt solid black;">
                         <#break>
                     <#default>
                     <tr>
@@ -186,17 +77,18 @@
                         <#else>
                         </#if>
 
-                        </td>
+                    </td>
 
-                     </tr>
-
+                </tr>
                 </#list>
+
                 </tbody>
             </table>
-            </div>
+
         </div>
     </div>
-
+</div>
+<hr />
 <#include "include/footer.ftlh">
 <#include "include/scripts.ftlh">
 

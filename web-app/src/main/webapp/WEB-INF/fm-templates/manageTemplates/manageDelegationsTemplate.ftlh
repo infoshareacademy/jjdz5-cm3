@@ -12,72 +12,16 @@
 <body style="font-family: 'Open Sans', sans-serif">
 <#include "../include/navbarHeaderTemplate.ftlh">
 
-<div class="container">
-    <div class="row">
-            <#if names?size != 0>
-                <div class="col-sm-12">
-
-                    <form action="/delegations-web/manageDelegations" method="get">
-
-                        <label>Data utworzenia:</label>
-                        <select name="date">
-                             <#list dates as d>
-                                 <#if datesOption == d >
-                                 <option selected>${d}</option>
-                                 <#else>
-                                 <option>${d}</option>
-                                 </#if>
-                             </#list>
-                        </select>
-
-                        <label>Imię:</label>
-                        <select name="name">
-                             <#list names as n>
-                                 <#if namesOption == n >
-                                 <option selected>${n}</option>
-                                 <#else>
-                                 <option>${n}</option>
-                                 </#if>
-                             </#list>
-                        </select>
-
-                        <label>Nazwisko:</label>
-                        <select name="surname">
-                             <#list surnames as s>
-                                 <#if surnamesOption == s >
-                                 <option selected>${s}</option>
-                                 <#else>
-                                 <option>${s}</option>
-                                 </#if>
-                             </#list>
-                        </select>
-
-                        <label>Kraj wyjazdu:</label>
-                        <select name="country">
-                             <#list countries as s>
-                                 <#if countriesOption == s >
-                                     <option selected>${s}</option>
-                                 <#else>
-                                     <option>${s}</option>
-                                 </#if>
-                             </#list>
-                        </select>
-
-                        <button class="btn btn-primary" type="submit" lang="pl-PL" >Szukaj</button>
-
-                    </form>
-                </div >
-            </#if>
-    </div>
-</div>
+<h4 style="color: black; alignment: center; text-align: center;">Zarządzaj delegacjami do akceptacji</h4>
+<#include "../include/filterDelegations.ftlh">
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="table">
             <form action="manageDelegations" method="POST">
 
-                <table class="table">
-                    <thead class="thead-dark">
+                <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="width: 100%; border: 0px; border-collapse: collapse;">
+
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">ID</th>
@@ -95,9 +39,8 @@
                         <th scope="col">Powód <br/>odrzucenia</th>
 
                     </tr>
-                    </thead>
 
-                <#if delegations?size != 0>
+                    <#if delegations?size != 0>
 
                     <tbody>
                         <#list delegations as d>
@@ -121,12 +64,12 @@
                                 <td>${d.getStartPoint()}</td>
                                 <td><input type="text" name="discardReason" placeholder="Jeżeli odrzucasz podaj powód"></td>
 
-                            </div>
-                        </tr>
+                                </div>
+                            </tr>
 
-                        </#list>
-                    </tbody>
-                </#if>
+                            </#list>
+                        </tbody>
+                    </#if>
                 </table>
 
                 <#if delegations?size != 0>
@@ -144,6 +87,7 @@
         </div>
     </div>
 </div>
+<hr />
 
 <#include "../include/footer.ftlh">
 <#include "../include/scripts.ftlh">
