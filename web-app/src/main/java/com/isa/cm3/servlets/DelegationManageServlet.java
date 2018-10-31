@@ -52,6 +52,7 @@ public class DelegationManageServlet extends HttpServlet {
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
 
             delegationsCreateOptions.addOptionsTemplate();
+            mapModelGenerator.setModel("actionForm", "/delegations-web/manageDelegations");
 
             mapModelGenerator.setModel("delegations",
                     delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, DelegationStatus.TOACCEPT));
@@ -83,12 +84,13 @@ public class DelegationManageServlet extends HttpServlet {
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String choiceStatus = req.getParameter("choicestatus");
+        String choiceButton = req.getParameter("choiceButton");
+        String choiceDelegation = req.getParameter("choiceDelegation");
 
-        if(choiceStatus != null && !choiceStatus.isEmpty()) {
-            String button = req.getParameter("button");
+        if (isChoodenButtonAndDelegation(choiceButton, choiceDelegation)) {
+            String button = req.getParameter("choiceButton");
             String discardReason = req.getParameter("discardReason");
-            Integer id = Integer.parseInt(choiceStatus);
+            Integer id = Integer.parseInt(choiceDelegation);
 
             delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
             mapModelGenerator.setModel("mapa", button);
@@ -102,5 +104,12 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation){
+        return choiceButton != null
+                && !choiceButton.isEmpty()
+                && choiceDelegation != null
+                && !choiceDelegation.isEmpty();
     }
 }

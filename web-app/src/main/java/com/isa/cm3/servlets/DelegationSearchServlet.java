@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet(urlPatterns = "/searchDelegations")
 public class DelegationSearchServlet extends HttpServlet {
 
@@ -51,6 +50,7 @@ public class DelegationSearchServlet extends HttpServlet {
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
 
             delegationsCreateOptions.addOptionsTemplate();
+            mapModelGenerator.setModel("actionForm", "/delegations-web/searchDelegations");
 
             DelegationStatus myStatus = null;
 
@@ -58,10 +58,9 @@ public class DelegationSearchServlet extends HttpServlet {
                 myStatus = DelegationStatus.valueOf(choiceStatus);
             } catch (Exception e) {
                 System.out.println("choiceStatus is empty");
-                ;
             }
 
-            if(myStatus == null || myStatus.statusType().isEmpty()) {
+            if (myStatus == null || myStatus.statusType().isEmpty()) {
                 mapModelGenerator.setModel("delegations",
                         delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
             } else {
@@ -84,5 +83,4 @@ public class DelegationSearchServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }
