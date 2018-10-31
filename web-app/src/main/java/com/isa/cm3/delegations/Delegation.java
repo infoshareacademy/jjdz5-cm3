@@ -157,6 +157,4 @@ public class Delegation implements Serializable {
         return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
                 purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
     }
-
-
 }
