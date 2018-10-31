@@ -2,7 +2,6 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
-import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.services.DelegationSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -25,9 +24,6 @@ public class DelegationSaveServlet extends HttpServlet {
 
     @Inject
     private DelegationSaveToDatabaseService delegationSaveToDatabaseService;
-
-    @Inject
-    private DelegationAddToFileService delegationSaveToFile;
 
     @Inject
     private TemplateProvider templateProvider;

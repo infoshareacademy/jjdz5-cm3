@@ -15,7 +15,7 @@ public class DelegationDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Integer save(Delegation d) {
+    public Long save(Delegation d) {
         entityManager.persist(d);
         return d.getId();
     }

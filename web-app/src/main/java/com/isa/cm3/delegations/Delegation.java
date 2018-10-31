@@ -15,7 +15,7 @@ public class Delegation implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
@@ -48,7 +48,7 @@ public class Delegation implements Serializable {
     private Destination destination = new Destination();
 
 
-    public Delegation(int id,
+    public Delegation(Long id,
                       LocalDate creationDate,
                       Employee employee,
                       LocalDate startDate,
@@ -94,11 +94,11 @@ public class Delegation implements Serializable {
     public Delegation() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -203,6 +203,4 @@ public class Delegation implements Serializable {
         return id + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
                 purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
     }
-
-
 }

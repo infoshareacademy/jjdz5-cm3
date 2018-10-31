@@ -30,11 +30,11 @@ public class DelegationManageServlet extends HttpServlet {
     @Inject
     private DelegationsCreateOptions delegationsCreateOptions;
 
-    @Inject
-    private DelegationsLoadFromFile delegationsLoadFromFile;
+//    @Inject
+//    private DelegationsLoadFromFile delegationsLoadFromFile;
 
     @Inject
-    private DelegationAcceptDiscardSaveToFile delegationAcceptDiscardSaveToFile;
+    private DelegationAcceptDiscardSaveToDatabase delegationAcceptDiscardSaveToDatabase;
 
     @Inject
     DelegationRepository delegationRepository;
@@ -69,7 +69,6 @@ public class DelegationManageServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-
         delegationsCreateOptions.createOptionsTemplate();
 
         try {
@@ -92,14 +91,15 @@ public class DelegationManageServlet extends HttpServlet {
         Template template = templateProvider
                 .getTemplate(getServletContext(), "manageTemplates/delegationAfterManageRedirectTemplate");
 
-        String choiceStatus = req.getParameter("choicestatus");
+        String choiceButton = req.getParameter("choiceButton");
+        String choiceDelegation = req.getParameter("choiceDelegation");
 
-        if(choiceStatus != null && !choiceStatus.isEmpty()) {
-            String button = req.getParameter("button");
+        if (isChoodenButtonAndDelegation(choiceButton, choiceDelegation)) {
+            String button = req.getParameter("choiceButton");
             String discardReason = req.getParameter("discardReason");
-            Integer id = Integer.parseInt(choiceStatus);
+            Long id = Long.parseLong(choiceDelegation);
 
-            delegationAcceptDiscardSaveToFile.decisionSaving(id, button, discardReason);
+            delegationAcceptDiscardSaveToDatabase.decisionSaving(id, button, discardReason);
             mapModelGenerator.setModel("mapa", button);
 
         } else {
@@ -111,5 +111,12 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation){
+        return choiceButton != null
+                && !choiceButton.isEmpty()
+                && choiceDelegation != null
+                && !choiceDelegation.isEmpty();
     }
 }

@@ -104,7 +104,7 @@
                         <tr>
                             <div class="form-check">
                                 <td>
-                                    <input class="form-check-input" type="radio" name="wybor" id="lista"
+                                    <input class="form-check-input" type="radio" name="choiceDelegation" id="lista"
                                            value="${d.getId()}">
                                 </td>
                                 <td>${d.getId()}</td>
@@ -131,11 +131,11 @@
 
                 <#if delegations?size != 0>
 
-                <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept" name="button">
+                <button class="btn btn-primary" type="submit" lang="pl-PL" value="accept" name="choiceButton">
                     Akceptuj
                 </button>
 
-                <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="button" id="btn">
+                <button class="btn btn-primary" type="submit" lang="pl-PL" value="discard" name="choiceButton" id="btn">
                     Odrzuć
                 </button>
                  * Jak odrzucasz koniecznie podaj powód!!!!

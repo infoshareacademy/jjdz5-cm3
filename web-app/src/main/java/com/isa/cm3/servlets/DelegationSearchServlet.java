@@ -31,8 +31,8 @@ public class DelegationSearchServlet extends HttpServlet {
     @Inject
     private DelegationsCreateOptions delegationsCreateOptions;
 
-    @Inject
-    private DelegationsLoadFromFile delegationsLoadFromFile;
+//    @Inject
+//    private DelegationsLoadFromFile delegationsLoadFromFile;
 
     @Inject
     private DelegationDao delegationDao;
