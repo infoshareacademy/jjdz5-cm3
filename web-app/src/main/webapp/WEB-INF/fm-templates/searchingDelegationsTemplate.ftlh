@@ -20,7 +20,7 @@
 
 <#include "include/filterDelegations.ftlh">
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 
         <div class="table table-responsive-sm" style="width: 100%;">
@@ -47,19 +47,19 @@
                         <#list delegations as d>
                             <#switch d.getDelegationStatus()>
                                 <#case "SAVED">
-                            <tr class="info" style="border-top: 2pt solid black;">
+                            <tr class="info" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
                                     <#break>
                                 <#case "TOACCEPT">
-                            <tr class="warning" style="border-top: 2pt solid black;">
+                            <tr class="warning" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
                                     <#break>
                                 <#case "ACCEPTED">
-                            <tr class="success" style="border-top: 2pt solid black;">
+                            <tr class="success" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
                                     <#break>
                                 <#case "DISCARTED">
-                            <tr class="danger" style="border-top: 2pt solid black;">
+                            <tr class="danger" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
                                     <#break>
                                 <#default>
-                            <tr>
+                            <tr style="border-top: 2pt solid black; border-bottom: 2pt solid black;>
                             </#switch>
 
                                 <td>${d.getFileLineNumber()}</td>
@@ -77,17 +77,17 @@
                                 <td>${d.getDelegationStatus().statusType()  }</td>
                                 <td>
 
-                                <#if d.getDiscardReason()!="null">
-                                    ${d.getDiscardReason()}
-                                <#else>
-                                </#if>
+                            <#if d.getDiscardReason()!="null">
+                                ${d.getDiscardReason()}
+                            <#else>
+                            </#if>
 
                                 </td>
 
                             </tr>
                         </#list>
 
-            </table>
+                    </table>
 
         </div>
     </div>
@@ -98,5 +98,5 @@
     <#include "include/footer.ftlh">
     <#include "include/scripts.ftlh">
 
-</body>
+                    </body>
 </html>

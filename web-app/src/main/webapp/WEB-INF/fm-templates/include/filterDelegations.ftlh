@@ -1,6 +1,6 @@
 <!-- filterDelegations.ftlh -->
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 
         <div class="card" style="width: 100%; height: 100%; background-color: lightgrey; alignment: center;">
