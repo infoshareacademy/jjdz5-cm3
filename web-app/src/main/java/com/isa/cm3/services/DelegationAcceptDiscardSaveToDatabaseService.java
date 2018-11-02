@@ -1,18 +1,19 @@
-package com.isa.cm3.delegations;
+package com.isa.cm3.services;
 
 import com.isa.cm3.dao.DelegationDao;
-import com.isa.cm3.services.DelegationListSaveToFileService;
+import com.isa.cm3.delegations.Delegation;
+import com.isa.cm3.delegations.DelegationStatus;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 @RequestScoped
-public class DelegationAcceptDiscardSaveToDatabase {
+public class DelegationAcceptDiscardSaveToDatabaseService {
 
     @Inject
-    DelegationDao delegationDao;
+    private DelegationDao delegationDao;
     @Inject
-    Delegation delegation;
+    private Delegation delegation;
 
     public void decisionSaving(Long id, String button, String discardReason) {
 

@@ -16,15 +16,14 @@ import java.util.Map;
 @RequestScoped
 public class DelegationSaveToDatabaseService {
 
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Inject
-    Settings settings;
+    private Settings settings;
     @Inject
-    EmployeeDao employeeDao;
+    private EmployeeDao employeeDao;
     @Inject
-    DestinationDao destinationDao;
+    private DestinationDao destinationDao;
     @Inject
-    DelegationDao delegationDao;
+    private DelegationDao delegationDao;
     @Inject
     private DelegationMapForValidation delegationMapForValidation;
 
@@ -48,13 +47,13 @@ public class DelegationSaveToDatabaseService {
         Delegation delegation = new Delegation(
                 LocalDate.now(),
                 employee,
-                LocalDate.parse(map.get("startDate"),settings.getFormater()),
-                LocalDate.parse(map.get("endDate"),settings.getFormater()),
+                LocalDate.parse(map.get("startDate"), settings.getFormater()),
+                LocalDate.parse(map.get("endDate"), settings.getFormater()),
                 destination,
                 map.get("purpose"),
                 DelegationStatus.TOACCEPT,
                 map.get("startPoint")
-                );
+        );
 
         employeeDao.save(employee);
         destinationDao.save(destination);

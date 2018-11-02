@@ -1,9 +1,13 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.dao.DelegationDao;
-import com.isa.cm3.delegations.*;
+import com.isa.cm3.delegations.DelegationFilter;
+import com.isa.cm3.delegations.DelegationRepository;
+import com.isa.cm3.delegations.DelegationStatus;
+import com.isa.cm3.delegations.DelegationsCreateOptions;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.DelegationAcceptDiscardSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -19,28 +23,19 @@ import java.io.IOException;
 public class DelegationManageServlet extends HttpServlet {
 
     @Inject
+    private DelegationRepository delegationRepository;
+    @Inject
+    private DelegationDao delegationDao;
+    @Inject
     private MapModelGenerator mapModelGenerator;
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private DelegationFilter delegationFilter;
-
     @Inject
     private DelegationsCreateOptions delegationsCreateOptions;
-
-//    @Inject
-//    private DelegationsLoadFromFile delegationsLoadFromFile;
-
     @Inject
-    private DelegationAcceptDiscardSaveToDatabase delegationAcceptDiscardSaveToDatabase;
-
-    @Inject
-    DelegationRepository delegationRepository;
-
-    @Inject
-    DelegationDao delegationDao;
+    private DelegationAcceptDiscardSaveToDatabaseService delegationAcceptDiscardSaveToDatabaseService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,8 +48,6 @@ public class DelegationManageServlet extends HttpServlet {
             final String choiceName = req.getParameter("name").trim();
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
-
-           // delegationsLoadFromFile.loadDelegationsFromFile();
 
             delegationRepository.setListDao(delegationDao.findAll());
 
@@ -100,7 +93,7 @@ public class DelegationManageServlet extends HttpServlet {
             String discardReason = req.getParameter("discardReason");
             Long id = Long.parseLong(choiceDelegation);
 
-            delegationAcceptDiscardSaveToDatabase.decisionSaving(id, button, discardReason);
+            delegationAcceptDiscardSaveToDatabaseService.decisionSaving(id, button, discardReason);
             mapModelGenerator.setModel("mapa", button);
 
         } else {
@@ -114,7 +107,7 @@ public class DelegationManageServlet extends HttpServlet {
         }
     }
 
-    private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation){
+    private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation) {
         return choiceButton != null
                 && !choiceButton.isEmpty()
                 && choiceDelegation != null

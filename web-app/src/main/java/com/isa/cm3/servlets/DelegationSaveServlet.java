@@ -7,8 +7,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +16,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/delegation-save")
 public class DelegationSaveServlet extends HttpServlet {
-
-    @PersistenceContext
-    EntityManager em;
 
     @Inject
     private DelegationSaveToDatabaseService delegationSaveToDatabaseService;
@@ -47,4 +42,3 @@ public class DelegationSaveServlet extends HttpServlet {
         }
     }
 }
-

@@ -1,13 +1,15 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.Stateless;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-@SessionScoped
+@Stateless
 @Entity
 @Table(name = "delegations")
 public class Delegation implements Serializable {
@@ -17,26 +19,33 @@ public class Delegation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date")
+    @NotNull
     private LocalDate creationDate;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date")
+    @NotNull
     private LocalDate startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
+    @NotNull
     private LocalDate endDate;
 
-    @Column(name = "purpose", nullable = false)
+    @Column(name = "purpose")
+    @NotNull
     private String purpose;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "delegation_status", nullable = false)
+    @Column(name = "delegation_status")
+    @NotNull
     private DelegationStatus delegationStatus;
 
-    @Column(name = "start_point", nullable = false)
+    @Column(name = "start_point")
+    @NotNull
     private String startPoint;
 
-    @Column(name = "discard_reason", nullable = true)
+    @Column(name = "discard_reason")
+    @Null
     private String discardReason;
 
     @ManyToOne

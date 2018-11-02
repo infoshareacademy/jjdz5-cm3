@@ -35,10 +35,6 @@ public class Employee {
         this.employeeSurname = employeeSurname;
     }
 
-
-//    public Employee(String trim) {
-//    }
-
     public Long getId() {
         return id;
     }
@@ -62,7 +58,6 @@ public class Employee {
     public void setEmployeeSurname(String employeeSurname) {
         this.employeeSurname = employeeSurname;
     }
-
 
     @Override
     public boolean equals(Object o) {

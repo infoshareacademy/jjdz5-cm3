@@ -1,12 +1,13 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@RequestScoped
+@Stateless
 @Table(name = "destinations")
 public class Destination {
 
@@ -15,19 +16,23 @@ public class Destination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "destination_country", nullable = false)
+    @Column(name = "destination_country")
+    @NotNull
     private String destinationCountry;
 
-    @Column(name = "destination_city", nullable = false)
+    @Column(name = "destination_city")
+    @NotNull
     private String destinationCity;
 
-    @Column(name = "destination_company", nullable = false)
+    @Column(name = "destination_company")
+    @NotNull
     private String destinationCompany;
 
-    @Column(name = "destination_company_adress", nullable = false)
+    @Column(name = "destination_company_adress")
+    @NotNull
     private String destinationCompanyAddress;
 
-    @OneToMany(mappedBy = "destination",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "destination", fetch = FetchType.EAGER)
     private Set<Delegation> delegations;
 
     public Destination(String destinationCountry,
@@ -41,14 +46,15 @@ public class Destination {
     }
 
     public Destination() {
-
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDestinationCountry() {
         return destinationCountry;

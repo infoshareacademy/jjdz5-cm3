@@ -5,11 +5,11 @@
         version="3.1">
 
     <data-source>
-        <name>java:ds/CM3ds</name>
+        <name>java:ds/CM3DBds</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-        <url>jdbc:mysql://0.0.0.0:6603/test?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        <url>jdbc:mysql://0.0.0.0:6603/CM3?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
         <user>root</user>
-        <password>pass123</password>
+        <password>cm3</password>
     </data-source>
 
     <welcome-file-list>
@@ -53,7 +53,6 @@
         <servlet-name>DelegationSevaServlet</servlet-name>
         <url-pattern>/DelegationSave</url-pattern>
     </servlet-mapping>
-
 
     <display-name>Archetype Created Web Application</display-name>
 </web-app>

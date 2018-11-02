@@ -1,6 +1,5 @@
 package com.isa.cm3.dao;
 
-
 import com.isa.cm3.delegations.Destination;
 
 import javax.ejb.Stateless;
