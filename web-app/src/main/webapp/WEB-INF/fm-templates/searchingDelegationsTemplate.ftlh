@@ -1,27 +1,34 @@
+<#-- previewMyDelegations.ftlh -->
+
 <!DOCTYPE html>
 <html lang="pl-PL">
+
 <head>
 
-    <title>Main menu</title>
+    <title>Delegacje</title>
 
 <#include "include/headAndMeta.ftlh">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 
+
 <body style="font-family: 'Open Sans', sans-serif">
+
 <#include "include/navbarHeaderTemplate.ftlh">
 
 <h4 style="color: black; alignment: center; text-align: center;">Wyszukiwanie delegacji</h4>
+
 <#include "include/filterDelegations.ftlh">
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 
-            <div class="table" >
+        <div class="table table-responsive-sm" style="width: 100%;">
 
-            <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="width: 100%; border: 0px; border-collapse: collapse;">
-                <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
+            <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
+                   style="width: 100%; border: 0px; border-collapse: collapse;">
+
+            <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
                 <th scope="col">ID</th>
                 <th scope="col">Data<br/>utworzenia</th>
                 <th scope="col">Imię</th>
@@ -37,25 +44,23 @@
                 <th scope="col">Status</th>
                 <th scope="col">Komentarz</th>
 
-
-                <tbody>
-                <#list delegations as d>
-                <#switch d.getDelegationStatus()>
-                    <#case "SAVED">
-                    <tr class="info" style="border-top: 2pt solid black;">
-                        <#break>
-                    <#case "TOACCEPT">
-                    <tr class="warning" style="border-top: 2pt solid black;">
-                        <#break>
-                    <#case "ACCEPTED">
-                    <tr class="success" style="border-top: 2pt solid black;">
-                        <#break>
-                    <#case "DISCARTED">
-                    <tr class="danger" style="border-top: 2pt solid black;">
-                        <#break>
-                    <#default>
-                    <tr>
-                </#switch>
+                        <#list delegations as d>
+                            <#switch d.getDelegationStatus()>
+                                <#case "SAVED">
+                            <tr class="info" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "TOACCEPT">
+                            <tr class="warning" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "ACCEPTED">
+                            <tr class="success" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "DISCARTED">
+                            <tr class="danger" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#default>
+                            <tr style="border-top: 2pt solid black; border-bottom: 2pt solid black;>
+                            </#switch>
 
                         <td>${d.getId()}</td>
                         <td>${d.getCreationDate()}</td>
@@ -77,20 +82,21 @@
                         <#else>
                         </#if>
 
-                    </td>
+                                </td>
 
-                </tr>
-                </#list>
+                            </tr>
+                        </#list>
 
-                </tbody>
-            </table>
+                    </table>
 
         </div>
     </div>
 </div>
-<hr />
-<#include "include/footer.ftlh">
-<#include "include/scripts.ftlh">
 
-</body>
+<hr/>
+
+    <#include "include/footer.ftlh">
+    <#include "include/scripts.ftlh">
+
+                    </body>
 </html>
