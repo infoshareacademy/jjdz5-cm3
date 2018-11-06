@@ -45,7 +45,6 @@ public class Delegation implements Serializable {
     private String startPoint;
 
     @Column(name = "discard_reason")
-    @Null
     private String discardReason;
 
     @ManyToOne
@@ -182,7 +181,6 @@ public class Delegation implements Serializable {
     public void setDiscardReason(String discardReason) {
         this.discardReason = discardReason;
     }
-
 
     @Override
     public boolean equals(Object o) {
