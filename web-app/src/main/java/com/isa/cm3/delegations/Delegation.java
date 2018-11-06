@@ -3,11 +3,9 @@ package com.isa.cm3.delegations;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-
 
 @Stateless
 @Entity
@@ -45,7 +43,6 @@ public class Delegation implements Serializable {
     private String startPoint;
 
     @Column(name = "discard_reason")
-    @Null
     private String discardReason;
 
     @ManyToOne
@@ -55,7 +52,6 @@ public class Delegation implements Serializable {
     @ManyToOne
     @JoinColumn(name = "destination_id")
     private Destination destination = new Destination();
-
 
     public Delegation(Long id,
                       LocalDate creationDate,
