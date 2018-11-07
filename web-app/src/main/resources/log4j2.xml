@@ -12,14 +12,14 @@
             </PatternLayout>
         </File>
 
-        <Async name="Delegations">
+        <Async name="Async">
             <AppenderRef ref="LogFile"/>
         </Async>
     </Appenders>
     <Loggers>
         <Root level="ALL">
             <AppenderRef ref="Console" level="ALL" />
-            <AppenderRef ref="Delegations" level="INFO" />
+            <AppenderRef ref="Async" level="INFO" />
         </Root>
     </Loggers>
 </Configuration>

@@ -4,12 +4,13 @@ import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.dao.DestinationDao;
 import com.isa.cm3.dao.EmployeeDao;
 import com.isa.cm3.delegations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Transactional
@@ -27,6 +28,8 @@ public class DelegationSaveToDatabaseService {
     @Inject
     private DelegationMapForValidation delegationMapForValidation;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DelegationSaveToDatabaseService.class);
+
     public void saveDelegationToDatabase() {
 
         Map<String, String> map = delegationMapForValidation.getParametrMap();
@@ -40,6 +43,7 @@ public class DelegationSaveToDatabaseService {
                 map.get("city"),
                 map.get("company"),
                 map.get("companyAdres"));
+
 
         Employee employee = employeeDao.findIfExist(employeeToCheck);
         Destination destination = destinationDao.findIfExist(destinationToCheck);
@@ -58,5 +62,6 @@ public class DelegationSaveToDatabaseService {
         employeeDao.save(employee);
         destinationDao.save(destination);
         delegationDao.save(delegation);
-    }
+            }
+
 }

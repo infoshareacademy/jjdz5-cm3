@@ -7,6 +7,8 @@ import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.DelegationRepository;
 import com.isa.cm3.delegations.Destination;
 import com.isa.cm3.delegations.Employee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,6 +28,8 @@ public class DelegationsAfterUploadSaveToDatabaseService {
     @Inject
     private DelegationRepository delegationRepository;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DelegationImportService.class);
+
     public void savingImportedDelegationsToDabase() {
         List<Delegation> delegationListToImport = delegationRepository.getList();
         for (Delegation delegation : delegationListToImport) {
@@ -39,5 +43,6 @@ public class DelegationsAfterUploadSaveToDatabaseService {
             destinationDao.save(destination);
             delegationDao.save(delegation);
         }
+        LOGGER.info("Nastąpiło zapisanie do bazy zaimportowanych delegacji");
     }
 }

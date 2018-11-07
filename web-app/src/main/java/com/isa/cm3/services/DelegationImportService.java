@@ -1,6 +1,8 @@
 package com.isa.cm3.services;
 
 import com.isa.cm3.delegations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -25,6 +27,8 @@ public class DelegationImportService {
     private final String succesMessage = "ok";
     private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DelegationImportService.class);
+
     public String uploadFromFileProcess(Part part) {
         String line;
         BufferedReader reader;
@@ -38,10 +42,13 @@ public class DelegationImportService {
             while (line != null) {
                 try {
                     if (line.equals("")) {
+                        LOGGER.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
                         return message + " : Zawiera puste linie.";
                     }
+
                     List<String> tempList = Arrays.asList(line.split(","));
                     if (tempList.size() != 11) {
+                        LOGGER.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
                         return message;
                     }
 
@@ -52,6 +59,7 @@ public class DelegationImportService {
                         String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
                         date = LocalDate.parse(substring);
                     } else {
+                        LOGGER.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
                         return message;
                     }
 
@@ -82,6 +90,7 @@ public class DelegationImportService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        LOGGER.info("Poprawne skonstruowanie pliku. Nastąpi jego zaimportowanie.");
         return succesMessage;
     }
 
