@@ -1,0 +1,29 @@
+pobieramy obraz z dockera:
+
+    docker pull mysql:8.0.13
+
+instalacja kontenera z obrazu
+
+    docker run -dti --name=cm3db --env="MYSQL_ROOT_PASSWORD=cm3" --env="TZ=Europe/Warsaw" --publish 6603:3306 mysql:8.0.13 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+
+zatrzymanie kontenera:  docker stop cm3db
+
+uruchomienie konternera: docker start cm3db
+
+po uruchomieniu dockera
+
+w chodzimy w bash
+
+docker exec -it cm3db bash
+
+potem
+
+mysql -u root -p
+podajemy haslo: cm3
+
+jesteśmy w na serwerzez bazodanowym
+
+create database CM3
+
+to samo możemy zrobić z intelij  po skonfigurowaniu połączenia z bazą

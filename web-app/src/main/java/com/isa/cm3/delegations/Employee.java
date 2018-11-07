@@ -1,25 +1,46 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import java.util.Set;
 
-
-@RequestScoped
+@Stateless
+@Entity
+@Table(name = "employees")
 public class Employee {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "employee_name", length = 30)
+    @NotNull
     private String employeeName;
+
+    @Column(name = "employee_surname", length = 30)
+    @NotNull
     private String employeeSurname;
+
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    private Set<Delegation> delegations;
+
+    public Employee() {
+    }
 
     public Employee(String employeeName, String employeeSurname) {
         this.employeeName = employeeName;
         this.employeeSurname = employeeSurname;
     }
 
-    public Employee() {
-
+    public Long getId() {
+        return id;
     }
 
-    public Employee(String trim) {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmployeeName() {
@@ -38,7 +59,6 @@ public class Employee {
         this.employeeSurname = employeeSurname;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +76,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return employeeName + "," + employeeSurname;
+        return id + "," + employeeName + "," + employeeSurname;
     }
 }

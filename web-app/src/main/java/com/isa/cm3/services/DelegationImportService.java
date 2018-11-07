@@ -21,8 +21,9 @@ public class DelegationImportService {
     @Inject
     private DelegationRepository delegationRepository;
 
-    private static final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
-    private static final String succesMessage = "ok";
+    private final String bomMessage = "bom";
+    private final String succesMessage = "ok";
+    private final String message = "Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.";
 
     public String uploadFromFileProcess(Part part) {
         String line;
@@ -45,9 +46,9 @@ public class DelegationImportService {
                     }
 
                     String dateValidationInfo = bomAndDateValidation(tempList, id);
-                    if (dateValidationInfo.equals("ok")) {
+                    if (dateValidationInfo.equals(succesMessage)) {
                         date = LocalDate.parse(tempList.get(0).trim(), settings.getFormater());
-                    } else if (dateValidationInfo.equals("bom")) {
+                    } else if (dateValidationInfo.equals(bomMessage)) {
                         String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
                         date = LocalDate.parse(substring);
                     } else {
@@ -55,7 +56,6 @@ public class DelegationImportService {
                     }
 
                     delegationRepository.setList(new Delegation(
-                            id,
                             date,
                             (new Employee(
                                     tempList.get(1).trim(),
@@ -69,8 +69,8 @@ public class DelegationImportService {
                                     tempList.get(8).trim())),
                             tempList.get(9).trim(),
                             DelegationStatus.TOACCEPT,
-                            tempList.get(10).trim(),
-                            null
+                            tempList.get(10).trim()
+
                     ));
                     line = reader.readLine();
                     id++;
@@ -97,7 +97,7 @@ public class DelegationImportService {
             } else {
                 String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
                 if (substring.matches(regex) && twoMatches) {
-                    return "bom";
+                    return bomMessage;
                 } else {
                     return message;
                 }

@@ -26,7 +26,7 @@ public class DelegationsValidationServices {
 
 
     @Inject
-    Settings settings;
+    private Settings settings;
 
     public String requestValidation(Map<String, String> map) {
 

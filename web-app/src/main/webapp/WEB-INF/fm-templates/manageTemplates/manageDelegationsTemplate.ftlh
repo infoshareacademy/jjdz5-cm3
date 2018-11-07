@@ -53,9 +53,9 @@
                                 <td>
                                     <input class="form-check-input" type="radio" name="choiceDelegation"
                                            id="lista"
-                                           value="${d.getFileLineNumber()}">
+                                           value="${d.getId()}">
                                 </td>
-                                <td>${d.getFileLineNumber()}</td>
+                                <td>${d.getId()}</td>
                                 <td>${d.getCreationDate()}</td>
                                 <td>${d.getEmployee().getEmployeeName()}</td>
                                 <td>${d.getEmployee().getEmployeeSurname()}</td>
