@@ -108,6 +108,10 @@ public class Destination {
 
     @Override
     public String toString() {
-        return id + "," + destinationCountry + "," + destinationCity + "," + destinationCompany + "," + destinationCompanyAddress;
+        return id + ","
+                + destinationCountry + ","
+                + destinationCity + ","
+                + destinationCompany + ","
+                + destinationCompanyAddress;
     }
 }

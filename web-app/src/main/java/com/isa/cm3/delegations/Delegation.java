@@ -205,7 +205,15 @@ public class Delegation implements Serializable {
 
     @Override
     public String toString() {
-        return id + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
-                purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
+        return id + ","
+                + creationDate + ","
+                + employee + ","
+                + startDate + ","
+                + endDate + ","
+                + destination + ","
+                + purpose + ","
+                + delegationStatus + ","
+                + startPoint + ","
+                + discardReason;
     }
 }
