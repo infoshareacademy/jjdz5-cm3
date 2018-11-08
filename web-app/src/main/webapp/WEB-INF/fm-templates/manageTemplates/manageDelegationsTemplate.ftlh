@@ -6,8 +6,27 @@
 <head>
 
     <title>Delegacje</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
 
+        $(function () {
+            const $allReasons = $('input[name="discardReason"]');
+
+            $("tbody tr").each(function () {
+                const $row = $(this);
+                const $radio = $row.find('input[type="radio"]');
+                const $reason = $row.find('input[name="discardReason"]');
+
+                $radio.on("change", function () {
+                    $allReasons.prop("required", false);
+                    $reason.prop("required", true);
+                });
+            });
+        });
+
+    </script>
 <#include "../include/headAndMeta.ftlh">
+
 
 </head>
 
@@ -43,18 +62,12 @@
             <th scope="col">Powód <br/>odrzucenia</th>
         </tr>
 
-                            <#if delegations?size != 0>
-
-                                <tbody>
-                                <#list delegations as d>
-                                <tr style="border-top: 2pt solid black; border-bottom: 2pt solid black;>
-                                        <div class=" form-check
-                                ">
-                                <td>
-                                    <input class="form-check-input" type="radio" name="choiceDelegation"
-                                           id="lista"
-                                           value="${d.getId()}">
-                                </td>
+                <#if delegations?size != 0>
+                <tbody>
+                    <#list delegations as d>
+                        <tr style="border-top: 2pt solid black; border-bottom: 2pt solid black;>
+                            <div class=" form-check">
+                                <td><input class="form-check-input" type="radio" name="choiceDelegation" id="lista" value="${d.getId()}"></td>
                                 <td>${d.getId()}</td>
                                 <td>${d.getCreationDate()}</td>
                                 <td>${d.getEmployee().getEmployeeName()}</td>
@@ -67,15 +80,12 @@
                                 <td>${d.getDestination().getDestinationCompanyAddress()}</td>
                                 <td>${d.getPurpose()}</td>
                                 <td>${d.getStartPoint()}</td>
-                                <td><input type="text" name="discardReason"
-                                           placeholder="Jeżeli odrzucasz podaj powód"></td>
-
-                                        </div>
-                                    </tr>
-
-                                </#list>
-                                </tbody>
-                            </#if>
+                                <td><input type="text" name="discardReason" placeholder="podaj powód"></td>
+                            </div>
+                        </tr>
+                    </#list>
+                    </tbody>
+                </#if>
         </table>
 
                         <#if delegations?size != 0>
