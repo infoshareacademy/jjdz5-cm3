@@ -44,7 +44,6 @@ public class DelegationSaveToDatabaseService {
                 map.get("company"),
                 map.get("companyAdres"));
 
-
         Employee employee = employeeDao.findIfExist(employeeToCheck);
         Destination destination = destinationDao.findIfExist(destinationToCheck);
 
@@ -62,6 +61,6 @@ public class DelegationSaveToDatabaseService {
         employeeDao.save(employee);
         destinationDao.save(destination);
         delegationDao.save(delegation);
+        LOGGER.info("Nastąpiło zapisanie do bazy wypełnionego formularza delegacji");
             }
-
 }

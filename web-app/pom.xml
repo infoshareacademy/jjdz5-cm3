@@ -157,7 +157,6 @@
         </dependency>
 
     </dependencies>
-
     <packaging>war</packaging>
     <name>delegations-web-app</name>
     <build>
