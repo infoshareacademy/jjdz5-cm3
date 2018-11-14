@@ -7,8 +7,8 @@ import com.isa.cm3.services.DelegationImportService;
 import com.isa.cm3.services.DelegationsAfterUploadSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -35,7 +35,8 @@ public class DelegationImportServlet extends HttpServlet {
     private DelegationImportService delegationUploadProcess;
     @Inject
     private DelegationsAfterUploadSaveToDatabaseService delegationsAfterUploadSaveToDatabaseService;
-    private Logger LOG = LoggerFactory.getLogger(DelegationImportServlet.class);
+
+    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,11 +69,11 @@ public class DelegationImportServlet extends HttpServlet {
             delegationsAfterUploadSaveToDatabaseService.savingImportedDelegationsToDabase();
 
             mapModelGenerator.setModel("mapa", "Zapisano do bazy");
-            LOG.info("Requested file with delegations succesfully imported do database: ");
+            LOG.info("Żądany plik z delegacjami pomyślnie zaimportowano do bazy danych.");
         } else {
 
             mapModelGenerator.setModel("mapa", importMessage);
-            LOG.info("Requested file with delegations failed to import do database: {}", importMessage);
+            LOG.info("Żądany plik z delegacjami nie zaimportowano do bazy danych {}", importMessage);
         }
 
         Template template = templateProvider

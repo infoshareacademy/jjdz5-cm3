@@ -9,6 +9,8 @@ import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -33,6 +35,8 @@ public class DelegationSearchServlet extends HttpServlet {
     private DelegationsCreateOptions delegationsCreateOptions;
     @Inject
     private DelegationDao delegationDao;
+
+    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,7 +72,6 @@ public class DelegationSearchServlet extends HttpServlet {
             } else {
                 mapModelGenerator.setModel("delegations",
                         delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,5 +87,6 @@ public class DelegationSearchServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie wszystkich delegacji (sekcja Szukaj delegacji)");
     }
 }
