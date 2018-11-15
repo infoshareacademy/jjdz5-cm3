@@ -29,13 +29,13 @@ public class LogOutServlet extends HttpServlet {
 
         try {
             HttpSession session = req.getSession(false);
+            LOG.info("Wylogowanie ze strony. Powrót do strony głównej.");
             resp.sendRedirect("/delegations-web/");
             req.getServletContext()
                     .getRequestDispatcher("mainMenu").forward(req, resp);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        LOG.debug("Wylogowanie ze strony");
     }
 }
 
