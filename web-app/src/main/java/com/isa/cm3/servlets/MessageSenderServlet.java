@@ -21,7 +21,7 @@ public class MessageSenderServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
+    private static final Logger LOG = LogManager.getLogger(MessageSenderServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

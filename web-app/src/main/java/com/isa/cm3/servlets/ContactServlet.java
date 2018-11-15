@@ -20,7 +20,7 @@ public class ContactServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
-    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
+    private static final Logger LOG = LogManager.getLogger(ContactServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

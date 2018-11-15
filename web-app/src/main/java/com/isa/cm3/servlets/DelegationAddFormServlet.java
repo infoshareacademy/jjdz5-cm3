@@ -26,7 +26,7 @@ public class DelegationAddFormServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
+    private static final Logger LOG = LogManager.getLogger(DelegationAddFormServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

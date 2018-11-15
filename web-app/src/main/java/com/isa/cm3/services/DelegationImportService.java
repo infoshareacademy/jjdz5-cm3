@@ -42,13 +42,13 @@ public class DelegationImportService {
             while (line != null) {
                 try {
                     if (line.equals("")) {
-                        LOG.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
+                        LOG.error("Importowany plik jest pusty");
                         return message + " : Zawiera puste linie.";
                     }
 
                     List<String> tempList = Arrays.asList(line.split(","));
                     if (tempList.size() != 11) {
-                        LOG.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
+                        LOG.error("Importowany plik zawiera błędy.");
                         return message;
                     }
 
@@ -59,7 +59,6 @@ public class DelegationImportService {
                         String substring = tempList.get(0).trim().substring(1, tempList.get(0).length());
                         date = LocalDate.parse(substring);
                     } else {
-                        LOG.error("Plik z błędami lub pusty. Żadne delegacje nie zostału zaimportowane.");
                         return message;
                     }
 

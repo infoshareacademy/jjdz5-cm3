@@ -26,7 +26,7 @@ public class WelcomeServlet extends HttpServlet {
     @Inject
     private Settings settings;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
+    private static final Logger LOG = LogManager.getLogger(WelcomeServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

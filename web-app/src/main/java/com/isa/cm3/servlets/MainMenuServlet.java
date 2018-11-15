@@ -27,7 +27,7 @@ public class MainMenuServlet extends HttpServlet {
     @Inject
     private MapModelGenerator mapModelGenerator;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
+    private static final Logger LOG = LogManager.getLogger(MainMenuServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

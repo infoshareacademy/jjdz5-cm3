@@ -33,7 +33,7 @@ public class DelegationAddProcesServlet extends HttpServlet {
     @Inject
     private MapModelGenerator mapModelGenerator;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
+    private static final Logger LOG = LogManager.getLogger(DelegationAddProcesServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
