@@ -3,6 +3,9 @@ package com.isa.cm3.servlets;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ public class ContactServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,5 +35,6 @@ public class ContactServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie formularza kontaktowego (sekcja Kontakt)");
     }
 }

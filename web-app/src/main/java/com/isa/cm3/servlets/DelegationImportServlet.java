@@ -51,6 +51,7 @@ public class DelegationImportServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie strony do importu pliku z delegacjami (sekcja Importuj delegacje)");
     }
 
     @Override

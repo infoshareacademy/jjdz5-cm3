@@ -6,6 +6,8 @@ import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -30,6 +32,8 @@ public class DelegationAddProcesServlet extends HttpServlet {
 
     @Inject
     private MapModelGenerator mapModelGenerator;
+
+    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,5 +64,6 @@ public class DelegationAddProcesServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie podsumowania dodawanej delegacji");
     }
 }

@@ -36,6 +36,6 @@ public class DelegationPreviewServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie wszystkich delegacji użytkownika(sekcja Moje delegacje)");
+        LOG.debug("Wyświetlenie wszystkich delegacji użytkownika (sekcja Moje delegacje)");
     }
 }

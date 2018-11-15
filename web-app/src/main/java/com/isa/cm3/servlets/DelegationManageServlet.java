@@ -77,7 +77,7 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie delegacji do akceptacji lub odrzucenia (sekcja Zarządzanie delegacjami)");
+        LOG.debug("Wyświetlenie delegacji do akceptacji lub odrzucenia (sekcja Zarządzaj delegacjami)");
     }
 
     @Override
@@ -110,7 +110,6 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie delegacji do akceptacji lub odrzucenia (sekcja Zarządzanie delegacjami)");
     }
 
     private boolean isChoodenButtonAndDelegation(String choiceButton, String choiceDelegation) {

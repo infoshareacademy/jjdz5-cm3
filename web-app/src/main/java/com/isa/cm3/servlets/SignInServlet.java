@@ -4,6 +4,9 @@ import com.isa.cm3.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +22,8 @@ public class SignInServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -31,5 +36,6 @@ public class SignInServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Zalogowanie do strony");
     }
 }
