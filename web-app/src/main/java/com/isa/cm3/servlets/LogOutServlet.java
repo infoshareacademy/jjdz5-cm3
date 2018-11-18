@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
