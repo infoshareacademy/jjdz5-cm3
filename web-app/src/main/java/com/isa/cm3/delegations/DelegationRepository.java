@@ -16,4 +16,8 @@ public class DelegationRepository {
     public void setList(Delegation delegation) {
         this.list.add(delegation);
     }
+
+    public void setListDao (List<Delegation> list){
+        this.list = list;
+    }
 }

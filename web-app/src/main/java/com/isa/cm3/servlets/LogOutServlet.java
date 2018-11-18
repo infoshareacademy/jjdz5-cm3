@@ -1,6 +1,8 @@
 package com.isa.cm3.servlets;
 
-
+import com.isa.cm3.freemarker.TemplateProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
@@ -18,8 +20,13 @@ import java.net.URLConnection;
 @WebServlet(urlPatterns = "/logout")
 public class LogOutServlet extends HttpServlet {
 
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @Inject
+    private TemplateProvider templateProvider;
+
+    private static final Logger LOG = LogManager.getLogger(LogOutServlet.class);
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
             HttpSession session = req.getSession();
             try {
@@ -35,6 +42,7 @@ public class LogOutServlet extends HttpServlet {
 
             try {
                 session.invalidate();
+                LOG.info("Wylogowanie ze strony. Powrót do strony głównej.");
                 resp.sendRedirect("/delegations-web/");
             } catch (Exception e) {
                 throw new RuntimeException(e);
