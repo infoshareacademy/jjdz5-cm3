@@ -22,7 +22,6 @@
         <script>
             function signOut() {
                 console.log("logging out ...");
-                //window.open("https://mail.google.com/mail/u/0/?logout&hl=en");
                 gapi.auth.authorize(
                         {
                             'client_id': "714386444263-rduec7llk6q3odjpqf6ong5tp4kqb4n1.apps.googleusercontent.com",
@@ -52,7 +51,6 @@
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
-                    <#--<a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>-->
                     <a href="javascript:signOut()">Wyloguj się</a>
 
                 </li>

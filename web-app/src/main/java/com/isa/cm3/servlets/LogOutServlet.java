@@ -21,9 +21,6 @@ public class LogOutServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            //resp.setHeader("Content-Type", "text/html; charset=utf-8");
-            //resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-
             HttpSession session = req.getSession();
             try {
                 String token = (String) session.getAttribute("token");
@@ -34,14 +31,11 @@ public class LogOutServlet extends HttpServlet {
                 InputStream is = conn.getInputStream();
                 is.close();
             } catch (Exception e) {
-                //nothing
             }
 
             try {
                 session.invalidate();
                 resp.sendRedirect("/delegations-web/");
-//                req.getServletContext()
-//                        .getRequestDispatcher("mainMenu").forward(req, resp);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
