@@ -31,34 +31,6 @@
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
                     <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>
-                    <#--<script>
-                        function signOut(googleUser) {
-                            var profile = googleUser.disconnect();
-                            /*console.log('ID: ' + profile.getId());
-                            console.log('Name: ' + profile.getName());
-                            console.log('Image URL: ' + profile.getImageUrl());
-                            console.log('Email: ' + profile.getEmail());
-                            console.log('id_token: ' + googleUser.getAuthResponse().id_token);*/
-
-                            var redirectUrl = 'login';
-
-                            var form = $('<form action="' + redirectUrl + '" method="post">' +
-                                    '<input type="text" name="id_token" value="' +
-                                    googleUser.getAuthResponse().id_token + '" />' +
-                                    '</form>');
-                            $('body').append(form);
-                            form.submit();
-                        }
-                    </script>-->
-                <#--<a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>-->
-                <#--<script>-->
-                <#--function signOut() {-->
-                <#--var auth2 = gapi.auth2.getAuthInstance();-->
-                <#--auth2.signOut().then(function () {-->
-                <#--console.log('USER SIGNED OUT');-->
-                <#--});-->
-                <#--}-->
-                <#--</script>-->
                 </li>
             </ul>
         </div>
