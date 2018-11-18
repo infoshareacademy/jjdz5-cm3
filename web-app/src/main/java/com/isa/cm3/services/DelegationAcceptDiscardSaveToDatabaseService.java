@@ -3,6 +3,8 @@ package com.isa.cm3.services;
 import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.delegations.Delegation;
 import com.isa.cm3.delegations.DelegationStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -14,6 +16,8 @@ public class DelegationAcceptDiscardSaveToDatabaseService {
     private DelegationDao delegationDao;
     @Inject
     private Delegation delegation;
+
+    private static final Logger LOG = LogManager.getLogger(DelegationAcceptDiscardSaveToDatabaseService.class);
 
     public void decisionSaving(Long id, String button, String discardReason) {
 
@@ -27,5 +31,7 @@ public class DelegationAcceptDiscardSaveToDatabaseService {
         delegation.setDiscardReason(reason);
         delegation.setDelegationStatus(status);
         delegationDao.update(delegation);
+
+        LOG.info("Wniosek o id {} został {}",delegation.getId(), delegation.getDelegationStatus());
     }
 }

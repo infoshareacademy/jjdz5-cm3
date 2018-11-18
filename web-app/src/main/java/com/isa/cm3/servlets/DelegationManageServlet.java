@@ -10,6 +10,8 @@ import com.isa.cm3.freemarker.TemplateProvider;
 import com.isa.cm3.services.DelegationAcceptDiscardSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -36,6 +38,8 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationsCreateOptions delegationsCreateOptions;
     @Inject
     private DelegationAcceptDiscardSaveToDatabaseService delegationAcceptDiscardSaveToDatabaseService;
+
+    private static final Logger LOG = LogManager.getLogger(DelegationManageServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -73,6 +77,7 @@ public class DelegationManageServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie delegacji do akceptacji lub odrzucenia (sekcja Zarządzaj delegacjami)");
     }
 
     @Override

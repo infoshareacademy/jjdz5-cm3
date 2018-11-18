@@ -27,6 +27,7 @@ public class DelegationsAfterUploadSaveToDatabaseService {
     private DelegationRepository delegationRepository;
 
     public void savingImportedDelegationsToDabase() {
+
         List<Delegation> delegationListToImport = delegationRepository.getList();
         for (Delegation delegation : delegationListToImport) {
             Employee employee = employeeDao.findIfExist(delegation.getEmployee());
