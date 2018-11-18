@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 
                HttpSession session = req.getSession(true);
             session.setAttribute("userName", name);
+            session.setAttribute("token", idToken);
             resp.sendRedirect("/delegations-web/mainMenu");
             req.getServletContext()
                     .getRequestDispatcher("mainMenu").forward(req, resp);

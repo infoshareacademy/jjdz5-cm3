@@ -19,6 +19,28 @@
 
         </div>
 
+        <script>
+            function signOut() {
+                console.log("logging out ...");
+                //window.open("https://mail.google.com/mail/u/0/?logout&hl=en");
+                gapi.auth.authorize(
+                        {
+                            'client_id': "714386444263-rduec7llk6q3odjpqf6ong5tp4kqb4n1.apps.googleusercontent.com",
+                            'scope': "profile email",
+                            'immediate': false,
+                            cookie_policy: 'single_host_origin',
+                            response_type: 'token id_token'
+                        },
+                        function (authResult) {
+                            gapi.auth.signOut();
+                            gapi.auth.disconnect();
+                        }
+                );
+                console.log("redirecting to logout servlet");
+                window.location.href = '/delegations-web/logout';
+            }
+        </script>
+
         <div class="collapse navbar-collapse justify-content-center" id="navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
@@ -30,7 +52,9 @@
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>
-                    <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>
+                    <#--<a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>-->
+                    <a href="javascript:signOut()">Wyloguj się</a>
+
                 </li>
             </ul>
         </div>
