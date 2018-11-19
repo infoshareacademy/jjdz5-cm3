@@ -51,6 +51,7 @@ public class DelegationImportServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie strony do importu pliku z delegacjami (sekcja Importuj delegacje)");
     }
 
     @Override
@@ -73,7 +74,7 @@ public class DelegationImportServlet extends HttpServlet {
         } else {
 
             mapModelGenerator.setModel("mapa", importMessage);
-            LOG.info("Żądany plik z delegacjami nie zaimportowano do bazy danych {}", importMessage);
+            LOG.info("Żądany plik z delegacjami nie zaimportowano do bazy danych");
         }
 
         Template template = templateProvider
