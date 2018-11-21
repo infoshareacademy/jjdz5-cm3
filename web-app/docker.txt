@@ -10,3 +10,20 @@ instalacja kontenera z obrazu
 zatrzymanie kontenera:  docker stop cm3db
 
 uruchomienie konternera: docker start cm3db
+
+po uruchomieniu dockera
+
+w chodzimy w bash
+
+docker exec -it cm3db bash
+
+potem
+
+mysql -u root -p
+podajemy haslo: cm3
+
+jesteśmy w na serwerzez bazodanowym
+
+create database CM3
+
+to samo możemy zrobić z intelij  po skonfigurowaniu połączenia z bazą

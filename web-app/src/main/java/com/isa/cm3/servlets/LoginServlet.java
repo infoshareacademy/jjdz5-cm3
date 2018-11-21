@@ -3,6 +3,9 @@ package com.isa.cm3.servlets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.isa.cm3.delegations.IdTokenVerifierAndParser;
 import com.isa.cm3.freemarker.TemplateProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
