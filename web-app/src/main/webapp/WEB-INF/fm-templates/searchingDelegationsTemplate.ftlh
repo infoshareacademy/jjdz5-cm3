@@ -1,136 +1,36 @@
+<#-- previewMyDelegations.ftlh -->
+
 <!DOCTYPE html>
 <html lang="pl-PL">
+
 <head>
 
-    <title>Main menu</title>
+    <title>Delegacje</title>
 
 <#include "include/headAndMeta.ftlh">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 
+
 <body style="font-family: 'Open Sans', sans-serif">
+
 <#include "include/navbarHeaderTemplate.ftlh">
 
-<div class="container">
+<h4 style="color: black; alignment: center; text-align: center;">Wyszukiwanie delegacji</h4>
+
+<#include "include/filterDelegations.ftlh">
+
+<div class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-12">
+        <div class="table table-responsive-sm" style="width: 100%;">
 
-            <form action="/delegations-web/searchDelegations" method="get">
+            <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
+                   style="width: 100%; border: 0px; border-collapse: collapse;">
 
-                <label>Data utworzenia:</label>
-                <select name="date">
-                     <#list dates as d>
-                         <#if datesOption == d >
-                         <option selected>${d}</option>
-                         <#else>
-                         <option>${d}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Imię:</label>
-                <select name="name">
-                     <#list names as n>
-                         <#if namesOption == n >
-                         <option selected>${n}</option>
-                         <#else>
-                         <option>${n}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Nazwisko:</label>
-                <select name="surname">
-                     <#list surnames as s>
-                         <#if surnamesOption == s >
-                         <option selected>${s}</option>
-                         <#else>
-                         <option>${s}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <label>Kraj wyjazdu:</label>
-                <select name="country">
-                     <#list countries as s>
-                         <#if countriesOption == s >
-                             <option selected>${s}</option>
-                         <#else>
-                             <option>${s}</option>
-                         </#if>
-                     </#list>
-                </select>
-
-                <br>
-
-                <label>Status delegacji:</label>
-                <select name="status">
-
-                <#if statusOption == "">
-                <option selected value="">
-                    wszystkie
-                </option>>
-                <#else >
-                 <option value="">
-                     wszystkie
-                 </option>>
-                </#if>
-
-                <#if statusOption == "TOACCEPT">
-                <option selected value="TOACCEPT">
-                    do akceptacji
-                </option>>
-                <#else>
-                <option value="TOACCEPT">
-                    do akceptacji
-                </option>>
-                </#if>
-
-                <#if statusOption == "ACCEPTED">
-                <option selected value="ACCEPTED">
-                    zaakceptowano
-                </option>>
-                <#else>
-                <option value="ACCEPTED">
-                    zaakceptowano
-                </option>>
-                </#if>
-
-                <#if statusOption == "DISCARTED">
-                <option selected value="DISCARTED">
-                    brak akceptacji
-                </option>>
-                <#else>
-                <option value="DISCARTED">
-                    brak akceptacji
-                </option>>
-                </#if>
-
-                </select>
-
-                <button class="btn btn-primary" type="submit" lang="pl-PL" >Szukaj</button>
-
-
-            </form>
-
-        </div >
-
-    </div>
-</div>
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-
-            <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
+            <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
                 <th scope="col">ID</th>
-                <th scope="col">Data <br/> utworzenia</th>
+                <th scope="col">Data<br/>utworzenia</th>
                 <th scope="col">Imię</th>
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Data <br/> od</th>
@@ -144,29 +44,25 @@
                 <th scope="col">Status</th>
                 <th scope="col">Komentarz</th>
 
-            </tr>
-            </thead>
+                        <#list delegations as d>
+                            <#switch d.getDelegationStatus()>
+                                <#case "SAVED">
+                            <tr class="info" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "TOACCEPT">
+                            <tr class="warning" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "ACCEPTED">
+                            <tr class="success" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#case "DISCARTED">
+                            <tr class="danger" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                                    <#break>
+                                <#default>
+                            <tr style="border-top: 2pt solid black; border-bottom: 2pt solid black;>
+                            </#switch>
 
-                <tbody>
-                <#list delegations as d>
-                <#switch d.getDelegationStatus()>
-                    <#case "SAVED">
-                    <tr class="info">
-                        <#break>
-                    <#case "TOACCEPT">
-                    <tr class="warning">
-                        <#break>
-                    <#case "ACCEPTED">
-                    <tr class="success">
-                        <#break>
-                    <#case "DISCARTED">
-                    <tr class="danger">
-                        <#break>
-                    <#default>
-                    <tr>
-                </#switch>
-
-                        <td>${d.getFileLineNumber()}</td>
+                        <td>${d.getId()}</td>
                         <td>${d.getCreationDate()}</td>
                         <td>${d.getEmployee().getEmployeeName()}</td>
                         <td>${d.getEmployee().getEmployeeSurname()}</td>
@@ -181,24 +77,26 @@
                         <td>${d.getDelegationStatus().statusType()  }</td>
                         <td>
 
-                        <#if d.getDiscardReason()!="null">
+                        <#if d.getDiscardReason()??>
                             ${d.getDiscardReason()}
                         <#else>
                         </#if>
 
-                        </td>
+                                </td>
 
-                     </tr>
+                            </tr>
+                        </#list>
 
-                </#list>
-                </tbody>
-            </table>
-            </div>
+                    </table>
+
         </div>
     </div>
+</div>
 
-<#include "include/footer.ftlh">
-<#include "include/scripts.ftlh">
+<hr/>
 
-</body>
+    <#include "include/footer.ftlh">
+    <#include "include/scripts.ftlh">
+
+                    </body>
 </html>

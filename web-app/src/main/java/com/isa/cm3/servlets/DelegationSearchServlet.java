@@ -1,10 +1,16 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.delegations.*;
+import com.isa.cm3.dao.DelegationDao;
+import com.isa.cm3.delegations.DelegationFilter;
+import com.isa.cm3.delegations.DelegationRepository;
+import com.isa.cm3.delegations.DelegationStatus;
+import com.isa.cm3.delegations.DelegationsCreateOptions;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -14,24 +20,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet(urlPatterns = "/searchDelegations")
 public class DelegationSearchServlet extends HttpServlet {
 
     @Inject
+    private DelegationRepository delegationRepository;
+    @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
     @Inject
     private DelegationFilter delegationFilter;
-
     @Inject
     private DelegationsCreateOptions delegationsCreateOptions;
-
     @Inject
-    private DelegationsLoadFromFile delegationsLoadFromFile;
+    private DelegationDao delegationDao;
+
+    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,11 +51,12 @@ public class DelegationSearchServlet extends HttpServlet {
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
 
-            delegationsLoadFromFile.loadDelegationsFromFile();
+            delegationRepository.setListDao(delegationDao.findAll());
 
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
 
             delegationsCreateOptions.addOptionsTemplate();
+            mapModelGenerator.setModel("actionForm", "/delegations-web/searchDelegations");
 
             DelegationStatus myStatus = null;
 
@@ -58,16 +64,14 @@ public class DelegationSearchServlet extends HttpServlet {
                 myStatus = DelegationStatus.valueOf(choiceStatus);
             } catch (Exception e) {
                 System.out.println("choiceStatus is empty");
-                ;
             }
 
-            if(myStatus == null || myStatus.statusType().isEmpty()) {
+            if (myStatus == null || myStatus.statusType().isEmpty()) {
                 mapModelGenerator.setModel("delegations",
                         delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
             } else {
                 mapModelGenerator.setModel("delegations",
                         delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,6 +87,6 @@ public class DelegationSearchServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie wszystkich delegacji (sekcja Szukaj delegacji)");
     }
-
 }
