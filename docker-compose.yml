@@ -14,8 +14,8 @@ services:
     build:
       context: ./web-app
     ports:
-      - "4230:8080"
-      - "4231:9990"
+      - 4230:8080
+      - 4231:9990
     depends_on:
       - db
     links:
