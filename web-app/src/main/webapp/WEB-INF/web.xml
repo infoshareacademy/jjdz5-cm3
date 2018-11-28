@@ -8,8 +8,8 @@
         <name>java:ds/CM3DBds</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <url>jdbc:mysql://db:6603/CM3?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-        <user>as</user>
-        <password>as4as</password>
+        <user>cm3</user>
+        <password>CM3</password>
     </data-source>
 
     <welcome-file-list>
