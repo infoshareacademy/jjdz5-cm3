@@ -4,7 +4,7 @@ pobieramy obraz z dockera:
 
 instalacja kontenera z obrazu
 
-    docker run -dti --name=cm3db --env="MYSQL_ROOT_PASSWORD=cm3" --env="TZ=Europe/Warsaw" --publish 6603:3306 mysql:8.0.13 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    docker run -dti --name=cm3db --env="MYSQL_ROOT_PASSWORD=cm3" --env="TZ=Europe/Warsaw" --publish 4232:3306 mysql:8.0.13 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 
 zatrzymanie kontenera:  docker stop cm3db
