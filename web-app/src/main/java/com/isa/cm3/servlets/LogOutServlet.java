@@ -43,7 +43,7 @@ public class LogOutServlet extends HttpServlet {
 
             try {
                 session.invalidate();
-                LOG.info("Wylogowanie ze strony. Powrót do strony głównej.");
+                LOG.info("Logging out form webpage. Rediricting to the start page.");
                 resp.sendRedirect("/delegations-web/");
             } catch (Exception e) {
                 throw new RuntimeException(e);

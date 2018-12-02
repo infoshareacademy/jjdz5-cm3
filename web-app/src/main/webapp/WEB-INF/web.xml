@@ -54,7 +54,7 @@
         <url-pattern>/DelegationSave</url-pattern>
     </servlet-mapping>
 
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Delegations Web Application</display-name>
 
     <filter>
         <filter-name>AuthenticationFilter</filter-name>

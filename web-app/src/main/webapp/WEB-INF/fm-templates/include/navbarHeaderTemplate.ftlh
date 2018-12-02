@@ -35,7 +35,6 @@
                             gapi.auth.disconnect();
                         }
                 );
-                console.log("redirecting to logout servlet");
                 window.location.href = '/delegations-web/logout';
             }
         </script>
