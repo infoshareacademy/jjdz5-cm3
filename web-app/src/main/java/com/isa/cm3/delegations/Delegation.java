@@ -47,7 +47,7 @@ public class Delegation implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee = new Employee();
+    private Employee employee = new ;
 
     @ManyToOne
     @JoinColumn(name = "destination_id")
