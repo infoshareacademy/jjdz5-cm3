@@ -3,7 +3,6 @@ package com.isa.cm3.services;
 import com.isa.cm3.delegations.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;

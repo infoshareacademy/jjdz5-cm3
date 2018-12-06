@@ -45,16 +45,19 @@ public class DelegationSearchServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         try {
+            LOG.debug("Wejście w try chatch w wyszukiwaniu delegacji");
             final String choiceStatus = req.getParameter("status").trim();
             final String choiceCreationDate = req.getParameter("date").trim();
             final String choiceName = req.getParameter("name").trim();
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
-
+            String employeeId = String.valueOf(req.getSession().getAttribute("employeeId"));
+            LOG.info("Przypisanie danych do wyszukiwania zakończone");
             delegationRepository.setListDao(delegationDao.findAll());
-
+            LOG.info("Lista ustawiona");
+            LOG.info("Tworzenie domyslnej templati wyszukiwania");
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
-
+            LOG.info("Utworzone templatkę ");
             delegationsCreateOptions.addOptionsTemplate();
             mapModelGenerator.setModel("actionForm", "/delegations-web/searchDelegations");
 

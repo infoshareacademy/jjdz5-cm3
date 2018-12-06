@@ -3,12 +3,12 @@
 <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
         <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger - %msg%n"/>-->
-        <PatternLayout pattern="[%d{HH:mm:ss.SSS} - %-6level] %msg%n"/>
+        <PatternLayout pattern="[%C %L %d{HH:mm:ss.SSS} - %-6level] %msg%n"/>
     </Console>
 
     <File name="LogFile" fileName="../log/delegations.log">
         <PatternLayout>
-            <Pattern>[%d - %c{1.} -  %p] %m%n</Pattern>
+            <Pattern>[%C %L %d - %c{1.} -  %p] %m%n</Pattern>
         </PatternLayout>
     </File>
 

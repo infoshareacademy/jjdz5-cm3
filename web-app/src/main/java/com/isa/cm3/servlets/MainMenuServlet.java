@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/mainMenu")
 public class MainMenuServlet extends HttpServlet {
@@ -37,8 +34,9 @@ public class MainMenuServlet extends HttpServlet {
 
         mapModelGenerator.setModel(
                 "mapa",
-                req.getSession().getAttribute("userName").toString() //todo handla nullpointer
+                req.getSession().getAttribute("email").toString() //todo handla nullpointer
         );
+        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "mainMenuTemplate");
         try {

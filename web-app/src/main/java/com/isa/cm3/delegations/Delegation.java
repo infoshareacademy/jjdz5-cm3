@@ -45,11 +45,11 @@ public class Delegation implements Serializable {
     @Column(name = "discard_reason")
     private String discardReason;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee = new Employee();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_id")
     private Destination destination = new Destination();
 
