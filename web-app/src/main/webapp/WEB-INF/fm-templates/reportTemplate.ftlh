@@ -1,5 +1,3 @@
-<#-- reportTemplate.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -10,7 +8,6 @@
 <#include "include/headAndMeta.ftlh">
 
 </head>
-
 
 <body style="font-family: 'Open Sans', sans-serif">
 
@@ -48,9 +45,7 @@
         </tbody>
     </table>
 <hr/>
-
     <#include "include/footer.ftlh">
     <#include "include/scripts.ftlh">
-
 </body>
 </html>

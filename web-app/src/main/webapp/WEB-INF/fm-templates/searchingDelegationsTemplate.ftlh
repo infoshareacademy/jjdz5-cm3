@@ -1,5 +1,3 @@
-<#-- previewMyDelegations.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -10,7 +8,6 @@
 <#include "include/headAndMeta.ftlh">
 
 </head>
-
 
 <body style="font-family: 'Open Sans', sans-serif">
 
@@ -32,12 +29,9 @@
 
 <div class="container-fluid">
     <div class="row">
-
         <div class="table table-responsive-sm" style="width: 100%;">
-
             <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
                    style="width: 100%; border: 0px; border-collapse: collapse;">
-
             <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
                 <th scope="col">ID</th>
                 <th scope="col">Data<br/>utworzenia</th>
@@ -91,22 +85,15 @@
                             ${d.getDiscardReason()}
                         <#else>
                         </#if>
-
-                                </td>
-
-                            </tr>
+                        </td>
+                    </tr>
                         </#list>
-
-                    </table>
-
+            </table>
         </div>
     </div>
 </div>
-
 <hr/>
-
     <#include "include/footer.ftlh">
     <#include "include/scripts.ftlh">
-
-                    </body>
+</body>
 </html>

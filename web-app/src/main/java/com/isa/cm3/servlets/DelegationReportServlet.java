@@ -89,5 +89,3 @@ public class DelegationReportServlet extends HttpServlet{
         LOG.debug("Wyświetlenie raportu delegacji");
     }
 }
-
-
