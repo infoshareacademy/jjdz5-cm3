@@ -1,6 +1,5 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.daoService.DelegationService;
 import com.isa.cm3.delegations.DelegationFilter;
 import com.isa.cm3.delegations.DelegationRepository;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/report")
-public class DelegationReportServlet extends HttpServlet {
+public class DelegationReportServlet extends HttpServlet{
 
     @Inject
     private DelegationRepository delegationRepository;
@@ -87,7 +86,8 @@ public class DelegationReportServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie wszystkich delegacji (sekcja Szukaj delegacji)");
+        LOG.debug("Wyświetlenie raportu delegacji");
     }
 }
+
 

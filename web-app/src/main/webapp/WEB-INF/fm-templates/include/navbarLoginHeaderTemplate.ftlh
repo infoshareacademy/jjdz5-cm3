@@ -1,11 +1,11 @@
 <#-- navbarLoginHeaderTemplate.ftlh -->
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container" style="display: inline-block;">
         <div class="navbar-header">
 
             <a class="navbar-brand"
-               href="#">
+               href="/delegations-web/mainMenu">
                 &#9992 delegations-web.com
             </a>
 
@@ -22,10 +22,7 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                 <li>
-                    <a href="/delegations-web/sign-in"
-                       class="nav navbar-right btn btn-default btn-outline btn-circle">
-                        Zaloguj się
-                    </a>
+                    <a href="/delegations-web/sign-in" style="color: #a9a9a9">Zaloguj się</a>
                 </li>
             </ul>
         </div>

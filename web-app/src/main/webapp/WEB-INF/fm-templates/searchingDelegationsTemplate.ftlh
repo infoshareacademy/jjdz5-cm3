@@ -18,6 +18,16 @@
 
 <h4 style="color: black; alignment: center; text-align: center;">Wyszukiwanie delegacji</h4>
 
+<div class="container" style="width: 100%; text-align: center">
+    <div class="row" style="margin: 5px">
+        <div class="col-md-12">
+            <form action="/delegations-web/report">
+                <button class="btn btn-outline-secondary" type="submit" lang="pl-PL">Zobacz raport</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <#include "include/filterDelegations.ftlh">
 
 <div class="container-fluid">

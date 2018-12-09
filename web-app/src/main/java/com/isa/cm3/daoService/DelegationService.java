@@ -26,12 +26,7 @@ public class DelegationService {
     public List<Delegation> getReport() {
 
         List<Delegation> delegations = delegationDao.findAll();
-
-        if (!delegations.isEmpty()) {
             LOG.info("Delegations: " + delegations);
             return delegations;
-        }
-        LOG.warn("List of delegations is empty");
-        return (List<Delegation>) Response.noContent().build();
     }
 }
