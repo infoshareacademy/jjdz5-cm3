@@ -23,20 +23,8 @@
     </head>
 
     <body style="font-family: 'Open Sans', sans-serif">
-<#--
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <h4 style="color: gray">Podsumowanie delegacji</h4>
-                    </div>
-                </div>
-            </nav>
-        </header>
--->
-<#include "../include/navbarLogoHeaderTemplate.ftlh">
-<h4 style="color: black; alignment: center; text-align: center;">Podsumowanie delegacji</h4>
 
+<#include "../include/navbarLogoHeaderTemplate.ftlh">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="width: 300px">
@@ -66,8 +54,8 @@
                     <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">powrót</button>
                 </form>
                 <#else>
-                <div class="alert alert-info" role="alert">
-                    ${mapa}
+                <div class="alert alert-secondary" role="alert" style="margin-top: 115px; text-align: center">
+                   <h4>${mapa}</h4>
                 </div>
                 <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
                     <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">Powrót</button>

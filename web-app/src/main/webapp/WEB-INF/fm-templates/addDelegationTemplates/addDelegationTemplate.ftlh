@@ -33,17 +33,6 @@
 
 <body data-capture=".base, .date, .datepicker" style="font-family: 'Open Sans', sans-serif">
 
-<#--
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <h4 style="color: gray">Dodaj delegację</h4>
-                    </div>
-                </div>
-            </nav>
-        </header>
--->
 <#include "../include/navbarLogoHeaderTemplate.ftlh">
 <h4 style="color: black; alignment: center; text-align: center;">Dodaj delegację</h4>
 
