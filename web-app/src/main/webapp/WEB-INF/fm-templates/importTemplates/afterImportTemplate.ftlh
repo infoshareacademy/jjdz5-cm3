@@ -17,12 +17,12 @@
 
 <#include "../include/navbarHeaderTemplate.ftlh">
 
-<div class="container">
+<div class="container" style="margin-top: 115px">
     <div class="row">
         <div class="col-md-12" style="text-align: center">
-            <div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-                <h4 class="alert-heading" style="text-align: center"> ${mapa}. Zostaniesz przekierowany na stronę
-                    główną. </h4>
+            <div class="alert alert-secondary" role="alert" style="width:60%;margin: auto">
+                <h4 class="alert-heading" style="text-align: center"><b>${mapa}. Zostaniesz przekierowany na stronę
+                    główną.</b></h4>
             </div>
 
         </div>
