@@ -1,5 +1,3 @@
-<#-- navbarLoginHeaderTemplate.ftlh -->
-
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container" style="display: inline-block;">
         <div class="navbar-header">
@@ -26,7 +24,5 @@
                 </li>
             </ul>
         </div>
-
-
     </div>
 </nav>
