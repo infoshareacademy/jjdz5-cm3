@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/report")
-public class DelegationReportServlet extends HttpServlet{
+public class DelegationReportServlet extends HttpServlet {
 
     @Inject
     private DelegationRepository delegationRepository;
@@ -44,34 +44,7 @@ public class DelegationReportServlet extends HttpServlet{
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         try {
-            final String choiceStatus = req.getParameter("status").trim();
-            final String choiceCreationDate = req.getParameter("date").trim();
-            final String choiceName = req.getParameter("name").trim();
-            final String choiceSurname = req.getParameter("surname").trim();
-            final String choiceCountry = req.getParameter("country").trim();
-
-            delegationRepository.setListDao(delegationService.getReport());
-
-            delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
-
-            delegationsCreateOptions.addOptionsTemplate();
-            mapModelGenerator.setModel("actionForm", "/delegations-web/report");
-
-            DelegationStatus myStatus = null;
-
-            try {
-                myStatus = DelegationStatus.valueOf(choiceStatus);
-            } catch (Exception e) {
-                System.out.println("choiceStatus is empty");
-            }
-
-            if (myStatus == null || myStatus.statusType().isEmpty()) {
-                mapModelGenerator.setModel("delegations",
-                        delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
-            } else {
-                mapModelGenerator.setModel("delegations",
-                        delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
-            }
+            prepareValues(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,12 +53,49 @@ public class DelegationReportServlet extends HttpServlet{
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "reportTemplate");
-
             template.process(mapModelGenerator.getModel(), resp.getWriter());
-
         } catch (TemplateException e) {
             e.printStackTrace();
         }
         LOG.debug("Wyświetlenie raportu delegacji");
+    }
+
+    private void prepareValues (HttpServletRequest request, HttpServletResponse response) {
+
+        final String choiceStatus = request.getParameter("status").trim();
+        final String choiceCreationDate = request.getParameter("date").trim();
+        final String choiceName = request.getParameter("name").trim();
+        final String choiceSurname = request.getParameter("surname").trim();
+        final String choiceCountry = request.getParameter("country").trim();
+
+        delegationRepository.setListDao(delegationService.getReport());
+
+        delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
+
+        delegationsCreateOptions.addOptionsTemplate();
+        mapModelGenerator.setModel("actionForm", "/delegations-web/report");
+
+        DelegationStatus myStatus = checkStatus(choiceStatus);
+
+        if (myStatus == null || myStatus.statusType().isEmpty()) {
+            mapModelGenerator.setModel("delegations",
+                    delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null));
+        } else {
+            mapModelGenerator.setModel("delegations",
+                    delegationFilter.filterDelegation(choiceCreationDate, choiceName, choiceSurname, choiceCountry, myStatus));
+        }
+
+    }
+
+    private DelegationStatus checkStatus(String status){
+
+        DelegationStatus myStatus = null;
+
+        try {
+            myStatus = DelegationStatus.valueOf(status);
+        } catch (Exception e) {
+            System.out.println("choiceStatus is empty");
+        }
+        return myStatus;
     }
 }
