@@ -21,31 +21,36 @@
 
 <#include "include/navbarLogoHeaderTemplate.ftlh">
 
-<h2>Delegacje: zaloguj się</h2>
-<br>
+<div class="container" style="margin-top: 75px; width: 30%">
+    <div class="row">
+        <div class=".col-md-6 .offset-md-3">
+            <img src="images/globe2.png" alt="comfortable" style="width:100%; alignment: center">
 
-<div class="g-signin2" data-onsuccess="onSignIn">
+            <div class="g-signin2" data-onsuccess="onSignIn" style="margin-left: 33% !important">
 
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
-            console.log('id_token: ' + googleUser.getAuthResponse().id_token);
+                <script>
+                    function onSignIn(googleUser) {
+                        var profile = googleUser.getBasicProfile();
+                        console.log('ID: ' + profile.getId());
+                        console.log('Name: ' + profile.getName());
+                        console.log('Image URL: ' + profile.getImageUrl());
+                        console.log('Email: ' + profile.getEmail());
+                        console.log('id_token: ' + googleUser.getAuthResponse().id_token);
 
-            var redirectUrl = 'login';
+                        var redirectUrl = 'login';
 
-            var form = $('<form action="' + redirectUrl + '" method="post">' +
-                    '<input type="text" name="id_token" value="' +
-                    googleUser.getAuthResponse().id_token + '" />' +
-                    '</form>');
-            $('body').append(form);
-            form.submit();
-        }
-    </script>
+                        var form = $('<form action="' + redirectUrl + '" method="post">' +
+                                '<input type="text" name="id_token" value="' +
+                                googleUser.getAuthResponse().id_token + '" />' +
+                                '</form>');
+                        $('body').append(form);
+                        form.submit();
+                    }
+                </script>
 
+            </div>
+        </div>
+    </div>
 </div>
 
 <#include "include/footer.ftlh">
