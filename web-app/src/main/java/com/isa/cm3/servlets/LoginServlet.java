@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("User name: " + name);
             System.out.println("User email: " + email);
 
-               HttpSession session = req.getSession(true);
+            HttpSession session = req.getSession(true);
             session.setAttribute("userName", name);
             session.setAttribute("token", idToken);
             resp.sendRedirect("/delegations-web/mainMenu");
