@@ -29,6 +29,8 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
 
         String uri = req.getRequestURI();
+        LOG.debug("Requested uri= " + uri);
+        Session(request, response, chain, req, res, uri);
     }
 
     private void Session(ServletRequest request, ServletResponse response, FilterChain chain, HttpServletRequest req, HttpServletResponse res, String uri) throws IOException, ServletException {
