@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
     public void init() throws ServletException {
 
 
-        Employee employee = new Employee("Cmtrzy", "ToZgranaPaka","kontakt@marekkalkowski.pl",false,false,0);
+        Employee employee = new Employee("Cmtrzy", "ToZgranaPaka","kontakt@marekkalkowski.pl",false,true,0);
         employeeDao.save(employee);
 
     }
@@ -61,6 +61,8 @@ public class LoginServlet extends HttpServlet {
                 //session.setAttribute("userName", name);
                 session.setAttribute("email", email);
                 String whoIs = String.valueOf(employeeDao.isAdminOrManager(email));
+                LOG.debug("Wartość parametru whoIs: " + whoIs);
+                LOG.debug("Jezeli jeden to 2 to admin, 1 to manager, 0 zwykły pracownik ");
                 session.setAttribute("whoIs", whoIs);
                 session.setAttribute("employeeId", employeeDao.findByEmail(email).getId());
                 LOG.debug("teraz bedzie redirect");

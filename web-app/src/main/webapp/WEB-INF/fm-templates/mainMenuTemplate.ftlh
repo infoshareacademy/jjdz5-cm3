@@ -14,15 +14,15 @@
 
 <body style="font-family: 'Open Sans', sans-serif; text-align: center">
 
-<#--<#if whoIs == "2">-->
-    <#--<#include "include/navbarHeaderTemplateAdmin.ftlh">-->
-<#--<#elseif whoIs == "1">-->
-    <#--<#include "include/navbarHeaderTemplateManager.ftlh">-->
-<#--<#else>-->
-    <#--<#include "include/navbarHeaderTemplate.ftlh">-->
-<#--</#if>-->
+<#if whoIs == "2">
+    <#include "include/navbarHeaderTemplateAdmin.ftlh">
+<#elseif whoIs == "1">
+    <#include "include/navbarHeaderTemplateManager.ftlh">
+<#else>
+    <#include "include/navbarHeaderTemplate.ftlh">
+</#if>
 
-<#include "include/navbarHeaderTemplate.ftlh">
+<#--<#include "include/navbarHeaderTemplate.ftlh">-->
 
 <div class="container" style="width: 50%; text-align: center; margin-top: 100px">
     <div class="row">
