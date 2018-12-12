@@ -79,7 +79,7 @@ public class DelegationSearchServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
         delegationsCreateOptions.createOptionsTemplate();
 
         try {

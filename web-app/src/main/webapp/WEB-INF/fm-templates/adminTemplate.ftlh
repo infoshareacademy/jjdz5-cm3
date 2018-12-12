@@ -15,6 +15,15 @@
 
 <#--<#include "include/navbarHeaderTemplate.ftlh">-->
 <#include "include/settingNavBarRole.ftlh">
+<#--<#if whoIs == "3">-->
+    <#--<#include "include/navbarHeaderTemplateManagerAndAdmin.ftlh">-->
+<#--<#elseif whoIs == "2">-->
+    <#--<#include "include/navbarHeaderTemplateOnlyAdmin.ftlh">-->
+<#--<#elseif whoIs == "1">-->
+    <#--<#include "include/navbarHeaderTemplateOnlyManager.ftlh">-->
+<#--<#else>-->
+    <#--<#include "include/navbarHeaderTemplateSimpleEmployee.ftlh">-->
+<#--</#if>-->
 
 <h4 style="color: black; alignment: center; text-align: center;">Kontakt</h4>
 

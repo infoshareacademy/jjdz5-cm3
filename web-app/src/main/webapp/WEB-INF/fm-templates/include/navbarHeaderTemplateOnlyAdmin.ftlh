@@ -24,9 +24,10 @@
                 <li><a href="/delegations-web/addForm">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/searchDelegations?date=&name=&surname=&country=&status=">Szukaj
                     delegacji</a></li>
-                <li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=">Zarządzaj delegacjami</a>
+                <#--<li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=">Zarządzaj delegacjami</a>-->
                 </li>
                 <li><a href="/delegations-web/import">Importuj delegacje</a></li>
+                <li><a href="/delegations-web/admin">Administracja</a></li>
                 <li><a href="/delegations-web/contact">Kontakt</a></li>
                 <li><a href="/delegations-web/about">O nas</a></li>
                 <li>

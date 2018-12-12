@@ -87,13 +87,14 @@ public class EmployeeDao {
         Long id = idList.get(0);
         Employee employee = findById(id);
 
+        int sum = 0;
         if (employee.isAdmininistrator()) {
-            return 2;
-        } else if (employee.isManager()) {
-            return 1;
-        } else {
-            return 0;
+            sum += 2;
         }
+        if (employee.isManager()) {
+            sum += 1;
+        }
+        return sum;
     }
 
     public Employee findByEmail(String email) {

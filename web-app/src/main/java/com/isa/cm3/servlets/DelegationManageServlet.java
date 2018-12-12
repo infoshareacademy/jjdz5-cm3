@@ -58,6 +58,7 @@ public class DelegationManageServlet extends HttpServlet {
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
 
             delegationsCreateOptions.addOptionsTemplate();
+            mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
             mapModelGenerator.setModel("actionForm", "/delegations-web/manageDelegations");
 
             mapModelGenerator.setModel("delegations",

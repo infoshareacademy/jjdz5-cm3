@@ -13,7 +13,8 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "include/navbarHeaderTemplate.ftlh">
+<#--<#include "include/navbarHeaderTemplate.ftlh">-->
+<#include "include/settingNavBarRole.ftlh">
 
 <div class="container" style="width: 100%; text-align: center">
     <div class="alert alert-secondary" role="alert">

@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
     public void init() throws ServletException {
 
 
-        Employee employee = new Employee("Cmtrzy", "ToZgranaPaka","kontakt@marekkalkowski.pl",false,true,0);
+        Employee employee = new Employee("Cmtrzy", "ToZgranaPaka","kontakt@marekkalkowski.pl",false,false,0);
         employeeDao.save(employee);
 
     }

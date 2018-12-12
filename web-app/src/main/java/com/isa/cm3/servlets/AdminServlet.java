@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 
-@WebServlet(urlPatterns = "/contact")
-public class ContactServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/admin")
+public class AdminServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -25,21 +24,24 @@ public class ContactServlet extends HttpServlet {
     @Inject
     private MapModelGenerator mapModelGenerator;
 
-    private static final Logger LOG = LogManager.getLogger(ContactServlet.class);
+    private static final Logger LOG = LogManager.getLogger(AdminServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+
         mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        LOG.debug("Pobranie wartości whoIs z sesji: " + req.getSession().getAttribute("whoIs").toString());
+
         Template template = templateProvider
-                .getTemplate(getServletContext(), "contactTemplate");
+                .getTemplate(getServletContext(), "adminTemplate");
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie formularza kontaktowego (sekcja Kontakt)");
+        LOG.debug("Wyświetlenie formularza administracji (sekcja Kontakt)");
     }
 }

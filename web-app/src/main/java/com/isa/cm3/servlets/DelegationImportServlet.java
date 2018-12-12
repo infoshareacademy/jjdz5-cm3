@@ -43,7 +43,7 @@ public class DelegationImportServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-
+        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "importTemplates/importTemplate");
         try {
