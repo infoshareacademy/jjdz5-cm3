@@ -29,17 +29,19 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
 
         String uri = req.getRequestURI();
-
-        Session(request, response, chain, req, res, uri);
     }
 
     private void Session(ServletRequest request, ServletResponse response, FilterChain chain, HttpServletRequest req, HttpServletResponse res, String uri) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
-        if(session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in"))){
+        if(validateSession(session , uri)){
             res.sendRedirect("/delegations-web/");
         }else {
             chain.doFilter(request, response);
         }
+    }
+
+    private boolean validateSession(HttpSession session , String uri) {
+        return session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in"));
     }
 
     public void destroy() {
