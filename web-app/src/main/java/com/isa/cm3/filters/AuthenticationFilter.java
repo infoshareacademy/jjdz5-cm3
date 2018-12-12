@@ -30,6 +30,10 @@ public class AuthenticationFilter implements Filter {
 
         String uri = req.getRequestURI();
 
+        Session(request, response, chain, req, res, uri);
+    }
+
+    private void Session(ServletRequest request, ServletResponse response, FilterChain chain, HttpServletRequest req, HttpServletResponse res, String uri) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
         if(session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in"))){
             res.sendRedirect("/delegations-web/");
@@ -37,6 +41,7 @@ public class AuthenticationFilter implements Filter {
             chain.doFilter(request, response);
         }
     }
+
     public void destroy() {
     }
 }
