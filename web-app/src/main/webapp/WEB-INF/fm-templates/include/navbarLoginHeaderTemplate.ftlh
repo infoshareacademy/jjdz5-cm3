@@ -3,7 +3,7 @@
         <div class="navbar-header">
 
             <a class="navbar-brand"
-               href="/delegations-web/mainMenu">
+               href="#">
                 &#9992 delegations-web.com
             </a>
 

@@ -7,9 +7,9 @@
     <data-source>
         <name>java:ds/CM3DBds</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-        <url>jdbc:mysql://db:6603/CM3?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-        <user>cm3</user>
-        <password>CM3</password>
+        <url>jdbc:mysql://0.0.0.0:6603/CM3?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        <user>root</user>
+        <password>cm3</password>
     </data-source>
 
     <welcome-file-list>
@@ -54,5 +54,15 @@
         <url-pattern>/DelegationSave</url-pattern>
     </servlet-mapping>
 
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Delegations Web Application</display-name>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.isa.cm3.filters.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
