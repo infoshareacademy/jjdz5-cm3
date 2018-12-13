@@ -1,45 +1,31 @@
-<#-- addDelegationConfirmAndSaveTemplate.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
-    <head>
+<head>
 
-        <title>Delegacje</title>
+    <title>Delegacje</title>
 
 <#include "../include/headAndMeta.ftlh">
 
-        <style>
-            body {
-                width: 100%;
-                text-align:center;
-                display:inline-block;
-            }
-            li {
-                height: 35px;
-            }
-        </style>
+    <style>
+        body {
+            width: 100%;
+            text-align:center;
+            display:inline-block;
+        }
+        li {
+            height: 35px;
+        }
+    </style>
 
-    </head>
+</head>
 
-    <body style="font-family: 'Open Sans', sans-serif">
-<#--
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <h4 style="color: gray">Podsumowanie delegacji</h4>
-                    </div>
-                </div>
-            </nav>
-        </header>
--->
+<body style="font-family: 'Open Sans', sans-serif">
+
 <#include "../include/navbarLogoHeaderTemplate.ftlh">
-<h4 style="color: black; alignment: center; text-align: center;">Podsumowanie delegacji</h4>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12" style="width: 300px">
+<div class="container">
+<div class="row">
+<div class="col-md-12" style="width: 300px">
                 <#if mapa?is_hash>
                     <ul class="list-group">
                         <li class="list-group-item">Imię: ${mapa.name}</li>
@@ -62,21 +48,21 @@
                 <form class="needs-validation" action="delegation-save" method="POST" novalidate>
                     <button class="btn btn-secondary" type="submit" lang="pl-PL">Wyślij do akceptacji kierownika</button>
                 </form>
-                <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
-                    <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">powrót</button>
-                </form>
+                    <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
+                        <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">powrót</button>
+                    </form>
                 <#else>
-                <div class="alert alert-info" role="alert">
-                    ${mapa}
+                <div class="alert alert-secondary" role="alert" style="margin-top: 115px; text-align: center">
+                    <h4>${mapa}</h4>
                 </div>
                 <form class="needs-validation" action="/delegations-web/DelegationAddForm" method="GET" novalidate>
                     <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin: 5px">Powrót</button>
                 </form>
                 </#if>
-        </div>
+</div>
 
 <#include "../include/footer.ftlh">
 <#include "../include/scripts.ftlh">
 
-    </body>
+</body>
 </html>
