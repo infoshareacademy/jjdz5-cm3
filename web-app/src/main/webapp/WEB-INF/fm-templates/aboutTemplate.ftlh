@@ -13,7 +13,6 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#--<#include "include/navbarHeaderTemplate.ftlh">-->
 <#include "include/settingNavBarRole.ftlh">
 
 <div class="container" style="width: 600px; text-align: center; margin-top: 25px">

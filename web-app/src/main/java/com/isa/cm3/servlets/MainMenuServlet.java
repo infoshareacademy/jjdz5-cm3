@@ -34,7 +34,7 @@ public class MainMenuServlet extends HttpServlet {
 
         mapModelGenerator.setModel(
                 "mapa",
-                req.getSession().getAttribute("email").toString() //todo handla nullpointer
+                req.getSession().getAttribute("userName").toString() //todo handla nullpointer
         );
         mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider

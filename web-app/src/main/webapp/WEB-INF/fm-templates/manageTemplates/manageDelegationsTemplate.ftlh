@@ -39,7 +39,7 @@
 <#include "../include/filterDelegations.ftlh">
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="width: 90%;margin-right: auto; margin-left: auto;">
     <div class="table" style="width: 100%;">
     <form action="manageDelegations" method="POST">
 

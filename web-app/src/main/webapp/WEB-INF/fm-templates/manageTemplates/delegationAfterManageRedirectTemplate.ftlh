@@ -14,17 +14,6 @@
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif">
-<#--
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <h4 style="color: gray"> Status operacji</h4>
-                </div>
-            </div>
-        </nav>
-    </header>
--->
 
 <#include "../include/navbarLogoHeaderTemplate.ftlh">
 

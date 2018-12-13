@@ -21,9 +21,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     @Inject
-    private TemplateProvider templateProvider;
-
-    @Inject
     private EmployeeDao employeeDao;
 
     private static final Logger LOG = LogManager.getLogger(LoginServlet.class);
@@ -32,9 +29,9 @@ public class LoginServlet extends HttpServlet {
     public void init() throws ServletException {
 
 
-        Employee employee = new Employee("Cmtrzy", "ToZgranaPaka","kontakt@marekkalkowski.pl",true,true,0);
+        Employee employee = new Employee("Marek", "Kalkowski","kontakt@marekkalkowski.pl",true,true,0);
         employeeDao.save(employee);
-        Employee employee1 = new Employee("Cmtrzy", "ToZgranaPaka","marek@marekkalkowski.pl",false,false,0);
+        Employee employee1 = new Employee("Testowy", "Tester","marek@marekkalkowski.pl",false,false,0);
             employeeDao.save(employee1);
 
     }
@@ -47,20 +44,15 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String idToken = req.getParameter("id_token");
-            //System.out.println(idToken);
             GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
             String name = (String) payLoad.get("name");
             String email = payLoad.getEmail();
-            ;
-
-            //System.out.println("User name: " + name);
-            //System.out.println("User email: " + email);
 
             if (employeeDao.findIfExistByEmail(email)){
                 LOG.debug("Odnaleziono użytkownika w bazie ");
                 HttpSession session = req.getSession(true);
                 LOG.debug("Utworzono sesję dla " + email);
-                //session.setAttribute("userName", name);
+                session.setAttribute("userName", name);
                 session.setAttribute("email", email);
                 String whoIs = String.valueOf(employeeDao.isAdminOrManager(email));
                 LOG.debug("Wartość parametru whoIs: " + whoIs);
@@ -69,8 +61,6 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("employeeId", employeeDao.findByEmail(email).getId());
                 LOG.debug("teraz bedzie redirect");
                 resp.sendRedirect("/delegations-web/mainMenu");
-//                req.getServletContext()
-//                        .getRequestDispatcher("mainMenu").forward(req, resp);
             }
 
         } catch (Exception e) {

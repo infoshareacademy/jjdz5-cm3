@@ -1,7 +1,7 @@
 <!-- filterDelegations.ftlh -->
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="width: 90%;margin-right: auto; margin-left: auto">
 
         <div class="card" style="width: 100%; height: 100%; background-color: lightgrey; alignment: center;">
             <h4 class="card-title"
@@ -14,7 +14,7 @@
 
                     <form action="${actionForm}" method="get">
 
-                        <div class="col-sm-12" style="width: 100%;">
+                        <div class="col-sm-12">
 
                             <div class="col-md-2">
                                 <label>Data utworzenia:</label><br>

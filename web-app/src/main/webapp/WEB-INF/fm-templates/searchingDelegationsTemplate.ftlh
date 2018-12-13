@@ -1,5 +1,3 @@
-<#-- previewMyDelegations.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -22,7 +20,7 @@
 <#include "include/filterDelegations.ftlh">
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="width: 90%;margin-right: auto; margin-left: auto;">
 
         <div class="table table-responsive-sm" style="width: 100%;">
 
