@@ -1,6 +1,5 @@
 package com.isa.cm3.console;
 
-
 import com.isa.cm3.properties.Properties;
 
 import java.time.LocalDate;

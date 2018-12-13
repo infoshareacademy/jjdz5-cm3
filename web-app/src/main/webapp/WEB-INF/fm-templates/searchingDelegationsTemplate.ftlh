@@ -1,5 +1,3 @@
-<#-- previewMyDelegations.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -11,23 +9,29 @@
 
 </head>
 
-
 <body style="font-family: 'Open Sans', sans-serif">
 
 <#include "include/navbarHeaderTemplate.ftlh">
 
 <h4 style="color: black; alignment: center; text-align: center;">Wyszukiwanie delegacji</h4>
 
+<div class="container" style="width: 100%; text-align: center">
+    <div class="row" style="margin: 5px">
+        <div class="col-md-12">
+            <form action="/delegations-web/report">
+                <button class="btn btn-outline-secondary" type="submit" lang="pl-PL">Zobacz raport</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <#include "include/filterDelegations.ftlh">
 
 <div class="container-fluid">
     <div class="row">
-
         <div class="table table-responsive-sm" style="width: 100%;">
-
             <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
                    style="width: 100%; border: 0px; border-collapse: collapse;">
-
             <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
                 <th scope="col">ID</th>
                 <th scope="col">Data<br/>utworzenia</th>
@@ -81,22 +85,15 @@
                             ${d.getDiscardReason()}
                         <#else>
                         </#if>
-
-                                </td>
-
-                            </tr>
+                        </td>
+                    </tr>
                         </#list>
-
-                    </table>
-
+            </table>
         </div>
     </div>
 </div>
-
 <hr/>
-
     <#include "include/footer.ftlh">
     <#include "include/scripts.ftlh">
-
-                    </body>
+</body>
 </html>
