@@ -1,5 +1,3 @@
-<#-- addDelegationConfirmAndSaveTemplate.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -14,21 +12,17 @@
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif">
-<#--
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <h4 style="color: gray">Delegacja wysłana do akceptacji</h4>
-                    </div>
-                </div>
-            </nav>
-        </header>
--->
+
 <#include "../include/navbarLogoHeaderTemplate.ftlh">
-<h4 style="color: black; alignment: center; text-align: center;">Delegacja wysłana do akceptacji</h4>
-<div class="alert alert-success" role="alert" style="width:60%;margin: auto">
-    <h4 class="alert-heading" style="text-align: center">Nastąpi przekierowanie na stronę główną.</h4>
+
+<div class="container" style="margin-top: 115px">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-secondary" role="alert" style="width:60%;margin: auto; text-align: center">
+                <h4 class="alert-heading"><b>DELEGACJA WYSŁANA</b><br/>Nastąpi przekierowanie na stronę główną.</h4>
+            </div>
+        </div>
+    </div>
 </div>
 
 <#include "../include/scripts.ftlh">

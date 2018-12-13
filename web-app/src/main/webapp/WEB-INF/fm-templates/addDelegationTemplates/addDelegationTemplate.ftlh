@@ -1,5 +1,3 @@
-<#-- addDelegationTemplate.ftlh -->
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -15,7 +13,6 @@
             display: inline-block;
         }
     </style>
-
 
     <script>
         function setup() {
