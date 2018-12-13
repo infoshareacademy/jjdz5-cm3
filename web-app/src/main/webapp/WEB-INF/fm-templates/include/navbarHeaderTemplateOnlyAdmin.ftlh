@@ -23,25 +23,12 @@
             <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                 <li><a href="/delegations-web/userDelegations" style="color: #a9a9a9">Moje delegacje</a></li>
                 <li><a href="/delegations-web/addForm" style="color: #a9a9a9">Dodaj delegację</a></li>
-                <li><a href="/delegations-web/searchDelegations?date=&name=&surname=&country=&status=" style="color: #a9a9a9">Szukaj
-                    delegacji</a></li>
-                <#--<li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=">Zarządzaj delegacjami</a>-->
-                </li>
                 <li><a href="/delegations-web/import" style="color: #a9a9a9">Importuj delegacje</a></li>
                 <li><a href="/delegations-web/admin" style="color: #a9a9a9">Administracja</a></li>
                 <li><a href="/delegations-web/contact" style="color: #a9a9a9">Kontakt</a></li>
                 <li><a href="/delegations-web/about" style="color: #a9a9a9">O nas</a></li>
                 <li>
                     <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>
-                <#--<a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>-->
-                <#--<script>-->
-                <#--function signOut() {-->
-                <#--var auth2 = gapi.auth2.getAuthInstance();-->
-                <#--auth2.signOut().then(function () {-->
-                <#--console.log('USER SIGNED OUT');-->
-                <#--});-->
-                <#--}-->
-                <#--</script>-->
                 </li>
             </ul>
         </div>
