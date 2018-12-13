@@ -22,7 +22,8 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "../include/navbarLogoHeaderTemplate.ftlh">
+<#--<#include "../include/navbarLogoHeaderTemplate.ftlh">-->
+<#include "../include/settingNavBarRole.ftlh">
 <div class="container">
 <div class="row">
 <div class="col-md-12" style="width: 300px">

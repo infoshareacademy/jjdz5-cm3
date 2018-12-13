@@ -1,10 +1,11 @@
+
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container" style="display: inline-block;">
         <div class="navbar-header">
 
             <a class="navbar-brand"
                href="#">
-                &#9992 delegations-web.com
+                &#9992 delegacje.com
             </a>
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"

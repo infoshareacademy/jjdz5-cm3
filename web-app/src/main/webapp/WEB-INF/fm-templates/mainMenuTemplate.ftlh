@@ -13,17 +13,6 @@
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif; text-align: center">
-<#--<#if whoIs == "3">-->
-    <#--<#include "include/navbarHeaderTemplateManagerAndAdmin.ftlh">-->
-<#--<#elseif whoIs == "2">-->
-    <#--<#include "include/navbarHeaderTemplateOnlyAdmin.ftlh">-->
-<#--<#elseif whoIs == "1">-->
-    <#--<#include "include/navbarHeaderTemplateOnlyManager.ftlh">-->
-<#--<#else>-->
-    <#--<#include "include/navbarHeaderTemplateSimpleEmployee.ftlh">-->
-<#--</#if>-->
-
-
 
 <#include "include/settingNavBarRole.ftlh">
 

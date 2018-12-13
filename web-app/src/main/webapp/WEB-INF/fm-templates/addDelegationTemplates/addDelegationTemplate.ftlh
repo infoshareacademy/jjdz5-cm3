@@ -30,7 +30,8 @@
 
 <body data-capture=".base, .date, .datepicker" style="font-family: 'Open Sans', sans-serif">
 
-<#include "../include/navbarLogoHeaderTemplate.ftlh">
+<#--<#include "../include/navbarLogoHeaderTemplate.ftlh">-->
+<#include "../include/settingNavBarRole.ftlh">
 <h4 style="color: black; alignment: center; text-align: center;">Dodaj delegację</h4>
 
 <div class="container" style="width: 100%; text-align: center">
