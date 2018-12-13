@@ -24,7 +24,7 @@
 <div class="container" style="width: 100%; text-align: center">
     <div class="row">
         <div class="col-md-12">
-           
+
         </div>
     </div>
 </div>

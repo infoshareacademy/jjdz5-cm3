@@ -14,25 +14,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/contact")
 public class ContactServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(ContactServlet.class);
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
-    private static final Logger LOG = LogManager.getLogger(ContactServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "contactTemplate");
         try {

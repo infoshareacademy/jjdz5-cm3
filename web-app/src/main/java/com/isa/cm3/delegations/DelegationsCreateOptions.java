@@ -4,7 +4,6 @@ import com.isa.cm3.freemarker.MapModelGenerator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 @RequestScoped
 public class DelegationsCreateOptions {
@@ -38,6 +37,7 @@ public class DelegationsCreateOptions {
         mapModelGenerator.setModel("countriesOption", choiceCountry);
         mapModelGenerator.setModel("statusOption", choiceStatus);
     }
+
     public void addOptionsTemplate() {
         dictionaryCreationDateAddition.addDictionaryCreationDates();
         dictionaryNameAddition.addDictionaryNames();

@@ -18,13 +18,11 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/admin")
 public class AdminServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(AdminServlet.class);
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
-    private static final Logger LOG = LogManager.getLogger(AdminServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +30,7 @@ public class AdminServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         LOG.debug("Pobranie wartości whoIs z sesji: " + req.getSession().getAttribute("whoIs").toString());
 
         Template template = templateProvider

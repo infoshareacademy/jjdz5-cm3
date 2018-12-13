@@ -23,6 +23,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/searchDelegations")
 public class DelegationSearchServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
     @Inject
     private DelegationRepository delegationRepository;
     @Inject
@@ -35,8 +36,6 @@ public class DelegationSearchServlet extends HttpServlet {
     private DelegationsCreateOptions delegationsCreateOptions;
     @Inject
     private DelegationDao delegationDao;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -79,7 +78,7 @@ public class DelegationSearchServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         delegationsCreateOptions.createOptionsTemplate();
 
         try {

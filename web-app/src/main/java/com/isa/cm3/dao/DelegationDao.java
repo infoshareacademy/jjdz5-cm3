@@ -16,10 +16,9 @@ import java.util.List;
 @Stateless
 public class DelegationDao {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
     @PersistenceContext
     private EntityManager entityManager;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
 
     public Long save(Delegation d) {
         entityManager.persist(d);

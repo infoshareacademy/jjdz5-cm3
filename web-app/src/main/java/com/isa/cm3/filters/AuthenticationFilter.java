@@ -36,16 +36,16 @@ public class AuthenticationFilter implements Filter {
 
     private void valdiateSession(ServletRequest request, ServletResponse response, FilterChain chain, HttpServletRequest req, HttpServletResponse res, String uri) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
-        if(isSessionValid(session , uri)){
+        if (isSessionValid(session, uri)) {
             res.sendRedirect("/delegations-web/");
             LOG.debug("Przekierowanie bo niezalogowany");
-        }else {
+        } else {
             chain.doFilter(request, response);
             LOG.debug("zalogowany");
         }
     }
 
-    private boolean isSessionValid(HttpSession session , String uri) {
+    private boolean isSessionValid(HttpSession session, String uri) {
         return session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in"));
     }
 

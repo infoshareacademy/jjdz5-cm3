@@ -19,16 +19,13 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/delegation-save")
 public class DelegationSaveServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
     @Inject
     private DelegationSaveToDatabaseService delegationSaveToDatabaseService;
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

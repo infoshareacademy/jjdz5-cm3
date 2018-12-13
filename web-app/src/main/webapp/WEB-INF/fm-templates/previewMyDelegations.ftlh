@@ -16,27 +16,27 @@
 
 <div class="container-fluid">
     <div class="row">
-    <div class="table" style="width: 90%;margin-right: auto; margin-left: auto">
+        <div class="table" style="width: 90%;margin-right: auto; margin-left: auto">
 
 
-        <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
-               style="width: 100%; border: 0px; border-collapse: collapse;">
+            <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
+                   style="width: 100%; border: 0px; border-collapse: collapse;">
 
-        <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
-            <th scope="col">ID</th>
-            <th scope="col">Data<br/>utworzenia</th>
-            <th scope="col">Imię</th>
-            <th scope="col">Nazwisko</th>
-            <th scope="col">Data <br/> od</th>
-            <th scope="col">Data <br/> do</th>
-            <th scope="col">Kraj <br/> wyjazdu</th>
-            <th scope="col">Miasto</th>
-            <th scope="col">Firma</th>
-            <th scope="col">Adres <br/> firmy</th>
-            <th scope="col">Cel <br/> wyjazdu</th>
-            <th scope="col">Wyjazd z</th>
-            <th scope="col">Status</th>
-            <th scope="col">Komentarz</th>
+            <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
+                <th scope="col">ID</th>
+                <th scope="col">Data<br/>utworzenia</th>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Data <br/> od</th>
+                <th scope="col">Data <br/> do</th>
+                <th scope="col">Kraj <br/> wyjazdu</th>
+                <th scope="col">Miasto</th>
+                <th scope="col">Firma</th>
+                <th scope="col">Adres <br/> firmy</th>
+                <th scope="col">Cel <br/> wyjazdu</th>
+                <th scope="col">Wyjazd z</th>
+                <th scope="col">Status</th>
+                <th scope="col">Komentarz</th>
 
                         <#list delegationsList as d>
                             <#switch d.getDelegationStatus()>
@@ -81,7 +81,7 @@
                             </tr>
                         </#list>
 
-                </table>
+                    </table>
 
     </div>
 </div>
@@ -92,5 +92,5 @@
 <#include "include/footer.ftlh">
 <#include "include/scripts.ftlh">
 
-</body>
+                    </body>
 </html>

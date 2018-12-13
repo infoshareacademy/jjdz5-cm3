@@ -18,10 +18,10 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = "/myDelegations")
 public class DelegationPreviewServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationPreviewServlet.class);
+
     @Inject
     private TemplateProvider templateProvider;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationPreviewServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

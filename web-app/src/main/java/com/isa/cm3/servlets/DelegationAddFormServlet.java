@@ -15,22 +15,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/addForm")
 public class DelegationAddFormServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationAddFormServlet.class);
     @Inject
     private MapModelGenerator mapModelGenerator;
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private EmployeeDao employeeDao;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationAddFormServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,10 +35,10 @@ public class DelegationAddFormServlet extends HttpServlet {
 
         String userName = employeeDao.findByEmail((String) req.getSession().getAttribute("email")).getEmployeeName();
         mapModelGenerator.setModel
-                ("userName",userName);
+                ("userName", userName);
         mapModelGenerator.setModel
-                ("userSureName",employeeDao.findByEmail((String) req.getSession().getAttribute("email")).getEmployeeSurname());
-        mapModelGenerator.setModel("","");
+                ("userSureName", employeeDao.findByEmail((String) req.getSession().getAttribute("email")).getEmployeeSurname());
+        mapModelGenerator.setModel("", "");
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationTemplate");
 

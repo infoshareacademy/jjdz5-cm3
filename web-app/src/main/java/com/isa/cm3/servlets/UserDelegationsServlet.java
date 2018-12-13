@@ -2,13 +2,9 @@ package com.isa.cm3.servlets;
 
 import com.isa.cm3.dao.DelegationDao;
 import com.isa.cm3.dao.EmployeeDao;
-import com.isa.cm3.delegations.DelegationFilter;
-import com.isa.cm3.delegations.DelegationRepository;
-import com.isa.cm3.delegations.DelegationsCreateOptions;
 import com.isa.cm3.delegations.Employee;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
-import com.isa.cm3.services.DelegationAcceptDiscardSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -26,8 +22,7 @@ import java.io.IOException;
 public class UserDelegationsServlet extends HttpServlet {
 
     private static final Logger LOG = LogManager.getLogger(DelegationManageServlet.class);
-    @Inject
-    private DelegationRepository delegationRepository;
+
     @Inject
     private EmployeeDao employeeDao;
     @Inject
@@ -36,12 +31,6 @@ public class UserDelegationsServlet extends HttpServlet {
     private MapModelGenerator mapModelGenerator;
     @Inject
     private TemplateProvider templateProvider;
-    @Inject
-    private DelegationFilter delegationFilter;
-    @Inject
-    private DelegationsCreateOptions delegationsCreateOptions;
-    @Inject
-    private DelegationAcceptDiscardSaveToDatabaseService delegationAcceptDiscardSaveToDatabaseService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

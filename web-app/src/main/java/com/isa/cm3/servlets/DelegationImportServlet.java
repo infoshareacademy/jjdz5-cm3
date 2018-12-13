@@ -27,6 +27,7 @@ import java.io.IOException;
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class DelegationImportServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -36,14 +37,12 @@ public class DelegationImportServlet extends HttpServlet {
     @Inject
     private DelegationsAfterUploadSaveToDatabaseService delegationsAfterUploadSaveToDatabaseService;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationImportServlet.class);
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "importTemplates/importTemplate");
         try {

@@ -18,13 +18,11 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/mainMenu")
 public class MainMenuServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(MainMenuServlet.class);
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
-    private static final Logger LOG = LogManager.getLogger(MainMenuServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +34,7 @@ public class MainMenuServlet extends HttpServlet {
                 "mapa",
                 req.getSession().getAttribute("userName").toString() //todo handla nullpointer
         );
-        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "mainMenuTemplate");
         try {

@@ -4,7 +4,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.isa.cm3.dao.EmployeeDao;
 import com.isa.cm3.delegations.Employee;
 import com.isa.cm3.delegations.IdTokenVerifierAndParser;
-import com.isa.cm3.freemarker.TemplateProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,19 +19,19 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(LoginServlet.class);
+
     @Inject
     private EmployeeDao employeeDao;
-
-    private static final Logger LOG = LogManager.getLogger(LoginServlet.class);
 
     @Override
     public void init() throws ServletException {
 
 
-        Employee employee = new Employee("Marek", "Kalkowski","kontakt@marekkalkowski.pl",true,true,0);
+        Employee employee = new Employee("Marek", "Kalkowski", "kontakt@marekkalkowski.pl", true, true, 0);
         employeeDao.save(employee);
-        Employee employee1 = new Employee("Testowy", "Tester","marek@marekkalkowski.pl",false,false,0);
-            employeeDao.save(employee1);
+        Employee employee1 = new Employee("Testowy", "Tester", "marek@marekkalkowski.pl", false, false, 0);
+        employeeDao.save(employee1);
 
     }
 
@@ -48,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             String name = (String) payLoad.get("name");
             String email = payLoad.getEmail();
 
-            if (employeeDao.findIfExistByEmail(email)){
+            if (employeeDao.findIfExistByEmail(email)) {
                 LOG.debug("Odnaleziono użytkownika w bazie ");
                 HttpSession session = req.getSession(true);
                 LOG.debug("Utworzono sesję dla " + email);
