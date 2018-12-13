@@ -1,0 +1,24 @@
+version: "2"
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=cm3
+      - MYSQL_DATABASE=CM3
+      - MYSQL_USER=as
+      - MYSQL_PASSWORD=as4as
+    ports:
+      - "6603:3306"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+  app:
+    build:
+      context: ./web-app
+    ports:
+      - 4230:8080
+      - 4231:9990
+    depends_on:
+      - db
+    links:
+      - db
+    dns: 8.8.8.8
+
