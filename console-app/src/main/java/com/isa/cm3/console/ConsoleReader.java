@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class ConsoleReader {
+    public class ConsoleReader {
 
     private final Scanner scanner = new Scanner(System.in);
     ConsolePrinter consolePrinter = new ConsolePrinter();
