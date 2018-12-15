@@ -1,5 +1,8 @@
 package com.isa.cm3.delegations;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class GeoLocation {
 
     private Double lat;
@@ -8,6 +11,9 @@ public class GeoLocation {
     public GeoLocation(Double lat, Double lng) {
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public GeoLocation() {
     }
 
     public Double getLat() {

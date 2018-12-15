@@ -49,6 +49,7 @@
                     delegacjami</a>
                 </li>
                 <li><a href="/delegations-web/import" style="color: #a9a9a9">Importuj delegacje</a></li>
+                <li><a href="/delegations-web/reports" style="color: #a9a9a9">Raporty</a></li>
 
                 <li><a href="/delegations-web/admin" style="color: #a9a9a9">Administracja</a></li>
                 <li><a href="/delegations-web/about" style="color: #a9a9a9">O nas</a></li>

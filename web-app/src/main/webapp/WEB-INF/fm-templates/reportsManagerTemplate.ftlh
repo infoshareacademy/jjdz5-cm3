@@ -18,9 +18,8 @@
 <h4 style="color: black; alignment: center; text-align: center;">Kontakt</h4>
 
 <div class="container" style="width: 600px; text-align: center; margin-top: 25px">
-    <p>Do zaprogramowania</p>
 
-    <a href="/delegations-web/marker" target="_blank">mapa za punktami</a>
+    <a href="/delegations-web/marker" target="_blank">Mapa z mistatmi delegacji</a>
 </div>
 
 <div class="container" style="width: 100%; text-align: center">
