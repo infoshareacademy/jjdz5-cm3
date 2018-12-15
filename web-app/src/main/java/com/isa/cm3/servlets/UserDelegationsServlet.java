@@ -1,5 +1,8 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.dao.DelegationDao;
+import com.isa.cm3.dao.EmployeeDao;
+import com.isa.cm3.delegations.Employee;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -15,33 +18,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/mainMenu")
-public class MainMenuServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/userDelegations")
+public class UserDelegationsServlet extends HttpServlet {
 
-    private static final Logger LOG = LogManager.getLogger(MainMenuServlet.class);
+    private static final Logger LOG = LogManager.getLogger(DelegationManageServlet.class);
+
     @Inject
-    private TemplateProvider templateProvider;
+    private EmployeeDao employeeDao;
+    @Inject
+    private DelegationDao delegationDao;
     @Inject
     private MapModelGenerator mapModelGenerator;
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setHeader("Content-Type", "text/html; charset=utf-8");
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        mapModelGenerator.setModel(
-                "mapa",
-                req.getSession().getAttribute("userName").toString() //todo handla nullpointer
-        );
+        Employee employee = employeeDao.findByEmail(req.getSession().getAttribute("email").toString());
         mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
-        Template template = templateProvider
-                .getTemplate(getServletContext(), "mainMenuTemplate");
+        mapModelGenerator.setModel
+                ("delegationsList", delegationDao.findAllForCurentEmployee(String.valueOf(employee.getId())));
+
         try {
+            Template template = templateProvider.getTemplate(getServletContext(), "previewMyDelegations");
+
             template.process(mapModelGenerator.getModel(), resp.getWriter());
+
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie głównego menu");
+        LOG.debug("Wyświetlenie wszystkich delegacji usera: "
+                + employee.getEmployeeName() + " " + employee.getEmployeeSurname());
     }
 }

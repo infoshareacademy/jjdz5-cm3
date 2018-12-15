@@ -1,9 +1,9 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.DelegationMapForValidation;
-import com.isa.cm3.services.DelegationsValidationServices;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.DelegationsValidationServices;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -17,23 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet("/delegation-add")
 public class DelegationAddProcesServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationAddProcesServlet.class);
     @Inject
     private DelegationMapForValidation delegationMapForValidation;
-
     @Inject
     private DelegationsValidationServices delegationsValidationServices;
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationAddProcesServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

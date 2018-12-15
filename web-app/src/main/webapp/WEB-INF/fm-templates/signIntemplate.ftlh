@@ -13,7 +13,6 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "include/navbarLogoHeaderTemplate.ftlh">
 
 <h2>Delegacje: zaloguj się</h2>
 <br>

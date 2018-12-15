@@ -11,7 +11,8 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "include/navbarLogoHeaderTemplate.ftlh">
+<#--<#include "include/navbarLogoHeaderTemplate.ftlh">-->
+<#include "include/settingNavBarRole.ftlh">
 
 <h4 style="color: black; alignment: center; text-align: center;">Raport</h4>
 

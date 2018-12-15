@@ -13,7 +13,8 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "include/navbarHeaderTemplate.ftlh">
+<#--<#include "include/navbarHeaderTemplate.ftlh">-->
+<#include "include/settingNavBarRole.ftlh">
 
 <h4 style="color: black; alignment: center; text-align: center;">Kontakt</h4>
 

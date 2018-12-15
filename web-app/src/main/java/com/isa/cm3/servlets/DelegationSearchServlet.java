@@ -23,6 +23,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/searchDelegations")
 public class DelegationSearchServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
     @Inject
     private DelegationRepository delegationRepository;
     @Inject
@@ -36,8 +37,6 @@ public class DelegationSearchServlet extends HttpServlet {
     @Inject
     private DelegationDao delegationDao;
 
-    private static final Logger LOG = LogManager.getLogger(DelegationSearchServlet.class);
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -45,16 +44,19 @@ public class DelegationSearchServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         try {
+            LOG.debug("Wejście w try chatch w wyszukiwaniu delegacji");
             final String choiceStatus = req.getParameter("status").trim();
             final String choiceCreationDate = req.getParameter("date").trim();
             final String choiceName = req.getParameter("name").trim();
             final String choiceSurname = req.getParameter("surname").trim();
             final String choiceCountry = req.getParameter("country").trim();
-
+            String employeeId = String.valueOf(req.getSession().getAttribute("employeeId"));
+            LOG.info("Przypisanie danych do wyszukiwania zakończone");
             delegationRepository.setListDao(delegationDao.findAll());
-
+            LOG.info("Lista ustawiona");
+            LOG.info("Tworzenie domyslnej templati wyszukiwania");
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, choiceStatus);
-
+            LOG.info("Utworzone templatkę ");
             delegationsCreateOptions.addOptionsTemplate();
             mapModelGenerator.setModel("actionForm", "/delegations-web/searchDelegations");
 
@@ -76,7 +78,7 @@ public class DelegationSearchServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         delegationsCreateOptions.createOptionsTemplate();
 
         try {

@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -21,6 +22,9 @@ public class AboutUsServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+    @Inject
+    private MapModelGenerator mapModelGenerator;
+
     private static final Logger LOG = LogManager.getLogger(AboutUsServlet.class);
 
     @Override
@@ -29,10 +33,11 @@ public class AboutUsServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
+        mapModelGenerator.setModel("whoIs",req.getSession().getAttribute("whoIs").toString());
         Template template = templateProvider
                 .getTemplate(getServletContext(), "aboutTemplate");
         try {
-            template.process(new HashMap<>(), resp.getWriter());
+            template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }

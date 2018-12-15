@@ -30,7 +30,8 @@
 
 <body data-capture=".base, .date, .datepicker" style="font-family: 'Open Sans', sans-serif">
 
-<#include "../include/navbarLogoHeaderTemplate.ftlh">
+<#--<#include "../include/navbarLogoHeaderTemplate.ftlh">-->
+<#include "../include/settingNavBarRole.ftlh">
 <h4 style="color: black; alignment: center; text-align: center;">Dodaj delegację</h4>
 
 <div class="container" style="width: 100%; text-align: center">
@@ -38,14 +39,14 @@
         <div class="form-row">
             <div class="col-md-6">
                 <label for="validationCustom01">Imię</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Imię"
-                       name="name" value="Cmtrzy" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="${userName}"
+                        name="name" value="${userName}" readonly>
 <#include "../include/formValidationDivCode.ftlh">
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02">Nazwisko</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Nazwisko"
-                       name="surname" value="ToZgranaPaka" required>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="${userSureName}"
+                       name="surname" value="${userSureName}" readonly>
 <#include "../include/formValidationDivCode.ftlh">
             </div>
         </div>

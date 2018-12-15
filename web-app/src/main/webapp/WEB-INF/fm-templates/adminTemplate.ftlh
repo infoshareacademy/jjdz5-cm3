@@ -1,4 +1,4 @@
-<#-- messageSenderTemplate.ftlh -->
+<#-- contactTemplate.ftlh -->
 
 <!DOCTYPE html>
 <html lang="pl-PL">
@@ -15,16 +15,17 @@
 
 <#include "include/settingNavBarRole.ftlh">
 
+<h4 style="color: black; alignment: center; text-align: center;">Kontakt</h4>
+
+<div class="container" style="width: 600px; text-align: center; margin-top: 25px">
+    <p>Do zaprogramowania</p>
+</div>
+
 <div class="container" style="width: 100%; text-align: center">
-    <div class="alert alert-secondary" role="alert">
-        <h4 class="alert-heading">Gratulacje!</h4>
-        <p>Twoja wiadomość została poprawnie wysłana!</p>
+    <div class="row">
+        <div class="col-md-12">
 
-        <hr>
-
-        <p class="mb-0">
-            <a href="/delegations-web/mainMenu" style="text-decoration: none; color: #000000">Wróć do strony głównej</a>
-        </p>
+        </div>
     </div>
 </div>
 

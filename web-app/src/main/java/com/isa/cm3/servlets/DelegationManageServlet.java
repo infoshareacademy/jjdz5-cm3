@@ -24,6 +24,7 @@ import java.io.IOException;
 @WebServlet("/manageDelegations")
 public class DelegationManageServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationManageServlet.class);
     @Inject
     private DelegationRepository delegationRepository;
     @Inject
@@ -38,8 +39,6 @@ public class DelegationManageServlet extends HttpServlet {
     private DelegationsCreateOptions delegationsCreateOptions;
     @Inject
     private DelegationAcceptDiscardSaveToDatabaseService delegationAcceptDiscardSaveToDatabaseService;
-
-    private static final Logger LOG = LogManager.getLogger(DelegationManageServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,6 +57,7 @@ public class DelegationManageServlet extends HttpServlet {
             delegationsCreateOptions.createDefaultOptionTemplate(choiceCreationDate, choiceName, choiceSurname, choiceCountry, null);
 
             delegationsCreateOptions.addOptionsTemplate();
+            mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
             mapModelGenerator.setModel("actionForm", "/delegations-web/manageDelegations");
 
             mapModelGenerator.setModel("delegations",

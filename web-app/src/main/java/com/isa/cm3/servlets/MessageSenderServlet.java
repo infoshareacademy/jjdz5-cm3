@@ -18,10 +18,9 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = "/messageSender")
 public class MessageSenderServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(MessageSenderServlet.class);
     @Inject
     private TemplateProvider templateProvider;
-
-    private static final Logger LOG = LogManager.getLogger(MessageSenderServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

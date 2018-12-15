@@ -1,12 +1,13 @@
 package com.isa.cm3.services;
 
+import com.isa.cm3.dao.EmployeeDao;
 import com.isa.cm3.delegations.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
+import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +22,8 @@ public class DelegationImportService {
     @Inject
     private Settings settings;
     @Inject
+    private EmployeeDao employeeDao;
+    @Inject
     private DelegationRepository delegationRepository;
 
     private final String bomMessage = "bom";
@@ -33,6 +36,7 @@ public class DelegationImportService {
         String line;
         BufferedReader reader;
         LocalDate date;
+        Employee employee;
         int id = 1;
         try {
             InputStream fileStream = part.getInputStream();
@@ -47,7 +51,8 @@ public class DelegationImportService {
                     }
 
                     List<String> tempList = Arrays.asList(line.split(","));
-                    if (tempList.size() != 11) {
+                    if (tempList.size() != 12
+                            ) {
                         LOG.error("Importowany plik zawiera błędy.");
                         return message;
                     }
@@ -62,11 +67,14 @@ public class DelegationImportService {
                         return message;
                     }
 
+                    if (!employeeDao.findIfExistByEmail(tempList.get(11))){
+                        return message;
+                    }else{
+                        employee = employeeDao.findByEmail(tempList.get(11));
+                    }
                     delegationRepository.setList(new Delegation(
                             date,
-                            (new Employee(
-                                    tempList.get(1).trim(),
-                                    tempList.get(2).trim())),
+                            employee,
                             LocalDate.parse(tempList.get(3).trim(), settings.getFormater()),
                             LocalDate.parse(tempList.get(4).trim(), settings.getFormater()),
 

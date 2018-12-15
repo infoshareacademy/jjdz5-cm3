@@ -32,7 +32,7 @@ public class Destination {
     @NotNull
     private String destinationCompanyAddress;
 
-    @OneToMany(mappedBy = "destination", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY)
     private Set<Delegation> delegations;
 
     public Destination(String destinationCountry,

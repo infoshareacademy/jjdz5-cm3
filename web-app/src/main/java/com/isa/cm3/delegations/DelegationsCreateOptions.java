@@ -37,6 +37,7 @@ public class DelegationsCreateOptions {
         mapModelGenerator.setModel("countriesOption", choiceCountry);
         mapModelGenerator.setModel("statusOption", choiceStatus);
     }
+
     public void addOptionsTemplate() {
         dictionaryCreationDateAddition.addDictionaryCreationDates();
         dictionaryNameAddition.addDictionaryNames();
