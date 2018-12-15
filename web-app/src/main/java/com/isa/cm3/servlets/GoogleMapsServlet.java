@@ -1,7 +1,10 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.dao.DestinationDao;
+import com.isa.cm3.delegations.GeoLocation;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.GoogleService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -14,16 +17,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/admin")
-public class AdminServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/marker")
+public class GoogleMapsServlet extends HttpServlet {
 
     private static final Logger LOG = LogManager.getLogger(GoogleMapsServlet.class);
     @Inject
     private TemplateProvider templateProvider;
     @Inject
     private MapModelGenerator mapModelGenerator;
+    @Inject
+    private GoogleService googleService;
+    @Inject
+    private DestinationDao destinationDao;
 
+    private List<GeoLocation> locations = new ArrayList<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,13 +44,23 @@ public class AdminServlet extends HttpServlet {
         mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         LOG.debug("Pobranie wartości whoIs z sesji: " + req.getSession().getAttribute("whoIs").toString());
 
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : destinationDao.cityList()) {
+            LOG.debug(s);
+            stringBuilder.append(s).append(",");
+            LOG.debug(stringBuilder);
+            locations.add(googleService.parseJson(s));
+        }
+
+        mapModelGenerator.setModel("locations", locations);
         Template template = templateProvider
-                .getTemplate(getServletContext(), "adminTemplate");
+                .getTemplate(getServletContext(), "/googleMaps/markerCluster");
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
         LOG.debug("Wyświetlenie formularza administracji (sekcja Kontakt)");
+        locations.clear();
     }
 }

@@ -41,6 +41,11 @@ public class DestinationDao {
         return query.getResultList();
     }
 
+    public List<String> cityList(){
+        final Query query = entityManager.createQuery("SELECT d.destinationCity FROM Destination d ");
+        return query.getResultList();
+    }
+
     public Destination findIfExist(Destination destination) {
         final Query query = entityManager.createQuery(
                 "SELECT id FROM Destination WHERE destination_country = :country and destination_city = :city and destination_company = :company and destination_company_adress = :adress");

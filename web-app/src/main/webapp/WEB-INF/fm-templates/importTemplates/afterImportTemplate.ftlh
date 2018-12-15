@@ -15,7 +15,7 @@
 
 <body style="font-family: 'Open Sans', sans-serif">
 
-<#include "../include/navbarHeaderTemplate.ftlh">
+<#include "../include/settingNavBarRole.ftlh">
 
 <div class="container">
     <div class="row">
