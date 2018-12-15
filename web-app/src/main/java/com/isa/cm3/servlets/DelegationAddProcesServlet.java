@@ -52,6 +52,7 @@ public class DelegationAddProcesServlet extends HttpServlet {
             mapModelGenerator.setModel("mapa", delegationMapForValidation.getParametrMap());
         }
 
+        mapModelGenerator.setModel("city",delegationMapForValidation.getParametrMap().get("city"));
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationConfirmAndSaveTemplate");
         try {

@@ -19,6 +19,8 @@
 
 <div class="container" style="width: 600px; text-align: center; margin-top: 25px">
     <p>Do zaprogramowania</p>
+
+    <a href="/delegations-web/marker">mapa za punktami</a>
 </div>
 
 <div class="container" style="width: 100%; text-align: center">
