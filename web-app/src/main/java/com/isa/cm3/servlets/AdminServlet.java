@@ -35,7 +35,7 @@ public class AdminServlet extends HttpServlet {
         LOG.debug("Pobranie wartości whoIs z sesji: " + req.getSession().getAttribute("whoIs").toString());
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "adminTemplate");
+                .getTemplate(getServletContext(), "addUser/addUserTemplate");
         try {
             template.process(mapModelGenerator.getModel(), resp.getWriter());
         } catch (TemplateException e) {
