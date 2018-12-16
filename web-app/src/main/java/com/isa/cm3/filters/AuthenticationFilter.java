@@ -46,7 +46,7 @@ public class AuthenticationFilter implements Filter {
     }
 
     private boolean isSessionValid(HttpSession session, String uri) {
-        return session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in"));
+        return session == null && !(uri.endsWith("/delegations-web/") || uri.endsWith("/login") || uri.endsWith("/sign-in") || uri.endsWith("/resources"));
     }
 
     public void destroy() {

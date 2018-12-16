@@ -1,5 +1,6 @@
 package com.isa.cm3.servlets;
 
+import com.isa.cm3.dao.EmployeeDao;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -23,6 +24,8 @@ public class AdminServlet extends HttpServlet {
     private TemplateProvider templateProvider;
     @Inject
     private MapModelGenerator mapModelGenerator;
+    @Inject
+    private EmployeeDao employeeDao;
 
 
     @Override
@@ -31,6 +34,8 @@ public class AdminServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=utf-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
+        mapModelGenerator.setModel("employee",employeeDao.findAll());
+        LOG.debug("pobranie listy pracownikow");
         mapModelGenerator.setModel("whoIs", req.getSession().getAttribute("whoIs").toString());
         LOG.debug("Pobranie wartości whoIs z sesji: " + req.getSession().getAttribute("whoIs").toString());
 
@@ -41,6 +46,6 @@ public class AdminServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
-        LOG.debug("Wyświetlenie formularza administracji (sekcja Kontakt)");
+        LOG.debug("Wyświetlenie formularza administracji )");
     }
 }

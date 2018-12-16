@@ -20,6 +20,13 @@
             background: #ececec;
         }
 
+        #userList {
+            display: none;
+            width: 600px;
+            border: 1px solid #ccc;
+            padding: 14px;
+            background: #ececec;
+        }
         button {
             margin-bottom: 10px;
         }
@@ -47,6 +54,16 @@
         $(document).ready(function () {
             $('#Mybtn').click(function () {
                 $('#MyForm').toggle(500);
+            });
+        });
+
+    </script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#User').click(function () {
+                $('#userList').toggle(500);
             });
         });
 
@@ -105,6 +122,46 @@
         <button class="btn btn-secondary" type="submit" lang="pl-PL" style="margin-top: 5px">Zatwierdź</button>
 </div>
 </form>
+</div>
+<br><br>
+<div class="container" style="width: 100%; text-align: center">
+    <button id="User" class="btn btn-primary" style="text-align: center">Pokaż pracowników</button>
+</div>
+<div class="container" style="width: 100%; text-align: center" id="userList">
+    <div class="row">
+        <div class="table" style="width: 90%;margin-right: auto; margin-left: auto">
+
+
+            <table class="table col-sm-12 table-bordered table-striped table-condensed cf"
+                   style="width: 100%; border: 0px; border-collapse: collapse;">
+
+            <tr style="border: 0px; border-top: 2pt solid black; border-bottom: 2pt solid black;">
+
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Email</th>
+                <th scope="col">Czy admin</th>
+                <th scope="col">Czy manager</th>
+
+
+                        <#list employee as e>
+                           <tr class="info" style="border-top: 2pt solid black; border-bottom: 2pt solid black;">
+
+                        <td>${e.getEmployeeName()}</td>
+                        <td>${e.getEmployeeSurname()}</td>
+                        <td>${e.getEmail()}</td>
+                        <td>${e.isAdmininistrator()?string("Tak", "Nie")}</td>
+                        <td>${e.isManager()?string("Tak", "Nie")}</td>
+
+
+                            </tr>
+                        </#list>
+
+                    </table>
+
+    </div>
+</div>
+
 </div>
 <#include "../include/footer.ftlh">
 <#include "../include/scripts.ftlh">

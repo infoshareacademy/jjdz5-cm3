@@ -99,7 +99,7 @@ public class Employee {
         this.email = email;
     }
 
-    public boolean isManager() {
+    public Boolean isManager() {
         return manager;
     }
 
@@ -107,7 +107,7 @@ public class Employee {
         this.manager = manager;
     }
 
-    public boolean isAdmininistrator() {
+    public Boolean isAdmininistrator() {
         return admininistrator;
     }
 

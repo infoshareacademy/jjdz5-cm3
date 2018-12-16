@@ -28,7 +28,7 @@
                 <li><a href="/delegations-web/manageDelegations?date=&name=&surname=&country=" style="color: #a9a9a9">Zarządzaj delegacjami</a>
                 </li>
                 <li><a href="/delegations-web/reports" style="color: #a9a9a9">Raporty</a></li>
-                <li><a href="/delegations-web/contact" style="color: #a9a9a9">Kontakt</a></li>
+
                 <li><a href="/delegations-web/about" style="color: #a9a9a9">O nas</a></li>
                 <li>
                     <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>
