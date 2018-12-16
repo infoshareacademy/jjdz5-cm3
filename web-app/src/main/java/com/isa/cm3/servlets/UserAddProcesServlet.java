@@ -3,6 +3,7 @@ package com.isa.cm3.servlets;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
 import com.isa.cm3.services.DelegationSaveToDatabaseService;
+import com.isa.cm3.services.EmployeeSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +22,7 @@ public class UserAddProcesServlet extends HttpServlet {
 
     private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
     @Inject
-    private DelegationSaveToDatabaseService delegationSaveToDatabaseService;
+    private EmployeeSaveToDatabaseService employeeSaveToDatabaseService;
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -32,10 +33,10 @@ public class UserAddProcesServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationSaveToDatabaseService.saveDelegationToDatabase();
+        employeeSaveToDatabaseService.saveDelegationToDatabase();
 
         Template template = templateProvider
-                .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationAfterSaveAndRedirectTemplate");
+                .getTemplate(getServletContext(), "addUser/addEmployeeAfterSaveAndRedirectTemplate");
         try {
             template.process(mapModelGenerator, resp.getWriter());
         } catch (TemplateException e) {

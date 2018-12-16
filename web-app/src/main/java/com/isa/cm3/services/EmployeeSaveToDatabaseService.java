@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import java.util.Map;
 
-public class EmployeeSavToDatabaseService {
+public class EmployeeSaveToDatabaseService {
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DelegationSaveToDatabaseService.class);

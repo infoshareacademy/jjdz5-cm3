@@ -7,7 +7,7 @@ public class EmployeeAddValidationService {
     private static final String REGEX_NAME_AND_SURNAME = "([A-Z,ĄŻŚŹĘĆŃÓŁ][a-z,ążśźęćńół]((?!\\,).)*$)";
     private static final String SUCCESS_VALIDATION_MESSAGE = "ok";
     private static final String FAILD_VALIDATION_MESSAGE = "Błędnie wpisane pole: ";
-    private static final String EMAIL = "^(.+)@(.+)$";
+    private static final String EMAIL = "^(.+)@gmail.com";
 
     public String addUserValidation(Map<String, String> map) {
 
