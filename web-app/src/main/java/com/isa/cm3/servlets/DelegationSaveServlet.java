@@ -1,11 +1,13 @@
 package com.isa.cm3.servlets;
 
-import com.isa.cm3.services.DelegationInstanceGeneratorService;
-import com.isa.cm3.services.DelegationAddToFileService;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.DelegationSaveToDatabaseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,15 +19,11 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/delegation-save")
 public class DelegationSaveServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationSaveServlet.class);
     @Inject
-    private DelegationInstanceGeneratorService delegationInstanceGeneratorService;
-
-    @Inject
-    private DelegationAddToFileService delegationSaveToFile;
-
+    private DelegationSaveToDatabaseService delegationSaveToDatabaseService;
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
 
@@ -34,7 +32,8 @@ public class DelegationSaveServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-        delegationSaveToFile.saveToFile(delegationInstanceGeneratorService.generateDelegationInstance());
+        delegationSaveToDatabaseService.saveDelegationToDatabase();
+
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationAfterSaveAndRedirectTemplate");
         try {
@@ -42,6 +41,6 @@ public class DelegationSaveServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Zapisywanie delegacji...");
     }
 }
-

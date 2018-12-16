@@ -1,11 +1,13 @@
 package com.isa.cm3.servlets;
 
 import com.isa.cm3.delegations.DelegationMapForValidation;
-import com.isa.cm3.services.DelegationsValidationServices;
 import com.isa.cm3.freemarker.MapModelGenerator;
 import com.isa.cm3.freemarker.TemplateProvider;
+import com.isa.cm3.services.DelegationsValidationServices;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,19 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet("/delegation-add")
 public class DelegationAddProcesServlet extends HttpServlet {
 
+    private static final Logger LOG = LogManager.getLogger(DelegationAddProcesServlet.class);
     @Inject
     private DelegationMapForValidation delegationMapForValidation;
-
     @Inject
     private DelegationsValidationServices delegationsValidationServices;
-
     @Inject
     private TemplateProvider templateProvider;
-
     @Inject
     private MapModelGenerator mapModelGenerator;
 
@@ -53,6 +52,7 @@ public class DelegationAddProcesServlet extends HttpServlet {
             mapModelGenerator.setModel("mapa", delegationMapForValidation.getParametrMap());
         }
 
+        mapModelGenerator.setModel("city",delegationMapForValidation.getParametrMap().get("city"));
         Template template = templateProvider
                 .getTemplate(getServletContext(), "addDelegationTemplates/addDelegationConfirmAndSaveTemplate");
         try {
@@ -60,5 +60,6 @@ public class DelegationAddProcesServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie podsumowania dodawanej delegacji");
     }
 }

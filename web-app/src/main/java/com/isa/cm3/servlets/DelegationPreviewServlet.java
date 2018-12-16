@@ -3,6 +3,8 @@ package com.isa.cm3.servlets;
 import com.isa.cm3.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -15,6 +17,8 @@ import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/myDelegations")
 public class DelegationPreviewServlet extends HttpServlet {
+
+    private static final Logger LOG = LogManager.getLogger(DelegationPreviewServlet.class);
 
     @Inject
     private TemplateProvider templateProvider;
@@ -32,5 +36,6 @@ public class DelegationPreviewServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+        LOG.debug("Wyświetlenie wszystkich delegacji użytkownika (sekcja Moje delegacje)");
     }
 }

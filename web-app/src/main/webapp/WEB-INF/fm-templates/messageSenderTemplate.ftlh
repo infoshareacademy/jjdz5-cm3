@@ -1,29 +1,35 @@
+<#-- messageSenderTemplate.ftlh -->
+
 <!DOCTYPE html>
 <html lang="pl-PL">
+
 <head>
-    <title>Main menu</title>
-     <#include "include/headAndMeta.ftlh">
+
+    <title>Delegacje</title>
+
+<#include "include/headAndMeta.ftlh">
+
 </head>
+
 <body style="font-family: 'Open Sans', sans-serif">
-<#include "include/navbarHeaderTemplate.ftlh">
+
+<#include "include/settingNavBarRole.ftlh">
+
 <div class="container" style="width: 100%; text-align: center">
-<div class="alert alert-secondary" role="alert">
-    <h4 class="alert-heading">Gratulacje!</h4>
-    <p>Twoja wiadomość została poprawnie wysłana!</p>
-    <hr>
-    <p class="mb-0">
-        <a href="/delegations-web/mainMenu" style="text-decoration: none; color: #000000">Wróć do strony głównej</a></p>
+    <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">Gratulacje!</h4>
+        <p>Twoja wiadomość została poprawnie wysłana!</p>
+
+        <hr>
+
+        <p class="mb-0">
+            <a href="/delegations-web/mainMenu" style="text-decoration: none; color: #000000">Wróć do strony głównej</a>
+        </p>
+    </div>
 </div>
-</div>
+
 <#include "include/footer.ftlh">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+<#include "include/scripts.ftlh">
+
 </body>
 </html>

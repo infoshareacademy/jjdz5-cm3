@@ -1,28 +1,59 @@
 package com.isa.cm3.delegations;
 
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.Stateless;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@SessionScoped
+@Stateless
+@Entity
+@Table(name = "delegations")
 public class Delegation implements Serializable {
-    private Integer fileLineNumber;
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "creation_date")
+    @NotNull
     private LocalDate creationDate;
+
+    @Column(name = "start_date")
+    @NotNull
     private LocalDate startDate;
+
+    @Column(name = "end_date")
+    @NotNull
     private LocalDate endDate;
+
+    @Column(name = "purpose")
+    @NotNull
     private String purpose;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "delegation_status")
+    @NotNull
     private DelegationStatus delegationStatus;
+
+    @Column(name = "start_point")
+    @NotNull
     private String startPoint;
+
+    @Column(name = "discard_reason")
     private String discardReason;
 
-
-    /*Obiekty z klas zawierających pola i metody */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
     private Employee employee = new Employee();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "destination_id")
     private Destination destination = new Destination();
 
-
-    public Delegation(Integer fileLineNumber,
+    public Delegation(Long id,
                       LocalDate creationDate,
                       Employee employee,
                       LocalDate startDate,
@@ -32,7 +63,7 @@ public class Delegation implements Serializable {
                       DelegationStatus delegationStatus,
                       String startPoint,
                       String discardReason) {
-        this.fileLineNumber = fileLineNumber;
+        this.id = id;
         this.creationDate = creationDate;
         this.employee = employee;
         this.startDate = startDate;
@@ -42,19 +73,38 @@ public class Delegation implements Serializable {
         this.delegationStatus = delegationStatus;
         this.startPoint = startPoint;
         this.discardReason = discardReason;
+    }
 
+    public Delegation(
+            LocalDate creationDate,
+            Employee employee,
+            LocalDate startDate,
+            LocalDate endDate,
+            Destination destination,
+            String purpose,
+            DelegationStatus delegationStatus,
+            String startPoint
+    ) {
 
+        this.creationDate = creationDate;
+        this.employee = employee;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.destination = destination;
+        this.purpose = purpose;
+        this.delegationStatus = delegationStatus;
+        this.startPoint = startPoint;
     }
 
     public Delegation() {
     }
 
-    public Integer getFileLineNumber() {
-        return fileLineNumber;
+    public Long getId() {
+        return id;
     }
 
-    public void setFileLineNumber(Integer fileLineNumber) {
-        this.fileLineNumber = fileLineNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Employee getEmployee() {
@@ -134,7 +184,7 @@ public class Delegation implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Delegation that = (Delegation) o;
-        return Objects.equals(fileLineNumber, that.fileLineNumber) &&
+        return id == that.id &&
                 Objects.equals(creationDate, that.creationDate) &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(endDate, that.endDate) &&
@@ -149,14 +199,20 @@ public class Delegation implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(fileLineNumber, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, discardReason, employee, destination);
+        return Objects.hash(id, creationDate, startDate, endDate, purpose, delegationStatus, startPoint, discardReason, employee, destination);
     }
 
     @Override
     public String toString() {
-        return fileLineNumber + "," + creationDate + "," + employee + "," + startDate + "," + endDate + "," + destination + "," +
-                purpose + "," + delegationStatus + "," + startPoint + "," + discardReason;
+        return id + ","
+                + creationDate + ","
+                + employee + ","
+                + startDate + ","
+                + endDate + ","
+                + destination + ","
+                + purpose + ","
+                + delegationStatus + ","
+                + startPoint + ","
+                + discardReason;
     }
-
-
 }

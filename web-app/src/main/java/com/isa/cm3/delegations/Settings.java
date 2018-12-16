@@ -9,20 +9,18 @@ import java.time.format.DateTimeFormatter;
 public class Settings {
 
     private final Path path = Paths.get(System.getProperty("jboss.server.data.dir"), "delegations.txt");
-
-    private final DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final Path uploadDir = Paths.get(System.getProperty("jboss.server.data.dir"), "upload/");
 
     public Path getPath() {
         return path;
     }
-
-    private final Path uploadDir = Paths.get(System.getProperty("jboss.server.data.dir"),"upload/");
 
     public Path getUploadDir() {
         return uploadDir;
     }
 
     public DateTimeFormatter getFormater() {
-        return formater;
+        return dateFormater;
     }
 }
