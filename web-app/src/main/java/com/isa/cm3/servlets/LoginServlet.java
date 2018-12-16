@@ -64,6 +64,22 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("employeeId", employeeDao.findByEmail(email).getId());
                 LOG.debug("teraz bedzie redirect");
                 resp.sendRedirect("/delegations-web/mainMenu");
+            }else {
+                resp.getWriter().write("<!DOCTYPE html>\n" +
+                                "<html>\n" +
+                                "<body onload=\"myFunction()\">\n" +
+
+                                "\n" +
+                                "<script>\n" +
+                                "function myFunction() {\n" +
+                                "    alert(\"Logowanie nie możliwe skontaktuj się z administratorem.\");\n" +
+                                "    window.location='http://localhost:8080/delegations-web/';\n" +
+                                "}\n" +
+                                "</script>\n" +
+                                "\n" +
+                                "</body>\n" +
+                                "</html>");
+               // resp.sendRedirect("/delegations-web/");
             }
 
         } catch (Exception e) {

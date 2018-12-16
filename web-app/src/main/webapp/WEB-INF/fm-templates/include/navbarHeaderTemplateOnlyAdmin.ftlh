@@ -25,7 +25,6 @@
                 <li><a href="/delegations-web/addForm" style="color: #a9a9a9">Dodaj delegację</a></li>
                 <li><a href="/delegations-web/import" style="color: #a9a9a9">Importuj delegacje</a></li>
                 <li><a href="/delegations-web/admin" style="color: #a9a9a9">Administracja</a></li>
-                <li><a href="/delegations-web/contact" style="color: #a9a9a9">Kontakt</a></li>
                 <li><a href="/delegations-web/about" style="color: #a9a9a9">O nas</a></li>
                 <li>
                     <a href="/delegations-web/logout" onclick="signOut();">Wyloguj się</a>

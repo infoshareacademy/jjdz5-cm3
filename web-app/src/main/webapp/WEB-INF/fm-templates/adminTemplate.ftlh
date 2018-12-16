@@ -20,7 +20,7 @@
 <div class="container" style="width: 600px; text-align: center; margin-top: 25px">
     <p>Do zaprogramowania</p>
 
-    <a href="/delegations-web/marker" target="_blank">mapa za punktami</a>
+    <a href="/delegations-web/userAdd" target="_blank">mapa za punktami</a>
 </div>
 
 <div class="container" style="width: 100%; text-align: center">

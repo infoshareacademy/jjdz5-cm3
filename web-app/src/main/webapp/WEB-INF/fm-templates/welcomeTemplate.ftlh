@@ -7,7 +7,7 @@
 
     <title>Delegacje</title>
 
-<#include "./include/headAndMeta.ftlh">
+<#include "include/headAndMeta.ftlh">
 
     <style>
         p.text-center {
@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="images/comfortable.png" alt="comfortable" style="width:100%">
+                <img src="https://lh3.googleusercontent.com/SWMeYzxM7g6e2_THqNMp2J_ivJeC3EEuDd3QIomAl0bFekv6Gb3xNuaIIOYnrDlXy2S27Yw=s151" alt="comfortable" style="width:100%; height: 185px">
                 <div class="caption">
                     <p class="text-center">Wygoda</p>
                 </div>
@@ -36,7 +36,8 @@
 
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="images/ontime.png" alt="ontime" style="width:100%">
+                <img src="https://lh3.googleusercontent.com/KxWntQGtdptst21cd-cv_SiDO_vygXwND2euW95iUJ0ElUX1nQWGhpG-C-A-STtC6P-Z=s153" alt="ontime" style="width:100%">
+
                 <div class="caption">
                     <p class="text-center">Punktualność</p>
                 </div>
@@ -46,7 +47,7 @@
 
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="images/fast.png" alt="fast" style="width:100%">
+                <img src="https://lh3.googleusercontent.com/wrjB-CESnAv_ozmMgcPNxR0ojc-QikgdfReFiY9Q02y8H-pHCTd_bhK4VYKWV2H0yoOggQ=s153" alt="fast" style="width:100%">
                 <div class="caption">
                     <p class="text-center">Szybkość</p>
                 </div>

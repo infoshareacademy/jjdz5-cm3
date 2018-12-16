@@ -53,7 +53,7 @@
 
                 <li><a href="/delegations-web/admin" style="color: #a9a9a9">Administracja</a></li>
                 <li><a href="/delegations-web/about" style="color: #a9a9a9">O nas</a></li>
-                <li><a href="/delegations-web/contact" style="color: #a9a9a9">Kontakt</a></li>
+
 
 
 
